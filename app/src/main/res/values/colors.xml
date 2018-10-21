@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="base">#217b63</color>
+    <color name="checked">#9C1A47</color>
+    <color name="info">#f9f982</color>
+    <color name="text1">#f0f0f0</color>
+
+    <color name="black_overlay">#66000000</color>
+
+    <!--<color name="base">#0195ff</color>-->
+    <!--<color name="checked">#ff6b02</color>-->
+    <!--<color name="info">#a8f2c6</color>-->
+    <!--<color name="text1">#edead3</color>-->
+
+    <!--<color name="base">#000000</color>-->
+    <!--<color name="checked">#570769</color>-->
+    <!--<color name="info">#a3e9f5</color>-->
+    <!--<color name="text1">#dab5ad</color>-->
+
+</resources>

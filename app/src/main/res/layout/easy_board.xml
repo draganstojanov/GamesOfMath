@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?><!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:layout_width="match_parent"--><!--android:layout_height="match_parent"--><!--android:orientation="vertical"--><!--tools:context=".Easy.EasyBoard">-->
+
+<android.support.constraint.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lite_board_lay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    tools:context=".Easy.EasyBoard">
+
+
+    <LinearLayout
+        android:id="@+id/second_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/lll_1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="3">
+
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/info_stroke"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:layout_weight="2"
+                android:background="@color/checked"
+                android:gravity="center"
+                android:text="Time:"
+                android:textColor="@color/info" />
+
+            <TextView
+                android:id="@+id/lite_timer"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:padding="8dp"
+                android:textColor="@color/info"
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeTextType="uniform" />
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="2"
+            android:background="@drawable/info_stroke"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:layout_weight="2"
+                android:background="@color/checked"
+                android:gravity="center"
+                android:text="YOUR SCORE:"
+                android:textColor="@color/info" />
+
+
+            <TextView
+                android:id="@+id/easy_score"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="12345"
+                android:textColor="@color/info"
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeTextType="uniform" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/lite_pause"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/info_stroke"
+            android:gravity="center"
+            android:maxLines="1"
+            android:onClick="goPause"
+            android:padding="4dp"
+            android:text="PAUSE"
+            android:textColor="@color/info"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/lll_1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/lll_2"
+        app:layout_constraintTop_toBottomOf="@+id/second_bar"
+        app:layout_constraintVertical_weight="2">
+
+        <TextView
+            android:id="@+id/lite_op_0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteNum"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_op_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteNum"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_op_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteNum"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lll_2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/lll_3"
+        app:layout_constraintTop_toBottomOf="@+id/lll_1"
+        app:layout_constraintVertical_weight="2">
+
+        <TextView
+            android:id="@+id/lite_op_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteNum"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_op_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteNum"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_op_5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteNum"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lll_3"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginRight="24dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/easy_fornula_wrap"
+        app:layout_constraintTop_toBottomOf="@+id/lll_2"
+        app:layout_constraintVertical_weight="2">
+
+        <TextView
+            android:id="@+id/lite_s_0"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteOper"
+            android:text="+"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_s_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteOper"
+            android:text="-"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_s_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="16dp"
+            android:layout_weight="1"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteOper"
+            android:text="\u00D7"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_s_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="liteOper"
+            android:text="\u00F7"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/easy_fornula_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/easy_result_wrap"
+        app:layout_constraintTop_toBottomOf="@+id/lll_3"
+        app:layout_constraintVertical_weight="3">
+
+        <TextView
+            android:id="@+id/easy_formula"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
+            android:layout_weight="8"
+            android:background="@color/base"
+            android:gravity="center"
+            android:onClick="goBack"
+            android:padding="4dp"
+            android:text="formula"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_erase"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="8dp"
+            android:layout_weight="2"
+            android:background="@color/base"
+            android:gravity="center"
+
+            android:onClick="formulaRemove"
+            android:padding="8dp"
+            android:textStyle="bold"
+            android:text="\u232B"
+            app:autoSizeTextType="uniform" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/easy_result_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/easy_bonus_wrap"
+        app:layout_constraintTop_toBottomOf="@+id/easy_fornula_wrap"
+        app:layout_constraintVertical_weight="3">
+
+        <LinearLayout
+            android:id="@+id/target_lay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/tv_stroke"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/lite_target_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="@color/checked"
+                android:gravity="center"
+                android:text="TARGET:" />
+
+            <TextView
+                android:id="@+id/lite_target"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="TARGET"
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeTextType="uniform" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/result_lay"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+
+            android:layout_weight="1"
+            android:background="@drawable/tv_stroke"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <TextView
+                android:id="@+id/lite_result_title"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:background="@color/checked"
+                android:gravity="center"
+                android:text="YOUR RESULT:" />
+
+            <TextView
+                android:id="@+id/lite_result"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:padding="4dp"
+                android:text="RESULT"
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeTextType="uniform" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/easy_bonus_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/easy_result_wrap"
+        app:layout_constraintVertical_weight="3">
+
+        <TextView
+            android:id="@+id/lite_skip"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@color/info"
+            android:gravity="center"
+            android:maxLines="1"
+            android:onClick="liteSkip"
+            android:padding="4dp"
+            android:text="Skip"
+            android:textColor="@color/checked"
+            app:autoSizeMaxTextSize="40sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_xtra_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@color/info"
+            android:gravity="center"
+            android:onClick="liteXtraTime"
+            android:padding="4dp"
+            android:text="Xtra Time"
+            android:textColor="@color/checked"
+            app:autoSizeMaxTextSize="40sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+        <TextView
+            android:id="@+id/lite_reset"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:background="@color/info"
+            android:gravity="center"
+            android:maxLines="1"
+            android:onClick="liteReset"
+            android:padding="4dp"
+            android:text="Skip"
+            android:textColor="@color/checked"
+            app:autoSizeMaxTextSize="40sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/lite_start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/checked"
+        android:gravity="center"
+        android:text="3"
+        android:textColor="@color/info"
+        android:textSize="300sp"
+        android:visibility="gone">
+
+    </TextView>
+
+<include layout="@layout/firework"/>
+
+
+
+</android.support.constraint.ConstraintLayout>
+
+
+
+
+
+    <!--</LinearLayout>-->

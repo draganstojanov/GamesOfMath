@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_lay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    tools:context=".Game">
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/logo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/menu"
+        app:layout_constraintTop_toTopOf="parent">
+
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/checked_stroke"
+            android:gravity="center"
+            android:text="Game Of Math"
+            android:textColor="@color/checked"
+            android:textSize="55sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/settings"
+        app:layout_constraintTop_toBottomOf="@id/logo">
+
+
+
+        <TextView
+            android:id="@+id/menu_arcade"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/text1_stroke"
+            android:gravity="center"
+            android:onClick="goArcade"
+            android:text="Arcade Math"
+            android:textColor="@color/base"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@id/menu_lite_quiz"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/menu_lite_quiz"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="20dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/text1_stroke"
+            android:gravity="center"
+            android:onClick="goEasy"
+            android:text="Easy Calc"
+            android:textColor="@color/base"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@id/menu_heavy_quiz"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menu_arcade" />
+
+        <TextView
+            android:id="@+id/menu_heavy_quiz"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/text1_stroke"
+            android:gravity="center"
+            android:onClick="goHeavy"
+            android:text="Heavy Calc"
+            android:textColor="@color/base"
+            android:textSize="36sp"
+            app:layout_constraintBottom_toTopOf="@id/menu_practice"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/menu_lite_quiz" />
+
+        <TextView
+            android:id="@+id/menu_practice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            android:layout_marginLeft="32dp"
+            android:layout_marginRight="32dp"
+            android:background="@drawable/text1_stroke"
+            android:gravity="center"
+            android:onClick="goPractice"
+            android:text="Practice"
+            android:textColor="@color/base"
+            android:textSize="36sp"
+            app:layout_constraintTop_toBottomOf="@id/menu_heavy_quiz"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+
+
+    <RelativeLayout
+        android:id="@+id/settings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/menu">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bar_stroke"
+            android:onClick=""
+            android:padding="12dp"
+            android:text="SETTINGS"
+            android:textColor="@color/base"
+            android:textSize="18sp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:layout_centerInParent="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bar_stroke"
+            android:onClick=""
+            android:padding="12dp"
+            android:text="ABOUT"
+            android:textColor="@color/base"
+            android:textSize="18sp" />
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/bar_stroke"
+            android:onClick=""
+            android:padding="12dp"
+            android:text="HELP"
+            android:textColor="@color/base"
+            android:textSize="18sp" />
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

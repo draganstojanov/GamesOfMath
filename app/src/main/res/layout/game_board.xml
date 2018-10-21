@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_board_lay"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="8dp"
+    tools:context=".GameBoard">
+
+
+    <LinearLayout
+        android:id="@+id/second_bar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/game_board_formula"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="2">
+
+
+        <LinearLayout
+            android:id="@+id/arcade_bar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="4"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="2"
+                android:background="@drawable/info_stroke"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="3"
+                    android:background="@color/checked"
+                    android:gravity="center"
+                    android:text="Time:"
+                    android:textColor="@color/info" />
+
+                <TextView
+                    android:id="@+id/arcade_timer"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="left"
+                    android:maxLines="1"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="4dp"
+                    android:textColor="@color/info"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+
+                android:layout_weight="2"
+                android:background="@drawable/info_stroke"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <TextView
+
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="2dp"
+                    android:layout_weight="3"
+                    android:background="@color/checked"
+                    android:gravity="center"
+                    android:text="PROGRESS"
+                    android:textColor="@color/info" />
+
+
+                <TextView
+                    android:id="@+id/arcade_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:textStyle="bold"
+                    app:autoSizeTextType="uniform" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/game_board_scores"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="4"-->
+        <!--android:visibility="">-->
+
+
+        <LinearLayout
+            android:id="@+id/practice_progress"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="4dp"
+            android:layout_weight="4"
+            android:background="@drawable/info_stroke"
+            android:orientation="vertical"
+            android:padding="2dp"
+            android:visibility="gone">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:layout_weight="2"
+                android:background="@color/checked"
+                android:gravity="center"
+                android:text="Task"
+                android:textColor="@color/info" />
+
+            <TextView
+                android:id="@+id/pprog"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="4dp"
+                android:textStyle="bold"
+                app:autoSizeTextType="uniform" />
+        </LinearLayout>
+
+
+        <!--<LinearLayout-->
+
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="4dp"-->
+        <!--android:layout_marginRight="4dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:background="@drawable/info_stroke"-->
+        <!--android:orientation="vertical"-->
+        <!--android:padding="2dp">-->
+
+        <!--<TextView-->
+
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:background="@color/checked"-->
+        <!--android:gravity="center"-->
+        <!--android:text="RIGHT"-->
+        <!--android:textColor="@color/info" />-->
+
+
+        <!--<TextView-->
+        <!--android:id="@+id/game_board_score_1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="6"-->
+        <!--android:gravity="center"-->
+        <!--android:maxLines="1"-->
+        <!--android:padding="8dp"-->
+        <!--android:textColor="@color/info"-->
+        <!--app:autoSizeMaxTextSize="120sp"-->
+        <!--app:autoSizeMinTextSize="20sp"-->
+        <!--app:autoSizeTextType="uniform" />-->
+        <!--</LinearLayout>-->
+
+
+        <!--<LinearLayout-->
+
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_marginLeft="4dp"-->
+        <!--android:layout_marginRight="4dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:background="@drawable/info_stroke"-->
+        <!--android:orientation="vertical"-->
+        <!--android:padding="2dp">-->
+
+        <!--<TextView-->
+
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_margin="2dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:background="@color/checked"-->
+        <!--android:gravity="center"-->
+        <!--android:text="WRONG"-->
+        <!--android:textColor="@color/info" />-->
+
+
+        <!--<TextView-->
+        <!--android:id="@+id/game_board_score_2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="6"-->
+        <!--android:gravity="center"-->
+        <!--android:maxLines="1"-->
+        <!--android:padding="8dp"-->
+        <!--android:textColor="@color/info"-->
+        <!--app:autoSizeMaxTextSize="120sp"-->
+        <!--app:autoSizeMinTextSize="20sp"-->
+        <!--app:autoSizeTextType="uniform" />-->
+        <!--</LinearLayout>-->
+
+
+        <!--</LinearLayout>-->
+
+
+        <TextView
+            android:id="@+id/board_pause"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/info_stroke"
+            android:gravity="center"
+            android:maxLines="1"
+            android:onClick="goPause"
+            android:padding="4dp"
+            android:text="PAUSE"
+            android:textColor="@color/info"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform"
+
+            />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/game_board_formula"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/base"
+        android:clickable="false"
+        android:gravity="center"
+        android:maxLines="1"
+        android:onClick="goNext"
+        android:padding="4dp"
+        app:autoSizeMaxTextSize="120sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@id/game_board_typed"
+        app:layout_constraintTop_toBottomOf="@+id/second_bar"
+        app:layout_constraintVertical_weight="3" />
+
+
+    <TextView
+        android:id="@+id/game_board_typed"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/base"
+        android:gravity="center"
+        android:onClick="goNext"
+        android:padding="4dp"
+        app:autoSizeMaxTextSize="120sp"
+        app:autoSizeMinTextSize="12sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@id/arcade_btn"
+        app:layout_constraintTop_toBottomOf="@+id/game_board_formula"
+        app:layout_constraintVertical_weight="3" />
+
+    <LinearLayout
+
+        android:id="@+id/arcade_btn"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/game_board_typed"
+        app:layout_constraintVertical_weight="6">
+
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/multi_choice"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:visibility="gone"
+            tools:context=".Practice.PracticeBoard">
+
+            <TextView
+                android:id="@+id/game_board_choice_0"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/base"
+                android:gravity="center"
+                android:onClick="multiChoice"
+                android:tag="0"
+                android:text="c0"
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeMinTextSize="20sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@id/game_board_choice_2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/game_board_choice_1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/game_board_choice_1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="8dp"
+                android:background="@color/base"
+                android:gravity="center"
+                android:onClick="multiChoice"
+                android:tag="1"
+                android:text="c1"
+
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeMinTextSize="20sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toTopOf="@id/game_board_choice_3"
+                app:layout_constraintLeft_toRightOf="@id/game_board_choice_0"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/game_board_choice_2"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="8dp"
+                android:background="@color/base"
+                android:gravity="center"
+                android:onClick="multiChoice"
+                android:tag="2"
+                android:text="c2"
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeMinTextSize="20sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/game_board_choice_3"
+                app:layout_constraintTop_toBottomOf="@id/game_board_choice_0" />
+
+            <TextView
+                android:id="@+id/game_board_choice_3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@color/base"
+                android:gravity="center"
+                android:onClick="multiChoice"
+                android:tag="3"
+                android:text="c3"
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeMinTextSize="20sp"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/game_board_choice_2"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/game_board_choice_1" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/keyboard"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/key_btn_1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="1"
+                    android:text="1"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/key_btn_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="2"
+                    android:text="2"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/key_btn_3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="2"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="3"
+                    android:text="3"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/key_btn_4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="4"
+                    android:text="4"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/key_btn_5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="5"
+                    android:text="5"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/key_btn_6"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="2"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="6"
+                    android:text="6"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/key_btn_7"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="7"
+                    android:text="7"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/key_btn_8"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="8"
+                    android:text="8"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/key_btn_9"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="2"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="9"
+                    android:text="9"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+            </TableRow>
+
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1">
+
+                <TextView
+                    android:id="@+id/key_btn_back"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="0"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboardC"
+                    android:padding="8dp"
+                    android:tag="c"
+                    android:text="\u232B"
+                    android:textStyle="bold"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/key_btn_0"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="1"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboard"
+                    android:tag="0"
+                    android:text="0"
+
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/key_btn_enter"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_column="2"
+                    android:layout_marginLeft="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/tv_stroke"
+                    android:gravity="center"
+                    android:onClick="keyboardEnter"
+                    android:padding="8dp"
+                    android:tag="e"
+                    android:text="OK"
+                    app:autoSizeTextType="uniform" />
+            </TableRow>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/arcade_start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/checked"
+        android:gravity="center"
+        android:text="3"
+        android:textColor="@color/info"
+        android:textSize="300sp"
+        android:visibility="gone">
+
+    </TextView>
+
+    <include layout="@layout/pause_dialog"/>
+
+    <include layout="@layout/firework" />
+
+</android.support.constraint.ConstraintLayout>

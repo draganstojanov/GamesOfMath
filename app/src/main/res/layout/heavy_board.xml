@@ -1,0 +1,588 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Heavy.HeavyBoard">
+
+
+
+    <LinearLayout
+        android:id="@+id/heavy_board_lay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_weight="10">
+
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/info_stroke"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="2"
+                    android:background="@color/checked"
+                    android:gravity="center"
+                    android:text="LIVES"
+                    android:textColor="@color/info" />
+
+                <TextView
+                    android:id="@+id/heavy_lives"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:textColor="@color/info"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform"
+                    android:padding="8dp"  />
+            </LinearLayout>
+
+
+            <LinearLayout
+
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_weight="2"
+                android:background="@drawable/info_stroke"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <TextView
+
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_margin="2dp"
+                    android:layout_weight="2"
+                    android:background="@color/checked"
+                    android:gravity="center"
+                    android:text="TIME:"
+                    android:textColor="@color/info" />
+
+
+                <TextView
+                    android:id="@+id/heavy_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:text="1::23.45"
+                    android:textColor="@color/info"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform"
+                    android:padding="8dp"  />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/heavy_pause"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/info_stroke"
+                android:gravity="center"
+                android:onClick="goPause"
+                android:text="PAUSE"
+                android:textColor="@color/info"
+                app:autoSizeMaxTextSize="120sp"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeTextType="uniform"
+                android:padding="4dp"
+                android:maxLines="1"/>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="10"
+            android:background="@drawable/info_stroke"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="2dp"
+                android:layout_weight="2"
+                android:background="@color/checked"
+                android:gravity="center"
+                android:text="SCORE:"
+                android:textColor="@color/info" />
+
+            <TextView
+                android:id="@+id/heavy_score"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:textColor="@color/info"
+                android:textSize="30sp" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="30"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform">
+
+            <LinearLayout
+                android:id="@+id/quiz_signs_raw"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="32dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/quiz_img_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+
+                    android:background="@color/base"
+                    android:gravity="center"
+                    android:tag="4"
+                    android:text="+"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform"
+                      />
+
+
+                <TextView
+                    android:id="@+id/quiz_img_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+
+                    android:background="@color/base"
+                    android:gravity="center"
+                    android:tag="5"
+                    android:text="-"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/quiz_img_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+
+                    android:background="@color/base"
+                    android:gravity="center"
+                    android:tag="6"
+                    android:text="\u00D7"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+                <TextView
+                    android:id="@+id/quiz_img_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+
+
+                    android:background="@color/base"
+                    android:gravity="center"
+                    android:tag="7"
+                    android:text="\u00F7"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/quiz_signs"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:textSize="40sp"
+                    android:visibility="invisible" />
+
+                <TextView
+                    android:id="@+id/quiz_sign_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:gravity="center"
+                    android:tag="0"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+
+                <TextView
+                    android:id="@+id/quiz_sign_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:gravity="center"
+                    android:tag="1"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+
+                <TextView
+                    android:id="@+id/quiz_sign_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:gravity="center"
+                    android:tag="2"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+
+                <TextView
+                    android:id="@+id/quiz_sign_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:gravity="center"
+                    android:tag="3"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/quiz_operands"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/quiz_op_0"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="8dp"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/quiz_op_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="8dp"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/quiz_op_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="8dp"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/quiz_op_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="8dp"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform">
+
+                </TextView>
+
+                <TextView
+                    android:id="@+id/quiz_op_4"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@color/base"
+                    android:gravity="center_vertical|right"
+                    android:paddingRight="8dp"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform">
+
+                </TextView>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/heavy_go"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/base"
+            android:layout_weight="10"
+            android:onClick="goBack"
+            app:autoSizeTextType="uniform"
+            android:padding="4dp"
+            android:visibility="gone"/>
+
+
+
+        <LinearLayout
+            android:id="@+id/heavy_tr"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="10"
+            >
+
+            <LinearLayout
+                android:id="@+id/target_lay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@drawable/tv_stroke"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <TextView
+                    android:id="@+id/target_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:background="@color/checked"
+                    android:gravity="center"
+                    android:text="TARGET:" />
+
+                <TextView
+                    android:id="@+id/quiz_target"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:onClick="resultCommit"
+                    android:text="TARGET"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform"
+                    android:padding="4dp"/>
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/result_lay"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+
+                android:layout_weight="1"
+                android:background="@drawable/tv_stroke"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <TextView
+                    android:id="@+id/result_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"
+                    android:background="@color/checked"
+                    android:gravity="center"
+                    android:text="YOUR RESULT:" />
+
+                <TextView
+                    android:id="@+id/quiz_result"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="6"
+                    android:gravity="center"
+                    android:text="RESULT"
+                    app:autoSizeMaxTextSize="120sp"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeTextType="uniform"
+                    android:padding="4dp" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="10"
+
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <TextView
+                android:id="@+id/quiz_hint"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_weight="1"
+                android:background="@color/info"
+                android:gravity="center"
+                android:onClick="hint"
+                android:text="Hints"
+                android:textColor="@color/checked"
+                app:autoSizeMaxTextSize="40sp"
+
+                app:autoSizeTextType="uniform"
+                android:padding="4dp"
+                android:maxLines="1" />
+
+            <TextView
+            android:id="@+id/quiz_xtra_time"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+            android:layout_weight="1"
+            android:background="@color/info"
+            android:gravity="center"
+            android:onClick="xtraTime"
+            android:text="XtraTime"
+            android:textColor="@color/checked"
+            app:autoSizeMaxTextSize="40sp"
+
+            app:autoSizeTextType="uniform"
+            android:padding="4dp"
+            android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/quiz_xtra_lives"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1"
+                android:background="@color/info"
+                android:gravity="center"
+
+                android:text="XtraLives"
+                android:textColor="@color/checked"
+                app:autoSizeMaxTextSize="40sp"
+
+                app:autoSizeTextType="uniform"
+                android:padding="4dp"
+                android:maxLines="1" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+    <TextView
+        android:id="@+id/heavy_start"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/checked"
+        android:gravity="center"
+        android:text="3"
+        android:textColor="@color/info"
+        android:textSize="300sp"
+        android:visibility="gone">
+
+    </TextView>
+
+    <include layout="@layout/pause_dialog"/>
+
+    <include layout="@layout/firework"/>
+</android.support.constraint.ConstraintLayout>

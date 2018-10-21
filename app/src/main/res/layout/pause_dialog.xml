@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout android:id="@+id/pause_dialog"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="48dp"
+    android:background="#e0000000"
+    android:visibility="gone"
+    tools:visibility="visible"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <TextView
+        android:id="@+id/dialog_resume"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/tv_stroke"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Resume game"
+        android:onClick="goResume"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/dialog_back"
+        android:layout_marginBottom="24dp"
+        />
+
+    <TextView
+        android:id="@+id/dialog_back"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/tv_stroke"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Go back"
+        android:onClick="goBack"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_resume"
+        app:layout_constraintBottom_toTopOf="@+id/dialog_home"
+        android:layout_marginBottom="24dp"
+        />
+    <TextView
+        android:id="@+id/dialog_home"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/tv_stroke"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="Go home"
+        android:onClick="goHome"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_back"
+        app:layout_constraintBottom_toTopOf="@+id/dialog_sound"
+        android:layout_marginBottom="24dp"
+        />
+    <TextView
+        android:id="@+id/dialog_sound"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/tv_stroke"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="sound"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dialog_home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
+
+
+
+
+</android.support.constraint.ConstraintLayout>
