@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Games Of Math</string>
+    <string name="best_time">Najboljie vrijeme</string>
+    <string name="no_result">Nema rezultata</string>
+    <string name="go">KRENI!</string>
+    <string name="help">POMOĆ</string>
+    <string name="pause">PAUZA</string>
+    <string name="end">Kraj</string>
+    <string name="right">Tačno!</string>
+    <string name="game_over">KRAJ IGRE</string>
+    <string name="new_high">NOVI REKORD</string>
+    <string name="multi_choice">Izaberi od...</string>
+    <string name="settings">Postavke</string>
+    <string name="calculate">Računaj</string>
+    <string name="main">Glavni izbornik</string>
+    <string name="heavy_calc">Teški izračun</string>
+    <string name="easy_calc">Jednostavan izračun</string>
+    <string name="practice">Vježbanje</string>
+    <string name="about">O aplikciji</string>
+    <string name="speed_math">Brza matematika</string>
+    <string name="cancel">Otkaži</string>
+</resources>

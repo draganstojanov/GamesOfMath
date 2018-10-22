@@ -14,7 +14,7 @@ import com.andraganoid.gameofmath.R;
 import java.util.Arrays;
 
 import static com.andraganoid.gameofmath.Game.calc;
-import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.mathBase;
 
 
 public class EasySettings extends AppCompatActivity {
@@ -31,7 +31,7 @@ public class EasySettings extends AppCompatActivity {
         //    findViewById(R.id.lite_set_lay).setBackground(new BitmapDrawable(getResources(), background));
 
         intent = new Intent(this, EasyBoard.class);
-        mathBase=new MathBase(this);
+       // mathBase=new MathBase(this);
         calc = new Easy( Arrays.asList(getResources().getStringArray(R.array.easy_levels)));
 
 

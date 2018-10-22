@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Games Of Math</string>
 
-    <string name="best_result">Best result</string>
+    <string name="best_time">Best time</string>
     <string name="no_result">No result</string>
     <string name="operands2">2 operands</string>
     <string name="operands3">3 operands</string>
@@ -12,7 +12,7 @@
     <string name="calculate">Calculate</string>
     <string name="go">GO!</string>
 
-    <string name="home">HOME</string>
+    <string name="main">MAIN</string>
     <string name="help">HELP</string>
     <string name="settings">SETTINGS</string>
     <string name="about">ABOUT</string>
@@ -40,7 +40,7 @@
     <string name="game_over">GAME OVER</string>
     <string name="new_high">NEW HIGH SCORE!</string>
 
-    <string name="arcade_math">Arcade Math</string>
+    <string name="speed_math">Speed Math</string>
     <string name="easy_calc">Easy Calc</string>
     <string name="heavy_calc">Heavy Calc</string>
     <string name="practice">Practice</string>

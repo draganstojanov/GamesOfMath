@@ -8,6 +8,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
+import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.Operation.Lit;
 import com.andraganoid.gameofmath.R;
 import com.andraganoid.gameofmath.Effect;
@@ -15,7 +16,7 @@ import com.andraganoid.gameofmath.Effect;
 import java.util.ArrayList;
 
 import static com.andraganoid.gameofmath.Game.calc;
-import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.mathBase;
 import static com.andraganoid.gameofmath.Game.task;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
@@ -180,7 +181,7 @@ public class EasyBoard extends Effect {
 
         if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
 
-            mathBase.saveEasyResult(calc.levelNames.get(calc.gameKind), (long) (calc.currentScore));
+            MathBase.getInstance().saveEasyResult(calc.levelNames.get(calc.gameKind), (long) (calc.currentScore));
             formula.setText("NEW BEST TIME");
             startAnimation(formula, 5);
             goFire();

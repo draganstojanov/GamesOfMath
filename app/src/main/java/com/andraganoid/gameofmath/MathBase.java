@@ -10,6 +10,7 @@ import android.util.Log;
 import java.util.HashMap;
 
 public class MathBase extends SQLiteOpenHelper {
+
     private SQLiteDatabase db;
     private ContentValues cv = new ContentValues();
     Cursor cursor;
@@ -20,9 +21,32 @@ public class MathBase extends SQLiteOpenHelper {
     //  String query;
     String[] t = new String[1];
 
-    public MathBase(Context context) {
-        super(context, "math_base", null, 1);
+    private static MathBase mathBase;
+    private static Context mContext;
+
+    public MathBase(Context context){
+        this();
+        mContext=context;}
+
+  //  private MathBase(Context context) {
+   //     super(context, "math_base", null, 1);
+  //  }
+
+      private MathBase() {
+         super(mContext, "math_base", null, 1);
+      }
+
+
+
+    public static MathBase getInstance() {
+
+        if (mathBase == null) {
+            mathBase = new MathBase();
+        }
+
+        return mathBase;
     }
+
 
     @Override
     public void onCreate(SQLiteDatabase db) {

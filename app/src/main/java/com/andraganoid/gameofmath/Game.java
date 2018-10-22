@@ -18,7 +18,7 @@ public class Game extends AppCompatActivity {
    // public static Bitmap background;
     public static Calc calc;
     public static Task task;
-    public static MathBase mathBase;
+   // public static MathBase mathBase;
 
     Intent intent;
    // android.support.constraint.ConstraintLayout cl;
@@ -50,6 +50,8 @@ public class Game extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
+        MathBase mb=new MathBase(getApplicationContext());
       //  Toast.makeText(this, "homme creata", Toast.LENGTH_SHORT).show();
       //  cl = (android.support.constraint.ConstraintLayout) findViewById(R.id.game_lay);
       //  cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));

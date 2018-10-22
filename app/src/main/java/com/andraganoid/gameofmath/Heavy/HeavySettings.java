@@ -14,7 +14,7 @@ import com.andraganoid.gameofmath.R;
 import java.util.Arrays;
 
 import static com.andraganoid.gameofmath.Game.calc;
-import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.mathBase;
 
 public class HeavySettings extends AppCompatActivity {
     Intent intent;
@@ -27,7 +27,7 @@ public class HeavySettings extends AppCompatActivity {
        // findViewById(R.id.heavy_set_lay).setBackground(new BitmapDrawable(getResources(), background));
 
         intent = new Intent(this, HeavyBoard.class);
-        mathBase=new MathBase(this);
+       // mathBase=new MathBase(this);
         calc = new Heavy( Arrays.asList(getResources().getStringArray(R.array.heavy_levels)));
 
         ((TextView) findViewById(R.id.heavy_br_10)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0))));

@@ -38,13 +38,13 @@ public class ArcadeSettings extends AppCompatActivity {
         setContentView(R.layout.arcade_settings);
 
         calc = new Arcade(Arrays.asList(getResources().getStringArray(R.array.arcade_levels)));
-        Game.mathBase = new MathBase(this);
+       // Game.mathBase = new MathBase(this);
 
         rv = findViewById(R.id.arcade_recycler_view);
         rv.setHasFixedSize(true);
         ArcadeLayoutManager = new GridLayoutManager(this, 2);
         rv.setLayoutManager(ArcadeLayoutManager);
-        arcadeAdapter = new ArcadeAdapter(calc.levelNames);
+        arcadeAdapter = new ArcadeAdapter(calc.levelNames,this);
         rv.setAdapter(arcadeAdapter);
 
 

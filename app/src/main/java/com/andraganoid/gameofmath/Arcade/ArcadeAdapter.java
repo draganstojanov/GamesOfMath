@@ -1,5 +1,6 @@
 package com.andraganoid.gameofmath.Arcade;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.R;
 
 import java.util.Arrays;
@@ -15,20 +17,20 @@ import java.util.List;
 
 import static com.andraganoid.gameofmath.Calc.opSign;
 import static com.andraganoid.gameofmath.Game.calc;
-import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.mathBase;
 
 
 public class ArcadeAdapter extends RecyclerView.Adapter<ArcadeAdapter.ArcadeViewHolder> implements View.OnClickListener {
 
 
-    public ArcadeAdapter(List<String> arcadeLevels) {
+    public ArcadeAdapter(List<String> arcadeLevels,Context context) {
         calc.scoreMap.clear();
         for (int i = 0; i < arcadeLevels.size(); i++) {
 
             calc.scoreMap.put(arcadeLevels.get(i), 0l);
         }
 
-        calc.scoreMap.putAll(mathBase.getArcadeHiScores());
+        calc.scoreMap.putAll(MathBase.getInstance().getArcadeHiScores());
     }
 
 

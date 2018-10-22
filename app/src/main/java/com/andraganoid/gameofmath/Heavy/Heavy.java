@@ -3,10 +3,11 @@ package com.andraganoid.gameofmath.Heavy;
 import android.util.Log;
 
 import com.andraganoid.gameofmath.Calc;
+import com.andraganoid.gameofmath.MathBase;
 
 import java.util.List;
 
-import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.mathBase;
 
 
 public class Heavy extends Calc {
@@ -27,22 +28,22 @@ public class Heavy extends Calc {
             Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
         }
 
-        scoreMap.putAll(mathBase.getHeavyHiScores());
+        scoreMap.putAll(MathBase.getInstance().getHeavyHiScores());
         Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
 
 
 
-        heavyHints = mathBase.getBonusValue(HEAVY_HINTS);
+        heavyHints = MathBase.getInstance().getBonusValue(HEAVY_HINTS);
         if (heavyHints == -1) {
             heavyHints = setBonus(HEAVY_HINTS, DEFAULT_HEAVY_HINTS);
         }
 
-        heavyXtraTime = mathBase.getBonusValue(HEAVY_XTRA_TIME);
+        heavyXtraTime = MathBase.getInstance().getBonusValue(HEAVY_XTRA_TIME);
         if (heavyXtraTime == -1) {
             heavyXtraTime = setBonus(HEAVY_XTRA_TIME, DEFAULT_HEAVY_XTRA_TIME);
         }
 
-        heavyXtraLives = mathBase.getBonusValue(HEAVY_XTRA_LIVES);
+        heavyXtraLives = MathBase.getInstance().getBonusValue(HEAVY_XTRA_LIVES);
         if (heavyXtraLives == -1) {
             heavyXtraLives = setBonus(HEAVY_XTRA_LIVES, DEFAULT_HEAVY_XTRA_LIVES);
         }

@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.GameBoard;
+import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.Operation.Add;
 import com.andraganoid.gameofmath.Operation.Big;
 import com.andraganoid.gameofmath.Operation.Div;
@@ -19,7 +20,7 @@ import com.andraganoid.gameofmath.Operation.Tri;
 import com.andraganoid.gameofmath.R;
 
 import static com.andraganoid.gameofmath.Game.calc;
-import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.mathBase;
 import static com.andraganoid.gameofmath.Game.task;
 
 
@@ -143,7 +144,7 @@ public class ArcadeBoard extends GameBoard {
 
 
             if (timeInMillis <= calc.highScore || calc.highScore == 0) {
-                mathBase.saveArcadeResult(calc.levelNames.get(calc.gameKind), timeInMillis);
+                MathBase.getInstance().saveArcadeResult(calc.levelNames.get(calc.gameKind), timeInMillis);
                 formula.setText("NEW BEST TIME");
                 startAnimation(formula, 5);
                 goFire();

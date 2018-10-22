@@ -3,10 +3,11 @@ package com.andraganoid.gameofmath.Easy;
 import android.util.Log;
 
 import com.andraganoid.gameofmath.Calc;
+import com.andraganoid.gameofmath.MathBase;
 
 import java.util.List;
 
-import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.mathBase;
 
 public class Easy extends Calc {
 
@@ -24,20 +25,20 @@ public class Easy extends Calc {
             Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
         }
 
-        scoreMap.putAll(mathBase.getEasyHiScores());
+        scoreMap.putAll(MathBase.getInstance().getEasyHiScores());
         Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
 
-        easySkips = mathBase.getBonusValue(EASY_SKIPS);
+        easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
         if (easySkips == -1) {
             easySkips = setBonus(EASY_SKIPS, DEFAULT_EASY_SKIPS);
         }
 
-        easyXtraTine = mathBase.getBonusValue(EASY_XTRA_TIME);
+        easyXtraTine = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
         if (easyXtraTine == -1) {
             easyXtraTine = setBonus(EASY_XTRA_TIME, DEFAULT_EASY_XTRA_TIME);
         }
 
-        easyResets = mathBase.getBonusValue(EASY_RESETS);
+        easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
         if (easyResets == -1) {
             easyResets = setBonus(EASY_RESETS, DEFAULT_EASY_RESET);
         }

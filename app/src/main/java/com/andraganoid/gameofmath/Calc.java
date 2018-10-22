@@ -5,7 +5,7 @@ import com.andraganoid.gameofmath.Operation.Task;
 import java.util.HashMap;
 import java.util.List;
 
-import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.mathBase;
 
 public class Calc {
 
@@ -179,7 +179,7 @@ public class Calc {
             ss = 0;
         }
 
-        mathBase.saveBonus(t, ss);
+        MathBase.getInstance().saveBonus(t, ss);
 
         switch (t) {
             case EASY_SKIPS:

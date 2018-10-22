@@ -13,11 +13,12 @@ import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Effect;
 import com.andraganoid.gameofmath.Game;
+import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;
 
 import static com.andraganoid.gameofmath.Game.calc;
-import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.mathBase;
 import static com.andraganoid.gameofmath.Game.task;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
@@ -253,7 +254,7 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
 
         if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
 
-            mathBase.saveHeavyResult(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
+            MathBase.getInstance().saveHeavyResult(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
             go.setText("NEW HIGH SCORE");
             startAnimation(go, 5);
             goFire();

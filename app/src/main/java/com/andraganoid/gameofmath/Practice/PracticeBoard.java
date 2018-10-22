@@ -20,9 +20,6 @@ import static com.andraganoid.gameofmath.Game.task;
 
 public class PracticeBoard extends GameBoard {
 
-//    Intent pIntent;
-//    boolean onBack;
-
 
     @Override
     public void prepareTask() {
