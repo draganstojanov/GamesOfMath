@@ -9,8 +9,7 @@ import com.squareup.leakcanary.LeakCanary;
 
 // TODO
 // showscore odbrojavanje
-// tiner out zadnjih 10 sekudi zvuk
-// sounds : use bonus,get bonus,good answer,wrong answer,lost life,firework
+// sounds : lost life,get bonus life,next level,gameover
 // hiscores  googleplay
 //ispis bonusa sredi
 //help

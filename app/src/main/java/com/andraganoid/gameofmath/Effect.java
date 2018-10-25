@@ -20,13 +20,14 @@ import java.util.Random;
 public class Effect extends AppCompatActivity {
     public CountDownTimer cdt, intro;
     public Intent boardIntent;
-    public boolean goMain;
-    public boolean isEnd;
+    public boolean goMain,isEnd;
+    public boolean soundIsOn;
     DisplayMetrics metrics;
     int shot, last, width, height;
     Random rand;
     ParticleSystem ps;
-    MediaPlayer sNewBest;
+   public MediaPlayer sFirework[],sNewBest,sTimeBeep,sGetBonus,sUseBonus, sRight_answer, sWrong_answer;
+
     int fireDots[] = new int[]{
             R.drawable.fw_01,
             R.drawable.fw_02,
@@ -53,14 +54,26 @@ public class Effect extends AppCompatActivity {
         width = metrics.widthPixels;
         height = metrics.heightPixels;
         rand = new Random();
+        soundIsOn=true;
+        sFirework = new MediaPlayer[]{
+                MediaPlayer.create(this, R.raw.firework1),
+                MediaPlayer.create(this, R.raw.firework2),
+                MediaPlayer.create(this, R.raw.firework3)};
         sNewBest = MediaPlayer.create(this, R.raw.new_best);
+        sTimeBeep=MediaPlayer.create(this, R.raw.beep_timer);
+        sGetBonus=MediaPlayer.create(this, R.raw.get_bonus);
+        sUseBonus=MediaPlayer.create(this, R.raw.use_bonus);
+        sRight_answer =MediaPlayer.create(this, R.raw.right_answer);
+        sWrong_answer =MediaPlayer.create(this, R.raw.wrong_answer);
     }
-
 
     public void goFire() {
 
         //  findViewById(R.id.fireworks_wrapper_e).setVisibility(View.VISIBLE);
-        sNewBest.start();
+
+        if (soundIsOn) {
+            sNewBest.start();
+        }
         shot = 25;
         last = 0;
         new CountDownTimer(10000, 200) {
@@ -97,6 +110,10 @@ public class Effect extends AppCompatActivity {
         shot--;
         last = 0;
 
+        if (soundIsOn) {
+            sFirework[getRnd()].start();
+        }
+
         ps = new ParticleSystem(this,
                 200, fireDots[rand.nextInt(1000) % 8],
                 1000 + 500 * (rand.nextInt(1000) % 9));
@@ -106,12 +123,10 @@ public class Effect extends AppCompatActivity {
     }
 
 
-
-
     public void startAnimation(View view, int duration) {
-        int r1=getRnd();
+        int r1 = getRnd();
 //        switch (rand.nextInt(1000) % 3) {
-switch(r1){
+        switch (r1) {
             case 0:
                 animRotAndShake(view, 15f, 3 * duration);
                 break;
@@ -121,9 +136,9 @@ switch(r1){
             case 2:
                 String r = "";
 
-                int r2=getRnd();
+                int r2 = getRnd();
 //        switch (rand.nextInt(1000) % 3) {
-                switch(r2){
+                switch (r2) {
                     case 0:
                         r = "rotation";
                         break;
@@ -141,7 +156,9 @@ switch(r1){
         }
     }
 
-    int getRnd(){return rand.nextInt(1000) % 3;}
+    int getRnd() {
+        return rand.nextInt(1000) % 3;
+    }
 
     void animRotAndShake(View view, float amplitude, int repeat) {
 

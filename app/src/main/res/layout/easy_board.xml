@@ -483,6 +483,8 @@
 
     </TextView>
 
+    <include layout="@layout/pause_dialog"/>
+
 <include layout="@layout/firework"/>
 
 

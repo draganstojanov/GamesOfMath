@@ -135,6 +135,9 @@ public abstract class GameBoard extends Effect {
 
 
     public void right() {
+        if (soundIsOn) {
+            sRight_answer.start();
+        }
         goodAnswers++;
         setProgress("Right!", R.color.base, "\u2713");
     }
@@ -142,6 +145,9 @@ public abstract class GameBoard extends Effect {
 
 
     public void wrong() {
+        if (soundIsOn) {
+            sWrong_answer.start();
+        }
         badAnswers++;
         setProgress("Wrong!", R.color.checked, "\u2573");
     }

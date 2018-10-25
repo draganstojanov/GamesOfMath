@@ -36,7 +36,7 @@ public class ArcadeBoard extends GameBoard {
 
     @Override
     public void prepareTask() {
-
+        goMain = true;
         keyboard.setVisibility(View.VISIBLE);
         //   (findViewById(R.id.game_board_scores)).setVisibility(View.GONE);
         typed.setVisibility(View.VISIBLE);
@@ -91,6 +91,7 @@ public class ArcadeBoard extends GameBoard {
 
 
         //  isEnd=true;
+        goMain = false;
         intro = new CountDownTimer(5000, 1000) {
 
             @Override
@@ -103,6 +104,7 @@ public class ArcadeBoard extends GameBoard {
             @Override
             public void onFinish() {
                 // isEnd=false;
+                goMain = true;
                 start.setVisibility(View.GONE);
                 showTask();
             }
@@ -208,6 +210,9 @@ public class ArcadeBoard extends GameBoard {
     @Override
     protected void onPause() {
         super.onPause();
+        if (intro != null) {
+            intro.cancel();
+        }
         handler.removeCallbacks(stopwatch);
         if (goMain) {
             boardIntent = new Intent(this, Game.class);

@@ -23,14 +23,12 @@ public class PracticeBoard extends GameBoard {
 
     @Override
     public void prepareTask() {
+        goMain = true;
         ((TextView) findViewById(R.id.board_pause)).setText("CANCEL");
         findViewById((R.id.practice_progress)).setVisibility(View.VISIBLE);
         typed.setClickable(false);
         formula.setClickable(false);
-        // onBack = false;
 
-
-        //    prog.clear();
         switch (calc.getAnswerType()) {
             case "multichoice":
                 //  ((ConstraintLayout) findViewById(R.id.multi_choice)).setVisibility(View.VISIBLE);

@@ -26,22 +26,18 @@ public class EasyBoard extends Effect {
     ArrayList<Integer> liteFornulaArr = new ArrayList<>();
     TextView lResult, lTarget, lErase, lTimer, skip, xtraTime, reset, start, eScore, formula;
     boolean isNum;
-    // CountDownTimer cdt, intro;
-    //  int timerTick;
+
     int secondsLeft;
     View board;
-
-
-//    boolean onBack;
-//    Intent eIntent;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
         board = findViewById(R.id.lite_board_lay);
-        // onBack = false;
+
+
+
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
@@ -83,6 +79,7 @@ public class EasyBoard extends Effect {
 
         eScore.setText(calc.resetScore());
         isEnd = true;
+        goMain = false;
         intro = new CountDownTimer(5000, 1000) {
 
             @Override
@@ -94,9 +91,12 @@ public class EasyBoard extends Effect {
 
             @Override
             public void onFinish() {
-                isEnd = false;
                 start.setVisibility(View.GONE);
+                isEnd = false;
+                goMain = true;
                 runLite();
+
+
             }
         };
         intro.start();
@@ -105,6 +105,8 @@ public class EasyBoard extends Effect {
     }
 
     void runLite() {
+
+        Toast.makeText(this,"START", Toast.LENGTH_SHORT).show();
         calc.gameLevel++;
         checkForBonusesEasy();
 
@@ -155,6 +157,9 @@ public class EasyBoard extends Effect {
                      if((l / 1000 - 1)<11){
                     if (colorChange) {
                         lTimer.setTextColor(getResources().getColor(R.color.checked));
+                        if (soundIsOn) {
+                            sTimeBeep.start();
+                        }
                     } else {
                         lTimer.setTextColor(getResources().getColor(R.color.info));
                     }
@@ -235,7 +240,9 @@ public class EasyBoard extends Effect {
                 cdt.cancel();
             }
             eScore.setText(calc.easyScore("submit", (int) ((1 + calc.gameKind / 5) * (((float) calc.secondsRemain / (float) secondsLeft * 10) * (100 + (float) calc.gameLevel) / 50))));
-            Toast.makeText(this, "CORRECT ANSWER", Toast.LENGTH_SHORT).show();
+            if (soundIsOn) {
+                sRight_answer.start();
+            }
             runLite();
 
         }
@@ -325,6 +332,9 @@ public class EasyBoard extends Effect {
                 calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets - 1);
 
                 reset.setText("Resets: " + String.valueOf(calc.easyResets));
+                if (soundIsOn) {
+                    sUseBonus.start();
+                }
                 startAnimation(reset, 1);
                 runLite();
 
@@ -345,6 +355,9 @@ public class EasyBoard extends Effect {
                 calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips - 1);
 
                 skip.setText("Skips: " + String.valueOf(calc.easySkips));
+                if (soundIsOn) {
+                    sUseBonus.start();
+                }
                 startAnimation(skip, 1);
                 runLite();
             }
@@ -365,6 +378,9 @@ public class EasyBoard extends Effect {
                 calc.easyXtraTine = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTine - 1);
 
                 xtraTime.setText("Xtra Time: " + String.valueOf(calc.easyXtraTine));
+                if (soundIsOn) {
+                    sUseBonus.start();
+                }
                 startAnimation(xtraTime, 1);
             }
         }
@@ -380,20 +396,28 @@ public class EasyBoard extends Effect {
         if (calc.gameLevel % 20 == 0) {//add SKIP
             calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips + 1);
             skip.setText("Skips: " + String.valueOf(calc.easySkips));
+            if (soundIsOn) {
+                sGetBonus.start();
+            }
             startAnimation(skip, 1);
-            //EEECT
+
         }
         if (calc.gameLevel % 24 == 0) {//add XTRA
             calc.easyXtraTine = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTine + 1);
             xtraTime.setText("Xtra Time: " + String.valueOf(calc.easyXtraTine));
+            if (soundIsOn) {
+                sGetBonus.start();
+            }
             startAnimation(xtraTime, 1);
-            //EEECT
+
         }
         if (calc.gameLevel % 33 == 0) {//add RESET
             calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets + 1);
             reset.setText("Resets: " + String.valueOf(calc.easyResets));
+            if (soundIsOn) {
+                sGetBonus.start();
+            }
             startAnimation(reset, 1);
-            //EEECT
         }
 
 
@@ -419,6 +443,9 @@ public class EasyBoard extends Effect {
     @Override
     protected void onPause() {
         super.onPause();
+        if (intro != null) {
+            intro.cancel();
+        }
         if (cdt != null) {
             cdt.cancel();
         }

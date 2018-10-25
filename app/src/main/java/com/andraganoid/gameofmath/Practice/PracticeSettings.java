@@ -25,6 +25,12 @@ public class PracticeSettings extends AppCompatActivity {
 
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.practice_settings);

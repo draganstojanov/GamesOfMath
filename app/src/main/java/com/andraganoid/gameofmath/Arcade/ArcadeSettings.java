@@ -25,6 +25,12 @@ public class ArcadeSettings extends AppCompatActivity {
 
 
     @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         arcadeAdapter.notifyDataSetChanged();

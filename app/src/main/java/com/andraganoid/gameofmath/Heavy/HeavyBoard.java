@@ -24,23 +24,19 @@ import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class HeavyBoard extends Effect implements View.OnClickListener {
 
-    // TextView qop0, qop1, qop2, qop3, qop4, qtar, qres;
+
     TextView qTimer, qResult, qTarget, start, hScore, go, hLives, xtraLives;
     int timerTick;
-    //   TextView sr0, sr1, sr2, sr3;
-    //   TextView sl0, sl1, sl2, sl3;
+
     String[] signState = new String[4];
     String[] ssl;
     TextView tva[];
-    //    CountDownTimer cdt, intro;
+
     int ch, ch1, ch2;
     TextView hint, xtraTime;
     boolean hintIsNotUsed;
     View board;
-    // boolean onBack;
-    // boolean isEnd;
-    // Intent hIntent;
-    //int secs;
+
 
     LinearLayout rl;
 
@@ -49,7 +45,8 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.heavy_board);
-        //  onBack = false;
+
+        //goMain = true;
         isEnd = false;
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind / 100));
 
@@ -99,6 +96,7 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
         board.setVisibility(View.GONE);
         start.setVisibility(View.VISIBLE);
         start.setText("3");
+        goMain = false;
         intro = new CountDownTimer(5000, 1000) {
 
             @Override
@@ -113,6 +111,7 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
 
                 task = new Hev();
                 start.setVisibility(View.GONE);
+                goMain = true;
                 runHeavy();
             }
         };
@@ -274,7 +273,9 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
                 cdt.cancel();
             }
             if (isCorrect()) {
-
+                if (soundIsOn) {
+                    sRight_answer.start();
+                }
                 hScore.setText(calc.heavyScore("submit", (int) ((1 + (int) (calc.gameKind / 100) / 20) * (((float) calc.secondsRemain / (float) calc.secondsForTask * 100) * (100 + (float) calc.gameLevel) / 20))));
 
               //  Toast.makeText(this, "CORRECT", Toast.LENGTH_LONG).show();
@@ -408,6 +409,9 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
                 calc.heavyHints = calc.setBonus(calc.HEAVY_HINTS, calc.heavyHints - 1);
                 //  qHints--;
                 hint.setText("Hints: " + String.valueOf(calc.heavyHints));
+                if (soundIsOn) {
+                    sUseBonus.start();
+                }
                 startAnimation(hint, 1);
             }
         }
@@ -428,6 +432,9 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
                 calc.heavyXtraTime = calc.setBonus(calc.HEAVY_XTRA_TIME, calc.heavyXtraTime - 1);
                 // qXtraTime--;
                 xtraTime.setText("Xtra Time: " + String.valueOf(calc.heavyXtraTime));
+                if (soundIsOn) {
+                    sUseBonus.start();
+                }
                 startAnimation(xtraTime, 1);
             }
         }
@@ -443,6 +450,9 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
         if (calc.gameLevel % 12 == 0) {//add HINT
             calc.heavyHints = calc.setBonus(calc.HEAVY_HINTS, calc.heavyHints + 1);
             hint.setText("Hints: " + String.valueOf(calc.heavyHints));
+            if (soundIsOn) {
+                sGetBonus.start();
+            }
             startAnimation(hint, 1);
             //EEECT
         }
@@ -450,6 +460,9 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
         if (calc.gameLevel % 20 == 0) {//add XTRA
             calc.heavyXtraTime = calc.setBonus(calc.HEAVY_XTRA_TIME, calc.heavyXtraTime + 1);
             xtraTime.setText("Xtra Time: " + String.valueOf(calc.heavyXtraTime));
+            if (soundIsOn) {
+                sGetBonus.start();
+            }
             startAnimation(xtraTime, 1);
             //EEECT
         }
@@ -486,6 +499,9 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
         super.onPause();
         if (cdt != null) {
             cdt.cancel();
+        }
+        if (intro != null) {
+            intro.cancel();
         }
 
         if (goMain) {

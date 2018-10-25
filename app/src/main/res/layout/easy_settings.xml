@@ -24,7 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/tv_stroke"
-            android:onClick="startLite2"
+
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/easy_3"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -61,9 +61,8 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/tv_stroke"
-            android:onClick="startLite3"
-            android:orientation="vertical"
 
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/easy_4"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -98,7 +97,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/tv_stroke"
-            android:onClick="startLite4"
+
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"

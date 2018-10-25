@@ -14,7 +14,7 @@ public class MathBase extends SQLiteOpenHelper {
     private SQLiteDatabase db;
     private ContentValues cv = new ContentValues();
     Cursor cursor;
-    //    Gson gson = new Gson();
+//    Gson gson = new Gson();
 //    Type type = new TypeToken<List<Long>>() {}.getType();
 //    ArrayList<Long> list = new ArrayList<>();
     HashMap<String, Long> hm = new HashMap<String, Long>();
@@ -24,18 +24,18 @@ public class MathBase extends SQLiteOpenHelper {
     private static MathBase mathBase;
     private static Context mContext;
 
-    public MathBase(Context context){
+    public MathBase(Context context) {
         this();
-        mContext=context;}
+        mContext = context;
+    }
 
-  //  private MathBase(Context context) {
-   //     super(context, "math_base", null, 1);
-  //  }
+    //  private MathBase(Context context) {
+    //     super(context, "math_base", null, 1);
+    //  }
 
-      private MathBase() {
-         super(mContext, "math_base", null, 1);
-      }
-
+    private MathBase() {
+        super(mContext, "math_base", null, 1);
+    }
 
 
     public static MathBase getInstance() {
@@ -83,8 +83,8 @@ public class MathBase extends SQLiteOpenHelper {
 
 
     public void saveArcadeResult(String lvl, Long res) {
-        Log.i("math-hiscore-save1", String.valueOf(lvl));
-        Log.i("math-hiscore-save2", String.valueOf(res));
+//        Log.i("math-hiscore-save1", String.valueOf(lvl));
+//        Log.i("math-hiscore-save2", String.valueOf(res));
         cv.clear();
         cv.put("arcade_level", lvl);
         cv.put("arcade_result", res);
@@ -113,10 +113,10 @@ public class MathBase extends SQLiteOpenHelper {
 
 
     public void saveEasyResult(String lvl, Long res) {
-
-        Log.i("score-hiscore-save1", String.valueOf(lvl));
-        Log.i("score-hiscore-save2", String.valueOf(res));
-
+//
+//        Log.i("score-hiscore-save1", String.valueOf(lvl));
+//        Log.i("score-hiscore-save2", String.valueOf(res));
+//
 
         cv.clear();
         cv.put("easy_level", lvl);
@@ -167,7 +167,6 @@ public class MathBase extends SQLiteOpenHelper {
         db.close();
         return r;
 
-
     }
 
 
@@ -180,9 +179,6 @@ public class MathBase extends SQLiteOpenHelper {
         db.insertWithOnConflict("bonus", null, cv, SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
     }
-
-
-//
 
 
 }
