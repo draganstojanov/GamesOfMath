@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andraganoid.gameofmath.Effect;
+
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.Operation.Hev;
@@ -22,7 +22,7 @@ import static com.andraganoid.gameofmath.Game.calc;
 import static com.andraganoid.gameofmath.Game.task;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
-public class HeavyBoard extends Effect implements View.OnClickListener {
+public class HeavyBoard extends Game implements View.OnClickListener {
 
 
     TextView qTimer, qResult, qTarget, start, hScore, go, hLives, xtraLives;
@@ -273,9 +273,10 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
                 cdt.cancel();
             }
             if (isCorrect()) {
-                if (soundIsOn) {
-                    sRight_answer.start();
-                }
+//                if (soundIsOn) {
+//                    sRight_answer.start();
+//                }
+               play(RIGHT_ANSWER);
                 hScore.setText(calc.heavyScore("submit", (int) ((1 + (int) (calc.gameKind / 100) / 20) * (((float) calc.secondsRemain / (float) calc.secondsForTask * 100) * (100 + (float) calc.gameLevel) / 20))));
 
               //  Toast.makeText(this, "CORRECT", Toast.LENGTH_LONG).show();
@@ -409,9 +410,10 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
                 calc.heavyHints = calc.setBonus(calc.HEAVY_HINTS, calc.heavyHints - 1);
                 //  qHints--;
                 hint.setText("Hints: " + String.valueOf(calc.heavyHints));
-                if (soundIsOn) {
-                    sUseBonus.start();
-                }
+//                if (soundIsOn) {
+//                    sUseBonus.start();
+//                }
+                play(USE_BONUS);
                 startAnimation(hint, 1);
             }
         }
@@ -432,9 +434,10 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
                 calc.heavyXtraTime = calc.setBonus(calc.HEAVY_XTRA_TIME, calc.heavyXtraTime - 1);
                 // qXtraTime--;
                 xtraTime.setText("Xtra Time: " + String.valueOf(calc.heavyXtraTime));
-                if (soundIsOn) {
-                    sUseBonus.start();
-                }
+//                if (soundIsOn) {
+//                    sUseBonus.start();
+//                }
+                play(USE_BONUS);
                 startAnimation(xtraTime, 1);
             }
         }
@@ -450,21 +453,23 @@ public class HeavyBoard extends Effect implements View.OnClickListener {
         if (calc.gameLevel % 12 == 0) {//add HINT
             calc.heavyHints = calc.setBonus(calc.HEAVY_HINTS, calc.heavyHints + 1);
             hint.setText("Hints: " + String.valueOf(calc.heavyHints));
-            if (soundIsOn) {
-                sGetBonus.start();
-            }
+//            if (soundIsOn) {
+//                sGetBonus.start();
+//            }
+            play(GET_BONUS);
             startAnimation(hint, 1);
-            //EEECT
+
         }
 
         if (calc.gameLevel % 20 == 0) {//add XTRA
             calc.heavyXtraTime = calc.setBonus(calc.HEAVY_XTRA_TIME, calc.heavyXtraTime + 1);
             xtraTime.setText("Xtra Time: " + String.valueOf(calc.heavyXtraTime));
-            if (soundIsOn) {
-                sGetBonus.start();
-            }
+//            if (soundIsOn) {
+//                sGetBonus.start();
+//            }
+            play(GET_BONUS);
             startAnimation(xtraTime, 1);
-            //EEECT
+
         }
 
 

@@ -11,7 +11,7 @@ import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.Operation.Lit;
 import com.andraganoid.gameofmath.R;
-import com.andraganoid.gameofmath.Effect;
+
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ import static com.andraganoid.gameofmath.Game.calc;
 import static com.andraganoid.gameofmath.Game.task;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
-public class EasyBoard extends Effect {
+public class EasyBoard extends Game {
 
     TextView lNum[], lOper[], lEr[];
     ArrayList<Integer> liteFornulaArr = new ArrayList<>();
@@ -35,8 +35,6 @@ public class EasyBoard extends Effect {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
         board = findViewById(R.id.lite_board_lay);
-
-
 
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
@@ -106,7 +104,7 @@ public class EasyBoard extends Effect {
 
     void runLite() {
 
-        Toast.makeText(this,"START", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "START", Toast.LENGTH_SHORT).show();
         calc.gameLevel++;
         checkForBonusesEasy();
 
@@ -132,7 +130,6 @@ public class EasyBoard extends Effect {
         writeFormula();
 
 
-
         secondsLeft--;
         if (secondsLeft < 10) {
             secondsLeft = 10;
@@ -144,7 +141,7 @@ public class EasyBoard extends Effect {
 
     void timerStart(int s) {
         colorChange = true;
-        cdt = new CountDownTimer(s * 1000 + 1000+250, 500) {
+        cdt = new CountDownTimer(s * 1000 + 1000 + 250, 500) {
 
             @Override
             public void onTick(long l) {
@@ -154,16 +151,18 @@ public class EasyBoard extends Effect {
                 if (l > 2000) {
                     lTimer.setText(String.valueOf(l / 1000 - 1));
 
-                     if((l / 1000 - 1)<11){
-                    if (colorChange) {
-                        lTimer.setTextColor(getResources().getColor(R.color.checked));
-                        if (soundIsOn) {
-                            sTimeBeep.start();
+                    if ((l / 1000 - 1) < 11) {
+                        if (colorChange) {
+                            lTimer.setTextColor(getResources().getColor(R.color.checked));
+//                        if (soundIsOn) {
+//                            sTimeBeep.start();
+//                        }
+                            play(TIME_IS_OUT);
+                        } else {
+                            lTimer.setTextColor(getResources().getColor(R.color.info));
                         }
-                    } else {
-                        lTimer.setTextColor(getResources().getColor(R.color.info));
+                        colorChange = !colorChange;
                     }
-                    colorChange = !colorChange;}
 
 
                 } else {
@@ -174,7 +173,8 @@ public class EasyBoard extends Effect {
             }
 
             @Override
-            public void onFinish() {  lTimer.setTextColor(getResources().getColor(R.color.info));
+            public void onFinish() {
+                lTimer.setTextColor(getResources().getColor(R.color.info));
             }
         };
         cdt.start();
@@ -240,9 +240,10 @@ public class EasyBoard extends Effect {
                 cdt.cancel();
             }
             eScore.setText(calc.easyScore("submit", (int) ((1 + calc.gameKind / 5) * (((float) calc.secondsRemain / (float) secondsLeft * 10) * (100 + (float) calc.gameLevel) / 50))));
-            if (soundIsOn) {
-                sRight_answer.start();
-            }
+//            if (soundIsOn) {
+//                sRight_answer.start();
+//            }
+            play(RIGHT_ANSWER);
             runLite();
 
         }
@@ -332,9 +333,10 @@ public class EasyBoard extends Effect {
                 calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets - 1);
 
                 reset.setText("Resets: " + String.valueOf(calc.easyResets));
-                if (soundIsOn) {
-                    sUseBonus.start();
-                }
+//                if (soundIsOn) {
+//                    sUseBonus.start();
+//                }
+                play(USE_BONUS);
                 startAnimation(reset, 1);
                 runLite();
 
@@ -355,9 +357,10 @@ public class EasyBoard extends Effect {
                 calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips - 1);
 
                 skip.setText("Skips: " + String.valueOf(calc.easySkips));
-                if (soundIsOn) {
-                    sUseBonus.start();
-                }
+//                if (soundIsOn) {
+//                    sUseBonus.start();
+//                }
+                play(USE_BONUS);
                 startAnimation(skip, 1);
                 runLite();
             }
@@ -378,9 +381,10 @@ public class EasyBoard extends Effect {
                 calc.easyXtraTine = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTine - 1);
 
                 xtraTime.setText("Xtra Time: " + String.valueOf(calc.easyXtraTine));
-                if (soundIsOn) {
-                    sUseBonus.start();
-                }
+//                if (soundIsOn) {
+//                    sUseBonus.start();
+//                }
+                play(USE_BONUS);
                 startAnimation(xtraTime, 1);
             }
         }
@@ -396,27 +400,30 @@ public class EasyBoard extends Effect {
         if (calc.gameLevel % 20 == 0) {//add SKIP
             calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips + 1);
             skip.setText("Skips: " + String.valueOf(calc.easySkips));
-            if (soundIsOn) {
-                sGetBonus.start();
-            }
+//            if (soundIsOn) {
+//                sGetBonus.start();
+//            }
+            play(GET_BONUS);
             startAnimation(skip, 1);
 
         }
         if (calc.gameLevel % 24 == 0) {//add XTRA
             calc.easyXtraTine = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTine + 1);
             xtraTime.setText("Xtra Time: " + String.valueOf(calc.easyXtraTine));
-            if (soundIsOn) {
-                sGetBonus.start();
-            }
+//            if (soundIsOn) {
+//                sGetBonus.start();
+//            }
+            play(GET_BONUS);
             startAnimation(xtraTime, 1);
 
         }
         if (calc.gameLevel % 33 == 0) {//add RESET
             calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets + 1);
             reset.setText("Resets: " + String.valueOf(calc.easyResets));
-            if (soundIsOn) {
-                sGetBonus.start();
-            }
+//            if (soundIsOn) {
+//                sGetBonus.start();
+//            }
+            play(GET_BONUS);
             startAnimation(reset, 1);
         }
 

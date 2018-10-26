@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import static com.andraganoid.gameofmath.Game.calc;
 import static com.andraganoid.gameofmath.Game.task;
 
-public abstract class GameBoard extends Effect {
+public abstract class GameBoard extends Game {
 
 
     protected TextView formula;
@@ -135,9 +135,10 @@ public abstract class GameBoard extends Effect {
 
 
     public void right() {
-        if (soundIsOn) {
-            sRight_answer.start();
-        }
+//        if (soundIsOn) {
+//            sRight_answer.start();
+//        }
+        play(RIGHT_ANSWER);
         goodAnswers++;
         setProgress("Right!", R.color.base, "\u2713");
     }
@@ -145,9 +146,10 @@ public abstract class GameBoard extends Effect {
 
 
     public void wrong() {
-        if (soundIsOn) {
-            sWrong_answer.start();
-        }
+//        if (soundIsOn) {
+//            sWrong_answer.start();
+//        }
+        play(WRONG_ANSWER);
         badAnswers++;
         setProgress("Wrong!", R.color.checked, "\u2573");
     }

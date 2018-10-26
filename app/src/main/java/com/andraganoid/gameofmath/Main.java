@@ -8,11 +8,18 @@ import com.squareup.leakcanary.LeakCanary;
 
 
 // TODO
-// showscore odbrojavanje
-// sounds : lost life,get bonus life,next level,gameover
+// showscore odbrojavanje rol cifara V2
+
+// sounds : lost life,get bonus life,gameover
+//firebase chrash
 // hiscores  googleplay
 //ispis bonusa sredi
 //help
+//background
+//text
+//policy
+//intro
+
 
 
 public class Main extends AppCompatActivity {
@@ -32,6 +39,8 @@ public class Main extends AppCompatActivity {
 
 
         setContentView(R.layout.main);
+
+
 
 
 

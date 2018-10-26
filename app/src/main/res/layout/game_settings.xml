@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_settings"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0000000"
+
+    android:visibility="gone"
+    tools:visibility="visible"
+
+    android:paddingTop="144dp"
+    android:paddingBottom="144dp"
+
+    android:paddingLeft="48dp"
+    android:paddingRight="48dp"
+    >
+
+
+    <LinearLayout
+        android:id="@+id/sound"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/tv_stroke"
+        android:gravity="center"
+        android:onClick="goResume"
+        android:orientation="horizontal"
+        android:text="Resume game"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@id/game_settings_ok"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        >
+
+        <include layout="@layout/sound_settings"/>
+
+    </LinearLayout>
+
+    <TextView
+    android:id="@+id/game_settings_ok"
+    android:layout_width="0dp"
+    android:layout_height="0dp"
+    android:background="@drawable/tv_stroke"
+    android:gravity="center"
+    android:padding="8dp"
+    android:text="OK"
+    android:onClick="goSettingsOk"
+    app:autoSizeTextType="uniform"
+    app:layout_constraintLeft_toLeftOf="parent"
+    app:layout_constraintRight_toRightOf="parent"
+    app:layout_constraintTop_toBottomOf="@id/sound"
+    app:layout_constraintBottom_toBottomOf="parent">
+    </TextView>
+
+
+
+    <!--android:id="@+id/dialog_home"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:background="@drawable/tv_stroke"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="8dp"-->
+    <!--android:text="Go home"-->
+    <!--android:onClick="goHome"-->
+    <!--app:autoSizeTextType="uniform"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/dialog_back"-->
+    <!--app:layout_constraintBottom_toTopOf="@+id/dialog_sound"-->
+    <!--android:layout_marginBottom="24dp"-->
+    <!--/>-->
+    <!--<TextView-->
+    <!--android:id="@+id/dialog_sound"-->
+    <!--android:layout_width="0dp"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:background="@drawable/tv_stroke"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="8dp"-->
+    <!--android:text="sound"-->
+    <!--app:autoSizeTextType="uniform"-->
+    <!--app:layout_constraintLeft_toLeftOf="parent"-->
+    <!--app:layout_constraintRight_toRightOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@id/dialog_home"-->
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--/>-->
+
+
+</android.support.constraint.ConstraintLayout>

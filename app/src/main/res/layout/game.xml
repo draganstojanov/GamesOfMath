@@ -40,7 +40,7 @@
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/settings"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
         app:layout_constraintTop_toBottomOf="@id/logo">
 
 
@@ -121,56 +121,94 @@
     </android.support.constraint.ConstraintLayout>
 
 
-
-    <RelativeLayout
-        android:id="@+id/settings"
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/menu">
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
-        <TextView
+    <TextView
+        android:id="@+id/game_settings"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:background="@drawable/bar_stroke"
+        android:gravity="center"
+        android:onClick="goSettings"
+        android:padding="12dp"
+        android:text="SETTINGS"
+        android:textColor="@color/base"
+        app:autoSizeTextType="uniform" />
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bar_stroke"
-            android:onClick=""
-            android:padding="12dp"
-            android:text="SETTINGS"
-            android:textColor="@color/base"
-            android:textSize="18sp" />
+    <TextView
+        android:id="@+id/game_aboutp"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bar_stroke"
+        android:gravity="center"
+        android:onClick="goAbout"
+        android:padding="12dp"
+        android:text="ABOUT"
+        android:textColor="@color/base"
+        app:autoSizeTextType="uniform" />
 
-        <TextView
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           android:layout_centerInParent="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bar_stroke"
-            android:onClick=""
-            android:padding="12dp"
-            android:text="ABOUT"
-            android:textColor="@color/base"
-            android:textSize="18sp" />
-
-        <TextView
-
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:background="@drawable/bar_stroke"
-            android:onClick=""
-            android:padding="12dp"
-            android:text="HELP"
-            android:textColor="@color/base"
-            android:textSize="18sp" />
     </RelativeLayout>
+
+
+
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/settings"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/menu">-->
+
+        <!--<TextView-->
+
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentLeft="true"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:background="@drawable/bar_stroke"-->
+    <!--android:onClick="goSettings"-->
+    <!--android:padding="12dp"-->
+    <!--android:text="SETTINGS"-->
+    <!--android:textColor="@color/base"-->
+    <!--android:textSize="18sp" />-->
+
+    <!--<TextView-->
+
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:background="@drawable/bar_stroke"-->
+        <!--android:onClick="goAbout"-->
+        <!--android:padding="12dp"-->
+        <!--android:text="ABOUT"-->
+        <!--android:textColor="@color/base"-->
+        <!--android:textSize="18sp" />-->
+
+    <!--<TextView-->
+
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentRight="true"-->
+        <!--android:layout_marginBottom="8dp"-->
+        <!--android:layout_marginTop="8dp"-->
+        <!--android:background="@drawable/bar_stroke"-->
+        <!--android:onClick="g"-->
+        <!--android:padding="12dp"-->
+        <!--android:text="HELP"-->
+        <!--android:textColor="@color/base"-->
+        <!--android:textSize="18sp" />-->
+<!--</RelativeLayout>-->
 
 
 </android.support.constraint.ConstraintLayout>
