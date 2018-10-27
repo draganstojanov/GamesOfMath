@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "510548008502",
+    "firebase_url": "https://gameofmath-13949.firebaseio.com",
+    "project_id": "gameofmath-13949",
+    "storage_bucket": "gameofmath-13949.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510548008502:android:041e36fda94693b9",
+        "android_client_info": {
+          "package_name": "com.andraganoid.gameofmath"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510548008502-lrkfcinrn96ubctjg2skvk4skfas75q8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.andraganoid.gameofmath",
+            "certificate_hash": "dd9b52860121384d560d3d7882e5cfbc7943e38c"
+          }
+        },
+        {
+          "client_id": "510548008502-4cuf0gg96rn7ij0b8togdp7qk31cttkt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZfbOh3kT6-D5XaYhFl_Cb-zXTqelbwMk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510548008502-4cuf0gg96rn7ij0b8togdp7qk31cttkt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

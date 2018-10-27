@@ -40,7 +40,7 @@
     <string name="game_over">GAME OVER</string>
     <string name="new_high">NEW HIGH SCORE!</string>
 
-    <string name="speed_math">Speed Math</string>
+    <string name="fast_calc">Fast Calc</string>
     <string name="easy_calc">Easy Calc</string>
     <string name="heavy_calc">Heavy Calc</string>
     <string name="practice">Practice</string>
@@ -49,11 +49,16 @@
     <!--<string name=""></string>-->
 
 
+    <!--Easy Calc 2  (max 2 operands)-->
+
     <string-array name="easy_levels">
         <item>oper2</item>
         <item>oper3</item>
         <item>oper4</item>
     </string-array>
+
+
+    <!--Heavy Calc 10 (max operand val:10)-->
 
     <string-array name="heavy_levels">
         <item>max value 10</item>
@@ -61,37 +66,42 @@
     </string-array>
 
 
+
+
+    <!--Fast Calc 14 (XX ÷ X × X)-->
+
+
     <string-array name="arcade_levels">
-        <item>X + X</item>0
-        <item>XX + X</item>1
-        <item>XX + XX</item>2
+        <item>X + X</item>0 01
+        <item>XX + X</item>1 02
+        <item>XX + XX</item>2 03
         <!--<item>XXX + X</item>3-->
         <!--<item>XXX + XX</item>4-->
         <!--<item>XXX + XXX</item>5-->
 
-        <item>X - X</item>6
-        <item>XX - X</item>7
-        <item>XX - XX</item>8
+        <item>X - X</item>6 04
+        <item>XX - X</item>7 05
+        <item>XX - XX</item>8 06
         <!--<item>XXX - X</item>9-->
         <!--<item>XXX - XX</item>10-->
         <!--<item>XXX - XXX</item>11-->
 
-        <item>X × X</item>12
+        <item>X × X</item>12 07
         <!--<item>XX × X</item>13-->
         <!--<item>XXX × X</item>14-->
 
-        <item>XX ÷ X</item>15
+        <item>XX ÷ X</item>15 08
         <!--<item>XXX ÷ X</item>16-->
 
         <!--<item>X + X + X</item>17-->
-        <item>X + X - X</item>18
-        <item>X × X + X</item>19
-        <item>X × X - X</item>20
+        <item>X + X - X</item>18 09
+        <item>X × X + X</item>19 10
+        <item>X × X - X</item>20 11
         <!--<item>X × X × X</item>21-->
 
-        <item>XX ÷ X + X</item>22
-        <item>XX ÷ X - X</item>23
-        <item>XX ÷ X × X</item>24
+        <item>XX ÷ X + X</item>22 12
+        <item>XX ÷ X - X</item>23 13
+        <item>XX ÷ X × X</item>24 14
 
         <!--<item>XX + XX + XX</item>25-->
         <!--<item>XXX + XX + X</item>26-->

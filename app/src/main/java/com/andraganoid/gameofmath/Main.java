@@ -2,7 +2,11 @@ package com.andraganoid.gameofmath;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.widget.Toast;
+
 
 import com.squareup.leakcanary.LeakCanary;
 
@@ -38,10 +42,26 @@ public class Main extends AppCompatActivity {
         LeakCanary.install(getApplication());
 
 
+
+
+
+
         setContentView(R.layout.main);
 
 
-
+//
+//       GoogleApiClient apiClient = new GoogleApiClient.Builder(this)
+//                .addApi(Games.API)
+//                .addScope(Games.SCOPE_GAMES)
+//                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
+//                    @Override
+//                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+//                        Toast.makeText(Main.this, "Could not connect to Play games services", Toast.LENGTH_LONG).show();
+//
+//
+//                        finish();
+//                    }
+//                }).build();
 
 
         Intent intent = new Intent(this, Game.class);
