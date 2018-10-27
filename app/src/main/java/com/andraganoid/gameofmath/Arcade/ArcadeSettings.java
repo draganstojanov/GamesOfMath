@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
-import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.R;
 
 import java.util.Arrays;
@@ -43,7 +42,7 @@ public class ArcadeSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arcade_settings);
 
-        calc = new Arcade(Arrays.asList(getResources().getStringArray(R.array.arcade_levels)));
+        calc = new Arcade(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
        // Game.mathBase = new MathBase(this);
 
         rv = findViewById(R.id.arcade_recycler_view);

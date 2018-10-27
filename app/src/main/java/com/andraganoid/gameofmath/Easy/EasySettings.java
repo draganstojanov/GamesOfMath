@@ -3,14 +3,11 @@ package com.andraganoid.gameofmath.Easy;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
-import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.R;
 
 import java.util.Arrays;
@@ -38,7 +35,7 @@ public class EasySettings extends AppCompatActivity implements View.OnClickListe
 
         //    findViewById(R.id.lite_set_lay).setBackground(new BitmapDrawable(getResources(), background));
 
-        calc = new Easy(Arrays.asList(getResources().getStringArray(R.array.easy_levels)));
+        calc = new Easy(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)));
 
         ((TextView) findViewById(R.id.easy_br_2)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0))));
         ((TextView) findViewById(R.id.easy_br_3)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1))));

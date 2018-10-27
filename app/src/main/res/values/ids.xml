@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_id">1047327754531</string>
-    <string name="package_name">com.andraganoid.gameofmath</string>
+    <string name="app_id" translatable="false">1047327754531</string>
+    <string name="package_name" translatable="false">com.andraganoid.gameofmath</string>
 
-    <string name="leaderboard_fast_calc_01">CgkIo5LlzL0eEAIQAA</string>
-    <string name="leaderboard_fast_calc_02">CgkIo5LlzL0eEAIQAQ</string>
-    <string name="leaderboard_fast_calc_03">CgkIo5LlzL0eEAIQAg</string>
-    <string name="leaderboard_fast_calc_04">CgkIo5LlzL0eEAIQAw</string>
-    <string name="leaderboard_fast_calc_05">CgkIo5LlzL0eEAIQBA</string>
-    <string name="leaderboard_fast_calc_06">CgkIo5LlzL0eEAIQBQ</string>
-    <string name="leaderboard_fast_calc_07">CgkIo5LlzL0eEAIQBg</string>
-    <string name="leaderboard_fast_calc_08">CgkIo5LlzL0eEAIQBw</string>
-    <string name="leaderboard_fast_calc_09">CgkIo5LlzL0eEAIQCA</string>
-    <string name="leaderboard_fast_calc_10">CgkIo5LlzL0eEAIQCQ</string>
-    <string name="leaderboard_fast_calc_11">CgkIo5LlzL0eEAIQCg</string>
-    <string name="leaderboard_fast_calc_12">CgkIo5LlzL0eEAIQCw</string>
-    <string name="leaderboard_fast_calc_13">CgkIo5LlzL0eEAIQDA</string>
-    <string name="leaderboard_fast_calc_14">CgkIo5LlzL0eEAIQDQ</string>
+    <string name="leaderboard_fast_calc_01" translatable="false">CgkIo5LlzL0eEAIQAA</string>
+    <string name="leaderboard_fast_calc_02" translatable="false">CgkIo5LlzL0eEAIQAQ</string>
+    <string name="leaderboard_fast_calc_03" translatable="false">CgkIo5LlzL0eEAIQAg</string>
+    <string name="leaderboard_fast_calc_04" translatable="false">CgkIo5LlzL0eEAIQAw</string>
+    <string name="leaderboard_fast_calc_05" translatable="false">CgkIo5LlzL0eEAIQBA</string>
+    <string name="leaderboard_fast_calc_06" translatable="false">CgkIo5LlzL0eEAIQBQ</string>
+    <string name="leaderboard_fast_calc_07" translatable="false">CgkIo5LlzL0eEAIQBg</string>
+    <string name="leaderboard_fast_calc_08" translatable="false">CgkIo5LlzL0eEAIQBw</string>
+    <string name="leaderboard_fast_calc_09" translatable="false">CgkIo5LlzL0eEAIQCA</string>
+    <string name="leaderboard_fast_calc_10" translatable="false">CgkIo5LlzL0eEAIQCQ</string>
+    <string name="leaderboard_fast_calc_11" translatable="false">CgkIo5LlzL0eEAIQCg</string>
+    <string name="leaderboard_fast_calc_12" translatable="false">CgkIo5LlzL0eEAIQCw</string>
+    <string name="leaderboard_fast_calc_13" translatable="false">CgkIo5LlzL0eEAIQDA</string>
+    <string name="leaderboard_fast_calc_14" translatable="false">CgkIo5LlzL0eEAIQDQ</string>
 
-    <string name="leaderboard_easy_calc_2">CgkIo5LlzL0eEAIQDg</string>
-    <string name="leaderboard_easy_calc_3">CgkIo5LlzL0eEAIQDw</string>
-    <string name="leaderboard_easy_calc_4">CgkIo5LlzL0eEAIQEA</string>
+    <string name="leaderboard_easy_calc_2" translatable="false">CgkIo5LlzL0eEAIQDg</string>
+    <string name="leaderboard_easy_calc_3" translatable="false">CgkIo5LlzL0eEAIQDw</string>
+    <string name="leaderboard_easy_calc_4" translatable="false">CgkIo5LlzL0eEAIQEA</string>
 
-    <string name="leaderboard_heavy_calc_10">CgkIo5LlzL0eEAIQEQ</string>
-    <string name="leaderboard_heavy_calc_100">CgkIo5LlzL0eEAIQEg</string>
+    <string name="leaderboard_heavy_calc_10" translatable="false">CgkIo5LlzL0eEAIQEQ</string>
+    <string name="leaderboard_heavy_calc_100" translatable="false">CgkIo5LlzL0eEAIQEg</string>
 
 
 </resources>

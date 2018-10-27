@@ -8,7 +8,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
-import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.R;
 
 import java.util.Arrays;
@@ -32,7 +31,7 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
 
         // findViewById(R.id.heavy_set_lay).setBackground(new BitmapDrawable(getResources(), background));
 
-        calc = new Heavy(Arrays.asList(getResources().getStringArray(R.array.heavy_levels)));
+        calc = new Heavy(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)));
 
         ((TextView) findViewById(R.id.heavy_br_10)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0))));
         ((TextView) findViewById(R.id.heavy_br_100)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1))));
