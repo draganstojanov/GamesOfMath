@@ -275,13 +275,13 @@
         app:autoSizeMaxTextSize="120sp"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toTopOf="@id/arcade_btn"
+        app:layout_constraintBottom_toTopOf="@id/fast_btn"
         app:layout_constraintTop_toBottomOf="@+id/game_board_formula"
         app:layout_constraintVertical_weight="3" />
 
     <LinearLayout
 
-        android:id="@+id/arcade_btn"
+        android:id="@+id/fast_btn"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"

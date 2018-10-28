@@ -19,14 +19,13 @@ public class Easy extends Calc {
         gameLevel = 0;
 
         scoreMap.clear();
-        for (int i = 0; i < levelNames.size(); i++) {
+ /*       for (int i = 0; i < levelNames.size(); i++) {
 
             scoreMap.put(levelNames.get(i), 0L);
             Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
-        }
+        }*/
 
-        scoreMap.putAll(MathBase.getInstance().getEasyHiScores());
-        Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
+        scoreMap.putAll(MathBase.getInstance().getHighScores(ln));
 
         easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
         if (easySkips == -1) {

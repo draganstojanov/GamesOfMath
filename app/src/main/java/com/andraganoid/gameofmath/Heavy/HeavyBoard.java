@@ -250,7 +250,8 @@ public class HeavyBoard extends Game implements View.OnClickListener {
 
         if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
 
-            MathBase.getInstance().saveHeavyResult(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
+//            MathBase.getInstance().saveHeavyResult(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
+            MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
             go.setText("NEW HIGH SCORE");
             startAnimation(go, 5);
             goFire();

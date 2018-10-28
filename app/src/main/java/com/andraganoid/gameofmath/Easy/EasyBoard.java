@@ -183,7 +183,8 @@ public class EasyBoard extends Game {
 
         if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
 
-            MathBase.getInstance().saveEasyResult(calc.levelNames.get(calc.gameKind), (long) (calc.currentScore));
+//            MathBase.getInstance().saveEasyResult(calc.levelNames.get(calc.gameKind), (long) (calc.currentScore));
+            MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind), (long) (calc.currentScore));
             formula.setText("NEW BEST TIME");
             startAnimation(formula, 5);
             goFire();

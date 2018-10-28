@@ -116,6 +116,7 @@ public class PracticeBoard extends GameBoard {
 
     }
 
+    @Override
     public void goNext(View v) {
 
         if (isEnd) {

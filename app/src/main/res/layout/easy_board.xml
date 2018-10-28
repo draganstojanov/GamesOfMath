@@ -324,8 +324,8 @@
 
             android:onClick="formulaRemove"
             android:padding="8dp"
-            android:textStyle="bold"
             android:text="\u232B"
+            android:textStyle="bold"
             app:autoSizeTextType="uniform" />
     </LinearLayout>
 
@@ -469,7 +469,6 @@
     </LinearLayout>
 
 
-
     <TextView
         android:id="@+id/easy_start"
         android:layout_width="match_parent"
@@ -483,16 +482,12 @@
 
     </TextView>
 
-    <include layout="@layout/pause_dialog"/>
+    <include layout="@layout/pause_dialog" />
 
-<include layout="@layout/firework"/>
-
+    <include layout="@layout/firework" />
 
 
 </android.support.constraint.ConstraintLayout>
-
-
-
 
 
     <!--</LinearLayout>-->

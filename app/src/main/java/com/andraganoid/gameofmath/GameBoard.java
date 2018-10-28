@@ -69,6 +69,8 @@ public abstract class GameBoard extends Game {
 
     protected abstract void next(String c);
 
+    public abstract void goNext(View v);
+
 
     public void multiChoice(View v) {
 

@@ -22,13 +22,13 @@ public class Heavy extends Calc {
 
 
         scoreMap.clear();
-        for (int i = 0; i < levelNames.size(); i++) {
+//        for (int i = 0; i < levelNames.size(); i++) {
+//
+//            scoreMap.put(levelNames.get(i), 0l);
+//            Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
+//        }
 
-            scoreMap.put(levelNames.get(i), 0l);
-            Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
-        }
-
-        scoreMap.putAll(MathBase.getInstance().getHeavyHiScores());
+        scoreMap.putAll(MathBase.getInstance().getHighScores(ln));
         Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
 
 

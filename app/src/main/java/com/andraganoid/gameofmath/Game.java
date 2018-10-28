@@ -135,7 +135,6 @@ public class Game extends AppCompatActivity {
                 soundPool.load(this, R.raw.wrong_answer, 1),};
 
 
-
         // cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
     }
 //

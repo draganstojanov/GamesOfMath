@@ -33,7 +33,7 @@ public class FastSettings extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fastAdapter.notifyDataSetChanged();
-
+       // Toast.makeText(this, "FAST SETTINGS ON RESUME", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -41,7 +41,7 @@ public class FastSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fast_settings);
-
+      //  Toast.makeText(this, "FAST SETTINGS ON CREATE", Toast.LENGTH_SHORT).show();
         calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
        // Game.mathBase = new MathBase(this);
 
@@ -49,7 +49,7 @@ public class FastSettings extends AppCompatActivity {
         rv.setHasFixedSize(true);
         FastLayoutManager = new GridLayoutManager(this, 2);
         rv.setLayoutManager(FastLayoutManager);
-        fastAdapter = new FastAdapter(calc.levelNames,this);
+        fastAdapter = new FastAdapter(calc.levelNames,Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)));
         rv.setAdapter(fastAdapter);
 
 

@@ -19,18 +19,21 @@ import static com.andraganoid.gameofmath.Game.calc;
 
 
 
-public class FastAdapter extends RecyclerView.Adapter<FastAdapter.FastViewHolder> implements View.OnClickListener {
-    private Context mContext;
+public class FastAdapter extends RecyclerView.Adapter<FastAdapter.FastViewHolder> {
+   // private Context mContext;
+    private List<String>desc;
 
-    public FastAdapter(List<String> fastLevels, Context context) {
-        mContext = context;
+    public FastAdapter(List<String> fastLevels,List<String>desc ) {
+       // mContext = context;
+        this.desc=desc;
         calc.scoreMap.clear();
-        for (int i = 0; i < fastLevels.size(); i++) {
+      /*  for (int i = 0; i < fastLevels.size(); i++) {
 
             calc.scoreMap.put(fastLevels.get(i), 0l);
-        }
+        }*/
 
-        calc.scoreMap.putAll(MathBase.getInstance().getFastHiScores());
+//        calc.scoreMap.putAll(MathBase.getInstance().getFastHiScores());
+        calc.scoreMap.putAll(MathBase.getInstance().getHighScores(fastLevels));
     }
 
 
@@ -53,7 +56,8 @@ public class FastAdapter extends RecyclerView.Adapter<FastAdapter.FastViewHolder
 
                 calc.gameKind = holder.getAdapterPosition();
 
-                String[] s = Arrays.asList(mContext.getResources().getStringArray(R.array.fast_calc_levels_description)).get(holder.getAdapterPosition()).split(" ");
+//                String[] s = Arrays.asList(mContext.getResources().getStringArray(R.array.fast_calc_levels_description)).get(holder.getAdapterPosition()).split(" ");
+                String[] s = desc.get(holder.getAdapterPosition()).split(" ");
 
                 String g = "";
                 for (int i = 0; i < s.length; i++) {
@@ -86,7 +90,8 @@ public class FastAdapter extends RecyclerView.Adapter<FastAdapter.FastViewHolder
         });
 
         holder.lvl.setText(String.valueOf(calc.levelNames.get(position).toUpperCase().replace("_", " ")));
-        holder.lvl2.setText(Arrays.asList(mContext.getResources().getStringArray(R.array.fast_calc_levels_description)).get(position));
+//        holder.lvl2.setText(Arrays.asList(mContext.getResources().getStringArray(R.array.fast_calc_levels_description)).get(position));
+        holder.lvl2.setText(desc.get(position));
 
         if (calc.scoreMap.get(calc.levelNames.get(position)) == 0) {
             holder.hiScore.setText("No result");
@@ -102,10 +107,7 @@ public class FastAdapter extends RecyclerView.Adapter<FastAdapter.FastViewHolder
         return calc.scoreMap.size();
     }
 
-    @Override
-    public void onClick(View view) {
 
-    }
 
 
     public static class FastViewHolder extends RecyclerView.ViewHolder {

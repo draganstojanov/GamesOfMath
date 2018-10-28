@@ -148,7 +148,8 @@ public class FastBoard extends GameBoard {
 
 
             if (timeInMillis <= calc.highScore || calc.highScore == 0) {
-                MathBase.getInstance().saveFastResult(calc.levelNames.get(calc.gameKind), timeInMillis);
+//                MathBase.getInstance().saveFastResult(calc.levelNames.get(calc.gameKind), timeInMillis);
+                MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind), timeInMillis);
                 formula.setText("NEW BEST TIME");
                 startAnimation(formula, 5);
                 goFire();
@@ -170,13 +171,15 @@ public class FastBoard extends GameBoard {
         }
     }
 
+    @Override
     public void goNext(View v) {
-
+      //  Toast.makeText(this, "GO NEXT!", Toast.LENGTH_SHORT).show();
         if (calc.gameLevel > calc.getHowManyTasks()) {
-            Toast.makeText(this, "GAME OVER!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, FastSettings.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(intent);
+          //  Toast.makeText(this, "GAME OVER!", Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(this, FastSettings.class);
+//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//            startActivity(intent);
+            goMain=false;finish();
 
         } else {
             prepareTask();
