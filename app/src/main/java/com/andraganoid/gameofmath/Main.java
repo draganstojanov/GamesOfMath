@@ -14,8 +14,7 @@ import com.squareup.leakcanary.LeakCanary;
 // TODO
 // showscore odbrojavanje rol cifara V2
 
-// sounds : lost life,get bonus life,gameover
-//firebase chrash
+
 // hiscores  googleplay
 //ispis bonusa sredi
 //help

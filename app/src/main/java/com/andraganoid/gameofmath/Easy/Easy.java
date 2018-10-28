@@ -21,7 +21,7 @@ public class Easy extends Calc {
         scoreMap.clear();
         for (int i = 0; i < levelNames.size(); i++) {
 
-            scoreMap.put(levelNames.get(i), 0l);
+            scoreMap.put(levelNames.get(i), 0L);
             Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
         }
 

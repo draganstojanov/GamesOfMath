@@ -1,4 +1,4 @@
-package com.andraganoid.gameofmath.Arcade;
+package com.andraganoid.gameofmath.Fast;
 
 import android.content.Intent;
 import android.os.CountDownTimer;
@@ -19,12 +19,10 @@ import com.andraganoid.gameofmath.Operation.Sub;
 import com.andraganoid.gameofmath.Operation.Tri;
 import com.andraganoid.gameofmath.R;
 
-import static com.andraganoid.gameofmath.Game.calc;
 //import static com.andraganoid.gameofmath.Game.mathBase;
-import static com.andraganoid.gameofmath.Game.task;
 
 
-public class ArcadeBoard extends GameBoard {
+public class FastBoard extends GameBoard {
 
     private long startTime;
     private Handler handler = new Handler();
@@ -141,8 +139,8 @@ public class ArcadeBoard extends GameBoard {
             // formula.setText("Finish!");
             timeInMillis += badAnswers * 60 * 1000;
             sw.setText(calc.showTime(timeInMillis));
-            //  typed.setText(Arcade.showTime(timeInMillis));
-            // Toast.makeText(this, String.valueOf(Arcade.showTime(timeInMillis)), Toast.LENGTH_SHORT).show();
+            //  typed.setText(Fast.showTime(timeInMillis));
+            // Toast.makeText(this, String.valueOf(Fast.showTime(timeInMillis)), Toast.LENGTH_SHORT).show();
 
 
             if (timeInMillis <= calc.highScore || calc.highScore == 0) {
@@ -172,7 +170,7 @@ public class ArcadeBoard extends GameBoard {
 
         if (calc.gameLevel > calc.getHowManyTasks()) {
             Toast.makeText(this, "GAME OVER!", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, ArcadeSettings.class);
+            Intent intent = new Intent(this, FastSettings.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             startActivity(intent);
 
@@ -218,7 +216,7 @@ public class ArcadeBoard extends GameBoard {
             boardIntent = new Intent(this, Game.class);
 
         } else {
-            boardIntent = new Intent(this, ArcadeSettings.class);
+            boardIntent = new Intent(this, FastSettings.class);
 
         }
         boardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

@@ -17,9 +17,7 @@ import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;
 
-import static com.andraganoid.gameofmath.Game.calc;
-//import static com.andraganoid.gameofmath.Game.mathBase;
-import static com.andraganoid.gameofmath.Game.task;
+
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class HeavyBoard extends Game implements View.OnClickListener {

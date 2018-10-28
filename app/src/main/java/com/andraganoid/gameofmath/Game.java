@@ -20,7 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andraganoid.gameofmath.Arcade.ArcadeSettings;
+import com.andraganoid.gameofmath.Fast.FastSettings;
 import com.andraganoid.gameofmath.Easy.EasySettings;
 import com.andraganoid.gameofmath.Heavy.HeavySettings;
 import com.andraganoid.gameofmath.Operation.Task;
@@ -169,7 +169,7 @@ public class Game extends AppCompatActivity {
     public void goArcade(View v) {
 
         //  background = back.getBack();
-        intent = new Intent(this, ArcadeSettings.class);
+        intent = new Intent(this, FastSettings.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

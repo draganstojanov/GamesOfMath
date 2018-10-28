@@ -38,24 +38,37 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_weight="3">
 
+
+
             <TextView
+                android:id="@+id/heavy_10_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:padding="8dp"
-                android:text="MAX VALUE : 10 "
+                android:padding="4dp"
                 app:autoSizeTextType="uniform" />
 
             <TextView
-                android:id="@+id/heavy_br_10"
+                android:id="@+id/heavy_10_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"
+                app:autoSizeTextType="uniform" />
+
+
+            <TextView
+                android:id="@+id/heavy_10_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="4dp"
                 android:textColor="@color/checked"
                 app:autoSizeTextType="uniform" />
+
 
 
         </LinearLayout>
@@ -75,19 +88,29 @@
             app:layout_constraintVertical_weight="3">
 
             <TextView
+                android:id="@+id/heavy_100_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:padding="8dp"
-                android:text="MAX VALUE : 100"
+                android:padding="4dp"
                 app:autoSizeTextType="uniform" />
 
             <TextView
-                android:id="@+id/heavy_br_100"
+                android:id="@+id/heavy_100_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:gravity="center"
+                android:padding="4dp"
+                app:autoSizeTextType="uniform" />
+
+
+            <TextView
+                android:id="@+id/heavy_100_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="4dp"
                 android:textColor="@color/checked"

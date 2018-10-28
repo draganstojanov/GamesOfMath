@@ -37,9 +37,20 @@ public class EasySettings extends AppCompatActivity implements View.OnClickListe
 
         calc = new Easy(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)));
 
-        ((TextView) findViewById(R.id.easy_br_2)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0))));
-        ((TextView) findViewById(R.id.easy_br_3)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1))));
-        ((TextView) findViewById(R.id.easy_br_4)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(2))));
+        ((TextView) findViewById(R.id.easy_2_1)).setText(calc.levelNames.get(0).toUpperCase().replace("_", " "));
+        ((TextView) findViewById(R.id.easy_3_1)).setText(calc.levelNames.get(1).toUpperCase().replace("_", " "));
+        ((TextView) findViewById(R.id.easy_4_1)).setText(calc.levelNames.get(2).toUpperCase().replace("_", " "));
+
+        ((TextView) findViewById(R.id.easy_2_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(0));
+        ((TextView) findViewById(R.id.easy_3_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(1));
+        ((TextView) findViewById(R.id.easy_4_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(2));
+
+        String a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0)));
+        ((TextView) findViewById(R.id.easy_2_3)).setText(a);
+        a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1)));
+        ((TextView) findViewById(R.id.easy_3_3)).setText(a);
+        a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(2)));
+        ((TextView) findViewById(R.id.easy_4_3)).setText(a);
 
         findViewById(R.id.easy_2).setOnClickListener(this);
         findViewById(R.id.easy_3).setOnClickListener(this);

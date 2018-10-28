@@ -1,4 +1,4 @@
-package com.andraganoid.gameofmath.Arcade;
+package com.andraganoid.gameofmath.Fast;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,11 +16,11 @@ import java.util.Arrays;
 import static com.andraganoid.gameofmath.Game.calc;
 
 
-public class ArcadeSettings extends AppCompatActivity {
+public class FastSettings extends AppCompatActivity {
 
     RecyclerView rv;
-    RecyclerView.Adapter arcadeAdapter;
-    RecyclerView.LayoutManager ArcadeLayoutManager;
+    RecyclerView.Adapter fastAdapter;
+    RecyclerView.LayoutManager FastLayoutManager;
 
 
     @Override
@@ -32,7 +32,7 @@ public class ArcadeSettings extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        arcadeAdapter.notifyDataSetChanged();
+        fastAdapter.notifyDataSetChanged();
 
 
     }
@@ -42,15 +42,15 @@ public class ArcadeSettings extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.arcade_settings);
 
-        calc = new Arcade(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
+        calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
        // Game.mathBase = new MathBase(this);
 
         rv = findViewById(R.id.arcade_recycler_view);
         rv.setHasFixedSize(true);
-        ArcadeLayoutManager = new GridLayoutManager(this, 2);
-        rv.setLayoutManager(ArcadeLayoutManager);
-        arcadeAdapter = new ArcadeAdapter(calc.levelNames,this);
-        rv.setAdapter(arcadeAdapter);
+        FastLayoutManager = new GridLayoutManager(this, 2);
+        rv.setLayoutManager(FastLayoutManager);
+        fastAdapter = new FastAdapter(calc.levelNames,this);
+        rv.setAdapter(fastAdapter);
 
 
     }

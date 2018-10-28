@@ -15,9 +15,6 @@ import com.andraganoid.gameofmath.R;
 
 import java.util.ArrayList;
 
-import static com.andraganoid.gameofmath.Game.calc;
-//import static com.andraganoid.gameofmath.Game.mathBase;
-import static com.andraganoid.gameofmath.Game.task;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class EasyBoard extends Game {

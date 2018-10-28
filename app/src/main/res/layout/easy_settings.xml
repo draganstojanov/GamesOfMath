@@ -8,7 +8,7 @@
     android:layout_margin="8dp"
     tools:context=".Easy.EasySettings">
 
-    <include layout="@layout/topbar"/>
+    <include layout="@layout/topbar" />
 
     <android.support.constraint.ConstraintLayout
 
@@ -33,23 +33,33 @@
             app:layout_constraintVertical_weight="3">
 
             <TextView
+                android:id="@+id/easy_2_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:padding="8dp"
-                android:text="X ? X\n(2 operands)"
+                android:padding="4dp"
                 app:autoSizeTextType="uniform" />
 
             <TextView
-                android:id="@+id/easy_br_2"
+                android:id="@+id/easy_2_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="@color/checked"
+                android:padding="4dp"
                 app:autoSizeTextType="uniform" />
 
+
+            <TextView
+                android:id="@+id/easy_2_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textColor="@color/checked"
+                app:autoSizeTextType="uniform" />
 
         </LinearLayout>
 
@@ -71,23 +81,33 @@
 
 
             <TextView
+                android:id="@+id/easy_3_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:padding="8dp"
-                android:text="X ? X ? X\n(3 operands)"
+                android:padding="4dp"
                 app:autoSizeTextType="uniform" />
 
             <TextView
-                android:id="@+id/easy_br_3"
+                android:id="@+id/easy_3_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="@color/checked"
+                android:padding="4dp"
                 app:autoSizeTextType="uniform" />
 
+
+            <TextView
+                android:id="@+id/easy_3_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textColor="@color/checked"
+                app:autoSizeTextType="uniform" />
 
         </LinearLayout>
 
@@ -106,23 +126,33 @@
             app:layout_constraintVertical_weight="3">
 
             <TextView
+                android:id="@+id/easy_4_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="3"
                 android:gravity="center"
-                android:padding="8dp"
-                android:text="X ? X ? X ? X\n(4 operands)"
+                android:padding="4dp"
                 app:autoSizeTextType="uniform" />
 
             <TextView
-                android:id="@+id/easy_br_4"
+                android:id="@+id/easy_4_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_weight="3"
                 android:gravity="center"
-                android:textColor="@color/checked"
+                android:padding="4dp"
                 app:autoSizeTextType="uniform" />
 
+
+            <TextView
+                android:id="@+id/easy_4_3"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textColor="@color/checked"
+                app:autoSizeTextType="uniform" />
 
         </LinearLayout>
 

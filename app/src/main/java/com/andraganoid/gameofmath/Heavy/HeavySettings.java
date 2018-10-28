@@ -33,8 +33,16 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
 
         calc = new Heavy(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)));
 
-        ((TextView) findViewById(R.id.heavy_br_10)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0))));
-        ((TextView) findViewById(R.id.heavy_br_100)).setText("Best Result: " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1))));
+        ((TextView) findViewById(R.id.heavy_10_1)).setText(calc.levelNames.get(0).toUpperCase().replace("_", " "));
+        ((TextView) findViewById(R.id.heavy_100_1)).setText(calc.levelNames.get(1).toUpperCase().replace("_", " "));
+
+        ((TextView) findViewById(R.id.heavy_10_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(0));
+        ((TextView) findViewById(R.id.heavy_100_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(1));
+
+        String a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0)));
+        ((TextView) findViewById(R.id.heavy_10_3)).setText(a);
+        a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1)));
+        ((TextView) findViewById(R.id.heavy_100_3)).setText(a);
 
         findViewById(R.id.heavy_10).setOnClickListener(this);
         findViewById(R.id.heavy_100).setOnClickListener(this);
@@ -57,7 +65,7 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
         intent = new Intent(this, HeavyBoard.class);
 
 
-        switch(v.getId()){
+        switch (v.getId()) {
 
             case R.id.heavy_10:
                 calc.gameKind = 10;

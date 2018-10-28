@@ -9,7 +9,7 @@
     <string name="end">Kraj</string>
     <string name="right">Tačno!</string>
     <string name="game_over">KRAJ IGRE</string>
-    <string name="new_high">NOVI REKORD</string>
+    <string name="new_high">NOVI REKORD!</string>
     <string name="multi_choice">Izaberi od...</string>
     <string name="settings">Postavke</string>
     <string name="calculate">Računaj</string>
@@ -18,7 +18,9 @@
     <string name="easy_calc">Jednostavan izračun</string>
     <string name="practice">Vježbanje</string>
     <string name="about">O aplikciji</string>
-    <string name="speed_math">Brza matematika</string>
     <string name="cancel">Otkaži</string>
     <string name="fast_calc">Brza matematika</string>
+    <string name="best_result">Tvoj rekord:</string>
+    <string name="target">Traženi rezultat</string>
+    <string name="wrong">Pogrešno!</string>
 </resources>

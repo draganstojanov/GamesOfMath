@@ -28,10 +28,10 @@
             android:name=".GameBoard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Arcade.ArcadeBoard"
+            android:name=".Fast.FastBoard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Arcade.ArcadeSettings"
+            android:name=".Fast.FastSettings"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Heavy.HeavySettings"

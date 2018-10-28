@@ -3,11 +3,8 @@
 
     <string name="best_time">Best time</string>
     <string name="no_result">No result</string>
-    <string name="operands2">2 operands</string>
-    <string name="operands3">3 operands</string>
-    <string name="operands4">4 operands</string>
-    <string name="h_mode_10">Max value: 10</string>
-    <string name="h_mode_100">Max value: 100</string>
+    <string name="best_result">Your high score:</string>
+
     <string name="multi_choice">Multi-choice</string>
     <string name="calculate">Calculate</string>
     <string name="go">GO!</string>
@@ -125,7 +122,7 @@
     <!--</string-array>
 
 
-    <!--Easy Calc 2  (max 2 operands)-->
+    <!-'-Easy Calc 2  (max 2 operands)-->
 
     <!--<string-array name="easy_calc_levels">-->
         <!--<item>oper2</item>-->
