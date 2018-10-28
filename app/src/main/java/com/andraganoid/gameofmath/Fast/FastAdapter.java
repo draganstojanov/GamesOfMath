@@ -3,7 +3,6 @@ package com.andraganoid.gameofmath.Fast;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,33 +19,33 @@ import static com.andraganoid.gameofmath.Game.calc;
 
 
 
-public class FastAdapter extends RecyclerView.Adapter<FastAdapter.ArcadeViewHolder> implements View.OnClickListener {
+public class FastAdapter extends RecyclerView.Adapter<FastAdapter.FastViewHolder> implements View.OnClickListener {
     private Context mContext;
 
-    public FastAdapter(List<String> arcadeLevels, Context context) {
+    public FastAdapter(List<String> fastLevels, Context context) {
         mContext = context;
         calc.scoreMap.clear();
-        for (int i = 0; i < arcadeLevels.size(); i++) {
+        for (int i = 0; i < fastLevels.size(); i++) {
 
-            calc.scoreMap.put(arcadeLevels.get(i), 0l);
+            calc.scoreMap.put(fastLevels.get(i), 0l);
         }
 
-        calc.scoreMap.putAll(MathBase.getInstance().getArcadeHiScores());
+        calc.scoreMap.putAll(MathBase.getInstance().getFastHiScores());
     }
 
 
     @Override
-    public ArcadeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public FastViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.arcade_card_view, parent, false);
+                .inflate(R.layout.fast_card_view, parent, false);
 
-        return new ArcadeViewHolder(view);
+        return new FastViewHolder(view);
 
     }
 
 
     @Override
-    public void onBindViewHolder(final ArcadeViewHolder holder, int position) {
+    public void onBindViewHolder(final FastViewHolder holder, int position) {
 
         holder.clickView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,12 +108,12 @@ public class FastAdapter extends RecyclerView.Adapter<FastAdapter.ArcadeViewHold
     }
 
 
-    public static class ArcadeViewHolder extends RecyclerView.ViewHolder {
+    public static class FastViewHolder extends RecyclerView.ViewHolder {
 
         TextView lvl, lvl2, hiScore;
         public View clickView;
 
-        public ArcadeViewHolder(View itemView) {
+        public FastViewHolder(View itemView) {
             super(itemView);
             clickView = itemView;
             this.lvl = itemView.findViewById(R.id.fast_1);

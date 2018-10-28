@@ -21,7 +21,7 @@
 
 
         <LinearLayout
-            android:id="@+id/arcade_bar"
+            android:id="@+id/fast_bar"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="4"
@@ -51,7 +51,7 @@
                     android:textColor="@color/info" />
 
                 <TextView
-                    android:id="@+id/arcade_timer"
+                    android:id="@+id/fast_timer"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
@@ -87,7 +87,7 @@
 
 
                 <TextView
-                    android:id="@+id/arcade_progress"
+                    android:id="@+id/fast_progress"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="6"
@@ -614,7 +614,7 @@
 
 
     <TextView
-        android:id="@+id/arcade_start"
+        android:id="@+id/fast_start"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/checked"

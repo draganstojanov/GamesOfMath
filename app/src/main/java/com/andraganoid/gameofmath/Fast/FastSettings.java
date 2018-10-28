@@ -40,12 +40,12 @@ public class FastSettings extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.arcade_settings);
+        setContentView(R.layout.fast_settings);
 
         calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
        // Game.mathBase = new MathBase(this);
 
-        rv = findViewById(R.id.arcade_recycler_view);
+        rv = findViewById(R.id.fast_recycler_view);
         rv.setHasFixedSize(true);
         FastLayoutManager = new GridLayoutManager(this, 2);
         rv.setLayoutManager(FastLayoutManager);
@@ -62,6 +62,6 @@ public class FastSettings extends AppCompatActivity {
     }
 
     public void goHelp(View v) {
-        Toast.makeText(this, "ARCADE SETTINGS HELP", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "FAST SETTINGS HELP", Toast.LENGTH_LONG).show();
     }
 }

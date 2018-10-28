@@ -43,9 +43,9 @@ public class FastBoard extends GameBoard {
         typed.setClickable(false);
         formula.setClickable(false);
 
-        (findViewById(R.id.arcade_bar)).setVisibility(View.VISIBLE);
-        sw = findViewById(R.id.arcade_timer);
-        start = findViewById(R.id.arcade_start);
+        (findViewById(R.id.fast_bar)).setVisibility(View.VISIBLE);
+        sw = findViewById(R.id.fast_timer);
+        start = findViewById(R.id.fast_start);
 
 
         for (int i = 0; i < 10; i++) {
@@ -56,33 +56,33 @@ public class FastBoard extends GameBoard {
                 case "XX + X":
                 case "XX + XX":
 
-                    calc.arcadeList[i] = new Add();
+                    calc.fastList[i] = new Add();
                     break;
 
                 case "X - X":
                 case "XX - X":
                 case "XX - XX":
 
-                    calc.arcadeList[i] = new Sub();
+                    calc.fastList[i] = new Sub();
                     break;
 
                 case "X × X":
 
-                    calc.arcadeList[i] = new Mul();
+                    calc.fastList[i] = new Mul();
                     break;
 
                 case "XX ÷ X":
 
-                    calc.arcadeList[i] = new Div();
+                    calc.fastList[i] = new Div();
                     break;
 
                 case "X × X + X":
 
-                    calc.arcadeList[i] = new Big();
+                    calc.fastList[i] = new Big();
                     break;
 
                 default:
-                    calc.arcadeList[i] = new Tri();
+                    calc.fastList[i] = new Tri();
 
             }
         }
@@ -120,7 +120,7 @@ public class FastBoard extends GameBoard {
 
     @Override
     public void showTask() {
-        task = calc.arcadeList[calc.gameLevel - 1];
+        task = calc.fastList[calc.gameLevel - 1];
         typedResult = "";
         typed.setText("");
         formula.setText(task.getFormula());
@@ -136,7 +136,7 @@ public class FastBoard extends GameBoard {
     public void next(String s) {
 
 
-        ((TextView) findViewById(R.id.arcade_progress)).setText(progress);
+        ((TextView) findViewById(R.id.fast_progress)).setText(progress);
         calc.gameLevel++;
         if (calc.gameLevel > calc.getHowManyTasks()) {
             handler.removeCallbacks(stopwatch);
@@ -148,7 +148,7 @@ public class FastBoard extends GameBoard {
 
 
             if (timeInMillis <= calc.highScore || calc.highScore == 0) {
-                MathBase.getInstance().saveArcadeResult(calc.levelNames.get(calc.gameKind), timeInMillis);
+                MathBase.getInstance().saveFastResult(calc.levelNames.get(calc.gameKind), timeInMillis);
                 formula.setText("NEW BEST TIME");
                 startAnimation(formula, 5);
                 goFire();
@@ -246,7 +246,7 @@ public class FastBoard extends GameBoard {
 
 
     public void goHelp(View v) {
-        Toast.makeText(this, "ARCADE HELP", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "FAST CALC HELP", Toast.LENGTH_LONG).show();
     }
 
 

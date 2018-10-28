@@ -58,13 +58,13 @@
             android:text="Arcade Math"
             android:textColor="@color/base"
             android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@id/menu_lite_quiz"
+            app:layout_constraintBottom_toTopOf="@id/menu_easy_calc"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/menu_lite_quiz"
+            android:id="@+id/menu_easy_calc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
@@ -76,13 +76,13 @@
             android:text="Easy Calc"
             android:textColor="@color/base"
             android:textSize="36sp"
-            app:layout_constraintBottom_toTopOf="@id/menu_heavy_quiz"
+            app:layout_constraintBottom_toTopOf="@id/menu_heavy_calc"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/menu_arcade" />
 
         <TextView
-            android:id="@+id/menu_heavy_quiz"
+            android:id="@+id/menu_heavy_calc"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
@@ -97,7 +97,7 @@
             app:layout_constraintBottom_toTopOf="@id/menu_practice"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/menu_lite_quiz" />
+            app:layout_constraintTop_toBottomOf="@id/menu_easy_calc" />
 
         <TextView
             android:id="@+id/menu_practice"
@@ -112,7 +112,7 @@
             android:text="Practice"
             android:textColor="@color/base"
             android:textSize="36sp"
-            app:layout_constraintTop_toBottomOf="@id/menu_heavy_quiz"
+            app:layout_constraintTop_toBottomOf="@id/menu_heavy_calc"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />

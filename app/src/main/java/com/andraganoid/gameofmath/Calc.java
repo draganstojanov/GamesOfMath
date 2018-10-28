@@ -58,7 +58,7 @@ public class Calc {
     public int secondsRemain;
 
 
-    public Task arcadeList[] = new Task[10];
+    public Task fastList[] = new Task[10];
 
 
     public void setOperationType(int[] operationType) {

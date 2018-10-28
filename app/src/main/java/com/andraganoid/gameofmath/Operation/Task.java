@@ -27,8 +27,8 @@ public class Task {
 
     Random rnd;
 
-    public int[] liteNumbers = new int[6];
-    public List<Integer> liteArr = new ArrayList<>();
+    public int[] easyNumbers = new int[6];
+    public List<Integer> easyArr = new ArrayList<>();
 
     public Task() {
         this.rnd = new Random();

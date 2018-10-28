@@ -20,7 +20,7 @@ import static com.andraganoid.gameofmath.Operation.Task.eval;
 public class EasyBoard extends Game {
 
     TextView lNum[], lOper[], lEr[];
-    ArrayList<Integer> liteFornulaArr = new ArrayList<>();
+    ArrayList<Integer> easyFornulaArr = new ArrayList<>();
     TextView lResult, lTarget, lErase, lTimer, skip, xtraTime, reset, start, eScore, formula;
     boolean isNum;
 
@@ -31,37 +31,37 @@ public class EasyBoard extends Game {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
-        board = findViewById(R.id.lite_board_lay);
+        board = findViewById(R.id.easy_board_lay);
 
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
 
         //  findViewById(R.id.lite_board_lay).setBackground(new BitmapDrawable(getResources(), background));
-        start = findViewById(R.id.lite_start);
-        lResult = findViewById(R.id.lite_result);
-        lTarget = findViewById(R.id.lite_target);
-        lErase = findViewById(R.id.lite_erase);
-        lTimer = findViewById(R.id.lite_timer);
-        skip = findViewById(R.id.lite_skip);
-        xtraTime = findViewById(R.id.lite_xtra_time);
-        reset = findViewById(R.id.lite_reset);
+        start = findViewById(R.id.easy_start);
+        lResult = findViewById(R.id.easy_result);
+        lTarget = findViewById(R.id.easy_target);
+        lErase = findViewById(R.id.easy_erase);
+        lTimer = findViewById(R.id.easy_timer);
+        skip = findViewById(R.id.easy_skip);
+        xtraTime = findViewById(R.id.easy_xtra_time);
+        reset = findViewById(R.id.easy_reset);
         eScore = findViewById(R.id.easy_score);
         formula = findViewById(R.id.easy_formula);
 
         lNum = new TextView[]
-                {findViewById(R.id.lite_op_0),
-                        findViewById(R.id.lite_op_1),
-                        findViewById(R.id.lite_op_2),
-                        findViewById(R.id.lite_op_3),
-                        findViewById(R.id.lite_op_4),
-                        findViewById(R.id.lite_op_5)};
+                {findViewById(R.id.easy_op_0),
+                        findViewById(R.id.easy_op_1),
+                        findViewById(R.id.easy_op_2),
+                        findViewById(R.id.easy_op_3),
+                        findViewById(R.id.easy_op_4),
+                        findViewById(R.id.easy_op_5)};
 
         lOper = new TextView[]
-                {findViewById(R.id.lite_s_0),
-                        findViewById(R.id.lite_s_1),
-                        findViewById(R.id.lite_s_2),
-                        findViewById(R.id.lite_s_3)};
+                {findViewById(R.id.easy_s_0),
+                        findViewById(R.id.easy_s_1),
+                        findViewById(R.id.easy_s_2),
+                        findViewById(R.id.easy_s_3)};
 
         lEr = new TextView[]
                 {lErase};
@@ -89,7 +89,7 @@ public class EasyBoard extends Game {
                 start.setVisibility(View.GONE);
                 isEnd = false;
                 goMain = true;
-                runLite();
+                runEasy();
 
 
             }
@@ -99,7 +99,7 @@ public class EasyBoard extends Game {
 
     }
 
-    void runLite() {
+    void runEasy() {
 
         Toast.makeText(this, "START", Toast.LENGTH_SHORT).show();
         calc.gameLevel++;
@@ -114,12 +114,12 @@ public class EasyBoard extends Game {
         eScore.setText(calc.easyScore("nextLvl"));
 
 
-        liteFornulaArr.clear();
+        easyFornulaArr.clear();
         lTarget.setText(String.valueOf(task.getResult()));
 
 
         for (int i = 0; i < 6; i++) {
-            lNum[i].setText(String.valueOf(task.liteNumbers[i]));
+            lNum[i].setText(String.valueOf(task.easyNumbers[i]));
             lNum[i].setVisibility(View.VISIBLE);
         }
 
@@ -207,16 +207,16 @@ public class EasyBoard extends Game {
         }
 
 
-        if (liteFornulaArr.size() == 0) {
+        if (easyFornulaArr.size() == 0) {
             unPrepare4click(lEr);
         } else {
             prepare4click(lEr);
         }
 
         String s = " ";
-        int ls = liteFornulaArr.size();
+        int ls = easyFornulaArr.size();
         for (int i = 0; i < ls; i++) {
-            s += ((TextView) findViewById(liteFornulaArr.get(i))).getText().toString() + " ";
+            s += ((TextView) findViewById(easyFornulaArr.get(i))).getText().toString() + " ";
         }
 
         ((TextView) findViewById(R.id.easy_formula)).setText(s);
@@ -232,7 +232,7 @@ public class EasyBoard extends Game {
         }
 
 
-        if (task.getResult() == eval(s) && liteFornulaArr.size() > 2) {
+        if (task.getResult() == eval(s) && easyFornulaArr.size() > 2) {
             if (cdt != null) {
                 cdt.cancel();
             }
@@ -241,7 +241,7 @@ public class EasyBoard extends Game {
 //                sRight_answer.start();
 //            }
             play(RIGHT_ANSWER);
-            runLite();
+            runEasy();
 
         }
 
@@ -249,10 +249,10 @@ public class EasyBoard extends Game {
 
     public void formulaRemove(View v) {
         if (!isEnd) {
-            if (liteFornulaArr.size() > 0) {
+            if (easyFornulaArr.size() > 0) {
                 eScore.setText(calc.easyScore("clear"));
-                (findViewById(liteFornulaArr.get(liteFornulaArr.size() - 1))).setVisibility(View.VISIBLE);
-                liteFornulaArr.remove(liteFornulaArr.size() - 1);
+                (findViewById(easyFornulaArr.get(easyFornulaArr.size() - 1))).setVisibility(View.VISIBLE);
+                easyFornulaArr.remove(easyFornulaArr.size() - 1);
                 isNum = !isNum;
                 writeFormula();
 
@@ -260,13 +260,13 @@ public class EasyBoard extends Game {
         }
     }
 
-    public void liteNum(View v) {
+    public void easyNum(View v) {
 
         if (!isEnd) {
 
             if (isNum && isMax()) {
                 eScore.setText(calc.easyScore("click"));
-                liteFornulaArr.add(v.getId());
+                easyFornulaArr.add(v.getId());
                 v.setVisibility(View.INVISIBLE);
                 isNum = false;
                 writeFormula();
@@ -277,11 +277,11 @@ public class EasyBoard extends Game {
     }
 
 
-    public void liteOper(View v) {
+    public void easyOper(View v) {
         if (!isEnd) {
             if (!isNum && isMax()) {
                 eScore.setText(calc.easyScore("click"));
-                liteFornulaArr.add(v.getId());
+                easyFornulaArr.add(v.getId());
                 isNum = true;
                 writeFormula();
 
@@ -291,7 +291,7 @@ public class EasyBoard extends Game {
     }
 
     boolean isMax() {
-        return (liteFornulaArr.size() < (2 * calc.getHowManyOperands() - 1));
+        return (easyFornulaArr.size() < (2 * calc.getHowManyOperands() - 1));
     }
 
 
@@ -317,7 +317,7 @@ public class EasyBoard extends Game {
     }
 
 
-    public void liteReset(View v) {
+    public void easyReset(View v) {
         if (!isEnd) {
 
             if (calc.easyResets > 0) {
@@ -335,14 +335,14 @@ public class EasyBoard extends Game {
 //                }
                 play(USE_BONUS);
                 startAnimation(reset, 1);
-                runLite();
+                runEasy();
 
             }
         }
     }
 
 
-    public void liteSkip(View v) {
+    public void easySkip(View v) {
         if (!isEnd) {
 
             if (calc.easySkips > 0) {
@@ -359,14 +359,14 @@ public class EasyBoard extends Game {
 //                }
                 play(USE_BONUS);
                 startAnimation(skip, 1);
-                runLite();
+                runEasy();
             }
 
 
         }
     }
 
-    public void liteXtraTime(View v) {
+    public void easyXtraTime(View v) {
         if (!isEnd) {
             if (calc.easyXtraTine > 0) {
                 eScore.setText(calc.easyScore("xtra"));

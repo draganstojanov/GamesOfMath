@@ -66,7 +66,7 @@ public class MathBase extends SQLiteOpenHelper {
     }
 
 
-    public HashMap<String, Long> getArcadeHiScores() {
+    public HashMap<String, Long> getFastHiScores() {
 
         hm.clear();
 
@@ -76,15 +76,12 @@ public class MathBase extends SQLiteOpenHelper {
             hm.put(cursor.getString(cursor.getColumnIndexOrThrow("arcade_level")), cursor.getLong(cursor.getColumnIndexOrThrow("arcade_result")));
         }
         db.close();
-        Log.i("math-hiscore-get", String.valueOf(hm));
         return hm;
 
     }
 
 
-    public void saveArcadeResult(String lvl, Long res) {
-//        Log.i("math-hiscore-save1", String.valueOf(lvl));
-//        Log.i("math-hiscore-save2", String.valueOf(res));
+    public void saveFastResult(String lvl, Long res) {
         cv.clear();
         cv.put("arcade_level", lvl);
         cv.put("arcade_result", res);
@@ -106,7 +103,6 @@ public class MathBase extends SQLiteOpenHelper {
         }
         db.close();
 
-        Log.i("score-hiscore-get", String.valueOf(hm));
         return hm;
 
     }

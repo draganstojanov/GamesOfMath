@@ -55,26 +55,26 @@ public class HeavyBoard extends Game implements View.OnClickListener {
         board = findViewById(R.id.heavy_board_lay);
         start = findViewById(R.id.heavy_start);
         qTimer = findViewById(R.id.heavy_timer);
-        qResult = findViewById(R.id.quiz_result);
-        qTarget = findViewById(R.id.quiz_target);
+        qResult = findViewById(R.id.heavy_result);
+        qTarget = findViewById(R.id.heavy_target);
         rl = findViewById(R.id.result_lay);
         hLives = findViewById(R.id.heavy_lives);
 
 
-        hint = findViewById(R.id.quiz_hint);
-        xtraTime = findViewById(R.id.quiz_xtra_time);
-        xtraLives = findViewById(R.id.quiz_xtra_lives);
+        hint = findViewById(R.id.heavy_hint);
+        xtraTime = findViewById(R.id.heavy_xtra_time);
+        xtraLives = findViewById(R.id.heavy_xtra_lives);
 
 
         tva = new TextView[]
-                {findViewById(R.id.quiz_sign_0),
-                        findViewById(R.id.quiz_sign_1),
-                        findViewById(R.id.quiz_sign_2),
-                        findViewById(R.id.quiz_sign_3),
-                        findViewById(R.id.quiz_img_0),
-                        findViewById(R.id.quiz_img_1),
-                        findViewById(R.id.quiz_img_2),
-                        findViewById(R.id.quiz_img_3)};
+                {findViewById(R.id.heavy_sign_0),
+                        findViewById(R.id.heavy_sign_1),
+                        findViewById(R.id.heavy_sign_2),
+                        findViewById(R.id.heavy_sign_3),
+                        findViewById(R.id.heavy_img_0),
+                        findViewById(R.id.heavy_img_1),
+                        findViewById(R.id.heavy_img_2),
+                        findViewById(R.id.heavy_img_3)};
 
         for (TextView v : tva) {
             v.setOnClickListener(this);
@@ -128,13 +128,12 @@ public class HeavyBoard extends Game implements View.OnClickListener {
         qTarget.setText(String.valueOf(task.getResult()));
 
 
-        ((TextView) findViewById(R.id.quiz_op_0)).setText(String.valueOf(task.getOperandValue(0)));
-        ((TextView) findViewById(R.id.quiz_op_1)).setText(String.valueOf(task.getOperandValue(1)));
-        ((TextView) findViewById(R.id.quiz_op_2)).setText(String.valueOf(task.getOperandValue(2)));
-        ((TextView) findViewById(R.id.quiz_op_3)).setText(String.valueOf(task.getOperandValue(3)));
-        ((TextView) findViewById(R.id.quiz_op_4)).setText(String.valueOf(task.getOperandValue(4)));
-        ((TextView) findViewById(R.id.quiz_op_4)).setText(String.valueOf(task.getOperandValue(4)));
-        //    ((TextView) findViewById(R.id.quiz_target)).setText(String.valueOf(task.getResult()));
+        ((TextView) findViewById(R.id.heavy_op_0)).setText(String.valueOf(task.getOperandValue(0)));
+        ((TextView) findViewById(R.id.heavy_op_1)).setText(String.valueOf(task.getOperandValue(1)));
+        ((TextView) findViewById(R.id.heavy_op_2)).setText(String.valueOf(task.getOperandValue(2)));
+        ((TextView) findViewById(R.id.heavy_op_3)).setText(String.valueOf(task.getOperandValue(3)));
+        ((TextView) findViewById(R.id.heavy_op_4)).setText(String.valueOf(task.getOperandValue(4)));
+        ((TextView) findViewById(R.id.heavy_op_4)).setText(String.valueOf(task.getOperandValue(4)));
 
 
         ssl = new String[]{"", "", "", "", "+", "-", "\u00D7", "\u00F7"};

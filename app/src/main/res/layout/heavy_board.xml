@@ -161,7 +161,7 @@
             app:autoSizeTextType="uniform">
 
             <LinearLayout
-                android:id="@+id/quiz_signs_raw"
+                android:id="@+id/heavy_signs_raw"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="32dp"
@@ -177,7 +177,7 @@
                     android:visibility="invisible" />
 
                 <TextView
-                    android:id="@+id/quiz_img_0"
+                    android:id="@+id/heavy_img_0"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
@@ -194,7 +194,7 @@
 
 
                 <TextView
-                    android:id="@+id/quiz_img_1"
+                    android:id="@+id/heavy_img_1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
@@ -209,7 +209,7 @@
                     app:autoSizeTextType="uniform" />
 
                 <TextView
-                    android:id="@+id/quiz_img_2"
+                    android:id="@+id/heavy_img_2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
@@ -224,7 +224,7 @@
                     app:autoSizeTextType="uniform" />
 
                 <TextView
-                    android:id="@+id/quiz_img_3"
+                    android:id="@+id/heavy_img_3"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -243,7 +243,7 @@
 
 
             <LinearLayout
-                android:id="@+id/quiz_signs"
+                android:id="@+id/heavy_signs"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="16dp"
@@ -260,7 +260,7 @@
                     android:visibility="invisible" />
 
                 <TextView
-                    android:id="@+id/quiz_sign_0"
+                    android:id="@+id/heavy_sign_0"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_gravity="center"
@@ -275,7 +275,7 @@
 
 
                 <TextView
-                    android:id="@+id/quiz_sign_1"
+                    android:id="@+id/heavy_sign_1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
@@ -289,7 +289,7 @@
 
 
                 <TextView
-                    android:id="@+id/quiz_sign_2"
+                    android:id="@+id/heavy_sign_2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
@@ -303,7 +303,7 @@
 
 
                 <TextView
-                    android:id="@+id/quiz_sign_3"
+                    android:id="@+id/heavy_sign_3"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -319,7 +319,7 @@
 
 
             <LinearLayout
-                android:id="@+id/quiz_operands"
+                android:id="@+id/heavy_operands"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
@@ -328,7 +328,7 @@
 
 
                 <TextView
-                    android:id="@+id/quiz_op_0"
+                    android:id="@+id/heavy_op_0"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
@@ -343,7 +343,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/quiz_op_1"
+                    android:id="@+id/heavy_op_1"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
@@ -358,7 +358,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/quiz_op_2"
+                    android:id="@+id/heavy_op_2"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
@@ -373,7 +373,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/quiz_op_3"
+                    android:id="@+id/heavy_op_3"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginBottom="8dp"
@@ -388,7 +388,7 @@
                 </TextView>
 
                 <TextView
-                    android:id="@+id/quiz_op_4"
+                    android:id="@+id/heavy_op_4"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="1"
@@ -449,7 +449,7 @@
                     android:text="TARGET:" />
 
                 <TextView
-                    android:id="@+id/quiz_target"
+                    android:id="@+id/heavy_target"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="6"
@@ -486,7 +486,7 @@
                     android:text="YOUR RESULT:" />
 
                 <TextView
-                    android:id="@+id/quiz_result"
+                    android:id="@+id/heavy_result"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="6"
@@ -511,7 +511,7 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
-                android:id="@+id/quiz_hint"
+                android:id="@+id/heavy_hint"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="4dp"
@@ -528,7 +528,7 @@
                 android:maxLines="1" />
 
             <TextView
-            android:id="@+id/quiz_xtra_time"
+            android:id="@+id/heavy_xtra_time"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
@@ -546,7 +546,7 @@
             android:maxLines="1" />
 
             <TextView
-                android:id="@+id/quiz_xtra_lives"
+                android:id="@+id/heavy_xtra_lives"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
