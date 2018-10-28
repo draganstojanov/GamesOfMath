@@ -19,6 +19,8 @@ import com.andraganoid.gameofmath.Operation.Sub;
 import com.andraganoid.gameofmath.Operation.Tri;
 import com.andraganoid.gameofmath.R;
 
+import java.util.Arrays;
+
 //import static com.andraganoid.gameofmath.Game.mathBase;
 
 
@@ -47,7 +49,9 @@ public class FastBoard extends GameBoard {
 
 
         for (int i = 0; i < 10; i++) {
-            switch (calc.levelNames.get(calc.gameKind)) {
+
+            switch (Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)) .get(calc.gameKind)) {
+
                 case "X + X":
                 case "XX + X":
                 case "XX + XX":
@@ -88,7 +92,7 @@ public class FastBoard extends GameBoard {
         start.setText("3");
 
 
-        //  isEnd=true;
+         isEnd=true;
         goMain = false;
         intro = new CountDownTimer(5000, 1000) {
 
@@ -101,7 +105,7 @@ public class FastBoard extends GameBoard {
 
             @Override
             public void onFinish() {
-                // isEnd=false;
+                isEnd=false;
                 goMain = true;
                 start.setVisibility(View.GONE);
                 showTask();

@@ -17,7 +17,7 @@ import java.util.List;
 
 import static com.andraganoid.gameofmath.Calc.opSign;
 import static com.andraganoid.gameofmath.Game.calc;
-//import static com.andraganoid.gameofmath.Game.mathBase;
+
 
 
 public class FastAdapter extends RecyclerView.Adapter<FastAdapter.ArcadeViewHolder> implements View.OnClickListener {
@@ -52,22 +52,16 @@ public class FastAdapter extends RecyclerView.Adapter<FastAdapter.ArcadeViewHold
             @Override
             public void onClick(View v) {
 
-
-                //  calc = new Fast();
                 calc.gameKind = holder.getAdapterPosition();
 
-
-//                String[] s = calc.levelNames.get(holder.getAdapterPosition()).split(" ");
-                // Toast.makeText(this, String.valueOf(s.length), Toast.LENGTH_SHORT).show();
                 String[] s = Arrays.asList(mContext.getResources().getStringArray(R.array.fast_calc_levels_description)).get(holder.getAdapterPosition()).split(" ");
 
-              String g="";  for (int i = 0; i <s.length ; i++) {
-                   g+=s[i] +"~";
+                String g = "";
+                for (int i = 0; i < s.length; i++) {
+                    g += s[i] + "~";
                 }
 
-Log.d("level",String.valueOf(g));
                 calc.setOperationTypeByIndex(0, Arrays.asList(opSign).indexOf(s[1]));
-
 
 
                 if (s.length == 3) {
@@ -78,8 +72,6 @@ Log.d("level",String.valueOf(g));
                     calc.setOperandMinVal((int) Math.pow(10, s[0].length() - 1), (int) Math.pow(10, s[2].length() - 1), (int) Math.pow(10, s[4].length() - 1));
                     calc.setOperandMaxVal((int) Math.pow(10, s[0].length()) - 1, (int) Math.pow(10, s[2].length()) - 1, (int) Math.pow(10, s[4].length()) - 1);
                 }
-
-                Log.i("math_THIS", String.valueOf(this));
 
 
                 calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));

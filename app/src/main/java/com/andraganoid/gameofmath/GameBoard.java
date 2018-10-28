@@ -18,17 +18,11 @@ public abstract class GameBoard extends Game {
 
 
     protected TextView formula;
-    protected TextView taskCount;
-    protected TextView goodAnswer;
-    protected TextView badAnswer;
-
-
     protected android.support.constraint.ConstraintLayout multic;
     protected LinearLayout keyboard;
 
     protected TextView typed;
     protected TextView cho0, cho1, cho2, cho3;
-
 
     protected int goodAnswers;
     protected int badAnswers;
@@ -45,13 +39,7 @@ public abstract class GameBoard extends Game {
 
         // findViewById(R.id.game_board_lay).setBackground(new BitmapDrawable(getResources(), background));
 
-        // ((TextView) findViewById(R.id.game_board_top)).setText(calc.gameMode);
-
         formula = findViewById(R.id.game_board_formula);
-//        taskCount = findViewById(R.id.game_board_score_0);
-//        goodAnswer = findViewById(R.id.game_board_score_1);
-//        badAnswer = findViewById(R.id.game_board_score_2);
-        //  perc = findViewById(R.id.game_board_score_3);
         multic = findViewById(R.id.multi_choice);
         typed = findViewById(R.id.game_board_typed);
         keyboard = findViewById(R.id.keyboard);
@@ -93,37 +81,40 @@ public abstract class GameBoard extends Game {
     }
 
     public void keyboard(View v) {
-
-        if (typedResult.equals("0")) {
-            typedResult = "";
-        }
-        if (typedResult.length() < 4) {
-            typedResult += v.getTag();
-            typed.setText(typedResult);
-        }
+if(!isEnd) {
+    if (typedResult.equals("0")) {
+        typedResult = "";
+    }
+    if (typedResult.length() < 4) {
+        typedResult += v.getTag();
+        typed.setText(typedResult);
+    }
+}
     }
 
     public void keyboardEnter(View v) {
-        if (typedResult.length() > 0) {
-            if (calc.gameMode == "Practice") {
-                keyboard.setVisibility(View.INVISIBLE);
-            }
-            if (task.getResult() == Integer.parseInt(typedResult)) {
-                right();
+        if(!isEnd) {
+            if (typedResult.length() > 0) {
+                if (calc.gameMode == "Practice") {
+                    keyboard.setVisibility(View.INVISIBLE);
+                }
+                if (task.getResult() == Integer.parseInt(typedResult)) {
+                    right();
 
-            } else {
-                wrong();
+                } else {
+                    wrong();
+                }
             }
         }
     }
 
     public void keyboardC(View v) {
-        // Toast.makeText(this, String.valueOf(v.getTag()), Toast.LENGTH_SHORT).show();
-        if (!typedResult.isEmpty()) {
-            typedResult = typedResult.substring(0, typedResult.length() - 1);
-            typed.setText(typedResult);
+        {
+            if (!typedResult.isEmpty()) {
+                typedResult = typedResult.substring(0, typedResult.length() - 1);
+                typed.setText(typedResult);
+            }
         }
-
     }
 
     public void goHome(View v) {
@@ -135,9 +126,7 @@ public abstract class GameBoard extends Game {
 
 
     public void right() {
-//        if (soundIsOn) {
-//            sRight_answer.start();
-//        }
+
         play(RIGHT_ANSWER);
         goodAnswers++;
         setProgress("Right!", R.color.base, "\u2713");
@@ -146,9 +135,7 @@ public abstract class GameBoard extends Game {
 
 
     public void wrong() {
-//        if (soundIsOn) {
-//            sWrong_answer.start();
-//        }
+
         play(WRONG_ANSWER);
         badAnswers++;
         setProgress("Wrong!", R.color.checked, "\u2573");

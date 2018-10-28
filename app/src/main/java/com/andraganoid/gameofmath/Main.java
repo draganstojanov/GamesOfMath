@@ -5,10 +5,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.Toast;
 
 
 import com.squareup.leakcanary.LeakCanary;
+
+
 
 
 // TODO
@@ -33,6 +38,8 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
 
+
+
         if (LeakCanary.isInAnalyzerProcess(this)) {
             // This process is dedicated to LeakCanary for heap analysis.
             // You should not init your app in this process.
@@ -42,25 +49,6 @@ public class Main extends AppCompatActivity {
 
 
 
-
-
-
-        setContentView(R.layout.main);
-
-
-//
-//       GoogleApiClient apiClient = new GoogleApiClient.Builder(this)
-//                .addApi(Games.API)
-//                .addScope(Games.SCOPE_GAMES)
-//                .enableAutoManage(this, new GoogleApiClient.OnConnectionFailedListener() {
-//                    @Override
-//                    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-//                        Toast.makeText(Main.this, "Could not connect to Play games services", Toast.LENGTH_LONG).show();
-//
-//
-//                        finish();
-//                    }
-//                }).build();
 
 
         Intent intent = new Intent(this, Game.class);
