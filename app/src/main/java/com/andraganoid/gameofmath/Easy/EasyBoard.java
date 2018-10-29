@@ -139,21 +139,15 @@ public class EasyBoard extends Game {
     void timerStart(int s) {
         colorChange = true;
         cdt = new CountDownTimer(s * 1000 + 1000 + 250, 500) {
-
             @Override
             public void onTick(long l) {
-
                 calc.secondsRemain = (int) l / 1000;
-
                 if (l > 2000) {
                     lTimer.setText(String.valueOf(l / 1000 - 1));
 
                     if ((l / 1000 - 1) < 11) {
                         if (colorChange) {
                             lTimer.setTextColor(getResources().getColor(R.color.checked));
-//                        if (soundIsOn) {
-//                            sTimeBeep.start();
-//                        }
                             play(TIME_IS_OUT);
                         } else {
                             lTimer.setTextColor(getResources().getColor(R.color.info));
@@ -331,9 +325,6 @@ public class EasyBoard extends Game {
                 calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets - 1);
 
                 reset.setText("Resets: " + String.valueOf(calc.easyResets));
-//                if (soundIsOn) {
-//                    sUseBonus.start();
-//                }
                 play(USE_BONUS);
                 startAnimation(reset, 1);
                 runEasy();
@@ -355,9 +346,6 @@ public class EasyBoard extends Game {
                 calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips - 1);
 
                 skip.setText("Skips: " + String.valueOf(calc.easySkips));
-//                if (soundIsOn) {
-//                    sUseBonus.start();
-//                }
                 play(USE_BONUS);
                 startAnimation(skip, 1);
                 runEasy();
@@ -379,9 +367,6 @@ public class EasyBoard extends Game {
                 calc.easyXtraTine = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTine - 1);
 
                 xtraTime.setText("Xtra Time: " + String.valueOf(calc.easyXtraTine));
-//                if (soundIsOn) {
-//                    sUseBonus.start();
-//                }
                 play(USE_BONUS);
                 startAnimation(xtraTime, 1);
             }
@@ -398,9 +383,6 @@ public class EasyBoard extends Game {
         if (calc.gameLevel % 20 == 0) {//add SKIP
             calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips + 1);
             skip.setText("Skips: " + String.valueOf(calc.easySkips));
-//            if (soundIsOn) {
-//                sGetBonus.start();
-//            }
             play(GET_BONUS);
             startAnimation(skip, 1);
 
@@ -408,9 +390,6 @@ public class EasyBoard extends Game {
         if (calc.gameLevel % 24 == 0) {//add XTRA
             calc.easyXtraTine = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTine + 1);
             xtraTime.setText("Xtra Time: " + String.valueOf(calc.easyXtraTine));
-//            if (soundIsOn) {
-//                sGetBonus.start();
-//            }
             play(GET_BONUS);
             startAnimation(xtraTime, 1);
 
@@ -418,9 +397,6 @@ public class EasyBoard extends Game {
         if (calc.gameLevel % 33 == 0) {//add RESET
             calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets + 1);
             reset.setText("Resets: " + String.valueOf(calc.easyResets));
-//            if (soundIsOn) {
-//                sGetBonus.start();
-//            }
             play(GET_BONUS);
             startAnimation(reset, 1);
         }

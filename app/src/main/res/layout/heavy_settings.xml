@@ -119,11 +119,8 @@
 
         </LinearLayout>
 
-
-
-
-
-
     </android.support.constraint.ConstraintLayout>
+
+    <include layout="@layout/help"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/about_lay"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="48dp"
+    android:background="#e0000000"
+    android:visibility="gone"
+    tools:visibility="visible"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <LinearLayout
+
+        android:id="@+id/about_version"
+
+
+        android:gravity="center"
+
+        android:onClick="xxx"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/about_author"
+        android:layout_marginBottom="24dp"
+
+
+
+
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/info_stroke"
+        android:orientation="horizontal"
+        android:padding="2dp">
+
+
+
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_margin="8dp"
+            android:padding="4dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Sound"
+            app:autoSizeTextType="uniform"
+            android:onClick="goSound"/>
+
+        <TextView
+            android:id="@+id/sound_on_off"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_margin="8dp"
+            android:padding="4dp"
+            android:layout_weight="1"
+            android:background="@color/info"
+            android:gravity="center"
+            android:text="ON"
+            android:textColor="@color/checked"
+            app:autoSizeTextType="uniform"
+            android:onClick="goSound"/>
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+
+        android:id="@+id/about_author"
+
+
+        android:gravity="center"
+
+        android:onClick="xxx"
+
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about_version"
+        app:layout_constraintBottom_toTopOf="@+id/about_designer"
+        android:layout_marginBottom="24dp"
+
+
+
+
+
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:background="@drawable/info_stroke"
+        android:orientation="vertical"
+        android:padding="2dp">
+
+        <TextView
+
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_margin="2dp"
+            android:layout_weight="2"
+            android:background="@color/checked"
+            android:gravity="center"
+            android:text="TIME:"
+            android:textColor="@color/info" />
+
+
+        <TextView
+            android:id="@+id/heavy_timer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="6"
+            android:gravity="center"
+
+            android:text="Dragan Stojanov"
+            android:textColor="@color/info"
+            app:autoSizeMaxTextSize="120sp"
+            app:autoSizeMinTextSize="12sp"
+            app:autoSizeTextType="uniform" />
+    </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!---->
+
+    <!--<TextView-->
+        <!--android:id="@+id/dialog_resume"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="@drawable/tv_stroke"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="8dp"-->
+        <!--android:text="Resume game"-->
+        <!--android:onClick="goResume"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/dialog_back"-->
+        <!--android:layout_marginBottom="24dp"-->
+        <!--/>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/dialog_back"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="@drawable/tv_stroke"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="8dp"-->
+        <!--android:text="Go back"-->
+        <!--android:onClick="goBack"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/dialog_resume"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/dialog_home"-->
+        <!--android:layout_marginBottom="24dp"-->
+        <!--/>-->
+    <!--<TextView-->
+        <!--android:id="@+id/dialog_home"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="@drawable/tv_stroke"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="8dp"-->
+        <!--android:text="Go home"-->
+        <!--android:onClick="goHome"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/dialog_back"-->
+        <!--app:layout_constraintBottom_toTopOf="@+id/dialog_sound"-->
+        <!--android:layout_marginBottom="24dp"-->
+        <!--/>-->
+
+    <!--<LinearLayout-->
+        <!--android:id="@+id/dialog_sound"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginBottom="24dp"-->
+        <!--android:background="@drawable/tv_stroke"-->
+        <!--android:gravity="center"-->
+        <!--android:onClick="goResume"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:text="Resume game"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/dialog_home"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent">-->
+
+        <!--<include layout="@layout/sound_settings"/>-->
+
+    <!--</LinearLayout>-->
+
+
+</android.support.constraint.ConstraintLayout

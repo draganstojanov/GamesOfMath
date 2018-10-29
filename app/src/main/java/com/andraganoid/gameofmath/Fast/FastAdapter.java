@@ -1,6 +1,5 @@
 package com.andraganoid.gameofmath.Fast;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -120,7 +119,7 @@ public class FastAdapter extends RecyclerView.Adapter<FastAdapter.FastViewHolder
             clickView = itemView;
             this.lvl = itemView.findViewById(R.id.fast_1);
             this.lvl2 = itemView.findViewById(R.id.fast_2);
-            this.hiScore = itemView.findViewById(R.id.fast_3);
+            this.hiScore = itemView.findViewById(R.id.fast_4);
         }
     }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/game_lay"
@@ -24,7 +25,7 @@
             android:layout_height="wrap_content"
             android:background="@drawable/checked_stroke"
             android:gravity="center"
-            android:text="Game Of Math"
+            android:text="Games Of Math"
             android:textColor="@color/checked"
             android:textSize="55sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,7 +56,7 @@
             android:background="@drawable/text1_stroke"
             android:gravity="center"
             android:onClick="goArcade"
-            android:text="Arcade Math"
+            android:text="Fast calc"
             android:textColor="@color/base"
             android:textSize="36sp"
             app:layout_constraintBottom_toTopOf="@id/menu_easy_calc"
@@ -159,56 +160,5 @@
     </RelativeLayout>
 
 <include layout="@layout/game_settings"/>
-
-    <!--<RelativeLayout-->
-        <!--android:id="@+id/settings"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@id/menu">-->
-
-        <!--<TextView-->
-
-    <!--android:layout_width="wrap_content"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:layout_alignParentLeft="true"-->
-    <!--android:layout_marginBottom="8dp"-->
-    <!--android:layout_marginTop="8dp"-->
-    <!--android:background="@drawable/bar_stroke"-->
-    <!--android:onClick="goSettings"-->
-    <!--android:padding="12dp"-->
-    <!--android:text="SETTINGS"-->
-    <!--android:textColor="@color/base"-->
-    <!--android:textSize="18sp" />-->
-
-    <!--<TextView-->
-
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:background="@drawable/bar_stroke"-->
-        <!--android:onClick="goAbout"-->
-        <!--android:padding="12dp"-->
-        <!--android:text="ABOUT"-->
-        <!--android:textColor="@color/base"-->
-        <!--android:textSize="18sp" />-->
-
-    <!--<TextView-->
-
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_marginBottom="8dp"-->
-        <!--android:layout_marginTop="8dp"-->
-        <!--android:background="@drawable/bar_stroke"-->
-        <!--android:onClick="g"-->
-        <!--android:padding="12dp"-->
-        <!--android:text="HELP"-->
-        <!--android:textColor="@color/base"-->
-        <!--android:textSize="18sp" />-->
-<!--</RelativeLayout>-->
-
 
 </android.support.constraint.ConstraintLayout>
