@@ -14,7 +14,7 @@
 
 
     <LinearLayout
-        android:id="@+id/second_bar"
+        android:id="@+id/easy_bar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="16dp"
@@ -40,8 +40,9 @@
                 android:layout_weight="2"
                 android:background="@color/checked"
                 android:gravity="center"
-                android:text="Time:"
-                android:textColor="@color/info" />
+                android:text="@string/time"
+                android:textColor="@color/info"
+                app:autoSizeTextType="uniform" />
 
             <TextView
                 android:id="@+id/easy_timer"
@@ -51,8 +52,6 @@
                 android:gravity="center"
                 android:padding="8dp"
                 android:textColor="@color/info"
-                app:autoSizeMaxTextSize="120sp"
-                app:autoSizeMinTextSize="12sp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
@@ -76,8 +75,9 @@
                 android:layout_weight="2"
                 android:background="@color/checked"
                 android:gravity="center"
-                android:text="YOUR SCORE:"
-                android:textColor="@color/info" />
+                android:text="@string/score"
+                android:textColor="@color/info"
+                app:autoSizeTextType="uniform" />
 
 
             <TextView
@@ -87,10 +87,7 @@
                 android:layout_weight="6"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="12345"
                 android:textColor="@color/info"
-                app:autoSizeMaxTextSize="120sp"
-                app:autoSizeMinTextSize="12sp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
@@ -105,7 +102,7 @@
             android:maxLines="1"
             android:onClick="goPause"
             android:padding="4dp"
-            android:text="PAUSE"
+            android:text="@string/pause"
             android:textColor="@color/info"
             app:autoSizeMaxTextSize="120sp"
             app:autoSizeMinTextSize="12sp"
@@ -122,7 +119,7 @@
         android:layout_marginRight="24dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toTopOf="@+id/lll_2"
-        app:layout_constraintTop_toBottomOf="@+id/second_bar"
+        app:layout_constraintTop_toBottomOf="@+id/easy_bar"
         app:layout_constraintVertical_weight="2">
 
         <TextView
@@ -133,8 +130,6 @@
             android:background="@color/base"
             android:gravity="center"
             android:onClick="easyNum"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -147,8 +142,6 @@
             android:background="@color/base"
             android:gravity="center"
             android:onClick="easyNum"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -159,8 +152,6 @@
             android:background="@color/base"
             android:gravity="center"
             android:onClick="easyNum"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
 
@@ -182,12 +173,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
             android:background="@color/base"
             android:gravity="center"
             android:onClick="easyNum"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -195,14 +183,11 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="16dp"
-
             android:layout_marginRight="16dp"
             android:layout_weight="1"
             android:background="@color/base"
             android:gravity="center"
             android:onClick="easyNum"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -210,12 +195,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-
             android:background="@color/base"
             android:gravity="center"
             android:onClick="easyNum"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
 
@@ -241,8 +223,6 @@
             android:gravity="center"
             android:onClick="easyOper"
             android:text="+"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -256,8 +236,6 @@
             android:gravity="center"
             android:onClick="easyOper"
             android:text="-"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -270,8 +248,6 @@
             android:gravity="center"
             android:onClick="easyOper"
             android:text="\u00D7"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -283,8 +259,6 @@
             android:gravity="center"
             android:onClick="easyOper"
             android:text="\u00F7"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
     </LinearLayout>
@@ -308,9 +282,6 @@
             android:gravity="center"
             android:onClick="goBack"
             android:padding="4dp"
-            android:text="formula"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -321,9 +292,8 @@
             android:layout_weight="2"
             android:background="@color/base"
             android:gravity="center"
-
             android:onClick="formulaRemove"
-            android:padding="8dp"
+            android:padding="12dp"
             android:text="\u232B"
             android:textStyle="bold"
             app:autoSizeTextType="uniform" />
@@ -356,7 +326,8 @@
                 android:layout_weight="2"
                 android:background="@color/checked"
                 android:gravity="center"
-                android:text="TARGET:" />
+                android:text="@string/target"
+                app:autoSizeTextType="uniform" />
 
             <TextView
                 android:id="@+id/easy_target"
@@ -365,9 +336,6 @@
                 android:layout_weight="6"
                 android:gravity="center"
                 android:padding="4dp"
-                android:text="TARGET"
-                app:autoSizeMaxTextSize="120sp"
-                app:autoSizeMinTextSize="12sp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
@@ -390,7 +358,8 @@
                 android:layout_weight="2"
                 android:background="@color/checked"
                 android:gravity="center"
-                android:text="YOUR RESULT:" />
+                android:text="@string/your_result"
+                app:autoSizeTextType="uniform" />
 
             <TextView
                 android:id="@+id/easy_result"
@@ -399,9 +368,6 @@
                 android:layout_weight="6"
                 android:gravity="center"
                 android:padding="4dp"
-                android:text="RESULT"
-                app:autoSizeMaxTextSize="120sp"
-                app:autoSizeMinTextSize="12sp"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
@@ -423,13 +389,11 @@
             android:layout_weight="1"
             android:background="@color/info"
             android:gravity="center"
-            android:maxLines="1"
+            android:maxLines="2"
             android:onClick="easySkip"
-            android:padding="4dp"
-            android:text="Skip"
+            android:padding="8dp"
             android:textColor="@color/checked"
-            app:autoSizeMaxTextSize="40sp"
-            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="24sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -443,10 +407,8 @@
             android:gravity="center"
             android:onClick="easyXtraTime"
             android:padding="4dp"
-            android:text="Xtra Time"
             android:textColor="@color/checked"
-            app:autoSizeMaxTextSize="40sp"
-            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="24sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
@@ -457,13 +419,10 @@
             android:layout_weight="1"
             android:background="@color/info"
             android:gravity="center"
-            android:maxLines="1"
             android:onClick="easyReset"
             android:padding="4dp"
-            android:text="Skip"
             android:textColor="@color/checked"
-            app:autoSizeMaxTextSize="40sp"
-            app:autoSizeMinTextSize="12sp"
+            app:autoSizeMaxTextSize="24sp"
             app:autoSizeTextType="uniform" />
 
     </LinearLayout>

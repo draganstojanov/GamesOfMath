@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.andraganoid.gameofmath.Fast.FastSettings;
 import com.andraganoid.gameofmath.Easy.EasySettings;
 import com.andraganoid.gameofmath.Heavy.HeavySettings;
+import com.andraganoid.gameofmath.Misc.About;
 import com.andraganoid.gameofmath.Operation.Task;
 import com.andraganoid.gameofmath.Practice.PracticeSettings;
 import com.plattysoft.leonids.ParticleSystem;
@@ -39,8 +40,6 @@ public class Game extends AppCompatActivity {
     public static SharedPreferences.Editor prefsEditor;
     Intent intent;
     // android.support.constraint.ConstraintLayout cl;
-
-
 
 
     public CountDownTimer cdt, intro;
@@ -84,16 +83,6 @@ public class Game extends AppCompatActivity {
     public static final int USE_BONUS = 6;
     public static final int RIGHT_ANSWER = 7;
     public static final int WRONG_ANSWER = 8;
-
-
-
-
-
-
-
-
-
-
 
 
     @Override
@@ -186,13 +175,6 @@ public class Game extends AppCompatActivity {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-
-    public void goSettings(View v) {
-
-        findViewById(R.id.game_settings).setVisibility(View.VISIBLE);
-
-    }
-
 
 
     public void goFire() {
@@ -368,8 +350,6 @@ public class Game extends AppCompatActivity {
     }
 
 
-
-
     public void play(int sound) {
         if (prefs.getBoolean("sounds", true)) {
             if (sound == 0) {
@@ -378,7 +358,6 @@ public class Game extends AppCompatActivity {
             soundPool.play(sounds[sound], 1, 1, 1, 0, 1f);
         }
     }
-
 
 
     public void goSound(View v) {
@@ -396,12 +375,19 @@ public class Game extends AppCompatActivity {
                 .apply();
     }
 
-    public void goSettingsOk(View v) {
-        findViewById(R.id.game_settings).setVisibility(View.GONE);
-    }
 
     public void goAbout(View v) {
-        Toast.makeText(this, "ABOUT", Toast.LENGTH_SHORT).show();
+        intent = new Intent(this, About.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public void goSettings(View v) {
+        findViewById(R.id.game_settings).setVisibility(View.VISIBLE);
+    }
+
+    public void goSettingsOk(View v) {
+        findViewById(R.id.game_settings).setVisibility(View.GONE);
     }
 
 

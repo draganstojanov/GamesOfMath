@@ -10,7 +10,7 @@
 
 
     <LinearLayout
-        android:id="@+id/second_bar"
+        android:id="@+id/easy_bar"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
@@ -26,7 +26,8 @@
             android:layout_height="match_parent"
             android:layout_weight="4"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            tools:visibility="visible">
 
 
             <LinearLayout
@@ -47,8 +48,10 @@
                     android:layout_weight="3"
                     android:background="@color/checked"
                     android:gravity="center"
-                    android:text="Time:"
-                    android:textColor="@color/info" />
+                    android:padding="4dp"
+                    android:text="@string/time"
+                    android:textColor="@color/info"
+                    app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/fast_timer"
@@ -68,7 +71,6 @@
 
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-
                 android:layout_weight="2"
                 android:background="@drawable/info_stroke"
                 android:orientation="horizontal"
@@ -82,8 +84,10 @@
                     android:layout_weight="3"
                     android:background="@color/checked"
                     android:gravity="center"
-                    android:text="PROGRESS"
-                    android:textColor="@color/info" />
+                    android:padding="4dp"
+                    android:text="@string/progress"
+                    android:textColor="@color/info"
+                    app:autoSizeTextType="uniform" />
 
 
                 <TextView
@@ -100,13 +104,6 @@
             </LinearLayout>
 
         </LinearLayout>
-
-        <!--<LinearLayout-->
-        <!--android:id="@+id/game_board_scores"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="4"-->
-        <!--android:visibility="">-->
 
 
         <LinearLayout
@@ -128,8 +125,9 @@
                 android:layout_weight="2"
                 android:background="@color/checked"
                 android:gravity="center"
-                android:text="Task"
-                android:textColor="@color/info" />
+                android:text="@string/task"
+                android:textColor="@color/info"
+                app:autoSizeTextType="uniform" />
 
             <TextView
                 android:id="@+id/pprog"
@@ -144,85 +142,6 @@
         </LinearLayout>
 
 
-        <!--<LinearLayout-->
-
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginLeft="4dp"-->
-        <!--android:layout_marginRight="4dp"-->
-        <!--android:layout_weight="2"-->
-        <!--android:background="@drawable/info_stroke"-->
-        <!--android:orientation="vertical"-->
-        <!--android:padding="2dp">-->
-
-        <!--<TextView-->
-
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_margin="2dp"-->
-        <!--android:layout_weight="2"-->
-        <!--android:background="@color/checked"-->
-        <!--android:gravity="center"-->
-        <!--android:text="RIGHT"-->
-        <!--android:textColor="@color/info" />-->
-
-
-        <!--<TextView-->
-        <!--android:id="@+id/game_board_score_1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="6"-->
-        <!--android:gravity="center"-->
-        <!--android:maxLines="1"-->
-        <!--android:padding="8dp"-->
-        <!--android:textColor="@color/info"-->
-        <!--app:autoSizeMaxTextSize="120sp"-->
-        <!--app:autoSizeMinTextSize="20sp"-->
-        <!--app:autoSizeTextType="uniform" />-->
-        <!--</LinearLayout>-->
-
-
-        <!--<LinearLayout-->
-
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_marginLeft="4dp"-->
-        <!--android:layout_marginRight="4dp"-->
-        <!--android:layout_weight="2"-->
-        <!--android:background="@drawable/info_stroke"-->
-        <!--android:orientation="vertical"-->
-        <!--android:padding="2dp">-->
-
-        <!--<TextView-->
-
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_margin="2dp"-->
-        <!--android:layout_weight="2"-->
-        <!--android:background="@color/checked"-->
-        <!--android:gravity="center"-->
-        <!--android:text="WRONG"-->
-        <!--android:textColor="@color/info" />-->
-
-
-        <!--<TextView-->
-        <!--android:id="@+id/game_board_score_2"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="6"-->
-        <!--android:gravity="center"-->
-        <!--android:maxLines="1"-->
-        <!--android:padding="8dp"-->
-        <!--android:textColor="@color/info"-->
-        <!--app:autoSizeMaxTextSize="120sp"-->
-        <!--app:autoSizeMinTextSize="20sp"-->
-        <!--app:autoSizeTextType="uniform" />-->
-        <!--</LinearLayout>-->
-
-
-        <!--</LinearLayout>-->
-
-
         <TextView
             android:id="@+id/board_pause"
             android:layout_width="0dp"
@@ -234,13 +153,9 @@
             android:maxLines="1"
             android:onClick="goPause"
             android:padding="4dp"
-            android:text="PAUSE"
+            android:text="@string/pause"
             android:textColor="@color/info"
-            app:autoSizeMaxTextSize="120sp"
-            app:autoSizeMinTextSize="12sp"
-            app:autoSizeTextType="uniform"
-
-            />
+            app:autoSizeTextType="uniform" />
 
     </LinearLayout>
 
@@ -255,11 +170,9 @@
         android:maxLines="1"
         android:onClick="goNext"
         android:padding="4dp"
-        app:autoSizeMaxTextSize="120sp"
-        app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/game_board_typed"
-        app:layout_constraintTop_toBottomOf="@+id/second_bar"
+        app:layout_constraintTop_toBottomOf="@+id/easy_bar"
         app:layout_constraintVertical_weight="3" />
 
 
@@ -272,8 +185,6 @@
         android:gravity="center"
         android:onClick="goNext"
         android:padding="4dp"
-        app:autoSizeMaxTextSize="120sp"
-        app:autoSizeMinTextSize="12sp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/fast_btn"
         app:layout_constraintTop_toBottomOf="@+id/game_board_formula"
@@ -307,9 +218,7 @@
                 android:gravity="center"
                 android:onClick="multiChoice"
                 android:tag="0"
-                android:text="c0"
-                app:autoSizeMaxTextSize="120sp"
-                app:autoSizeMinTextSize="20sp"
+                android:padding="8dp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toTopOf="@id/game_board_choice_2"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -325,10 +234,7 @@
                 android:gravity="center"
                 android:onClick="multiChoice"
                 android:tag="1"
-                android:text="c1"
-
-                app:autoSizeMaxTextSize="120sp"
-                app:autoSizeMinTextSize="20sp"
+                android:padding="8dp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toTopOf="@id/game_board_choice_3"
                 app:layout_constraintLeft_toRightOf="@id/game_board_choice_0"
@@ -345,9 +251,7 @@
                 android:gravity="center"
                 android:onClick="multiChoice"
                 android:tag="2"
-                android:text="c2"
-                app:autoSizeMaxTextSize="120sp"
-                app:autoSizeMinTextSize="20sp"
+                android:padding="8dp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -364,9 +268,7 @@
                 android:gravity="center"
                 android:onClick="multiChoice"
                 android:tag="3"
-                android:text="c3"
-                app:autoSizeMaxTextSize="120sp"
-                app:autoSizeMinTextSize="20sp"
+                android:padding="8dp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/game_board_choice_2"
@@ -381,7 +283,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:visibility="gone">
+            android:visibility="gone"
+            tools:visibility="visible">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -401,9 +304,8 @@
                     android:onClick="keyboard"
                     android:tag="1"
                     android:text="1"
-                    app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeMinTextSize="12sp"
-                    app:autoSizeTextType="uniform" />
+                    app:autoSizeTextType="uniform"
+                    android:padding="4dp"/>
 
                 <TextView
                     android:id="@+id/key_btn_2"
@@ -418,8 +320,7 @@
                     android:onClick="keyboard"
                     android:tag="2"
                     android:text="2"
-                    app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeMinTextSize="12sp"
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
@@ -434,8 +335,7 @@
                     android:onClick="keyboard"
                     android:tag="3"
                     android:text="3"
-                    app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeMinTextSize="12sp"
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
             </TableRow>
 
@@ -458,8 +358,7 @@
                     android:onClick="keyboard"
                     android:tag="4"
                     android:text="4"
-                    app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeMinTextSize="12sp"
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
@@ -475,8 +374,7 @@
                     android:onClick="keyboard"
                     android:tag="5"
                     android:text="5"
-                    app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeMinTextSize="12sp"
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
@@ -491,8 +389,7 @@
                     android:onClick="keyboard"
                     android:tag="6"
                     android:text="6"
-                    app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeMinTextSize="12sp"
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
             </TableRow>
 
@@ -515,8 +412,7 @@
                     android:onClick="keyboard"
                     android:tag="7"
                     android:text="7"
-                    app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeMinTextSize="12sp"
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
@@ -532,8 +428,7 @@
                     android:onClick="keyboard"
                     android:tag="8"
                     android:text="8"
-                    app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeMinTextSize="12sp"
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
@@ -548,8 +443,7 @@
                     android:onClick="keyboard"
                     android:tag="9"
                     android:text="9"
-                    app:autoSizeMaxTextSize="120sp"
-                    app:autoSizeMinTextSize="12sp"
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
             </TableRow>
 
@@ -589,7 +483,7 @@
                     android:onClick="keyboard"
                     android:tag="0"
                     android:text="0"
-
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
@@ -602,9 +496,9 @@
                     android:background="@drawable/tv_stroke"
                     android:gravity="center"
                     android:onClick="keyboardEnter"
-                    android:padding="8dp"
                     android:tag="e"
-                    android:text="OK"
+                    android:text="@android:string/ok"
+                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
             </TableRow>
 

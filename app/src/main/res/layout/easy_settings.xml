@@ -24,7 +24,6 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/tv_stroke"
-
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/easy_3"
             app:layout_constraintLeft_toLeftOf="parent"
@@ -71,7 +70,6 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/tv_stroke"
-
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/easy_4"
             app:layout_constraintLeft_toLeftOf="parent"

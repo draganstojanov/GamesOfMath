@@ -16,23 +16,25 @@
 
     <string name="time">Time</string>
     <string name="progress">Progress</string>
+    <string name="task">Task</string>
     <string name="pause">PAUSE</string>
     <string name="score">Score</string>
     <string name="target">Target</string>
     <string name="your_result">Your result</string>
     <string name="lives">Lives</string>
     <string name="clear">Clear</string>
-    <string name="submit">Subnit</string>
+    <string name="submit">Submit</string>
     <string name="end">End</string>
     <string name="cancel">CANCEL</string>
     <string name="right">Right!</string>
     <string name="wrong">Wrong!</string>
 
-    <string name="skips">Skips:</string>
-    <string name="xtra_time">Xtra times:</string>
-    <string name="resets">Resets:</string>
-    <string name="hints">Hints:</string>
-    <string name="xtra_lives">Xtralives:</string>
+
+    <string name="skips">Skips\n</string>
+    <string name="xtra_time">Extra\ntimes\n</string>
+    <string name="resets">Time\nresets\n</string>
+    <string name="hints">Hints\n</string>
+    <string name="xtra_lives">Extra\nlives\n</string>
 
     <string name="game_over">GAME OVER</string>
     <string name="new_high">NEW HIGH SCORE!</string>
@@ -41,6 +43,17 @@
     <string name="easy_calc">Easy Calc</string>
     <string name="heavy_calc">Heavy Calc</string>
     <string name="practice">Practice</string>
+
+
+    <string name="app">Application</string>
+    <string name="author">Author</string>
+    <string name="dragan">Dragan Stojanov</string>
+    <string name="designer">Graphic design</string>
+    <string name="milena">Milena Nikolić</string>
+    <string name="policy">Privacy policy</string>
+
+    <string name="mail_feedback">Games Of Math feedback</string>
+    <string name="mail_chooser">Choose...</string>
 
 
     <string-array name="easy_calc_levels">

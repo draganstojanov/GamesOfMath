@@ -577,10 +577,7 @@
 
     </TextView>
 
-    <include
-        layout="@layout/pause_dialog"
-        tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="0dp" />
+    <include layout="@layout/pause_dialog" />
 
     <include layout="@layout/firework" />
 

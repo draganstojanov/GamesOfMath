@@ -15,21 +15,18 @@ import com.squareup.leakcanary.LeakCanary;
 
 //firebase crash
 //hiscores  googleplay
+//reklame
 
 //ispis bonusa sredi
 //help text
 //background
 //text
-//policy
 //intro
-//about
 //scores
-
-
 
 //SOUNDS: lostlife, gameover, get bonuses, beep za start
 
-
+// game_board.xml OK
 
 public class Main extends AppCompatActivity {
 
