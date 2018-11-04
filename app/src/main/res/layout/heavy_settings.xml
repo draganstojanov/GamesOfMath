@@ -2,36 +2,29 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/heavy_set_lay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/heavy_set_lay"
     android:layout_margin="8dp"
     tools:context=".Heavy.HeavySettings">
 
-
-
-    <include layout="@layout/topbar"/>
-
-
-
+    <include layout="@layout/topbar" />
 
     <android.support.constraint.ConstraintLayout
-
+        android:id="@+id/heavy_set"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="32dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/ad_view_wrapper"
         app:layout_constraintTop_toBottomOf="@id/top_bar">
-
 
         <LinearLayout
             android:id="@+id/heavy_10"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@drawable/tv_stroke"
-
-            android:orientation="vertical"
             android:layout_marginBottom="32dp"
+            android:background="@drawable/tv_stroke"
+            android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@id/heavy_100"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -39,25 +32,37 @@
             app:layout_constraintVertical_weight="3">
 
 
-
             <TextView
                 android:id="@+id/heavy_10_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="4dp"
-                app:autoSizeTextType="uniform" />
+                android:layout_marginTop="4dp"
+                app:autoSizeTextType="uniform"
+                tools:text="Heavy Calc 10"/>
 
             <TextView
                 android:id="@+id/heavy_10_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="12dp"
+                app:autoSizeTextType="uniform"
+                tools:text="Max operand val: 10"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"
+                android:text="@string/best_result"
+                android:textColor="@color/checked"
                 app:autoSizeTextType="uniform" />
-
 
             <TextView
                 android:id="@+id/heavy_10_3"
@@ -65,11 +70,10 @@
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:padding="4dp"
+                android:padding="8dp"
                 android:textColor="@color/checked"
-                app:autoSizeTextType="uniform" />
-
-
+                app:autoSizeTextType="uniform"
+                tools:text="123450"/>
 
         </LinearLayout>
 
@@ -91,20 +95,33 @@
                 android:id="@+id/heavy_100_1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_weight="3"
+                android:layout_weight="2"
                 android:gravity="center"
                 android:padding="4dp"
-                app:autoSizeTextType="uniform" />
+                android:layout_marginTop="4dp"
+                app:autoSizeTextType="uniform"
+                tools:text="Heavy Calc 100"/>
 
             <TextView
                 android:id="@+id/heavy_100_2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:padding="12dp"
+                app:autoSizeTextType="uniform"
+                tools:text="Max operand val: 100"/>
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:padding="4dp"
+                android:text="@string/best_result"
+                android:textColor="@color/checked"
                 app:autoSizeTextType="uniform" />
-
 
             <TextView
                 android:id="@+id/heavy_100_3"
@@ -112,14 +129,39 @@
                 android:layout_height="0dp"
                 android:layout_weight="2"
                 android:gravity="center"
-                android:padding="4dp"
+                android:padding="8dp"
                 android:textColor="@color/checked"
-                app:autoSizeTextType="uniform" />
+                app:autoSizeTextType="uniform"
+                tools:text="0"/>
+
 
 
         </LinearLayout>
 
     </android.support.constraint.ConstraintLayout>
+
+
+    <RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ad_view_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintLeft_toLeftOf="parent"
+        ads:layout_constraintRight_toRightOf="parent"
+        ads:layout_constraintTop_toBottomOf="@id/heavy_set">
+
+        <com.google.android.gms.ads.AdView
+
+            android:id="@+id/add_view_bottom_heavy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/AD_MOB_MATH_BOTTOM" />
+
+    </RelativeLayout>
+
 
     <include layout="@layout/help"/>
 

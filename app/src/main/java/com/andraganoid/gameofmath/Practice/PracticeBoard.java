@@ -2,6 +2,7 @@ package com.andraganoid.gameofmath.Practice;
 
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,7 @@ public class PracticeBoard extends GameBoard {
     @Override
     public void prepareTask() {
         goMain = true;
-        ((TextView) findViewById(R.id.board_pause)).setText("CANCEL");
+        ((TextView) findViewById(R.id.board_pause)).setText(getString(R.string.cancel));
         findViewById((R.id.practice_progress)).setVisibility(View.VISIBLE);
         typed.setClickable(false);
         formula.setClickable(false);
@@ -68,11 +69,6 @@ public class PracticeBoard extends GameBoard {
 
         formula.setBackgroundColor(getResources().getColor(R.color.base));
         formula.setText(task.getFormula());
-        //  taskCount.setText(String.valueOf(calc.gameLevel) + "/" + String.valueOf(calc.getHowManyTasks()));
-
-        //   goodAnswer.setText(String.valueOf(goodAnswers));
-        //   badAnswer.setText(String.valueOf(badAnswers));
-        //  perc.setText(String.valueOf(goodAnswers + badAnswers > 0 ? (int) ((goodAnswers * 100) / (goodAnswers + badAnswers)) : 0) + "%");
 
         typed.setText(typedResult);
         cho0.setText(String.valueOf(task.choices.get(0)));
@@ -88,29 +84,31 @@ public class PracticeBoard extends GameBoard {
 
         ((TextView) findViewById(R.id.pprog)).setText(progress);
 
-        switch (calc.getAnswerType()) {
-            case "multichoice":
-                multic.setVisibility(View.INVISIBLE);
-                break;
+        if (calc.getAnswerType().equals("multichoice")) {
+            multic.setVisibility(View.INVISIBLE);
         }
 
-        //  multic.setVisibility(View.INVISIBLE);
+//        switch (calc.getAnswerType()) {
+//            case "multichoice":
+//                multic.setVisibility(View.INVISIBLE);
+//                break;
+//        }
+
+
+        calc.gameLevel++;
+
         typed.setVisibility(View.VISIBLE);
         typed.setText(String.valueOf(task.getResult()));
         typed.setClickable(true);
 
 
-        calc.gameLevel++;
 
-        if (calc.gameLevel > calc.getHowManyTasks()) {
-            formula.setText("Finish!");
-        } else {
-            formula.setText("Next");
-        }
-        //    goodAnswer.setText(String.valueOf(goodAnswers));
-        //   badAnswer.setText(String.valueOf(badAnswers));
-        //  perc.setText(String.valueOf(goodAnswers + badAnswers > 0 ? (int) ((goodAnswers * 100) / (goodAnswers + badAnswers)) : 0) + "%");
-        // formula.setBackgroundColor(c);
+//
+//        if (calc.gameLevel > calc.getHowManyTasks()) {f
+//            formula.setText("Finish!");
+//        } else {
+//            formula.setText("Next");
+//        }
         formula.setText(c);
         formula.setClickable(true);
 
@@ -118,14 +116,20 @@ public class PracticeBoard extends GameBoard {
 
     @Override
     public void goNext(View v) {
-
+//        Log.d("prakt",String.valueOf(isEnd));
+//        Log.d("prakt",String.valueOf(calc.gameLevel));
         if (isEnd) {
-            goMain = false;
-            finish();
+            showFullscreenAd();
+           // goMain = false;
+           // finish();
         } else {
 
             if (calc.gameLevel > calc.getHowManyTasks()) {
-                practiceOver();
+                isEnd = true;
+                formula.setText(getString(R.string.pright) + String.valueOf(goodAnswers));
+                typed.setText(getString(R.string.pwrong) + String.valueOf(badAnswers));
+
+
             } else {
                 prepareTask();
             }
@@ -149,12 +153,14 @@ public class PracticeBoard extends GameBoard {
     }
 
 
-    void practiceOver() {
-        isEnd = true;
-        formula.setText("Right: " + String.valueOf(goodAnswers));
-        typed.setText("Wrong: " + String.valueOf(badAnswers));
-
-    }
+//    void practiceOver() {
+//      //  isEnd = true;
+//        formula.setText(getString(R.string.pright) + String.valueOf(goodAnswers));
+//        typed.setText(getString(R.string.pwrong) + String.valueOf(badAnswers));
+//
+//       // showFullscreenAd();
+//
+//    }
 
 
     public void goPause(View v) {
@@ -170,16 +176,19 @@ public class PracticeBoard extends GameBoard {
     @Override
     protected void onPause() {
         super.onPause();
-        if (goMain) {
-            boardIntent = new Intent(this, Game.class);
+        if (!adIsShowing) {
 
-        } else {
-            boardIntent = new Intent(this, PracticeSettings.class);
+            if (goMain) {
+                boardIntent = new Intent(this, Game.class);
 
+            } else {
+                boardIntent = new Intent(this, PracticeSettings.class);
+
+            }
+            boardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(boardIntent);
+            finish();
         }
-        boardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(boardIntent);
-        finish();
     }
 
     public void goHome(View v) {

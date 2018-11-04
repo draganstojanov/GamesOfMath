@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.Arrays;
 
@@ -32,6 +34,10 @@ public class EasySettings extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_settings);
+
+        AdView adViewBottomEasy = findViewById(R.id.add_view_bottom_easy);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adViewBottomEasy.loadAd(adRequest);
 
         //    findViewById(R.id.lite_set_lay).setBackground(new BitmapDrawable(getResources(), background));
 

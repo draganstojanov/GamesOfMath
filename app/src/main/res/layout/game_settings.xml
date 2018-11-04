@@ -11,6 +11,7 @@
     tools:visibility="visible"
     android:paddingLeft="48dp"
     android:paddingRight="48dp"
+    android:clickable="true"
     >
 
 

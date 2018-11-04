@@ -12,10 +12,12 @@
     <include layout="@layout/topbar" />
 
     <LinearLayout
+        android:id="@+id/fast_view"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/top_bar">
+        app:layout_constraintTop_toBottomOf="@+id/top_bar"
+        app:layout_constraintBottom_toTopOf="@id/ad_view_wrapper">
 
 
         <android.support.v7.widget.RecyclerView
@@ -26,6 +28,30 @@
             android:paddingTop="4dp" />
 
     </LinearLayout>
+
+
+
+
+    <RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ad_view_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintLeft_toLeftOf="parent"
+        ads:layout_constraintRight_toRightOf="parent"
+        ads:layout_constraintTop_toBottomOf="@id/fast_view">
+
+        <com.google.android.gms.ads.AdView
+
+            android:id="@+id/add_view_bottom_fast"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/AD_MOB_MATH_BOTTOM" />
+
+    </RelativeLayout>
 
     <include layout="@layout/help" />
 

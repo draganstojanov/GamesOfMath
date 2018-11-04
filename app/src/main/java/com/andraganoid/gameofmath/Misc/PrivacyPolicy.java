@@ -24,9 +24,15 @@ public class PrivacyPolicy extends AppCompatActivity {
     }
 
     public void goMain(View v) {
-        startActivity(new Intent(this, Game.class));
+        Intent intent = new Intent(this, Game.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
     }
 
-
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }
 

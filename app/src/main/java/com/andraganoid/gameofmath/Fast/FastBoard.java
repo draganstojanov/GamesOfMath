@@ -50,7 +50,7 @@ public class FastBoard extends GameBoard {
 
         for (int i = 0; i < 10; i++) {
 
-            switch (Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)) .get(calc.gameKind)) {
+            switch (Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)).get(calc.gameKind)) {
 
                 case "X + X":
                 case "XX + X":
@@ -92,7 +92,7 @@ public class FastBoard extends GameBoard {
         start.setText("3");
 
 
-         isEnd=true;
+        isEnd = true;
         goMain = false;
         intro = new CountDownTimer(5000, 1000) {
 
@@ -105,7 +105,7 @@ public class FastBoard extends GameBoard {
 
             @Override
             public void onFinish() {
-                isEnd=false;
+                isEnd = false;
                 goMain = true;
                 start.setVisibility(View.GONE);
                 showTask();
@@ -113,8 +113,6 @@ public class FastBoard extends GameBoard {
         };
         intro.start();
 
-
-        //   showTask();
 
     }
 
@@ -150,11 +148,11 @@ public class FastBoard extends GameBoard {
             if (timeInMillis <= calc.highScore || calc.highScore == 0) {
 //                MathBase.getInstance().saveFastResult(calc.levelNames.get(calc.gameKind), timeInMillis);
                 MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind), timeInMillis);
-                formula.setText("NEW BEST TIME");
+                formula.setText(getString(R.string.new_high));
                 startAnimation(formula, 5);
                 goFire();
             } else {
-                formula.setText("GAME OVER!");
+                formula.setText(getString(R.string.game_over));
             }
 
 
@@ -173,13 +171,11 @@ public class FastBoard extends GameBoard {
 
     @Override
     public void goNext(View v) {
-      //  Toast.makeText(this, "GO NEXT!", Toast.LENGTH_SHORT).show();
         if (calc.gameLevel > calc.getHowManyTasks()) {
-          //  Toast.makeText(this, "GAME OVER!", Toast.LENGTH_SHORT).show();
-//            Intent intent = new Intent(this, FastSettings.class);
-//            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//            startActivity(intent);
-            goMain=false;finish();
+
+            showFullscreenAd();
+            //  goMain = false;
+            // finish();
 
         } else {
             prepareTask();
@@ -214,21 +210,26 @@ public class FastBoard extends GameBoard {
 
     @Override
     protected void onPause() {
+
         super.onPause();
-        if (intro != null) {
-            intro.cancel();
-        }
-        handler.removeCallbacks(stopwatch);
-        if (goMain) {
-            boardIntent = new Intent(this, Game.class);
+        if (!adIsShowing) {
 
-        } else {
-            boardIntent = new Intent(this, FastSettings.class);
+            if (intro != null) {
+                intro.cancel();
+            }
+            handler.removeCallbacks(stopwatch);
+            if (goMain) {
+                boardIntent = new Intent(this, Game.class);
+
+            } else {
+                boardIntent = new Intent(this, FastSettings.class);
+
+            }
+            boardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(boardIntent);
+            finish();
 
         }
-        boardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(boardIntent);
-        finish();
     }
 
     public void goHome(View v) {

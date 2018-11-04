@@ -9,7 +9,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.andraganoid.gameofmath.Game;
@@ -86,7 +85,6 @@ public class HeavyBoard extends Game implements View.OnClickListener {
 
 
     void prepHeavy() {
-        Toast.makeText(this, "PREPHEAVY", Toast.LENGTH_LONG).show();
         hScore.setText(calc.heavyScore("nextLvl"));
         calc.gameLevel++;
         checkForBonusesHeavy();
@@ -118,7 +116,6 @@ public class HeavyBoard extends Game implements View.OnClickListener {
     }
 
     void runHeavy() {
-        Toast.makeText(this, "RUN HEAVY", Toast.LENGTH_LONG).show();
         rl.setVisibility(View.GONE);
         board.setVisibility(View.VISIBLE);
 
@@ -158,7 +155,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
             @Override
             public void onTick(long l) {
                 // qTimer.setText("Seconds left: " + String.valueOf(l / 1000));
-                Log.d( "heavy tick",String.valueOf(l));
+                Log.d("heavy tick", String.valueOf(l));
                 timerTick = (int) l - 1000;
 
                 calc.secondsRemain = (int) l / 1000;
@@ -172,9 +169,9 @@ public class HeavyBoard extends Game implements View.OnClickListener {
                     colorChange = !colorChange;
                 }
 
-            //    if (timerTick > 499) {
-                    qTimer.setText(timerTick / 60000 + ":"
-                            + String.format("%02d", (timerTick / 1000) % 60));
+                //    if (timerTick > 499) {
+                qTimer.setText(timerTick / 60000 + ":"
+                        + String.format("%02d", (timerTick / 1000) % 60));
 
 
 //                } else {
@@ -201,11 +198,8 @@ public class HeavyBoard extends Game implements View.OnClickListener {
     void lostLife() {
         calc.lives--;
         if (calc.lives > 0) {
-          // Toast.makeText(this, "LOST LIFE", Toast.LENGTH_LONG).show();
             prepHeavy();
         } else {
-          //  Toast.makeText(this, "GAME OVER", Toast.LENGTH_LONG).show();
-
             if (calc.heavyXtraLives > 0) {
                 checkXtraLives();
             } else {
@@ -224,7 +218,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         calc.heavyXtraLives = calc.setBonus(calc.HEAVY_XTRA_LIVES, calc.heavyXtraLives - 1);
-                        xtraLives.setText("Xtra Lives: " + String.valueOf(calc.heavyXtraLives));
+                        xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
                         startAnimation(xtraLives, 1);
                         calc.lives++;
                         prepHeavy();
@@ -259,9 +253,6 @@ public class HeavyBoard extends Game implements View.OnClickListener {
             go.setText("GAME OVER!");
         }
 
-
-      //  Toast.makeText(this, "GAME OVER", Toast.LENGTH_LONG).show();
-
     }
 
 
@@ -274,10 +265,9 @@ public class HeavyBoard extends Game implements View.OnClickListener {
 //                if (soundIsOn) {
 //                    sRight_answer.start();
 //                }
-               play(RIGHT_ANSWER);
+                play(RIGHT_ANSWER);
                 hScore.setText(calc.heavyScore("submit", (int) ((1 + (int) (calc.gameKind / 100) / 20) * (((float) calc.secondsRemain / (float) calc.secondsForTask * 100) * (100 + (float) calc.gameLevel) / 20))));
 
-              //  Toast.makeText(this, "CORRECT", Toast.LENGTH_LONG).show();
                 prepHeavy();
             } else {
                 hScore.setText(calc.heavyScore("clear"));
@@ -407,7 +397,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
 
                 calc.heavyHints = calc.setBonus(calc.HEAVY_HINTS, calc.heavyHints - 1);
                 //  qHints--;
-                hint.setText("Hints: " + String.valueOf(calc.heavyHints));
+                hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
 //                if (soundIsOn) {
 //                    sUseBonus.start();
 //                }
@@ -430,11 +420,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
                 }
                 timerStart(timerTick + 30000);
                 calc.heavyXtraTime = calc.setBonus(calc.HEAVY_XTRA_TIME, calc.heavyXtraTime - 1);
-                // qXtraTime--;
-                xtraTime.setText("Xtra Time: " + String.valueOf(calc.heavyXtraTime));
-//                if (soundIsOn) {
-//                    sUseBonus.start();
-//                }
+                xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
                 play(USE_BONUS);
                 startAnimation(xtraTime, 1);
             }
@@ -444,16 +430,14 @@ public class HeavyBoard extends Game implements View.OnClickListener {
 
     private void checkForBonusesHeavy() {
 
-        hint.setText("Hints: " + String.valueOf(calc.heavyHints));
-        xtraTime.setText("Xtra Time: " + String.valueOf(calc.heavyXtraTime));
-        xtraLives.setText("Xtra Lives: " + String.valueOf(calc.heavyXtraLives));
+        hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
+        xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
+        xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
 
         if (calc.gameLevel % 12 == 0) {//add HINT
             calc.heavyHints = calc.setBonus(calc.HEAVY_HINTS, calc.heavyHints + 1);
-            hint.setText("Hints: " + String.valueOf(calc.heavyHints));
-//            if (soundIsOn) {
-//                sGetBonus.start();
-//            }
+            hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
+
             play(GET_BONUS);
             startAnimation(hint, 1);
 
@@ -461,10 +445,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
 
         if (calc.gameLevel % 20 == 0) {//add XTRA
             calc.heavyXtraTime = calc.setBonus(calc.HEAVY_XTRA_TIME, calc.heavyXtraTime + 1);
-            xtraTime.setText("Xtra Time: " + String.valueOf(calc.heavyXtraTime));
-//            if (soundIsOn) {
-//                sGetBonus.start();
-//            }
+            xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
             play(GET_BONUS);
             startAnimation(xtraTime, 1);
 
@@ -473,7 +454,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
 
         if (calc.gameLevel % 33 == 0) {//add XTRA
             calc.heavyXtraLives = calc.setBonus(calc.HEAVY_XTRA_LIVES, calc.heavyXtraLives + 1);
-            xtraLives.setText("Xtra Lives: " + String.valueOf(calc.heavyXtraLives));
+            xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
             startAnimation(xtraLives, 1);
             //EEECT
         }
@@ -500,23 +481,26 @@ public class HeavyBoard extends Game implements View.OnClickListener {
     @Override
     protected void onPause() {
         super.onPause();
-        if (cdt != null) {
-            cdt.cancel();
-        }
-        if (intro != null) {
-            intro.cancel();
-        }
+        if (!adIsShowing) {
 
-        if (goMain) {
-            boardIntent = new Intent(this, Game.class);
+            if (cdt != null) {
+                cdt.cancel();
+            }
+            if (intro != null) {
+                intro.cancel();
+            }
 
-        } else {
-            boardIntent = new Intent(this, HeavySettings.class);
+            if (goMain) {
+                boardIntent = new Intent(this, Game.class);
 
+            } else {
+                boardIntent = new Intent(this, HeavySettings.class);
+
+            }
+            boardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(boardIntent);
+            finish();
         }
-        boardIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(boardIntent);
-        finish();
     }
 
     public void goHome(View v) {
@@ -524,9 +508,10 @@ public class HeavyBoard extends Game implements View.OnClickListener {
         finish();
     }
 
-    public void goBack(View v) {
-        goMain = false;
-        finish();
+    public void heavyOver(View v) {
+        showFullscreenAd();
+        //   goMain = false;
+        //  finish();
     }
 
     @Override
@@ -535,8 +520,5 @@ public class HeavyBoard extends Game implements View.OnClickListener {
         goMain = false;
     }
 
-    public void goHelp(View v) {
-        Toast.makeText(this, "HEAVY CALC HELP", Toast.LENGTH_LONG).show();
-    }
 
 }

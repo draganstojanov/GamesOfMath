@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.andraganoid.gameofmath">
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <application
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
@@ -48,18 +48,20 @@
         <activity
             android:name=".Game"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".Misc.About"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Misc.PrivacyPolicy"
+            android:screenOrientation="portrait"></activity>
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <!--Real AdMob App ID:ca-app-pub-7832187166369477~6543894378-->
 
-        <!-- <meta-data android:name="com.google.android.gms.games.APP_ID" -->
-        <!-- android:value="@string/app_id" /> -->
-        <!-- <meta-data android:name="com.google.android.gms.version" -->
-        <!-- android:value="@integer/google_play_services_version"/> -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="@string/AD_MOB_APP_ID" />
 
 
-        <!-- <meta-data -->
-        <!-- android:name="firebase_crashlytics_collection_enabled" -->
-        <!-- android:value="false" /> -->
-        <activity android:name=".Misc.About" />
-        <activity android:name=".Misc.PrivacyPolicy"></activity>
     </application>
 
 </manifest>

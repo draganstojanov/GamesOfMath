@@ -9,6 +9,8 @@ import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.Arrays;
 
@@ -29,6 +31,10 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.heavy_settings);
 
+        AdView adViewBottomHeavy = findViewById(R.id.add_view_bottom_heavy);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adViewBottomHeavy.loadAd(adRequest);
+
         // findViewById(R.id.heavy_set_lay).setBackground(new BitmapDrawable(getResources(), background));
 
         calc = new Heavy(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)));
@@ -39,10 +45,8 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
         ((TextView) findViewById(R.id.heavy_10_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(0));
         ((TextView) findViewById(R.id.heavy_100_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(1));
 
-        String a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0)));
-        ((TextView) findViewById(R.id.heavy_10_3)).setText(a);
-        a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1)));
-        ((TextView) findViewById(R.id.heavy_100_3)).setText(a);
+        ((TextView) findViewById(R.id.heavy_10_3)).setText(String.valueOf(calc.scoreMap.get(calc.levelNames.get(0))));
+        ((TextView) findViewById(R.id.heavy_100_3)).setText(String.valueOf(calc.scoreMap.get(calc.levelNames.get(1))));
 
         findViewById(R.id.heavy_10).setOnClickListener(this);
         findViewById(R.id.heavy_100).setOnClickListener(this);

@@ -58,4 +58,9 @@ public class About extends AppCompatActivity {
         startActivity(new Intent(this, Game.class));
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
 }

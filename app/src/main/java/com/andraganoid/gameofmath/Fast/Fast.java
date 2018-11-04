@@ -8,7 +8,7 @@ public class Fast extends Calc {
 
     public Fast(List<String> ln) {
         howManyTasks = 10;
-        gameMode = "Fast";
+        gameMode = "Fast Calc";
         levelNames=ln;
 
     }

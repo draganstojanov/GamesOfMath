@@ -26,12 +26,20 @@ import com.andraganoid.gameofmath.Heavy.HeavySettings;
 import com.andraganoid.gameofmath.Misc.About;
 import com.andraganoid.gameofmath.Operation.Task;
 import com.andraganoid.gameofmath.Practice.PracticeSettings;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.Random;
 
 
-public class Game extends AppCompatActivity {
+public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     // public static Back back = new Back();
     // public static Bitmap background;
     public static Calc calc;
@@ -39,8 +47,12 @@ public class Game extends AppCompatActivity {
     public static SharedPreferences prefs;
     public static SharedPreferences.Editor prefsEditor;
     Intent intent;
-    // android.support.constraint.ConstraintLayout cl;
+    public InterstitialAd fullscreenAd;
+    private RewardedVideoAd rewardAd;
+    public static boolean adIsShowing;
 
+    // android.support.constraint.ConstraintLayout cl;
+    // private AdView adViewBottomGame;
 
     public CountDownTimer cdt, intro;
     public Intent boardIntent;
@@ -75,7 +87,6 @@ public class Game extends AppCompatActivity {
 
     private SoundPool soundPool;
     private int[] sounds;
-    //  private MediaPlayer mediaPlayer, sFirework[], sNewBest, sTimeBeep, sGetBonus, sUseBonus, sRightAnswer, sWrongAnswer;
     public static final int FIREWORK = 0;
     public static final int BEST_RESULT = 3;
     public static final int TIME_IS_OUT = 4;
@@ -89,17 +100,59 @@ public class Game extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         MathBase mb = new MathBase(getApplicationContext());
+        adIsShowing = false;
+        if (!fullscreenAd.isLoaded()) {
+            fullscreenAd.loadAd(new AdRequest.Builder().build());
+        }
+        if (!rewardAd.isLoaded()) {
+            rewardAd.loadAd(getString(R.string.AD_MOB_MATH_REWARD),new AdRequest.Builder().build());
+        }
+
+
+        // cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
+    }
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.game);
+
+        MobileAds.initialize(this, getString(R.string.AD_MOB_APP_ID));
+        AdView adViewBottomGame = findViewById(R.id.add_view_bottom_game);
+        adViewBottomGame.loadAd(new AdRequest.Builder().build());
+
+        fullscreenAd = new InterstitialAd(this);
+        fullscreenAd.setAdUnitId(getString(R.string.AD_MOB_MATH_FULLSCREEN));
+        fullscreenAd.setAdListener(new AdListener() {
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                adIsShowing = false;
+                fullscreenAd.loadAd(new AdRequest.Builder().build());
+                goMain = false;
+                finish();
+
+            }
+        });
+
+        rewardAd = MobileAds.getRewardedVideoAdInstance(this);
+        rewardAd.setRewardedVideoAdListener(this);
+        if (!rewardAd.isLoaded()) {
+            rewardAd.loadAd(getString(R.string.AD_MOB_MATH_REWARD),new AdRequest.Builder().build());
+        }
+
+
+
+
         prefs = this.getPreferences(Context.MODE_PRIVATE);
         prefsEditor = prefs.edit();
-
-        super.onResume();
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         width = metrics.widthPixels;
         height = metrics.heightPixels;
         rand = new Random();
         sound_tv = findViewById(R.id.sound_on_off);
-        //  soundIsOn = true;
 
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
             soundPool = new SoundPool(15, AudioManager.STREAM_MUSIC, 0);
@@ -113,7 +166,8 @@ public class Game extends AppCompatActivity {
                     .setAudioAttributes(attrs)
                     .build();
         }
-        sounds = new int[]{soundPool.load(this, R.raw.firework1, 1),
+        sounds = new int[]{
+                soundPool.load(this, R.raw.firework1, 1),
                 soundPool.load(this, R.raw.firework2, 1),
                 soundPool.load(this, R.raw.firework3, 1),
                 soundPool.load(this, R.raw.new_best, 1),
@@ -121,26 +175,9 @@ public class Game extends AppCompatActivity {
                 soundPool.load(this, R.raw.get_bonus, 1),
                 soundPool.load(this, R.raw.use_bonus, 1),
                 soundPool.load(this, R.raw.right_answer, 1),
-                soundPool.load(this, R.raw.wrong_answer, 1),};
+                soundPool.load(this, R.raw.wrong_answer, 1)};
 
 
-        // cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
-    }
-//
-//    @Override
-//    protected void onRestart() {
-//        super.onRestart();
-//        Toast.makeText(this, "homme restart", Toast.LENGTH_SHORT).show();
-//    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.game);
-
-
-//       MathBase mb=new MathBase(getApplicationContext());
-        //  Toast.makeText(this, "homme creata", Toast.LENGTH_SHORT).show();
         //  cl = (android.support.constraint.ConstraintLayout) findViewById(R.id.game_lay);
         //  cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
 
@@ -179,11 +216,6 @@ public class Game extends AppCompatActivity {
 
     public void goFire() {
 
-        //  findViewById(R.id.fireworks_wrapper_e).setVisibility(View.VISIBLE);
-
-//        if (soundIsOn) {
-//            sNewBest.start();
-//        }
         play(BEST_RESULT);
 
         shot = 25;
@@ -204,6 +236,7 @@ public class Game extends AppCompatActivity {
             @Override
             public void onFinish() {
 
+
             }
         }.start();
 
@@ -222,9 +255,6 @@ public class Game extends AppCompatActivity {
         shot--;
         last = 0;
 
-//        if (soundIsOn) {
-//            sFirework[getRnd()].start();
-//        }
         play(FIREWORK);
 
         ps = new ParticleSystem(this,
@@ -237,8 +267,7 @@ public class Game extends AppCompatActivity {
 
 
     public void startAnimation(View view, int duration) {
-        //  int r1 = getRnd();
-//        switch (rand.nextInt(1000) % 3) {
+
         switch (getRnd()) {
             case 0:
                 animRotAndShake(view, 15f, 3 * duration);
@@ -249,8 +278,6 @@ public class Game extends AppCompatActivity {
             case 2:
                 String r = "";
 
-                //  int r2 = getRnd();
-//        switch (rand.nextInt(1000) % 3) {
                 switch (getRnd()) {
                     case 0:
                         r = "rotation";
@@ -390,5 +417,63 @@ public class Game extends AppCompatActivity {
         findViewById(R.id.game_settings).setVisibility(View.GONE);
     }
 
+
+    public void showFullscreenAd() {
+        // Toast.makeText(this, "showfulscreen", Toast.LENGTH_SHORT).show();
+        if (fullscreenAd != null && fullscreenAd.isLoaded()) {
+            adIsShowing = true;
+            // Toast.makeText(this, "SHOWING", Toast.LENGTH_SHORT).show();
+            fullscreenAd.show();
+        } else {
+            goMain = false;
+            finish();
+        }
+
+    }
+
+    @Override
+    public void onRewardedVideoAdLoaded() {
+
+        Toast.makeText(this, "onRewarded! currency: " + reward.getType() + "  amount: " +
+                reward.getAmount(), Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
+
+    }
+
+    @Override
+    public void onRewardedVideoCompleted() {
+
+    }
+
+    ;
 
 }

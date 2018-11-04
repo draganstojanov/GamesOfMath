@@ -7,10 +7,11 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.util.Arrays;
 
@@ -23,6 +24,7 @@ public class FastSettings extends AppCompatActivity {
     RecyclerView.Adapter fastAdapter;
     RecyclerView.LayoutManager FastLayoutManager;
 
+  //  private AdView adViewBottomFast;
 
     @Override
     protected void onPause() {
@@ -34,7 +36,6 @@ public class FastSettings extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         fastAdapter.notifyDataSetChanged();
-       // Toast.makeText(this, "FAST SETTINGS ON RESUME", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -42,10 +43,12 @@ public class FastSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fast_settings);
-      //  Toast.makeText(this, "FAST SETTINGS ON CREATE", Toast.LENGTH_SHORT).show();
-        calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
-       // Game.mathBase = new MathBase(this);
 
+        AdView adViewBottomFast = findViewById(R.id.add_view_bottom_fast);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adViewBottomFast.loadAd(adRequest);
+
+        calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
         rv = findViewById(R.id.fast_recycler_view);
         rv.setHasFixedSize(true);
         FastLayoutManager = new GridLayoutManager(this, 2);
@@ -72,7 +75,6 @@ public class FastSettings extends AppCompatActivity {
         String h3="It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
         String h4="There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.";
 
-        //  Toast.makeText(this, "PRACTICE SETTINGS HELP", Toast.LENGTH_LONG).show();
         findViewById(R.id.help_layout).setVisibility(View.VISIBLE);
         ((TextView)findViewById(R.id.help_title)).setText("FAST CALC");
         ((TextView)findViewById(R.id.help_text)).setText(h1+"\n\n"+h2+"\n\n"+h3+"\n\n"+h4);

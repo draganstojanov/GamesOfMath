@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.R;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import static com.andraganoid.gameofmath.Game.calc;
 
@@ -34,6 +36,10 @@ public class PracticeSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.practice_settings);
+
+        AdView adViewBottomHeavy = findViewById(R.id.add_view_bottom_practice);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adViewBottomHeavy.loadAd(adRequest);
 
         //  findViewById(R.id.practice_set_lay).setBackground(new BitmapDrawable(getResources(), background));
         calc = new Practice();

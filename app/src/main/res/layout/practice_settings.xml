@@ -351,7 +351,7 @@
         android:background="@color/checked"
         android:gravity="center"
         android:onClick="pAnswer"
-        android:text="Multi-choice"
+        android:text="@string/multi_choice"
         android:padding="4dp"
                 app:autoSizeTextType="uniform"
         android:layout_marginBottom="16dp"
@@ -369,7 +369,7 @@
         android:onClick="pAnswer"
         android:padding="4dp"
         app:autoSizeTextType="uniform"
-        android:text="Calculate"
+        android:text="@string/calculate"
         android:layout_marginBottom="16dp"
         android:layout_marginLeft="4dp"
         app:layout_constraintBottom_toTopOf="@id/practice_go"
@@ -388,17 +388,39 @@
         android:gravity="center"
         android:onClick="startPractice"
 
-        android:text="GO"
+        android:text="@string/go"
         android:padding="4dp"
         app:autoSizeTextType="uniform"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent" />
+        app:layout_constraintBottom_toTopOf="@id/ad_view_wrapper"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 
-    <include layout="@layout/help"/>
+  -->
 
+    <RelativeLayout
+        xmlns:ads="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/ad_view_wrapper"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        ads:layout_constraintBottom_toBottomOf="parent"
+        ads:layout_constraintLeft_toLeftOf="parent"
+        ads:layout_constraintRight_toRightOf="parent"
+   >
 
+        <com.google.android.gms.ads.AdView
+
+            android:id="@+id/add_view_bottom_practice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            ads:adSize="SMART_BANNER"
+            ads:adUnitId="@string/AD_MOB_MATH_BOTTOM" />
+
+    </RelativeLayout>
+
+    <!--<include layout="@layout/help"/>-->
 
 </android.support.constraint.ConstraintLayout>
