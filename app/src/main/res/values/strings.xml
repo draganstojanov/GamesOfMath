@@ -32,6 +32,7 @@
     <string name="help">HELP</string>
     <string name="settings">SETTINGS</string>
     <string name="about">ABOUT</string>
+    <string name="get_bonus">GET BONUS</string>
 
     <string name="time">Time</string>
     <string name="progress">Progress</string>

@@ -49,7 +49,9 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     Intent intent;
     public InterstitialAd fullscreenAd;
     private RewardedVideoAd rewardAd;
+    public AdView bottomAd;
     public static boolean adIsShowing;
+    private TextView getBonusClick;
 
     // android.support.constraint.ConstraintLayout cl;
     // private AdView adViewBottomGame;
@@ -95,18 +97,34 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     public static final int RIGHT_ANSWER = 7;
     public static final int WRONG_ANSWER = 8;
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        rewardAd.pause(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        rewardAd.destroy(this);
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
         MathBase mb = new MathBase(getApplicationContext());
         adIsShowing = false;
-        if (!fullscreenAd.isLoaded()) {
-            fullscreenAd.loadAd(new AdRequest.Builder().build());
+
+        rewardAd.resume(this);
+        if (rewardAd.isLoaded()) {
+            getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
+            getBonusClick.setTextColor(getResources().getColor(R.color.checked));
+        } else {
+            loadRewardAd();
         }
-        if (!rewardAd.isLoaded()) {
-            rewardAd.loadAd(getString(R.string.AD_MOB_MATH_REWARD),new AdRequest.Builder().build());
-        }
+
+        bottomAd.loadAd(new AdRequest.Builder().build());
+        loadFullscreenAd();
 
 
         // cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
@@ -118,9 +136,10 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
 
+        getBonusClick = findViewById(R.id.get_bonus_btn);
+
         MobileAds.initialize(this, getString(R.string.AD_MOB_APP_ID));
-        AdView adViewBottomGame = findViewById(R.id.add_view_bottom_game);
-        adViewBottomGame.loadAd(new AdRequest.Builder().build());
+        bottomAd = findViewById(R.id.add_view_bottom_game);
 
         fullscreenAd = new InterstitialAd(this);
         fullscreenAd.setAdUnitId(getString(R.string.AD_MOB_MATH_FULLSCREEN));
@@ -129,7 +148,7 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
             public void onAdClosed() {
                 super.onAdClosed();
                 adIsShowing = false;
-                fullscreenAd.loadAd(new AdRequest.Builder().build());
+                loadFullscreenAd();
                 goMain = false;
                 finish();
 
@@ -138,11 +157,6 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
         rewardAd = MobileAds.getRewardedVideoAdInstance(this);
         rewardAd.setRewardedVideoAdListener(this);
-        if (!rewardAd.isLoaded()) {
-            rewardAd.loadAd(getString(R.string.AD_MOB_MATH_REWARD),new AdRequest.Builder().build());
-        }
-
-
 
 
         prefs = this.getPreferences(Context.MODE_PRIVATE);
@@ -418,6 +432,19 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     }
 
 
+    public void goGetBonus(View v) {
+        if (rewardAd.isLoaded()) {
+            showRewardAd();
+        }
+    }
+
+
+    public void loadFullscreenAd() {
+        if (!fullscreenAd.isLoaded()) {
+            fullscreenAd.loadAd(new AdRequest.Builder().build());
+        }
+    }
+
     public void showFullscreenAd() {
         // Toast.makeText(this, "showfulscreen", Toast.LENGTH_SHORT).show();
         if (fullscreenAd != null && fullscreenAd.isLoaded()) {
@@ -431,12 +458,28 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     }
 
+
+    private void loadRewardAd() {
+        getBonusClick.setBackground(getResources().getDrawable(R.drawable.bar_stroke));
+        getBonusClick.setTextColor(getResources().getColor(R.color.base));
+        if (!rewardAd.isLoaded()) {
+            rewardAd.loadAd(getString(R.string.AD_MOB_MATH_REWARD), new AdRequest.Builder().build());
+        }
+    }
+
+    private void showRewardAd() {
+
+        if (rewardAd.isLoaded()) {
+            rewardAd.show();
+        }
+
+
+    }
+
     @Override
     public void onRewardedVideoAdLoaded() {
-
-        Toast.makeText(this, "onRewarded! currency: " + reward.getType() + "  amount: " +
-                reward.getAmount(), Toast.LENGTH_SHORT).show();
-
+        getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
+        getBonusClick.setTextColor(getResources().getColor(R.color.checked));
     }
 
     @Override
@@ -451,12 +494,17 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdClosed() {
+        loadRewardAd();
 
     }
 
     @Override
     public void onRewarded(RewardItem rewardItem) {
 
+        Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
+                rewardItem.getAmount(), Toast.LENGTH_LONG).show();
+
+        // Reward the user.
     }
 
     @Override
@@ -473,7 +521,5 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     public void onRewardedVideoCompleted() {
 
     }
-
-    ;
 
 }
