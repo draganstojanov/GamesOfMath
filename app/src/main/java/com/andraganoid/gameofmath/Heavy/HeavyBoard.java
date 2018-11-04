@@ -466,6 +466,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
         if (!isEnd) {
             cdt.cancel();
             findViewById(R.id.pause_dialog).setVisibility(View.VISIBLE);
+            soundState();
             // showPauseDialog();
 
         }
@@ -505,6 +506,11 @@ public class HeavyBoard extends Game implements View.OnClickListener {
 
     public void goHome(View v) {
         goMain = true;
+        finish();
+    }
+
+    public void goBack(View v) {
+        goMain = false;
         finish();
     }
 

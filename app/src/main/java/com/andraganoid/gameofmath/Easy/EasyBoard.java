@@ -408,6 +408,7 @@ public class EasyBoard extends Game {
         if (!isEnd) {
             cdt.cancel();
             findViewById(R.id.pause_dialog).setVisibility(View.VISIBLE);
+            soundState();
             // showPauseDialog();
 
         }
@@ -447,6 +448,11 @@ public class EasyBoard extends Game {
 
     public void goHome(View v) {
         goMain = true;
+        finish();
+    }
+
+    public void goBack(View v) {
+        goMain = false;
         finish();
     }
 

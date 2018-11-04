@@ -32,8 +32,7 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.heavy_settings);
 
         AdView adViewBottomHeavy = findViewById(R.id.add_view_bottom_heavy);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adViewBottomHeavy.loadAd(adRequest);
+        adViewBottomHeavy.loadAd(new AdRequest.Builder().build());
 
         // findViewById(R.id.heavy_set_lay).setBackground(new BitmapDrawable(getResources(), background));
 

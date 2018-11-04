@@ -17,7 +17,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="48dp"
+        android:layout_margin="32dp"
         android:background="@drawable/info_stroke"
         android:orientation="vertical">
 
@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 app:autoSizeTextType="uniform"
                 android:gravity="center"
-                android:padding="8dp"
+                android:padding="4dp"
                 app:layout_constraintBottom_toTopOf="@id/help_content"
                 app:layout_constraintTop_toBottomOf="@id/help_top" />
         </ScrollView>

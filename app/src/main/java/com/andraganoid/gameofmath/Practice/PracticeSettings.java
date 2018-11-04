@@ -38,8 +38,7 @@ public class PracticeSettings extends AppCompatActivity {
         setContentView(R.layout.practice_settings);
 
         AdView adViewBottomHeavy = findViewById(R.id.add_view_bottom_practice);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adViewBottomHeavy.loadAd(adRequest);
+        adViewBottomHeavy.loadAd(new AdRequest.Builder().build());
 
         //  findViewById(R.id.practice_set_lay).setBackground(new BitmapDrawable(getResources(), background));
         calc = new Practice();

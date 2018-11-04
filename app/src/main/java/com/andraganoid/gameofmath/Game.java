@@ -56,14 +56,13 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     // android.support.constraint.ConstraintLayout cl;
     // private AdView adViewBottomGame;
 
-    public CountDownTimer cdt, intro;
+    public CountDownTimer cdt, intro, fireTimer;
     public Intent boardIntent;
     public boolean goMain, isEnd;
     DisplayMetrics metrics;
     int shot, last, width, height;
     Random rand;
     ParticleSystem ps;
-    TextView sound_tv;
 
 
     int fireDots[] = new int[]{
@@ -166,7 +165,6 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         width = metrics.widthPixels;
         height = metrics.heightPixels;
         rand = new Random();
-        sound_tv = findViewById(R.id.sound_on_off);
 
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
             soundPool = new SoundPool(15, AudioManager.STREAM_MUSIC, 0);
@@ -234,7 +232,7 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
         shot = 25;
         last = 0;
-        new CountDownTimer(10000, 200) {
+        fireTimer = new CountDownTimer(10000, 200) {
             @Override
             public void onTick(long l) {
                 last++;
@@ -252,7 +250,8 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
 
             }
-        }.start();
+        };
+        fireTimer.start();
 
     }
 
@@ -402,18 +401,23 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
 
     public void goSound(View v) {
-        boolean s = prefs.getBoolean("sounds", true);
+
         startAnimation(findViewById(R.id.sound_on_off), 1);
 
-        if (!s) {
-            sound_tv.setText("ON");
-        } else {
-            sound_tv.setText("OFF");
-        }
-
         prefsEditor
-                .putBoolean("sounds", !s)
+                .putBoolean("sounds", !prefs.getBoolean("sounds", true))
                 .apply();
+        soundState();
+    }
+
+    public void soundState() {
+
+        if (prefs.getBoolean("sounds", true)) {
+            ((TextView) findViewById(R.id.sound_on_off)).setText("ON");
+
+        } else {
+            ((TextView) findViewById(R.id.sound_on_off)).setText("OFF");
+        }
     }
 
 
@@ -425,6 +429,7 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     public void goSettings(View v) {
         findViewById(R.id.game_settings).setVisibility(View.VISIBLE);
+        soundState();
     }
 
     public void goSettingsOk(View v) {
@@ -448,6 +453,9 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     public void showFullscreenAd() {
         // Toast.makeText(this, "showfulscreen", Toast.LENGTH_SHORT).show();
         if (fullscreenAd != null && fullscreenAd.isLoaded()) {
+            if (fireTimer != null) {
+                fireTimer.cancel();
+            }
             adIsShowing = true;
             // Toast.makeText(this, "SHOWING", Toast.LENGTH_SHORT).show();
             fullscreenAd.show();
@@ -460,10 +468,15 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
 
     private void loadRewardAd() {
-        getBonusClick.setBackground(getResources().getDrawable(R.drawable.bar_stroke));
-        getBonusClick.setTextColor(getResources().getColor(R.color.base));
+
         if (!rewardAd.isLoaded()) {
+            if (fireTimer != null) {
+                fireTimer.cancel();
+            }
+            getBonusClick.setBackground(getResources().getDrawable(R.drawable.bar_stroke));
+            getBonusClick.setTextColor(getResources().getColor(R.color.base));
             rewardAd.loadAd(getString(R.string.AD_MOB_MATH_REWARD), new AdRequest.Builder().build());
+
         }
     }
 
@@ -484,16 +497,17 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdOpened() {
-
+        Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoStarted() {
-
+        Toast.makeText(this, "onRewardedVideoAdStarted", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoAdClosed() {
+        Toast.makeText(this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
         loadRewardAd();
 
     }
@@ -509,17 +523,18 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdLeftApplication() {
-
+        Toast.makeText(this, "onRewardedVideoAdLeftApplication", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
+        Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onRewardedVideoCompleted() {
-
+        Toast.makeText(this, "onRewardedVideoCompleted", Toast.LENGTH_SHORT).show();
     }
 
 }

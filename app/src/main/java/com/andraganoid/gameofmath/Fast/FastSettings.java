@@ -45,8 +45,7 @@ public class FastSettings extends AppCompatActivity {
         setContentView(R.layout.fast_settings);
 
         AdView adViewBottomFast = findViewById(R.id.add_view_bottom_fast);
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adViewBottomFast.loadAd(adRequest);
+        adViewBottomFast.loadAd(new AdRequest.Builder().build());
 
         calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
         rv = findViewById(R.id.fast_recycler_view);

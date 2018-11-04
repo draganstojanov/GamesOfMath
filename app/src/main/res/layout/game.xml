@@ -13,23 +13,39 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/logo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        app:layout_constraintVertical_weight="1"
         android:layout_marginTop="32dp"
+        android:background="@drawable/text1_stroke"
+
         app:layout_constraintBottom_toTopOf="@+id/menu"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <!--<TextView-->
 
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="120dp"-->
+        <!--android:background="@drawable/checked_stroke"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--android:text="Games Of Math"-->
+        <!--android:textColor="@color/checked"-->
+        <!--app:autoSizeTextType="uniform" />-->
+
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="120dp"
-            android:background="@drawable/checked_stroke"
-            android:gravity="center"
-            android:padding="4dp"
-            android:text="Games Of Math"
-            android:textColor="@color/checked"
-            app:autoSizeTextType="uniform" />
+            android:layout_height="match_parent"
+            android:src="@drawable/math_title"
+           android:scaleType="fitXY"
+            android:padding="4dp"/>
+
+
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:src="@drawable/math_title_transparent" />-->
 
 
     </android.support.constraint.ConstraintLayout>
@@ -39,6 +55,7 @@
         android:id="@+id/menu"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintVertical_weight="3"
         android:layout_margin="32dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -190,9 +207,9 @@
     </RelativeLayout>
 
 
-    <include layout="@layout/game_settings" />
+    <!--<include layout="@layout/game_settings" />-->
 
-    <include layout="@layout/about" />
+    <!--<include layout="@layout/about" />-->
 
 
 </android.support.constraint.ConstraintLayout>

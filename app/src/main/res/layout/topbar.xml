@@ -18,7 +18,7 @@
         android:gravity="center"
         android:onClick="goHome"
         android:padding="12dp"
-        android:text="HOME"
+        android:text="@string/go_home"
         android:textColor="@color/base"
         app:autoSizeTextType="uniform" />
 
@@ -31,9 +31,8 @@
         android:gravity="center"
         android:onClick="goHelp"
         android:padding="12dp"
-        android:text="HELP"
+        android:text="@string/help"
         android:textColor="@color/base"
-
         app:autoSizeTextType="uniform" />
 
 </RelativeLayout>

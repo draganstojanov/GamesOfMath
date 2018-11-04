@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout android:id="@+id/pause_dialog"
+<android.support.constraint.ConstraintLayout
+    android:id="@+id/pause_dialog"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -35,7 +36,7 @@
         android:layout_marginBottom="24dp"
         android:background="@drawable/tv_stroke"
         android:gravity="center"
-        android:onClick="easyOver"
+        android:onClick="goBack"
         android:padding="8dp"
         android:text="@string/go_back"
         app:autoSizeTextType="uniform"
@@ -70,6 +71,34 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dialog_home"
         app:layout_constraintBottom_toBottomOf="parent">
+
+        <!--<TextView-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentLeft="true"-->
+            <!--android:layout_margin="8dp"-->
+            <!--android:padding="4dp"-->
+            <!--android:layout_weight="2"-->
+            <!--android:gravity="center"-->
+            <!--android:text="Sound"-->
+            <!--app:autoSizeTextType="uniform"-->
+            <!--android:onClick="goSound"/>-->
+
+        <!--<TextView-->
+            <!--android:id="@+id/sound_on_off"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:layout_margin="8dp"-->
+            <!--android:padding="4dp"-->
+            <!--android:layout_weight="1"-->
+            <!--android:background="@color/info"-->
+            <!--android:gravity="center"-->
+            <!--android:textColor="@color/checked"-->
+            <!--app:autoSizeTextType="uniform"-->
+            <!--android:onClick="goSound"/>-->
+
+
 
         <include layout="@layout/sound_settings"/>
 

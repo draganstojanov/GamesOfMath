@@ -196,6 +196,7 @@ public class FastBoard extends GameBoard {
         //  if (!isEnd) {
         handler.removeCallbacks(stopwatch);
         findViewById(R.id.pause_dialog).setVisibility(View.VISIBLE);
+        soundState();
 
         //   }
     }
