@@ -153,6 +153,7 @@ public class FastBoard extends GameBoard {
                 goFire();
             } else {
                 formula.setText(getString(R.string.game_over));
+                play(LOSE_LIFE);
             }
 
 

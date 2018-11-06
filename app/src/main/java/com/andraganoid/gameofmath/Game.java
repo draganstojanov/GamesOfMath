@@ -12,13 +12,13 @@ import android.media.SoundPool;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Fast.FastSettings;
 import com.andraganoid.gameofmath.Easy.EasySettings;
@@ -52,6 +52,8 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     public AdView bottomAd;
     public static boolean adIsShowing;
     private TextView getBonusClick;
+    private boolean goSettings;
+    private boolean getReward;
 
     // android.support.constraint.ConstraintLayout cl;
     // private AdView adViewBottomGame;
@@ -95,6 +97,9 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     public static final int USE_BONUS = 6;
     public static final int RIGHT_ANSWER = 7;
     public static final int WRONG_ANSWER = 8;
+    public static final int LOSE_LIFE = 9;
+    public static final int REWARD = 10;
+
 
     @Override
     protected void onPause() {
@@ -113,7 +118,8 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         super.onResume();
         MathBase mb = new MathBase(getApplicationContext());
         adIsShowing = false;
-
+        goSettings = false;
+        getReward = false;
         rewardAd.resume(this);
         if (rewardAd.isLoaded()) {
             getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
@@ -187,7 +193,9 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
                 soundPool.load(this, R.raw.get_bonus, 1),
                 soundPool.load(this, R.raw.use_bonus, 1),
                 soundPool.load(this, R.raw.right_answer, 1),
-                soundPool.load(this, R.raw.wrong_answer, 1)};
+                soundPool.load(this, R.raw.wrong_answer, 1),
+                soundPool.load(this, R.raw.fail_game, 1),
+                soundPool.load(this, R.raw.game_reward, 1)};
 
 
         //  cl = (android.support.constraint.ConstraintLayout) findViewById(R.id.game_lay);
@@ -420,6 +428,14 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (goSettings) {
+            goSettings = false;
+        } else {
+            super.onBackPressed();
+        }
+    }
 
     public void goAbout(View v) {
         intent = new Intent(this, About.class);
@@ -429,6 +445,7 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     public void goSettings(View v) {
         findViewById(R.id.game_settings).setVisibility(View.VISIBLE);
+        goSettings = true;
         soundState();
     }
 
@@ -441,6 +458,11 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         if (rewardAd.isLoaded()) {
             showRewardAd();
         }
+    }
+
+    public void goLogoEffect(View v) {
+        startAnimation(v, 1);
+
     }
 
 
@@ -497,44 +519,68 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdOpened() {
-        Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
+        // Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoStarted() {
-        Toast.makeText(this, "onRewardedVideoAdStarted", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "onRewardedVideoAdStarted", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoAdClosed() {
-        Toast.makeText(this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
         loadRewardAd();
+        if (getReward) {
+            getReward = false;
+            play(REWARD);
+            openRewardDialog();
+
+        }
+
 
     }
 
     @Override
     public void onRewarded(RewardItem rewardItem) {
 
-        Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
-                rewardItem.getAmount(), Toast.LENGTH_LONG).show();
+        //  Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
+        //         rewardItem.getAmount(), Toast.LENGTH_LONG).show();
+
+        //NACRTAJ NAGRADU
+
+
+        getReward = true;
+
 
         // Reward the user.
     }
 
     @Override
     public void onRewardedVideoAdLeftApplication() {
-        Toast.makeText(this, "onRewardedVideoAdLeftApplication", Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(this, "onRewardedVideoAdLeftApplication", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
-        Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
+        //   Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void onRewardedVideoCompleted() {
-        Toast.makeText(this, "onRewardedVideoCompleted", Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(this, "onRewardedVideoCompleted", Toast.LENGTH_SHORT).show();
+    }
+
+    public void openRewardDialog() {
+        (findViewById(R.id.reward_dialog)).setVisibility(View.VISIBLE);
+        new Calc().addRewards();
+
+    }
+
+    public void closeRewardDialog(View v) {
+        (findViewById(R.id.reward_dialog)).setVisibility(View.GONE);
+
     }
 
 }

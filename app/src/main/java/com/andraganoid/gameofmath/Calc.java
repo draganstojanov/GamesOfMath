@@ -24,7 +24,7 @@ public class Calc {
     public String answerType;
 
     public int easySkips;
-    public int easyXtraTine;
+    public int easyXtraTime;
     public int easyResets;
     public int heavyHints;
     public int heavyXtraTime;
@@ -186,7 +186,7 @@ public class Calc {
                 easySkips = ss;
                 break;
             case EASY_XTRA_TIME:
-                easyXtraTine = ss;
+                easyXtraTime = ss;
                 break;
             case EASY_RESETS:
                 easyResets = ss;
@@ -208,6 +208,65 @@ public class Calc {
     public String resetScore() {
         currentScore = 0;
         return "0";
+    }
+
+
+    public void initBonuses() {
+
+        easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
+        if (easySkips == -1) {
+            easySkips = setBonus(EASY_SKIPS, DEFAULT_EASY_SKIPS);
+        }
+
+        easyXtraTime = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
+        if (easyXtraTime == -1) {
+            easyXtraTime = setBonus(EASY_XTRA_TIME, DEFAULT_EASY_XTRA_TIME);
+        }
+
+        easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
+        if (easyResets == -1) {
+            easyResets = setBonus(EASY_RESETS, DEFAULT_EASY_RESET);
+        }
+
+        heavyHints = MathBase.getInstance().getBonusValue(HEAVY_HINTS);
+        if (heavyHints == -1) {
+            heavyHints = setBonus(HEAVY_HINTS, DEFAULT_HEAVY_HINTS);
+        }
+
+        heavyXtraTime = MathBase.getInstance().getBonusValue(HEAVY_XTRA_TIME);
+        if (heavyXtraTime == -1) {
+            heavyXtraTime = setBonus(HEAVY_XTRA_TIME, DEFAULT_HEAVY_XTRA_TIME);
+        }
+
+        heavyXtraLives = MathBase.getInstance().getBonusValue(HEAVY_XTRA_LIVES);
+        if (heavyXtraLives == -1) {
+            heavyXtraLives = setBonus(HEAVY_XTRA_LIVES, DEFAULT_HEAVY_XTRA_LIVES);
+        }
+
+
+    }
+
+
+    public void addRewards() {
+
+        easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
+        easySkips = setBonus(EASY_SKIPS, easySkips + 1);
+
+        easyXtraTime = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
+        easyXtraTime = setBonus(EASY_XTRA_TIME, easyXtraTime + 1);
+
+        easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
+        easyResets = setBonus(EASY_RESETS, easyResets + 1);
+
+        heavyHints = MathBase.getInstance().getBonusValue(HEAVY_HINTS);
+        heavyHints = setBonus(HEAVY_HINTS, heavyHints + 1);
+
+        heavyXtraTime = MathBase.getInstance().getBonusValue(HEAVY_XTRA_TIME);
+        heavyXtraTime = setBonus(HEAVY_XTRA_TIME, heavyXtraTime + 1);
+
+        heavyXtraLives = MathBase.getInstance().getBonusValue(HEAVY_XTRA_LIVES);
+        heavyXtraLives = setBonus(HEAVY_XTRA_LIVES, heavyXtraLives + 1);
+
     }
 
 

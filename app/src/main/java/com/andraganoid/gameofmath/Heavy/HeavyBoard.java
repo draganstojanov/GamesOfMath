@@ -204,6 +204,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
                 checkXtraLives();
             } else {
                 heavyGameOver();
+                play(LOSE_LIFE);
             }
         }
     }

@@ -1,7 +1,5 @@
 package com.andraganoid.gameofmath.Easy;
 
-import android.util.Log;
-
 import com.andraganoid.gameofmath.Calc;
 import com.andraganoid.gameofmath.MathBase;
 
@@ -19,28 +17,27 @@ public class Easy extends Calc {
         gameLevel = 0;
 
         scoreMap.clear();
- /*       for (int i = 0; i < levelNames.size(); i++) {
-
-            scoreMap.put(levelNames.get(i), 0L);
-            Log.i("score_ehs_scoreMap", String.valueOf(scoreMap));
-        }*/
 
         scoreMap.putAll(MathBase.getInstance().getHighScores(ln));
 
+//        easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
+//        if (easySkips == -1) {
+//            easySkips = setBonus(EASY_SKIPS, DEFAULT_EASY_SKIPS);
+//        }
+//
+//        easyXtraTime = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
+//        if (easyXtraTime == -1) {
+//            easyXtraTime = setBonus(EASY_XTRA_TIME, DEFAULT_EASY_XTRA_TIME);
+//        }
+//
+//        easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
+//        if (easyResets == -1) {
+//            easyResets = setBonus(EASY_RESETS, DEFAULT_EASY_RESET);
+//        }
+
         easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
-        if (easySkips == -1) {
-            easySkips = setBonus(EASY_SKIPS, DEFAULT_EASY_SKIPS);
-        }
-
-        easyXtraTine = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
-        if (easyXtraTine == -1) {
-            easyXtraTine = setBonus(EASY_XTRA_TIME, DEFAULT_EASY_XTRA_TIME);
-        }
-
+        easyXtraTime = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
         easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
-        if (easyResets == -1) {
-            easyResets = setBonus(EASY_RESETS, DEFAULT_EASY_RESET);
-        }
 
     }
 

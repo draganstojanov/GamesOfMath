@@ -184,6 +184,7 @@ public class EasyBoard extends Game {
             goFire();
         } else {
             formula.setText(getString(R.string.game_over));
+            play(LOSE_LIFE);
         }
         formula.setClickable(true);
 
@@ -357,14 +358,14 @@ public class EasyBoard extends Game {
 
     public void easyXtraTime(View v) {
         if (!isEnd) {
-            if (calc.easyXtraTine > 0) {
+            if (calc.easyXtraTime > 0) {
                 eScore.setText(calc.easyScore("xtra"));
                 if (cdt != null) {
                     cdt.cancel();
                 }
 
                 timerStart(calc.secondsRemain + 30);
-                calc.easyXtraTine = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTine - 1);
+                calc.easyXtraTime = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTime - 1);
 
                 setXtraTimeText();
                 play(USE_BONUS);
@@ -388,7 +389,7 @@ public class EasyBoard extends Game {
 
         }
         if (calc.gameLevel % 24 == 0) {//add XTRA
-            calc.easyXtraTine = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTine + 1);
+            calc.easyXtraTime = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTime + 1);
             setXtraTimeText();
             startAnimation(xtraTime, 1);
 
@@ -475,7 +476,7 @@ public class EasyBoard extends Game {
     }
 
     private void setXtraTimeText() {
-        xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.easyXtraTine));
+        xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.easyXtraTime));
     }
 
     private void setTimeResetText() {
