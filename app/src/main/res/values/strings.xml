@@ -20,9 +20,9 @@
 
     <string name="app_name">Games Of Math</string>
 
-    <string name="best_time">Best time</string>
+    <string name="best_time">Your best time:</string>
     <string name="no_result">No result</string>
-    <string name="best_result">Your high score:</string>
+    <string name="best_result">Your high score: </string>
 
     <string name="multi_choice">Multi-choice</string>
     <string name="calculate">Calculate</string>
@@ -55,7 +55,7 @@
     <string name="close">Close</string>
     <string name="resume">Resume game</string>
     <string name="go_back">Back to meny</string>
-    <string name="go_home">Main menu</string>
+    <string name="go_home">MAIN MENU</string>
 
 
 

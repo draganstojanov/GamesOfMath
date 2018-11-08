@@ -1,7 +1,9 @@
 package com.andraganoid.gameofmath;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -31,7 +33,8 @@ import com.squareup.leakcanary.LeakCanary;
 
 
 public class Main extends AppCompatActivity {
-
+    public static SharedPreferences prefs;
+    public static SharedPreferences.Editor prefsEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +50,8 @@ public class Main extends AppCompatActivity {
         LeakCanary.install(getApplication());
 
 
-
+        prefs = this.getPreferences(Context.MODE_PRIVATE);
+        prefsEditor = prefs.edit();
         MathBase mb = new MathBase(getApplicationContext());
         new Calc().initBonuses();
 

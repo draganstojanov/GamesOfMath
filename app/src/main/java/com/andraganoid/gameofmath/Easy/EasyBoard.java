@@ -143,15 +143,15 @@ public class EasyBoard extends Game {
             public void onTick(long l) {
                 calc.secondsRemain = (int) l / 1000;
                 if (l > 2000) {
+                    lTimer.setTextColor(getResources().getColor(R.color.info));
                     lTimer.setText(String.valueOf(l / 1000 - 1));
 
                     if ((l / 1000 - 1) < 11) {
                         if (colorChange) {
                             lTimer.setTextColor(getResources().getColor(R.color.checked));
                             play(TIME_IS_OUT);
-                        } else {
-                            lTimer.setTextColor(getResources().getColor(R.color.info));
                         }
+//
                         colorChange = !colorChange;
                     }
 

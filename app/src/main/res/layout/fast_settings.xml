@@ -20,12 +20,17 @@
         app:layout_constraintBottom_toTopOf="@id/ad_view_wrapper">
 
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/fast_recycler_view"
+        <!--<android.support.v7.widget.RecyclerView-->
+        <!--android:id="@+id/fast_recycler_view"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@android:color/transparent"-->
+        <!--android:paddingTop="4dp" />-->
+        <ListView
+            android:id="@+id/fast_list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:paddingTop="4dp" />
+            android:layout_marginTop="8dp"/>
 
     </LinearLayout>
 
@@ -53,6 +58,6 @@
 
     </RelativeLayout>
 
-    <include layout="@layout/help" />
+    <!--<include layout="@layout/help" />-->
 
 </android.support.constraint.ConstraintLayout>

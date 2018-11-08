@@ -15,6 +15,7 @@ import android.os.CountDownTimer;
 
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
@@ -38,14 +39,17 @@ import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.Random;
 
+import static com.andraganoid.gameofmath.Main.prefs;
+import static com.andraganoid.gameofmath.Main.prefsEditor;
+
 
 public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     // public static Back back = new Back();
     // public static Bitmap background;
     public static Calc calc;
     public static Task task;
-    public static SharedPreferences prefs;
-    public static SharedPreferences.Editor prefsEditor;
+
+
     Intent intent;
     public InterstitialAd fullscreenAd;
     private RewardedVideoAd rewardAd;
@@ -164,8 +168,7 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         rewardAd.setRewardedVideoAdListener(this);
 
 
-        prefs = this.getPreferences(Context.MODE_PRIVATE);
-        prefsEditor = prefs.edit();
+
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         width = metrics.widthPixels;
@@ -400,6 +403,7 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     public void play(int sound) {
         if (prefs.getBoolean("sounds", true)) {
+
             if (sound == 0) {
                 sound = getRnd();
             }
@@ -409,9 +413,7 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
 
     public void goSound(View v) {
-
         startAnimation(findViewById(R.id.sound_on_off), 1);
-
         prefsEditor
                 .putBoolean("sounds", !prefs.getBoolean("sounds", true))
                 .apply();
@@ -419,7 +421,6 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     }
 
     public void soundState() {
-
         if (prefs.getBoolean("sounds", true)) {
             ((TextView) findViewById(R.id.sound_on_off)).setText("ON");
 
@@ -461,7 +462,8 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     }
 
     public void goLogoEffect(View v) {
-        startAnimation(v, 1);
+//        startAnimation(v, 1);
+        startAnimation(findViewById(R.id.logo), 1);
 
     }
 

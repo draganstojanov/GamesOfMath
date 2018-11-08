@@ -313,22 +313,23 @@ public class HeavyBoard extends Game implements View.OnClickListener {
                         }
 
                         if (allSigns == 4) {
-                            rl.setVisibility(View.VISIBLE);
+                           // rl.setVisibility(View.VISIBLE);
                             qTarget.setClickable(true);
 
                             if (isCorrect()) {
-                                qTarget.setText("Submit");
-                                qResult.setText("OK");
+                                qTarget.setText(getString(R.string.right));
+                              //  qResult.setText("OK");
                                 qResult.setBackgroundColor(getResources().getColor(R.color.checked));
                             } else {
-                                qTarget.setText("Clear");
+                                rl.setVisibility(View.VISIBLE);
+                                qTarget.setText(getString(R.string.clear));
                                 qResult.setText(String.valueOf(yourRes()));
                             }
 
                         } else {
-                            rl.setVisibility(View.GONE);
-                            qResult.setBackgroundColor(0);
-                            qResult.setText("");
+                           // rl.setVisibility(View.GONE);
+                           // qResult.setBackgroundColor(0);
+                          //  qResult.setText("");
                             qTarget.setClickable(false);
                             qTarget.setText(String.valueOf(task.getResult()));
                         }
@@ -375,7 +376,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
                 hintIsNotUsed = false;
 
 
-                ssl = new String[]{"", "", "", "", "+", "-", "*", "/"};
+//                ssl = new String[]{"", "", "", "", "+", "-", "*", "/"};
 
                 for (int i = 0; i < 4; i++) {
 
