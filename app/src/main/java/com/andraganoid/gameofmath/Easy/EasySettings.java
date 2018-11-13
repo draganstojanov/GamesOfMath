@@ -35,6 +35,7 @@ public class EasySettings extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_settings);
 
+
         AdView adViewBottomEasy = findViewById(R.id.add_view_bottom_easy);
         adViewBottomEasy.loadAd(new AdRequest.Builder().build());
 

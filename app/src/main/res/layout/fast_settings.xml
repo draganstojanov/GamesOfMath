@@ -58,6 +58,6 @@
 
     </RelativeLayout>
 
-    <!--<include layout="@layout/help" />-->
+    <include layout="@layout/help" />
 
 </android.support.constraint.ConstraintLayout>

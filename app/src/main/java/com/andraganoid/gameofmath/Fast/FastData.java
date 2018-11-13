@@ -1,4 +1,4 @@
-package com.andraganoid.gameofmath.Easy;
+package com.andraganoid.gameofmath.Fast;
 
 import static com.andraganoid.gameofmath.Game.calc;
 

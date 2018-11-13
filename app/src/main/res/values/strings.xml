@@ -7,15 +7,14 @@
     <!--<string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-7832187166369477/6484184623</string>REAL-->
 
 
-    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>TEST
+    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    TEST
 
-    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>TEST
-    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>TEST
+    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    TEST
+    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    TEST
     <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
-
-
-
-
 
 
     <string name="app_name">Games Of Math</string>
@@ -58,13 +57,11 @@
     <string name="go_home">MAIN MENU</string>
 
 
-
-
-    <string name="skips">Skips\n</string>
-    <string name="xtra_time">Extra\ntimes\n</string>
-    <string name="resets">Time\nresets\n</string>
-    <string name="hints">Hints\n</string>
-    <string name="xtra_lives">Extra\nlives\n</string>
+    <string name="skips">Skips<br></br></string>
+    <string name="xtra_time">Extra<br></br>times<br></br></string>
+    <string name="resets">Timer<br />resets<br /></string>
+    <string name="hints">Hints<br></br></string>
+    <string name="xtra_lives">Extra<br></br>lives<br></br></string>
 
     <string name="game_over">GAME OVER</string>
     <string name="new_high">NEW HIGH SCORE!</string>
@@ -77,12 +74,12 @@
 
     <string name="app">Application</string>
     <string name="author">Author</string>
-    <string name="dragan">Dragan Stojanov</string>
-    <string name="designer">Graphic design</string>
-    <string name="milena">Milena Nikolić</string>
-    <string name="policy">Privacy policy</string>
+    <string name="dragan" translatable="false">Dragan Stojanov</string>
+    <string name="designer">Logo &amp; icon design</string>
+    <string name="milena" translatable="false">Milena Nikolić</string>
+    <string name="policy" translatable="false">Privacy policy</string>
 
-    <string name="mail_feedback">Games Of Math feedback</string>
+    <string name="mail_feedback" translatable="false">Games Of Math feedback</string>
     <string name="mail_chooser">Choose...</string>
 
 
@@ -155,6 +152,17 @@
         <item>XX ÷ X × X</item>14
 
     </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
+    <string name="start_level">Level 1</string>
+    <string name="next_level">Next Level</string>
+    <!-- -
+        This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
+        For more information, see https://support.google.com/admob/answer/3052638
+    <!- -->
+    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
 
 
     <!--<string name=""></string>-->

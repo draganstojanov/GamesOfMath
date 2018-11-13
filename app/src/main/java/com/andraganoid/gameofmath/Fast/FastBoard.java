@@ -21,6 +21,9 @@ import com.andraganoid.gameofmath.R;
 
 import java.util.Arrays;
 
+import static com.andraganoid.gameofmath.MathSounds.LOST_LIFE;
+import static com.andraganoid.gameofmath.MathSounds.START;
+
 //import static com.andraganoid.gameofmath.Game.mathBase;
 
 
@@ -90,7 +93,7 @@ public class FastBoard extends GameBoard {
 
         start.setVisibility(View.VISIBLE);
         start.setText("3");
-
+      //  play(START);
 
         isEnd = true;
         goMain = false;
@@ -98,7 +101,8 @@ public class FastBoard extends GameBoard {
 
             @Override
             public void onTick(long l) {
-                if (l < 4000) {
+
+                if (l < 4000) {   play(START);
                     start.setText(String.valueOf(l / 1000));
                 }
             }
@@ -153,7 +157,7 @@ public class FastBoard extends GameBoard {
                 goFire();
             } else {
                 formula.setText(getString(R.string.game_over));
-                play(LOSE_LIFE);
+                play(LOST_LIFE);
             }
 
 

@@ -8,7 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andraganoid.gameofmath.Easy.FastData;
+
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.MathBase;
 import com.andraganoid.gameofmath.R;
@@ -60,9 +60,9 @@ public class FastSettings extends AppCompatActivity {
         //  desc = Arrays.asList(context.getResources().getStringArray(R.array.fast_calc_levels_description));
 
 
-        for (int i = 0; i < calc.levelNames.size(); i++) {
-            calc.scoreMap.put(calc.levelNames.get(i), 0l);
-        }
+//        for (int i = 0; i < calc.levelNames.size(); i++) {
+//            calc.scoreMap.put(calc.levelNames.get(i), 0l);
+//        }
         calc.scoreMap.putAll(MathBase.getInstance().getHighScores(calc.levelNames));
 
         adFast.clear();
@@ -88,6 +88,9 @@ public class FastSettings extends AppCompatActivity {
     }
 
 
+
+
+
     public void goHome(View v) {
         Intent intent = new Intent(this, Game.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -105,7 +108,7 @@ public class FastSettings extends AppCompatActivity {
         String h4 = "There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.";
 
         findViewById(R.id.help_layout).setVisibility(View.VISIBLE);
-        ((TextView) findViewById(R.id.help_title)).setText("FAST CALC");
+        ((TextView) findViewById(R.id.help_title)).setText(getString(R.string.fast_calc));
         ((TextView) findViewById(R.id.help_text)).setText(h1 + "\n\n" + h2 + "\n\n" + h3 + "\n\n" + h4);
     }
 

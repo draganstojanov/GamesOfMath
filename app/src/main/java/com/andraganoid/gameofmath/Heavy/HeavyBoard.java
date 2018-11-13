@@ -17,6 +17,12 @@ import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;
 
 
+import static com.andraganoid.gameofmath.MathSounds.GET_BONUS;
+import static com.andraganoid.gameofmath.MathSounds.LOST_LIFE;
+import static com.andraganoid.gameofmath.MathSounds.RIGHT_ANSWER;
+import static com.andraganoid.gameofmath.MathSounds.SILENCE;
+import static com.andraganoid.gameofmath.MathSounds.START;
+import static com.andraganoid.gameofmath.MathSounds.USE_BONUS;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class HeavyBoard extends Game implements View.OnClickListener {
@@ -42,6 +48,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.heavy_board);
+      //  play(SILENCE);
 
         //goMain = true;
         isEnd = false;
@@ -92,12 +99,14 @@ public class HeavyBoard extends Game implements View.OnClickListener {
         board.setVisibility(View.GONE);
         start.setVisibility(View.VISIBLE);
         start.setText("3");
+      //  play(START);
         goMain = false;
         intro = new CountDownTimer(5000, 1000) {
 
             @Override
             public void onTick(long l) {
-                if (l < 4000) {
+
+                if (l < 4000) { play(START);
                     start.setText(String.valueOf(l / 1000));
                 }
             }
@@ -204,7 +213,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
                 checkXtraLives();
             } else {
                 heavyGameOver();
-                play(LOSE_LIFE);
+                play(LOST_LIFE);
             }
         }
     }

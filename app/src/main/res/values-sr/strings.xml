@@ -11,7 +11,7 @@
     <string name="go">KRENI!</string>
     <string name="game_over">KRAJ IGRE</string>
     <string name="end">Kraj</string>
-    <string name="best_time">Najboljie vreme</string>
+    <string name="best_time">Najbolje vreme</string>
     <string name="calculate">Računaj</string>
     <string name="main">Glavni meni</string>
     <string name="heavy_calc">Teška računica</string>
@@ -23,4 +23,28 @@
     <string name="best_result">Tvoj rekord:</string>
     <string name="target">Traženi rezultat</string>
     <string name="wrong">Pogrešno!</string>
+    <string name="get_bonus">Uzmi bonus</string>
+    <string name="time">Vreme</string>
+    <string name="progress">Napredak</string>
+    <string name="your_result">Tvoj rezultat</string>
+    <string name="clear">Očisti</string>
+    <string name="pright">Tačno:</string>
+    <string name="pwrong">Pogrešno:</string>
+    <string name="author">Autor</string>
+    <string name="mail_chooser">Izaberi</string>
+    <string name="score">Rezultat</string>
+    <string name="submit">Potvrdi</string>
+    <string name="close">Zatvori</string>
+    <string name="go_back">Nazad na meni</string>
+    <string name="app">Aplikacija</string>
+    <string name="designer">Dizajn logoa i ikone</string>
+    <string name="resume">Nastavi igru</string>
+    <string name="go_home">Glavni meni</string>
+    <string name="task">Zadatak</string>
+    <string name="lives">Životi</string>
+    <string name="skips">Preskoči<br /></string>
+    <string name="xtra_time">Dodatno<br />vreme</string>
+    <string name="resets">Resetuj<br />tajmer<br /></string>
+    <string name="xtra_lives">Dodatni<br />životi</string>
+    <string name="hints">Predlog</string>
 </resources>

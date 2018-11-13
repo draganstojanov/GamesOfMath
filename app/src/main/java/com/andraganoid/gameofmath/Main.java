@@ -1,13 +1,22 @@
 package com.andraganoid.gameofmath;
 
 
+import android.animation.Animator;
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.util.LogPrinter;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 
+import com.google.android.gms.ads.MobileAds;
 import com.squareup.leakcanary.LeakCanary;
 
 
@@ -15,7 +24,6 @@ import com.squareup.leakcanary.LeakCanary;
 
 // TODO
 // showscore odbrojavanje rol cifara V2
-
 //background V2 ???
 
 //hiscores  googleplay
@@ -29,17 +37,67 @@ import com.squareup.leakcanary.LeakCanary;
 
 //CHOOSE 1 REWARD
 
-//SOUNDS:  beep za start,check first not play
+//SOUNDS:  beep za start,check first not play???
 
 
 public class Main extends AppCompatActivity {
-    public static SharedPreferences prefs;
-    public static SharedPreferences.Editor prefsEditor;
+    ImageView logo_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.main);
+
+        MathBase mb =  new MathBase(getApplicationContext());
+        MathSounds ms = MathSounds.getInstance(getApplicationContext());
+
+
+
+
+        new Calc().initBonuses();
+
+        logo_main = findViewById(R.id.game_logo_main);
+
+
         //    mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
+
+        ObjectAnimator animator = ObjectAnimator
+                .ofFloat(logo_main, View.ALPHA, 0f, 1f);
+
+        animator
+                .setDuration(5000)
+                .start();
+
+        animator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                goGame();
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+
+//        logo_main.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                goGame();
+//            }
+//        });
 
 
         if (LeakCanary.isInAnalyzerProcess(this)) {
@@ -50,15 +108,15 @@ public class Main extends AppCompatActivity {
         LeakCanary.install(getApplication());
 
 
-        prefs = this.getPreferences(Context.MODE_PRIVATE);
-        prefsEditor = prefs.edit();
-        MathBase mb = new MathBase(getApplicationContext());
-        new Calc().initBonuses();
+    }
+
+    private void goGame() {
+
+        Log.d("TRACE","1");
 
         Intent intent = new Intent(this, Game.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-
     }
 
 

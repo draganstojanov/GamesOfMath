@@ -9,7 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.Easy.FastData;
+
+import com.andraganoid.gameofmath.Fast.FastData;
 import com.andraganoid.gameofmath.R;
 
 import java.util.List;

@@ -15,6 +15,13 @@ import com.andraganoid.gameofmath.R;
 
 import java.util.ArrayList;
 
+import static com.andraganoid.gameofmath.MathSounds.GET_BONUS;
+import static com.andraganoid.gameofmath.MathSounds.LOST_LIFE;
+import static com.andraganoid.gameofmath.MathSounds.RIGHT_ANSWER;
+import static com.andraganoid.gameofmath.MathSounds.SILENCE;
+import static com.andraganoid.gameofmath.MathSounds.START;
+import static com.andraganoid.gameofmath.MathSounds.TIME_IS_OUT;
+import static com.andraganoid.gameofmath.MathSounds.USE_BONUS;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class EasyBoard extends Game {
@@ -32,7 +39,7 @@ public class EasyBoard extends Game {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
         board = findViewById(R.id.easy_board_lay);
-
+      //  play(SILENCE);
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
@@ -71,6 +78,7 @@ public class EasyBoard extends Game {
 
         start.setVisibility(View.VISIBLE);
         start.setText("3");
+       // play(START);
 
         eScore.setText(calc.resetScore());
         isEnd = true;
@@ -79,7 +87,8 @@ public class EasyBoard extends Game {
 
             @Override
             public void onTick(long l) {
-                if (l < 4000) {
+
+                if (l < 4000) {  play(START);
                     start.setText(String.valueOf(l / 1000));
                 }
             }
@@ -101,7 +110,7 @@ public class EasyBoard extends Game {
 
     void runEasy() {
 
-        Toast.makeText(this, "START", Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "START", Toast.LENGTH_SHORT).show();
         calc.gameLevel++;
         checkForBonusesEasy();
 
@@ -184,7 +193,7 @@ public class EasyBoard extends Game {
             goFire();
         } else {
             formula.setText(getString(R.string.game_over));
-            play(LOSE_LIFE);
+            play(LOST_LIFE);
         }
         formula.setClickable(true);
 
