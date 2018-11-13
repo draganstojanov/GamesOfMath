@@ -5,11 +5,10 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-
 import android.preference.PreferenceManager;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -17,13 +16,15 @@ import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.andraganoid.gameofmath.Fast.FastSettings;
 import com.andraganoid.gameofmath.Easy.EasySettings;
+import com.andraganoid.gameofmath.Fast.FastSettings;
 import com.andraganoid.gameofmath.Heavy.HeavySettings;
 import com.andraganoid.gameofmath.Misc.About;
 import com.andraganoid.gameofmath.Operation.Task;
 import com.andraganoid.gameofmath.Practice.PracticeSettings;
+import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -39,6 +40,8 @@ import java.util.Random;
 import static com.andraganoid.gameofmath.MathSounds.BEST_RESULT;
 import static com.andraganoid.gameofmath.MathSounds.FIREWORK;
 import static com.andraganoid.gameofmath.MathSounds.REWARD;
+
+import com.andraganoid.gameofmath.R;
 
 
 public class Game extends AppCompatActivity implements RewardedVideoAdListener {
@@ -95,6 +98,9 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     int aCount;
     public boolean colorChange;
 
+    private String rc;
+    private ConstraintLayout rl;
+
 
     @Override
     protected void onPause() {
@@ -105,27 +111,33 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
+
         rewardAd.destroy(this);
+
     }
 
     @Override
     protected void onResume() {
-        Log.d("TRACE", "2");
         super.onResume();
-        Log.d("TRACE", "3");
-        // Toast.makeText(this, "RESUME", Toast.LENGTH_SHORT).show();
-        //  setContentView(R.layout.game);
 
         MathBase mb = new MathBase(getApplicationContext());
         mathSounds = MathSounds.getInstance(getApplicationContext());
-        Log.d("TRACE", "21");
-        //  mathSounds = new MathSounds(this,this);
-
         adIsShowing = false;
         goSettings = false;
         getReward = false;
-       initAdsResume();
-        Log.d("TRACE", "24");
+
+        rewardAd.resume(this);
+        if (rewardAd.isLoaded()) {
+            getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
+            getBonusClick.setTextColor(getResources().getColor(R.color.checked));
+        } else {
+            loadRewardAd();
+        }
+        bottomAd.loadAd(new AdRequest.Builder().build());
+        loadFullscreenAd();
+
+
 
         // cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
     }
@@ -133,78 +145,22 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.d("TRACE", "4");
         super.onCreate(savedInstanceState);
-        Log.d("TRACE", "5");
-
         setContentView(R.layout.game);
-        Log.d("TRACE", "6");
-
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefsEditor = prefs.edit();
-
-
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         width = metrics.widthPixels;
         height = metrics.heightPixels;
         rand = new Random();
-
         getBonusClick = findViewById(R.id.get_bonus_btn);
         bottomAd = findViewById(R.id.add_view_bottom_game);
+        rl = findViewById(R.id.reward_dialog);
 
-
-        Log.d("TRACE", "7");
-
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... voids) {
-                MobileAds.initialize(getApplicationContext(), getString(R.string.AD_MOB_APP_ID));
-
-                return null;
-            }
-
-            @Override
-            protected void onPostExecute(Void aVoid) {
-                super.onPostExecute(aVoid);
-                initAdsCreate();
-            }
-        };
-
-
-
-        Log.d("TRACE", "8");
-        Log.d("TRACE", String.valueOf(fullscreenAd));
-        if(fullscreenAd==null){
-        fullscreenAd = new InterstitialAd(this);}
-        fullscreenAd.setAdUnitId(getString(R.string.AD_MOB_MATH_FULLSCREEN));
-        fullscreenAd.setAdListener(new AdListener() {
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-                adIsShowing = false;
-                loadFullscreenAd();
-                goMain = false;
-             //   finish();
-
-            }
-        });
-        Log.d("TRACE", "9");
-        rewardAd = MobileAds.getRewardedVideoAdInstance(this);
-        rewardAd.setRewardedVideoAdListener(this);
-        Log.d("TRACE", "10");
-
-
-        Log.d("TRACE", "11");
-        //  cl = (android.support.constraint.ConstraintLayout) findViewById(R.id.game_lay);
-        //  cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
-
-    }
-
-
-    private void initAdsCreate(){
-        if(fullscreenAd==null){
-            fullscreenAd = new InterstitialAd(this);}
+        if (fullscreenAd == null) {
+            fullscreenAd = new InterstitialAd(this);
+        }
         fullscreenAd.setAdUnitId(getString(R.string.AD_MOB_MATH_FULLSCREEN));
         fullscreenAd.setAdListener(new AdListener() {
             @Override
@@ -217,31 +173,18 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
             }
         });
-        Log.d("TRACE", "9");
         rewardAd = MobileAds.getRewardedVideoAdInstance(this);
         rewardAd.setRewardedVideoAdListener(this);
-        Log.d("TRACE", "10");
 
+        //  cl = (android.support.constraint.ConstraintLayout) findViewById(R.id.game_lay);
+        //  cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
 
-        Log.d("TRACE", "11");
     }
 
-    private void initAdsResume(){
-        rewardAd.resume(this);
-        Log.d("TRACE", "22");
-        if (rewardAd.isLoaded()) {
-            getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
-            getBonusClick.setTextColor(getResources().getColor(R.color.checked));
-        } else {
-            loadRewardAd();
-        }
-        Log.d("TRACE", "23");
 
-        bottomAd.loadAd(new AdRequest.Builder().build());
-        Log.d("TRACE", "23a");
-        loadFullscreenAd();
+    private void initAdsResume() {
+
     }
-
 
 
     public void goPractice(View v) {
@@ -438,22 +381,7 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     }
 
 
-//    public void play(int sound) {
-////      //  Toast.makeText(this, String.valueOf(sound), Toast.LENGTH_LONG).show();
-////
-////        if (prefs.getBoolean("sounds", true)) {
-////int priority=1;
-////            if (sound == 0) {
-////                sound = getRnd();
-////                priority=0;
-////            }
-////            MathSounds.getInstance().soundPool.play(MathSounds.getInstance().sounds[sound], 1, 1, priority, 0, 1f);
-////        }
-////    }
-
-
     public void play(int sound) {
-        //  Toast.makeText(this, String.valueOf(sound), Toast.LENGTH_LONG).show();
 
         if (prefs.getBoolean("sounds", true)) {
             int priority = 1;
@@ -511,13 +439,12 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
 
     public void goGetBonus(View v) {
-        if (rewardAd.isLoaded()) {
+        if (rewardAd != null && rewardAd.isLoaded()) {
             showRewardAd();
         }
     }
 
     public void goLogoEffect(View v) {
-//        startAnimation(v, 1);
         startAnimation(findViewById(R.id.logo), 1);
 
     }
@@ -530,13 +457,11 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     }
 
     public void showFullscreenAd() {
-        // Toast.makeText(this, "showfulscreen", Toast.LENGTH_SHORT).show();
         if (fullscreenAd != null && fullscreenAd.isLoaded()) {
             if (fireTimer != null) {
                 fireTimer.cancel();
             }
             adIsShowing = true;
-            // Toast.makeText(this, "SHOWING", Toast.LENGTH_SHORT).show();
             fullscreenAd.show();
         } else {
             goMain = false;
@@ -548,24 +473,21 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     private void loadRewardAd() {
 
-        if (!rewardAd.isLoaded()) {
+        if (rewardAd != null && !rewardAd.isLoaded()) {
             if (fireTimer != null) {
                 fireTimer.cancel();
             }
-            getBonusClick.setBackground(getResources().getDrawable(R.drawable.bar_stroke));
-            getBonusClick.setTextColor(getResources().getColor(R.color.base));
+            //    getBonusClick.setBackground(getResources().getDrawable(R.drawable.bar_stroke));
+            //    getBonusClick.setTextColor(getResources().getColor(R.color.base));
             rewardAd.loadAd(getString(R.string.AD_MOB_MATH_REWARD), new AdRequest.Builder().build());
-
         }
     }
 
     private void showRewardAd() {
 
-        if (rewardAd.isLoaded()) {
+        if (rewardAd != null && rewardAd.isLoaded()) {
             rewardAd.show();
         }
-
-
     }
 
     @Override
@@ -576,17 +498,14 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdOpened() {
-        // Toast.makeText(this, "onRewardedVideoAdOpened", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoStarted() {
-        //  Toast.makeText(this, "onRewardedVideoAdStarted", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoAdClosed() {
-        //  Toast.makeText(this, "onRewardedVideoAdClosed", Toast.LENGTH_SHORT).show();
         loadRewardAd();
         if (getReward) {
             getReward = false;
@@ -615,28 +534,56 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdLeftApplication() {
-        //   Toast.makeText(this, "onRewardedVideoAdLeftApplication", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
-        //   Toast.makeText(this, "onRewardedVideoAdFailedToLoad", Toast.LENGTH_SHORT).show();
-
     }
 
     @Override
     public void onRewardedVideoCompleted() {
-        //  Toast.makeText(this, "onRewardedVideoCompleted", Toast.LENGTH_SHORT).show();
     }
 
     public void openRewardDialog() {
+        rc = "";
         (findViewById(R.id.reward_dialog)).setVisibility(View.VISIBLE);
-        new Calc().addRewards();
+
 
     }
 
-    public void closeRewardDialog(View v) {
-        (findViewById(R.id.reward_dialog)).setVisibility(View.GONE);
+    public void chooseReward(View v) {
+
+        switch (v.getId()) {
+            case R.id.reward_e_skip:
+                rc = Calc.EASY_SKIPS;
+                break;
+            case R.id.reward_e_xtra:
+                rc = Calc.EASY_XTRA_TIME;
+                break;
+            case R.id.reward_e_reset:
+                rc = Calc.EASY_RESETS;
+                break;
+            case R.id.reward_h_hint:
+                rc = Calc.HEAVY_HINTS;
+                break;
+            case R.id.reward_h_xtra:
+                rc = Calc.HEAVY_XTRA_TIME;
+                break;
+            case R.id.reward_h_live:
+                rc = Calc.HEAVY_XTRA_LIVES;
+                break;
+            case R.id.reward_submit:
+                (findViewById(R.id.reward_dialog)).setVisibility(View.GONE);
+                new Calc().addRewards(rc);
+                break;
+        }
+
+        for (int i = 1; i < rl.getChildCount()-1; i++) {
+            rl.getChildAt(i).setBackground(getResources().getDrawable(R.drawable.tv_stroke));
+        }
+
+        v.setBackgroundColor(getResources().getColor(R.color.checked));
+
 
     }
 

@@ -25,6 +25,7 @@ public class PracticeSettings extends AppCompatActivity {
     TextView pDiv_12_1, pDiv_123_1;
     TextView pMchoice, pCalc;
 
+  private  AdView adViewBottomPractice;
 
     @Override
     protected void onPause() {
@@ -33,12 +34,18 @@ public class PracticeSettings extends AppCompatActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        adViewBottomPractice.destroy();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.practice_settings);
 
-        AdView adViewBottomHeavy = findViewById(R.id.add_view_bottom_practice);
-        adViewBottomHeavy.loadAd(new AdRequest.Builder().build());
+        adViewBottomPractice = findViewById(R.id.add_view_bottom_practice);
+        adViewBottomPractice.loadAd(new AdRequest.Builder().build());
 
         //  findViewById(R.id.practice_set_lay).setBackground(new BitmapDrawable(getResources(), background));
         calc = new Practice();
@@ -253,6 +260,7 @@ public class PracticeSettings extends AppCompatActivity {
 
 
     public void startPractice(View v) {
+
         startActivity(new Intent(this, PracticeBoard.class));
     }
 

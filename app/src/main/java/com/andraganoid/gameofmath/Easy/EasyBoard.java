@@ -242,9 +242,7 @@ public class EasyBoard extends Game {
                 cdt.cancel();
             }
             eScore.setText(calc.easyScore("submit", (int) ((1 + calc.gameKind / 5) * (((float) calc.secondsRemain / (float) secondsLeft * 10) * (100 + (float) calc.gameLevel) / 50))));
-//            if (soundIsOn) {
-//                sRight_answer.start();
-//            }
+
             play(RIGHT_ANSWER);
             runEasy();
 

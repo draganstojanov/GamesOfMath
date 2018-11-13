@@ -5,12 +5,9 @@ import com.andraganoid.gameofmath.Operation.Task;
 import java.util.HashMap;
 import java.util.List;
 
-//import static com.andraganoid.gameofmath.Game.mathBase;
-
 public class Calc {
 
 
-    //  public static String opName[] = {"Addition", "Substraction", "Multiplication", "Division"};
     public static String opSign[] = {"+", "-", "\u00D7", "\u00F7", "RND"};
 
     private int operationType[] = new int[4];
@@ -38,12 +35,12 @@ public class Calc {
     public final int DEFAULT_HEAVY_XTRA_LIVES = 0;
     public final int DEFAULT_HEAVY_LIVES = 3;
 
-    public final String EASY_SKIPS = "easy_skips";
-    public final String EASY_XTRA_TIME = "easy_xtra_times";
-    public final String EASY_RESETS = "easy_resets";
-    public final String HEAVY_HINTS = "heavy_hints";
-    public final String HEAVY_XTRA_TIME = "heavy_xtra_times";
-    public final String HEAVY_XTRA_LIVES = "heavy_xtra_lives";
+    public static final String EASY_SKIPS = "easy_skips";
+    public static final String EASY_XTRA_TIME = "easy_xtra_times";
+    public static final String EASY_RESETS = "easy_resets";
+    public static final String HEAVY_HINTS = "heavy_hints";
+    public static final String HEAVY_XTRA_TIME = "heavy_xtra_times";
+    public static final String HEAVY_XTRA_LIVES = "heavy_xtra_lives";
 
 
     public HashMap<String, Long> scoreMap = new HashMap<String, Long>();
@@ -151,16 +148,6 @@ public class Calc {
         return howManyTasks;
     }
 
-    public void setTaskList(int x, Task t) {
-    }
-
-    public void setAllGenerated() {
-    }
-
-    //  public ArrayList getAllGenerated() {
-    //   return allGenerated;
-    // }
-
 
     public String showTime(Long ms) {
         int secs = (int) (ms / 1000);
@@ -247,25 +234,39 @@ public class Calc {
     }
 
 
-    public void addRewards() {
+    public void addRewards(String rc) {
 
-        easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
-        easySkips = setBonus(EASY_SKIPS, easySkips + 1);
+        switch (rc) {
+            case EASY_SKIPS:
+                easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
+                easySkips = setBonus(EASY_SKIPS, easySkips + 1);
+                break;
 
-        easyXtraTime = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
-        easyXtraTime = setBonus(EASY_XTRA_TIME, easyXtraTime + 1);
+            case EASY_XTRA_TIME:
+                easyXtraTime = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
+                easyXtraTime = setBonus(EASY_XTRA_TIME, easyXtraTime + 1);
+                break;
 
-        easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
-        easyResets = setBonus(EASY_RESETS, easyResets + 1);
+            case EASY_RESETS:
+                easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
+                easyResets = setBonus(EASY_RESETS, easyResets + 1);
+                break;
 
-        heavyHints = MathBase.getInstance().getBonusValue(HEAVY_HINTS);
-        heavyHints = setBonus(HEAVY_HINTS, heavyHints + 1);
+            case HEAVY_HINTS:
+                heavyHints = MathBase.getInstance().getBonusValue(HEAVY_HINTS);
+                heavyHints = setBonus(HEAVY_HINTS, heavyHints + 1);
+                break;
 
-        heavyXtraTime = MathBase.getInstance().getBonusValue(HEAVY_XTRA_TIME);
-        heavyXtraTime = setBonus(HEAVY_XTRA_TIME, heavyXtraTime + 1);
+            case HEAVY_XTRA_TIME:
+                heavyXtraTime = MathBase.getInstance().getBonusValue(HEAVY_XTRA_TIME);
+                heavyXtraTime = setBonus(HEAVY_XTRA_TIME, heavyXtraTime + 1);
+                break;
 
-        heavyXtraLives = MathBase.getInstance().getBonusValue(HEAVY_XTRA_LIVES);
-        heavyXtraLives = setBonus(HEAVY_XTRA_LIVES, heavyXtraLives + 1);
+            case HEAVY_XTRA_LIVES:
+                heavyXtraLives = MathBase.getInstance().getBonusValue(HEAVY_XTRA_LIVES);
+                heavyXtraLives = setBonus(HEAVY_XTRA_LIVES, heavyXtraLives + 1);
+                break;
+        }
 
     }
 

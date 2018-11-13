@@ -30,7 +30,7 @@ public class FastSettings extends AppCompatActivity {
 //    RecyclerView.LayoutManager FastLayoutManager;
     private List<FastData> adFast = new ArrayList<FastData>();
     FastAdapter fAdapter;
-
+    private AdView adViewBottomFast;
     //  private AdView adViewBottomFast;
 
     @Override
@@ -40,24 +40,25 @@ public class FastSettings extends AppCompatActivity {
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //   fastAdapter.notifyDataSetChanged();
-
-
+    protected void onDestroy() {
+        super.onDestroy();
+        adViewBottomFast.destroy();
     }
+
+    //    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        //   fastAdapter.notifyDataSetChanged();
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fast_settings);
 
-        AdView adViewBottomFast = findViewById(R.id.add_view_bottom_fast);
+        adViewBottomFast = findViewById(R.id.add_view_bottom_fast);
         adViewBottomFast.loadAd(new AdRequest.Builder().build());
         calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
-
-
-        //  desc = Arrays.asList(context.getResources().getStringArray(R.array.fast_calc_levels_description));
 
 
 //        for (int i = 0; i < calc.levelNames.size(); i++) {
@@ -77,18 +78,7 @@ public class FastSettings extends AppCompatActivity {
         fAdapter = new FastAdapter(this, adFast);
         ((ListView) findViewById(R.id.fast_list_view)).setAdapter(fAdapter);
 
-
-//        rv = findViewById(R.id.fast_recycler_view);
-//        rv.setHasFixedSize(true);
-//        FastLayoutManager = new GridLayoutManager(this, 2);
-//        rv.setLayoutManager(FastLayoutManager);
-//        fastAdapter = new FastAdapter(this,adFast);
-//        rv.setAdapter(fastAdapter);
-
     }
-
-
-
 
 
     public void goHome(View v) {
@@ -117,7 +107,7 @@ public class FastSettings extends AppCompatActivity {
     }
 
     public void goFastPlay(View v) {
-        calc.gameKind = (int)v.getTag();
+        calc.gameKind = (int) v.getTag();
 
 //                String[] s = Arrays.asList(mContext.getResources().getStringArray(R.array.fast_calc_levels_description)).get(holder.getAdapterPosition()).split(" ");
         String[] s = Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)).get(calc.gameKind).split(" ");
@@ -141,6 +131,7 @@ public class FastSettings extends AppCompatActivity {
 
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
+
 
         Intent intent = new Intent(v.getContext(), FastBoard.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

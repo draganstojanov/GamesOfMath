@@ -32,12 +32,8 @@ import com.squareup.leakcanary.LeakCanary;
 //help text
 
 //text
-//intro
 
 
-//CHOOSE 1 REWARD
-
-//SOUNDS:  beep za start,check first not play???
 
 
 public class Main extends AppCompatActivity {
@@ -47,6 +43,16 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        new AsyncTask<Void, Void, Void>() {
+            @Override
+            protected Void doInBackground(Void... voids) {
+                MobileAds.initialize(getApplicationContext(), getString(R.string.AD_MOB_APP_ID));
+
+                return null;
+            }
+
+        };
 
         MathBase mb =  new MathBase(getApplicationContext());
         MathSounds ms = MathSounds.getInstance(getApplicationContext());
@@ -111,8 +117,6 @@ public class Main extends AppCompatActivity {
     }
 
     private void goGame() {
-
-        Log.d("TRACE","1");
 
         Intent intent = new Intent(this, Game.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

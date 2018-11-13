@@ -59,9 +59,18 @@
 
     <string name="skips">Skips<br></br></string>
     <string name="xtra_time">Extra<br></br>times<br></br></string>
-    <string name="resets">Timer<br />resets<br /></string>
+    <string name="resets">Timer<br></br>resets<br></br></string>
     <string name="hints">Hints<br></br></string>
     <string name="xtra_lives">Extra<br></br>lives<br></br></string>
+
+
+    <string name="reward_choose">Choose your reward:</string>
+    <string name="reward_e_skips">Easy Calc - Skips</string>
+    <string name="reward_e_xtra_time">Easy Calc - Extra times</string>
+    <string name="reward_e_resets">Easy Calc - Timer resets</string>
+    <string name="reward_h_xtra_time">Heavy Calc - Extra times</string>
+    <string name="reward_h_hints">Heavy Calc - Hints</string>
+    <string name="reward_h_xtra_lives">Heavy Calc - Extra lives</string>
 
     <string name="game_over">GAME OVER</string>
     <string name="new_high">NEW HIGH SCORE!</string>
@@ -182,8 +191,6 @@
 
 
     <!--Heavy Calc 10 (max operand val:10)-->
-
-    -->
 
 
     <!--Fast Calc 14 (XX ÷ X × X)-->

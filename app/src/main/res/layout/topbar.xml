@@ -17,7 +17,7 @@
         android:background="@drawable/bar_stroke"
         android:gravity="center"
         android:onClick="goHome"
-        android:padding="12dp"
+        android:padding="6dp"
         android:text="@string/go_home"
         android:textColor="@color/base"
         app:autoSizeTextType="uniform" />
@@ -30,7 +30,7 @@
         android:background="@drawable/bar_stroke"
         android:gravity="center"
         android:onClick="goHelp"
-        android:padding="12dp"
+        android:padding="6dp"
         android:text="@string/help"
         android:textColor="@color/base"
         app:autoSizeTextType="uniform" />
