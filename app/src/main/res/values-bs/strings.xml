@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Games Of Math</string>
-    <string name="best_time">Najboljie vrijeme</string>
-    <string name="no_result">Nema rezultata</string>
+    <string name="best_score_time">Rekord:</string>
     <string name="go">KRENI!</string>
     <string name="help">POMOĆ</string>
     <string name="pause">PAUZA</string>
@@ -17,10 +16,9 @@
     <string name="heavy_calc">Teška računica</string>
     <string name="easy_calc">Laka računica</string>
     <string name="practice">Vježbanje</string>
-    <string name="about">O aplikciji</string>
-    <string name="cancel">Otkaži</string>
+    <string name="about">Info</string>
+    <string name="cancel">OTKAŽI</string>
     <string name="fast_calc">Brza matematika</string>
-    <string name="best_result">Tvoj rekord:</string>
     <string name="target">Traženi rezultat</string>
     <string name="wrong">Pogrešno!</string>
     <string name="get_bonus">Uzmi bonus</string>
@@ -35,16 +33,45 @@
     <string name="score">Rezultat</string>
     <string name="submit">Potvrdi</string>
     <string name="close">Zatvori</string>
-    <string name="go_back">Nazad u meni</string>
+    <string name="go_back">Nazad na meni</string>
     <string name="app">Aplikacija</string>
     <string name="designer">Dizajn logoa i ikone</string>
     <string name="resume">Nastavi igru</string>
     <string name="go_home">Glavni meni</string>
     <string name="task">Zadatak</string>
     <string name="lives">Životi</string>
-    <string name="skips">Preskoči<br /></string>
-    <string name="xtra_time">Dodatno<br />vreme</string>
-    <string name="resets">Resetuj<br />tajmer<br /></string>
-    <string name="xtra_lives">Dodatni<br />životi</string>
-    <string name="hints">Prijedlog</string>
+    <string name="skips">"Preskoči\n"</string>
+    <string name="xtra_time">"Dodatno\nvreme\n"</string>
+    <string name="resets">"Resetuj\ntajmer\n"</string>
+    <string name="xtra_lives">"Dodatni\nživoti\n"</string>
+    <string name="hints">"Savjet\n"</string>
+    <string name="top_scores">"Top\nrezultati"</string>
+    <string name="play">Igraj</string>
+    <string name="reward_e_skips">"Laka računica\nPreskoči"</string>
+    <string name="reward_e_xtra_time">"Laka računica\nDodatno vreme"</string>
+    <string name="reward_e_resets">"Laka računica\nResetuj tajmer"</string>
+    <string name="reward_h_xtra_time">"Teška računica\nDodatno vreme"</string>
+    <string name="reward_h_hints">"Teška računica\nSavet"</string>
+    <string name="reward_h_xtra_lives">"Teška računica\nDodatni životi"</string>
+
+    <string-array name="easy_calc_levels_description">
+    <item>max 2 broja\nX ? X</item>
+    <item>max 3 broja\nX ? X ? X</item>
+    <item>max 4 broja\nX ? X ? X ? X</item>
+    </string-array>
+
+    <string-array name="heavy_calc_levels_description">
+        <item>max vrednost broja: 10</item>
+        <item>max max vrednost broja: 100</item>
+    </string-array>
+    <string name="reward_choose">Izaberi nagradu:</string>
+    <string name="off">ISK</string>
+    <string name="on">UK</string>
+    <string name="sound">Zvuk</string>
+
+    <string name="help_practice">"Izaberite računsku operaciju koju želite da vježbate i opseg brojeva koji učestvuju u računu.\n
+        Pri dnu ekrana izaberite \"Izaberi od...\" da bi mogli da birate jedno od 4 ponuđena rješenja ili \"Računaj\" da ukucate tačno rješenje zadatka.\n
+    Dobićete 10 zadataka za rješavanje bez ikakvih ograničenja.\nUživajte!"</string>
+
+
 </resources>

@@ -138,7 +138,7 @@
             android:padding="6dp"
             android:text="@string/settings"
             android:textColor="@color/base"
-            app:autoSizeTextType="uniform" />
+            app:autoSizeTextType="uniform"/>
 
 
         <TextView
@@ -344,9 +344,9 @@
     </android.support.constraint.ConstraintLayout>
 
 
-    <include layout="@layout/game_settings" />
+    <!--<include layout="@layout/game_settings" />-->
 
-    <include layout="@layout/about" />
+    <!--<include layout="@layout/about" />-->
 
 
 </android.support.constraint.ConstraintLayout>

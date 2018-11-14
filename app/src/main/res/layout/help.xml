@@ -60,7 +60,7 @@
                 android:id="@+id/help_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:autoSizeTextType="uniform"
+             android:textSize="16sp"
                 android:gravity="center"
                 android:padding="4dp"
                 app:layout_constraintBottom_toTopOf="@id/help_content"

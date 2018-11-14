@@ -13,7 +13,8 @@ public class FastData {
 
         fName = n.replace("_"," ");
         fDesc = d;
-        fScore = s==0?"None":String.valueOf(calc.showTime(s));
+       // fScore = s==0?"None":String.valueOf(calc.showTime(s));
+        fScore="  "+String.valueOf(calc.showTime(s));
 
     }
 

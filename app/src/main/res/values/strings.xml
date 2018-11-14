@@ -19,9 +19,7 @@
 
     <string name="app_name">Games Of Math</string>
 
-    <string name="best_time">Your best time:</string>
-    <string name="no_result">No result</string>
-    <string name="best_result">Your high score: </string>
+    <string name="best_score_time">Best:</string>
 
     <string name="multi_choice">Multi-choice</string>
     <string name="calculate">Calculate</string>
@@ -51,26 +49,32 @@
     <string name="pright">Right: </string>
     <string name="pwrong">Wrong: </string>
 
+    <string name="ok" translatable="false">OK </string>
+
     <string name="close">Close</string>
     <string name="resume">Resume game</string>
     <string name="go_back">Back to meny</string>
     <string name="go_home">MAIN MENU</string>
+    <string name="sound">Sound</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
 
 
-    <string name="skips">Skips<br></br></string>
-    <string name="xtra_time">Extra<br></br>times<br></br></string>
-    <string name="resets">Timer<br></br>resets<br></br></string>
-    <string name="hints">Hints<br></br></string>
-    <string name="xtra_lives">Extra<br></br>lives<br></br></string>
+
+    <string name="skips">"Skips\n"</string>
+    <string name="xtra_time">"Extra\ntimes\n"<br/></string>
+    <string name="resets">"Timer\nresets\n"<br/></string>
+    <string name="hints">"Hints\n"</string>
+    <string name="xtra_lives">"Extra\nlives\n"</string>
 
 
-    <string name="reward_choose">Choose your reward:</string>
-    <string name="reward_e_skips">Easy Calc - Skips</string>
-    <string name="reward_e_xtra_time">Easy Calc - Extra times</string>
-    <string name="reward_e_resets">Easy Calc - Timer resets</string>
-    <string name="reward_h_xtra_time">Heavy Calc - Extra times</string>
-    <string name="reward_h_hints">Heavy Calc - Hints</string>
-    <string name="reward_h_xtra_lives">Heavy Calc - Extra lives</string>
+    <string name="reward_choose">Choose reward:</string>
+    <string name="reward_e_skips">"Easy Calc\nSkips"</string>
+    <string name="reward_e_xtra_time">"Easy Calc\nExtra times"</string>
+    <string name="reward_e_resets">"Easy Calc\nTimer resets"</string>
+    <string name="reward_h_xtra_time">"Heavy Calc\nExtra times"</string>
+    <string name="reward_h_hints">"Heavy Calc\nHints"</string>
+    <string name="reward_h_xtra_lives">"Heavy Calc\nExtra lives"</string>
 
     <string name="game_over">GAME OVER</string>
     <string name="new_high">NEW HIGH SCORE!</string>
@@ -91,6 +95,9 @@
     <string name="mail_feedback" translatable="false">Games Of Math feedback</string>
     <string name="mail_chooser">Choose...</string>
 
+    <string name="top_scores">"Top\nscores"</string>
+    <string name="play">Play</string>
+
 
     <string-array name="easy_calc_levels">
         <item>easy_calc_2</item>
@@ -109,11 +116,11 @@
         <item>heavy_calc_100</item>
     </string-array>
 
-    <string-array name="heavy_calc_levels_description">
-        <item>max operand val:10</item>
-        <item>max operand val:100</item>
-    </string-array>
 
+    <string-array name="heavy_calc_levels_description">
+        <item>max operand val: 10</item>
+        <item>max operand val: 100</item>
+    </string-array>
 
     <string-array name="fast_calc_levels">
         <item>fast_calc_01</item>
@@ -161,82 +168,23 @@
         <item>XX ÷ X × X</item>14
 
     </string-array>
-    <string name="title_activity_main">MainActivity</string>
-    <string name="action_settings">Settings</string>
+    <string name="title_activity_main" translatable="false">MainActivity</string>
+    <string name="action_settings" translatable="false">Settings</string>
 
-    <string name="interstitial_ad_sample">Interstitial Ad Sample</string>
-    <string name="start_level">Level 1</string>
-    <string name="next_level">Next Level</string>
+    <string name="interstitial_ad_sample" translatable="false">Interstitial Ad Sample</string>
+    <string name="start_level" translatable="false">Level 1</string>
+    <string name="next_level" translatable="false">Next Level</string>
     <!-- -
         This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
         For more information, see https://support.google.com/admob/answer/3052638
     <!- -->
-    <string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
 
 
-    <!--<string name=""></string>-->
-    <!--<string name=""></string>-->  <!--<string-array name="heavy_calc_levels">-->
-    <!--<item>max value 10</item>-->
-    <!--<item>max value 100</item>-->
-    <!--</string-array>
-
-
-    <!-'-Easy Calc 2  (max 2 operands)-->
-
-    <!--<string-array name="easy_calc_levels">-->
-    <!--<item>oper2</item>-->
-    <!--<item>oper3</item>-->
-    <!--<item>oper4</item>-->
-    <!--</string-array>-->
-
-
-    <!--Heavy Calc 10 (max operand val:10)-->
-
-
-    <!--Fast Calc 14 (XX ÷ X × X)-->
-
-
-    <!--<string-array name="fast_calc_levels">-->
-    <!--<item>X + X</item>0 01-->
-    <!--<item>XX + X</item>1 02-->
-    <!--<item>XX + XX</item>2 03-->
-    <!--&lt;!&ndash;<item>XXX + X</item>3&ndash;&gt;-->
-    <!--&lt;!&ndash;<item>XXX + XX</item>4&ndash;&gt;-->
-    <!--&lt;!&ndash;<item>XXX + XXX</item>5&ndash;&gt;-->
-
-    <!--<item>X - X</item>6 04-->
-    <!--<item>XX - X</item>7 05-->
-    <!--<item>XX - XX</item>8 06-->
-    <!--&lt;!&ndash;<item>XXX - X</item>9&ndash;&gt;-->
-    <!--&lt;!&ndash;<item>XXX - XX</item>10&ndash;&gt;-->
-    <!--&lt;!&ndash;<item>XXX - XXX</item>11&ndash;&gt;-->
-
-    <!--<item>X × X</item>12 07-->
-    <!--&lt;!&ndash;<item>XX × X</item>13&ndash;&gt;-->
-    <!--&lt;!&ndash;<item>XXX × X</item>14&ndash;&gt;-->
-
-    <!--<item>XX ÷ X</item>15 08-->
-    <!--&lt;!&ndash;<item>XXX ÷ X</item>16&ndash;&gt;-->
-
-    <!--&lt;!&ndash;<item>X + X + X</item>17&ndash;&gt;-->
-    <!--<item>X + X - X</item>18 09-->
-    <!--<item>X × X + X</item>19 10-->
-    <!--<item>X × X - X</item>20 11-->
-    <!--&lt;!&ndash;<item>X × X × X</item>21&ndash;&gt;-->
-
-    <!--<item>XX ÷ X + X</item>22 12-->
-    <!--<item>XX ÷ X - X</item>23 13-->
-    <!--<item>XX ÷ X × X</item>24 14-->
-
-    <!--&lt;!&ndash;<item>XX + XX + XX</item>25&ndash;&gt;-->
-    <!--&lt;!&ndash;<item>XXX + XX + X</item>26&ndash;&gt;-->
-    <!--&lt;!&ndash;<item>XXX + XXX + XXX</item>27&ndash;&gt;-->
-
-    <!--</string-array>-->
-
-    <!--<string name="title_activity_main">Main</string>-->
-    <!--<string name="dummy_button">Dummy Button</string>-->
-    <!--<string name="dummy_content">DUMMY\nCONTENT</string>-->
+    <string name="help_practice">" Select the calculation operation you want to practice and the operands range.\n
+             At the bottom of the screen, select \ "Multi-choice \" so that you can select one of the 4 offered options  or \ "Calculate \" to type the exact solution.\n
+         You will get 10 tasks to solve without any limitations.\nEnjoy!"</string>
 
 
 </resources>
+

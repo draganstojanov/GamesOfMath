@@ -497,7 +497,7 @@
                     android:gravity="center"
                     android:onClick="keyboardEnter"
                     android:tag="e"
-                    android:text="@android:string/ok"
+                    android:text="@string/ok"
                     android:padding="4dp"
                     app:autoSizeTextType="uniform" />
             </TableRow>

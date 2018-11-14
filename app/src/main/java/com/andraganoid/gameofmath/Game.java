@@ -111,8 +111,6 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Toast.makeText(this, "onDestroy", Toast.LENGTH_SHORT).show();
-
         rewardAd.destroy(this);
 
     }
@@ -136,7 +134,6 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         }
         bottomAd.loadAd(new AdRequest.Builder().build());
         loadFullscreenAd();
-
 
 
         // cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
@@ -405,10 +402,10 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
 
     public void soundState() {
         if (prefs.getBoolean("sounds", true)) {
-            ((TextView) findViewById(R.id.sound_on_off)).setText("ON");
+            ((TextView) findViewById(R.id.sound_on_off)).setText(getString(R.string.on));
 
         } else {
-            ((TextView) findViewById(R.id.sound_on_off)).setText("OFF");
+            ((TextView) findViewById(R.id.sound_on_off)).setText(getString(R.string.off));
         }
     }
 
@@ -578,7 +575,7 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
                 break;
         }
 
-        for (int i = 1; i < rl.getChildCount()-1; i++) {
+        for (int i = 1; i < rl.getChildCount() - 1; i++) {
             rl.getChildAt(i).setBackground(getResources().getDrawable(R.drawable.tv_stroke));
         }
 

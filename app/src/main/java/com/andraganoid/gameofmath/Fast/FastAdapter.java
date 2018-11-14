@@ -30,31 +30,44 @@ public class FastAdapter extends ArrayAdapter {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        ViewHolder vh = new ViewHolder();
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View rv = inflater.inflate(R.layout.fast_card_view, parent, false);
+        ViewHolder vh;
 
-        vh.f1 = rv.findViewById(R.id.fast_1);
-        vh.f2 = rv.findViewById(R.id.fast_2);
-        vh.f4 = rv.findViewById(R.id.fast_4);
-        vh.hs = rv.findViewById(R.id.fast_hs);
-        vh.go = rv.findViewById(R.id.fast_go);
+        if (convertView == null) {
+
+
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.fast_card_view, parent, false);
+
+            vh = new ViewHolder();
+
+
+            vh.f1 = convertView.findViewById(R.id.fast_1);
+            vh.f2 = convertView.findViewById(R.id.fast_2);
+            vh.f4 = convertView.findViewById(R.id.fast_4);
+            vh.hs = convertView.findViewById(R.id.fast_hs);
+            vh.go = convertView.findViewById(R.id.fast_go);
+
+            convertView.setTag(vh);
+
+        } else {
+            vh = (ViewHolder) convertView.getTag();
+        }
 
         vh.f1.setText(fLine.get(position).getfName());
         vh.f2.setText(fLine.get(position).getfDesc());
-        vh.f4.setText(context.getResources().getString(R.string.best_time) + " " + fLine.get(position).getfScore());
+        vh.f4.setText(context.getResources().getString(R.string.best_score_time) + " " + fLine.get(position).getfScore());
         vh.hs.setTag(position);
         vh.go.setTag(position);
 
-        return rv;
+        return convertView;
     }
 
     private static class ViewHolder {
-        TextView f1;
-        TextView f2;
-        TextView f4;
-        TextView hs;
-        TextView go;
+        private TextView f1;
+        private TextView f2;
+        private TextView f4;
+        private TextView hs;
+        private TextView go;
 
     }
 }

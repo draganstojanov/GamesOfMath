@@ -3,18 +3,12 @@ package com.andraganoid.gameofmath;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.util.LogPrinter;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
-
 
 import com.google.android.gms.ads.MobileAds;
 import com.squareup.leakcanary.LeakCanary;
@@ -31,7 +25,7 @@ import com.squareup.leakcanary.LeakCanary;
 
 //help text
 
-//text
+//text &code clean
 
 
 

@@ -59,11 +59,11 @@ public class EasySettings extends AppCompatActivity implements View.OnClickListe
         ((TextView) findViewById(R.id.easy_3_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(1));
         ((TextView) findViewById(R.id.easy_4_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(2));
 
-        String a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0)));
+        String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0)));
         ((TextView) findViewById(R.id.easy_2_3)).setText(a);
-        a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1)));
+        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1)));
         ((TextView) findViewById(R.id.easy_3_3)).setText(a);
-        a = getResources().getString(R.string.best_result) + String.valueOf(calc.scoreMap.get(calc.levelNames.get(2)));
+        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(2)));
         ((TextView) findViewById(R.id.easy_4_3)).setText(a);
 
         findViewById(R.id.easy_2).setOnClickListener(this);
