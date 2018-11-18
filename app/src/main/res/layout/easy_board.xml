@@ -9,7 +9,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
-    android:orientation="vertical"
     tools:context=".Easy.EasyBoard">
 
 
@@ -122,33 +121,21 @@
 
         <TextView
             android:id="@+id/easy_op_0"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
+            style="@style/easyOper"
             android:onClick="easyNum"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/easy_op_1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            style="@style/easyOper"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
             android:onClick="easyNum"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/easy_op_2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
+            style="@style/easyOper"
             android:onClick="easyNum"
             app:autoSizeTextType="uniform" />
 
@@ -168,33 +155,21 @@
 
         <TextView
             android:id="@+id/easy_op_3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
+            style="@style/easyOper"
             android:onClick="easyNum"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/easy_op_4"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            style="@style/easyOper"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
             android:onClick="easyNum"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/easy_op_5"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
+            style="@style/easyOper"
             android:onClick="easyNum"
             app:autoSizeTextType="uniform" />
 
@@ -214,47 +189,31 @@
 
         <TextView
             android:id="@+id/easy_s_0"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
+            style="@style/easyOper"
             android:onClick="easyOper"
             android:text="+"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/easy_s_1"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            style="@style/easyOper"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
             android:onClick="easyOper"
             android:text="-"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/easy_s_2"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
+            style="@style/easyOper"
             android:layout_marginRight="16dp"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
             android:onClick="easyOper"
             android:text="\u00D7"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/easy_s_3"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@color/base"
-            android:gravity="center"
+            style="@style/easyOper"
             android:onClick="easyOper"
             android:text="\u00F7"
             app:autoSizeTextType="uniform" />
@@ -291,8 +250,8 @@
             android:background="@color/base"
             android:gravity="center"
             android:onClick="formulaRemove"
-            android:padding="12dp"
-            android:text="\u232B"
+            android:padding="4dp"
+            android:text="CE"
             android:textStyle="bold"
             app:autoSizeTextType="uniform" />
     </LinearLayout>
@@ -381,45 +340,25 @@
 
         <TextView
             android:id="@+id/easy_skip"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginRight="4dp"
-            android:layout_weight="1"
-            android:background="@color/info"
-            android:gravity="center"
-            android:maxLines="2"
+            style="@style/bonusButton"
+
             android:onClick="easySkip"
-            android:padding="8dp"
-            android:textColor="@color/checked"
             app:autoSizeMaxTextSize="24sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/easy_xtra_time"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="4dp"
-            android:layout_marginRight="4dp"
-            android:layout_weight="1"
-            android:background="@color/info"
-            android:gravity="center"
+            style="@style/bonusButton"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
             android:onClick="easyXtraTime"
-            android:padding="4dp"
-            android:textColor="@color/checked"
             app:autoSizeMaxTextSize="24sp"
             app:autoSizeTextType="uniform" />
 
         <TextView
             android:id="@+id/easy_reset"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="4dp"
-            android:layout_weight="1"
-            android:background="@color/info"
-            android:gravity="center"
+            style="@style/bonusButton"
             android:onClick="easyReset"
-            android:padding="4dp"
-            android:textColor="@color/checked"
             app:autoSizeMaxTextSize="24sp"
             app:autoSizeTextType="uniform" />
 
@@ -447,4 +386,3 @@
 </android.support.constraint.ConstraintLayout>
 
 
-    <!--</LinearLayout>-->

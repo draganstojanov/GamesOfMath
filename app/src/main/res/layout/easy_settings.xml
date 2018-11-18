@@ -5,13 +5,12 @@
     android:id="@+id/easy_set_lay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
     tools:context=".Easy.EasySettings">
 
     <include layout="@layout/topbar" />
 
     <android.support.constraint.ConstraintLayout
-android:id="@+id/easy_set"
+        android:id="@+id/easy_set"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="32dp"
@@ -158,8 +157,7 @@ android:id="@+id/easy_set"
     </android.support.constraint.ConstraintLayout>
 
 
-    <RelativeLayout
-        xmlns:ads="http://schemas.android.com/apk/res-auto"
+    <RelativeLayout xmlns:ads="http://schemas.android.com/apk/res-auto"
         android:id="@+id/ad_view_wrapper"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -181,7 +179,7 @@ android:id="@+id/easy_set"
     </RelativeLayout>
 
 
-    <include layout="@layout/help"/>
+    <include layout="@layout/help" />
 
 
 </android.support.constraint.ConstraintLayout>

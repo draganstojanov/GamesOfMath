@@ -18,19 +18,15 @@
 
 
     <string name="app_name">Games Of Math</string>
-
     <string name="best_score_time">Best:</string>
-
     <string name="multi_choice">Multi-choice</string>
     <string name="calculate">Calculate</string>
     <string name="go">GO!</string>
-
     <string name="main">MAIN</string>
     <string name="help">HELP</string>
     <string name="settings">SETTINGS</string>
     <string name="about">ABOUT</string>
     <string name="get_bonus">GET BONUS</string>
-
     <string name="time">Time</string>
     <string name="progress">Progress</string>
     <string name="task">Task</string>
@@ -45,12 +41,9 @@
     <string name="cancel">CANCEL</string>
     <string name="right">Right!</string>
     <string name="wrong">Wrong!</string>
-
     <string name="pright">Right: </string>
     <string name="pwrong">Wrong: </string>
-
     <string name="ok" translatable="false">OK </string>
-
     <string name="close">Close</string>
     <string name="resume">Resume game</string>
     <string name="go_back">Back to meny</string>
@@ -58,16 +51,11 @@
     <string name="sound">Sound</string>
     <string name="on">ON</string>
     <string name="off">OFF</string>
-
-
-
     <string name="skips">"Skips\n"</string>
-    <string name="xtra_time">"Extra\ntimes\n"<br/></string>
-    <string name="resets">"Timer\nresets\n"<br/></string>
+    <string name="xtra_time">"Extra\ntimes\n"<br /></string>
+    <string name="resets">"Timer\nresets\n"<br /></string>
     <string name="hints">"Hints\n"</string>
     <string name="xtra_lives">"Extra\nlives\n"</string>
-
-
     <string name="reward_choose">Choose reward:</string>
     <string name="reward_e_skips">"Easy Calc\nSkips"</string>
     <string name="reward_e_xtra_time">"Easy Calc\nExtra times"</string>
@@ -75,27 +63,21 @@
     <string name="reward_h_xtra_time">"Heavy Calc\nExtra times"</string>
     <string name="reward_h_hints">"Heavy Calc\nHints"</string>
     <string name="reward_h_xtra_lives">"Heavy Calc\nExtra lives"</string>
-
     <string name="game_over">GAME OVER</string>
     <string name="new_high">NEW HIGH SCORE!</string>
-
     <string name="fast_calc">Fast Calc</string>
     <string name="easy_calc">Easy Calc</string>
     <string name="heavy_calc">Heavy Calc</string>
     <string name="practice">Practice</string>
-
-
     <string name="app">Application</string>
     <string name="author">Author</string>
     <string name="dragan" translatable="false">Dragan Stojanov</string>
     <string name="designer">Logo &amp; icon design</string>
     <string name="milena" translatable="false">Milena Nikolić</string>
     <string name="policy" translatable="false">Privacy policy</string>
-
     <string name="mail_feedback" translatable="false">Games Of Math feedback</string>
     <string name="mail_chooser">Choose...</string>
-
-    <string name="top_scores">"Top\nscores"</string>
+    <string name="top_scores">"Global\ntop\nscores"</string>
     <string name="play">Play</string>
 
 
@@ -181,10 +163,40 @@
     <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
 
 
-    <string name="help_practice">" Select the calculation operation you want to practice and the operands range.\n
+    <string name="help_practice">"Select the calculation operation you want to practice and the operands range.\n
              At the bottom of the screen, select \ "Multi-choice \" so that you can select one of the 4 offered options  or \ "Calculate \" to type the exact solution.\n
          You will get 10 tasks to solve without any limitations.\nEnjoy!"</string>
 
+    <string name="help_fast_calc">"In this game, the goal is as fast as possible calculate 10 tasks.\n
+         You should first select one of the 14 types of tasks. On the main game screen, you will see the task and your job is to type the correct solution and press the \"OK \" button.
+         If you make a mistake, clicking the \"CE \" button will delete the last entered digit.\nEnjoy!"</string>
+
+
+    <string name="help_easy_calc">"In this game you can choose a task with 2, 3 or 4 operands.
+        Your goal is to calculate the \"TARGET\" by combining the numbers and calculation operations from the upper part of the screen.
+        The game takes care that you can enter alternate numbers and calculation operations to get the correct result.
+        If you make a mistake, you can delete the last entry by clicking \"CE \".
+        When you get the \"TARGET\", you are proceeding to the next task.\n
+        You have a certain time to solve each task. For a 2 operands mode max 30 seconds, 3 numbers 45 seconds and 4 numbers 60 seconds.
+        The first task has the longest time, and for each subsequent, time it is shortened in 1 second.
+        The minimum time you have to solve the task is 10 seconds. \n
+        There are three types of bonuses in the game.\n
+         \ "SKIPS\" - skip the current task and go to the next, as if you entered the correct solution.\n
+         \ "EXTRA TIME\" - you have an additional 30 seconds to solve the current task.\n
+         \ "TIMER RESETS\" - skip to the next task and the timer is reset, i.e. sets the value he had at the start of the game (30, 45 or 60 seconds).\n\n
+        Enjoy!"</string>
+
+    <string name="help_heavy_calc">"In this game you can choose a task with  max operands value of 10 or 100.
+        The goal is to quickly calculate the \"TARGET\" by combining numbers and calculation operations from the middle part of the screen.\n
+        In the left column there are signs of computational operations that should be placed in the right places in the middle column,
+        so that the count with the numbers from the right column and the signs from the middle column are correct, i.e. the result is the same as the result in the \"TARGET\" field.\n
+        You have a certain amount of time to solve each task. For a mode with a max value of 10, the time is 2 minutes, and for a max value of 100, the time is 3 minutes.
+        If you do not solve a task within a given time, you lose 1 life of 3 as you have them at the beginning of the game. If you're successful, you get a new task and the time starts from the beginning.\n
+        There are two types of bonuses and extra lives in the game.\n
+        \ "HINTS\" - the game deletes the middle column and puts one character at its right place.\n
+        \ "EXTRA TIME\" - you have an additional 30 seconds to solve the current task.\n
+        \ "EXTRA LIVES\" - you can use it when you lose all your life to continue playing.\n\n
+        Enjoy!"</string>
 
 </resources>
 

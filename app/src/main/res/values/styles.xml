@@ -3,6 +3,7 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/bckgrnd</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -32,5 +33,73 @@
     <!--<style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 
 
+    <style name="keyboard">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@drawable/tv_stroke</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="keyboard.onclick" parent="keyboard">
+        <item name="android:onClick">keyboard</item>
+    </style>
+
+    <style name="keyboard.onclick.margin8" parent="keyboard.onclick">
+        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginRight">8dp</item>
+    </style>
+
+    <style name="multi">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:background">@color/base</item>
+        <item name="android:gravity">center</item>
+        <item name="android:onClick">multiChoice</item>
+    </style>
+
+    <style name="easyOper">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/base</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="bonusButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/info</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">4dp</item>
+        <item name="android:textColor">@color/checked</item>
+    </style>
+
+
+    <style name="heavyOperators">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/base</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+    <style name="heavyOperands">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@color/base</item>
+        <item name="android:gravity">right</item>
+        <item name="android:paddingRight">8dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+    </style>
+
+
 
 </resources>
+

@@ -205,20 +205,15 @@
             android:id="@+id/multi_choice"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="16dp"
+            android:layout_margin="8dp"
             android:visibility="gone"
-            tools:context=".Practice.PracticeBoard">
+            tools:context=".Practice.PracticeBoard"
+            tools:visibility="visible">
 
             <TextView
                 android:id="@+id/game_board_choice_0"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginRight="8dp"
-                android:background="@color/base"
-                android:gravity="center"
-                android:onClick="multiChoice"
+                style="@style/multi"
                 android:tag="0"
-                android:padding="8dp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toTopOf="@id/game_board_choice_2"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -227,14 +222,8 @@
 
             <TextView
                 android:id="@+id/game_board_choice_1"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="8dp"
-                android:background="@color/base"
-                android:gravity="center"
-                android:onClick="multiChoice"
+                style="@style/multi"
                 android:tag="1"
-                android:padding="8dp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toTopOf="@id/game_board_choice_3"
                 app:layout_constraintLeft_toRightOf="@id/game_board_choice_0"
@@ -243,15 +232,8 @@
 
             <TextView
                 android:id="@+id/game_board_choice_2"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="8dp"
-                android:background="@color/base"
-                android:gravity="center"
-                android:onClick="multiChoice"
+                style="@style/multi"
                 android:tag="2"
-                android:padding="8dp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -260,15 +242,8 @@
 
             <TextView
                 android:id="@+id/game_board_choice_3"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginTop="16dp"
-                android:background="@color/base"
-                android:gravity="center"
-                android:onClick="multiChoice"
+                style="@style/multi"
                 android:tag="3"
-                android:padding="8dp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toRightOf="@id/game_board_choice_2"
@@ -284,7 +259,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:visibility="gone"
-            tools:visibility="visible">
+            tools:visibility="gone">
 
             <TableRow
                 android:layout_width="match_parent"
@@ -294,48 +269,26 @@
 
                 <TextView
                     android:id="@+id/key_btn_1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick"
                     android:layout_column="0"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="1"
                     android:text="1"
-                    app:autoSizeTextType="uniform"
-                    android:padding="4dp"/>
+                    app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/key_btn_2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick.margin8"
                     android:layout_column="1"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="2"
                     android:text="2"
-                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/key_btn_3"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick"
                     android:layout_column="2"
-                    android:layout_marginLeft="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="3"
                     android:text="3"
-                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
             </TableRow>
 
@@ -348,48 +301,26 @@
 
                 <TextView
                     android:id="@+id/key_btn_4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick"
                     android:layout_column="0"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="4"
                     android:text="4"
-                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/key_btn_5"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick.margin8"
                     android:layout_column="1"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="5"
                     android:text="5"
-                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/key_btn_6"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick"
                     android:layout_column="2"
-                    android:layout_marginLeft="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="6"
                     android:text="6"
-                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
             </TableRow>
 
@@ -402,48 +333,26 @@
 
                 <TextView
                     android:id="@+id/key_btn_7"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick"
                     android:layout_column="0"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="7"
                     android:text="7"
-                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/key_btn_8"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick.margin8"
                     android:layout_column="1"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="8"
                     android:text="8"
-                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/key_btn_9"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick"
                     android:layout_column="2"
-                    android:layout_marginLeft="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="9"
                     android:text="9"
-                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
             </TableRow>
 
@@ -456,49 +365,28 @@
 
                 <TextView
                     android:id="@+id/key_btn_back"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard"
                     android:layout_column="0"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
                     android:onClick="keyboardC"
-                    android:padding="8dp"
                     android:tag="c"
-                    android:text="\u232B"
-                    android:textStyle="bold"
+                    android:text="CE"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/key_btn_0"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
+                    style="@style/keyboard.onclick.margin8"
                     android:layout_column="1"
-                    android:layout_marginLeft="4dp"
-                    android:layout_marginRight="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
-                    android:onClick="keyboard"
                     android:tag="0"
                     android:text="0"
-                    android:padding="4dp"
                     app:autoSizeTextType="uniform" />
 
                 <TextView
                     android:id="@+id/key_btn_enter"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_column="2"
-                    android:layout_marginLeft="4dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/tv_stroke"
-                    android:gravity="center"
+                    style="@style/keyboard"
+                    android:layout_column="0"
                     android:onClick="keyboardEnter"
                     android:tag="e"
-                    android:text="@string/ok"
-                    android:padding="4dp"
+                    android:text="OK"
                     app:autoSizeTextType="uniform" />
             </TableRow>
 

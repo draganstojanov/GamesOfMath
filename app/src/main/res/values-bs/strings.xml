@@ -45,7 +45,7 @@
     <string name="resets">"Resetuj\ntajmer\n"</string>
     <string name="xtra_lives">"Dodatni\nživoti\n"</string>
     <string name="hints">"Savjet\n"</string>
-    <string name="top_scores">"Top\nrezultati"</string>
+    <string name="top_scores">"Globalni\ntop\nrezultati"</string>
     <string name="play">Igraj</string>
     <string name="reward_e_skips">"Laka računica\nPreskoči"</string>
     <string name="reward_e_xtra_time">"Laka računica\nDodatno vreme"</string>
@@ -70,8 +70,40 @@
     <string name="sound">Zvuk</string>
 
     <string name="help_practice">"Izaberite računsku operaciju koju želite da vježbate i opseg brojeva koji učestvuju u računu.\n
-        Pri dnu ekrana izaberite \"Izaberi od...\" da bi mogli da birate jedno od 4 ponuđena rješenja ili \"Računaj\" da ukucate tačno rješenje zadatka.\n
-    Dobićete 10 zadataka za rješavanje bez ikakvih ograničenja.\nUživajte!"</string>
+        Pri dnu ekrana izaberite \"Izaberi od\"  \#8230\ da bi mogli da birate jedno od 4 ponuđena rješenja ili \"Računaj\" da ukucate tačno rješenje zadatka.\n
+        Dobićete 10 zadataka za rješavanje bez ikakvih ograničenja.\n\n
+        Uživajte!"</string>
 
+    <string name="help_fast_calc">"U ovoj igri cilj je da što brže izračunate 10 zadataka.\n
+        Prvo treba da izaberete jedan od 14 vrsta zadataka. Na glavnom ekranu igre vidjećete zadatak a Vaš posao je da ukucate tačno rješenje i pritisnete dugme \"OK\".
+        Ukoliko pogriješite, klik na dugme \"CE\" briše zadnju ukucanu cifru.\n\n
+        Uživajte!"</string>
+
+    <string name="help_easy_calc">"U ovoj igri možete odabrati zadatak sa 2, 3 ili 4 broja.
+        Vaš cilj je da izračunate \"Traženi rezultat\" kombinujući brojeve i računske operacije iz gornjeg dijela ekrana.
+        Možete koristiti polje (broj ili računsku operaciju) koje ima okvir.
+        Igra vodi računa da možete unositi naizmenično brojeve i znakove i tako doći do tačnog rezultata.
+        Ako napravite grešku, poslednji unos možete obrisati klikom na \"CE\".
+        Kad dobijete \"Traženi rezultat\" prelazite na sledeći zadatak.\n
+        Za rješavanje svakog zadatka imate odrijeđeno vreme i to za mod sa 2 broja max 30 sekundi, sa 3 broja 45 sekundi i za 4 broja 60 sekundi.
+        Prvi zadatak ima najduži rok, a za svaki sljedeći vreme se skraćuje za 1 sekundu.
+        Minimalno vreme koje imate za rješavanje zadatka je 10 sekundi.\n
+        U igri postoje tri vrste bonusa.\n
+        \"PRESKOČI\" - preskačete trenutni zadatak i prelazite na sljedeći, kao da ste uneli tačno rješenje.\n
+        \"DODATNO VREME\" - imate dodatnih 30 sekundi za rješavanje trenutnog zadatka.\n
+        \"RESETUJ TAJMER\" - prelazite na sledeći zadatak a tajmer se resetuje, tj. postavlja na vrednost koju je imao na početku igre (30, 45 ili 60 sekundi).\n\n
+        Uživajte!"</string>
+
+    <string name="help_heavy_calc">"U ovoj igri mođete odabrati zadatak sa brojevima max vrednosti 10 ili 100.
+        Cilj je što brže izračunati \"Traženi rezultat\" kombinovanjem brojeva i operacija proračunavanja sa srednjeg dela ekrana.\n
+        U ljevoj koloni su znakovi računskuh operacija koje treba postaviti na odgovarajuća mjesta u srednjoj koloni,
+        tako da računica sa brojevima iz desne kolone i znakovima iz srednje kolone bude tačna, tj. rezultat bude jednak rezultatu u polju \"Traženi rezultat\".\n
+         Imate određeno vrijeme za rješavanje svakog zadatka. Za mod sa max vrijednošću 10 vrijeme je 2 minuta, a za max vrijednost 100 vrijeme je 3 minuta.
+        Ako ne rješite zadatak u zadatom roku gubite 1 život od 3 koliko ih imate na početku igre. Ako ste uspješni, dobijate novi zadatak i vrijeme počinje od početka.\n
+        U igri postoje dve vrste bonusa i dodatni životi.\n
+        \"SAVJET\" - igra briše srednju kolonu i stavlja jedan znak na pravo mjesto.\n
+        \"DODATNO VREME\" - imate dodatnih 30 sekundi za rešavanje trenutnog zadatka.\n
+        \"DODATNI ŽIVOTI\" - možete iskoristiti kad izgubite sve živote kako biste nastavili igru.\n\n
+        Uživajte!"</string>
 
 </resources>

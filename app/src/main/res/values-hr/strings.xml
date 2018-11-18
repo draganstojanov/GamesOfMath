@@ -45,7 +45,7 @@
     <string name="resets">"Resetuj\ntajmer\n"</string>
     <string name="xtra_lives">"Dodatni\n>životi\n"</string>
     <string name="hints">"Savjet\n>"</string>
-    <string name="top_scores">"Top\nrezultati"</string>
+    <string name="top_scores">"Globalni\ntop\nrezultati"</string>
     <string name="play">Igraj</string>
     <string name="reward_e_skips">"Jednostavan izračun\nPreskoči"</string>
     <string name="reward_e_xtra_time">"Jednostavan izračun\nDodatno vrijeme"</string>
@@ -71,8 +71,39 @@
 
 
     <string name="help_practice">"Odaberite računsku operaciju koju želite prakticirati i opseg brojeva koji sudjeluju u računu.\n
-        Na dnu ekrana izaberite \"Izaberi od...\" da bi mogli da birate jedno od ponuđenih 4 rješenja ili \"Računaj\" da utipkate tačno rješenje zadatka.\n
+        Na dnu ekrana izaberite \"Izaberi od\"  \#8230\ da bi mogli da birate jedno od ponuđenih 4 rješenja ili \"Računaj\" da utipkate ispravno rješenje zadatka.\n
     Dobićete 10 zadataka za rješavanje bez ikakvih ograničenja.\nUživajte!"</string>
 
-</resources>
+    <string name="help_fast_calc">"U ovoj igri cilj je sto brze izračunati 10 zadataka.\n
+        Prvo treba da izaberete jedan od 14 vrsta zadataka. Na glavnom zaslonu igre vidjet ćete zadatak, a vaš posao je upisati ispravno rješenje i pritisnuti tipku \"OK\".
+        Ako pogriješite, klikom na tipku \"CE\" briše se posljednja utipkana znamenka.\nUživajte!"</string>
 
+
+    <string name="help_easy_calc">"U ovoj igri možete izabrati zadatak sa 2, 3 ili 4 broja.
+        Vaš je cilj izračunatie \"Traženi rezultat\" kombinirajući brojeve i izračunske operacije s gornjrg dijela zaslona.
+        Možete upotrijebiti polje (broj ili postupak izračuna) koji ima okvir.
+        Igra se brine da možete unositi naizmenično brojeve i znakove i tako dobiti ispravan rezultat.
+        Ako pogriješite, možete izbrisati posljednji unos klikom na \"CE\".
+        Kada dobijete \"Traženi rezultat\" prelazite na sljedeći zadatak.\n
+       Imate određeno vrijeme za rješavanje svakog zadatka: za mod s 2 broja, maksimalno 30 sekundi, 3 broja 45 sekundi i 4 broja, 60 sekundi.
+        Prvi zadatak ima najduže vrijeme, a za svaki sljedeći vrijeme se skraćuje za 1 sekundu.
+        Najmanje vrijeme za koje morate riješiti zadatak je 10 sekundi.\n
+        Postoje tri vrste bonusa u igri.\n
+        \"PRESKOČI\" - preskačete trenutni zadatak i idete na sljedeći, kao da ste unijeli točno rješenje.\n
+        \"DODATNO VRijEME\" - imate dodatnih 30 sekundi za rješavanje trenutnog zadatka.\n
+        \"RESETUJ TAJMER\" - idete na sljedeći zadatak i timer se resetira, tj. postavlja vrijednost koju je imao na početku igre (30, 45 ili 60 sekundi).\n\n
+        Uživajte!"</string>
+
+    <string name="help_heavy_calc">"U ovoj igri mođete izabrati zadatak sa brojevima max vrednosti 10 ili 100.
+        Cilj je što brže izračunati \"Traženi rezultat\" kombiniranjem brojeva i iračunalnih operacija iz srednjeg dijela zaslona.\n
+        U lijevom stupcu postoje znakovi računalnih operacija koji se trebaju nalaziti na pravim mjestima u srednjem stupcu,
+        tako da je izračun s brojevima iz desnog stupca i znakova iz srednjeg stupca točan, tj. rezultat bude isti kao i rezultat u polju "Traženi rezultat".\n
+        Imate određenu količinu vremena za rješavanje svakog zadatka. Za način rada s maksimalnom vrijednošću od 10, vrijeme je 2 minute, a za maksimalnu vrijednost 100, vrijeme je 3 minute
+        Ako ne riješite zadatak unutar određenog vremena, gubite jedan život od 3 kao što ste ih imali na početku igre. Ako ste uspješni, dobivate novi zadatak i vrijeme počinje od početka.\n
+        U igri postoje dve vrste bonusa i dodatni životi.\n
+        \"SAVJET\" - igra briše srednji stupac i stavlja jedan znak na svoje pravo mjesto.\n
+        \"DODATNO VIJREME\" - imate još 30 sekundi da biste riješili zadani zadatak.\n
+        \"DODATNI ŽIVOTI\" - možete iskoristiti kad izgubite sve života da bi biste nastavili igrati.\n\n
+        Uživajte!"</string>
+
+</resources>

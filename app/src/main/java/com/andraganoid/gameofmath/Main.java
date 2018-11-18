@@ -14,20 +14,16 @@ import com.google.android.gms.ads.MobileAds;
 import com.squareup.leakcanary.LeakCanary;
 
 
-//ca-app-pub-7832187166369477~6543894378
-
 // TODO
-// showscore odbrojavanje rol cifara V2
-//background V2 ???
+
 
 //hiscores  googleplay
 //reklame proveri
+//extra life dialog
 
 //help text
 
-//text &code clean
-
-
+//text & code cleaning
 
 
 public class Main extends AppCompatActivity {
@@ -39,6 +35,7 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.main);
 
         new AsyncTask<Void, Void, Void>() {
+
             @Override
             protected Void doInBackground(Void... voids) {
                 MobileAds.initialize(getApplicationContext(), getString(R.string.AD_MOB_APP_ID));
@@ -48,10 +45,8 @@ public class Main extends AppCompatActivity {
 
         };
 
-        MathBase mb =  new MathBase(getApplicationContext());
+        MathBase mb = new MathBase(getApplicationContext());
         MathSounds ms = MathSounds.getInstance(getApplicationContext());
-
-
 
 
         new Calc().initBonuses();
@@ -59,20 +54,15 @@ public class Main extends AppCompatActivity {
         logo_main = findViewById(R.id.game_logo_main);
 
 
-        //    mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
-
         ObjectAnimator animator = ObjectAnimator
                 .ofFloat(logo_main, View.ALPHA, 0f, 1f);
 
-        animator
-                .setDuration(5000)
+        animator.setDuration(5000)
                 .start();
 
         animator.addListener(new Animator.AnimatorListener() {
             @Override
             public void onAnimationStart(Animator animation) {
-
             }
 
             @Override
@@ -82,12 +72,10 @@ public class Main extends AppCompatActivity {
 
             @Override
             public void onAnimationCancel(Animator animation) {
-
             }
 
             @Override
             public void onAnimationRepeat(Animator animation) {
-
             }
         });
 
