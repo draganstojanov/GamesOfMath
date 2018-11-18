@@ -10,7 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.andraganoid.gameofmath.Misc.MathBase;
+import com.andraganoid.gameofmath.Misc.MathSounds;
+import com.andraganoid.gameofmath.Operation.Calc;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.squareup.leakcanary.LeakCanary;
 
 
@@ -44,6 +48,8 @@ public class Main extends AppCompatActivity {
             }
 
         };
+
+
 
         MathBase mb = new MathBase(getApplicationContext());
         MathSounds ms = MathSounds.getInstance(getApplicationContext());

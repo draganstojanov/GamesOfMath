@@ -12,17 +12,16 @@ import android.widget.TextView;
 
 
 import com.andraganoid.gameofmath.Game;
-import com.andraganoid.gameofmath.MathBase;
+import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;
 
 
-import static com.andraganoid.gameofmath.MathSounds.GET_BONUS;
-import static com.andraganoid.gameofmath.MathSounds.LOST_LIFE;
-import static com.andraganoid.gameofmath.MathSounds.RIGHT_ANSWER;
-import static com.andraganoid.gameofmath.MathSounds.SILENCE;
-import static com.andraganoid.gameofmath.MathSounds.START;
-import static com.andraganoid.gameofmath.MathSounds.USE_BONUS;
+import static com.andraganoid.gameofmath.Misc.MathSounds.GET_BONUS;
+import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
+import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
+import static com.andraganoid.gameofmath.Misc.MathSounds.START;
+import static com.andraganoid.gameofmath.Misc.MathSounds.USE_BONUS;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class HeavyBoard extends Game implements View.OnClickListener {

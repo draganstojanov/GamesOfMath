@@ -1,6 +1,6 @@
-package com.andraganoid.gameofmath;
+package com.andraganoid.gameofmath.Operation;
 
-import com.andraganoid.gameofmath.Operation.Task;
+import com.andraganoid.gameofmath.Misc.MathBase;
 
 import java.util.HashMap;
 import java.util.List;

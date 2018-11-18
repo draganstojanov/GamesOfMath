@@ -1,11 +1,10 @@
-package com.andraganoid.gameofmath;
+package com.andraganoid.gameofmath.Misc;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.andraganoid.gameofmath.Practice;
 
-import com.andraganoid.gameofmath.Calc;
+import com.andraganoid.gameofmath.Operation.Calc;
 
 public class Practice extends Calc {
 

@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 
 import com.andraganoid.gameofmath.Game;
-import com.andraganoid.gameofmath.MathBase;
+import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.andraganoid.gameofmath.Calc.opSign;
+import static com.andraganoid.gameofmath.Operation.Calc.opSign;
 import static com.andraganoid.gameofmath.Game.calc;
 
 

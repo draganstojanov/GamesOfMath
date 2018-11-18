@@ -11,20 +11,20 @@ import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Easy.EasySettings;
 import com.andraganoid.gameofmath.Fast.FastSettings;
 import com.andraganoid.gameofmath.Heavy.HeavySettings;
 import com.andraganoid.gameofmath.Misc.About;
+import com.andraganoid.gameofmath.Misc.MathBase;
+import com.andraganoid.gameofmath.Misc.MathSounds;
+import com.andraganoid.gameofmath.Operation.Calc;
 import com.andraganoid.gameofmath.Operation.Task;
 import com.andraganoid.gameofmath.Practice.PracticeSettings;
-import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -37,11 +37,9 @@ import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.Random;
 
-import static com.andraganoid.gameofmath.MathSounds.BEST_RESULT;
-import static com.andraganoid.gameofmath.MathSounds.FIREWORK;
-import static com.andraganoid.gameofmath.MathSounds.REWARD;
-
-import com.andraganoid.gameofmath.R;
+import static com.andraganoid.gameofmath.Misc.MathSounds.BEST_RESULT;
+import static com.andraganoid.gameofmath.Misc.MathSounds.FIREWORK;
+import static com.andraganoid.gameofmath.Misc.MathSounds.REWARD;
 
 
 public class Game extends AppCompatActivity implements RewardedVideoAdListener {

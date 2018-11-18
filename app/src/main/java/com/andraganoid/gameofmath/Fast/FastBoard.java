@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.GameBoard;
-import com.andraganoid.gameofmath.MathBase;
+import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Add;
 import com.andraganoid.gameofmath.Operation.Big;
 import com.andraganoid.gameofmath.Operation.Div;
@@ -21,8 +21,8 @@ import com.andraganoid.gameofmath.R;
 
 import java.util.Arrays;
 
-import static com.andraganoid.gameofmath.MathSounds.LOST_LIFE;
-import static com.andraganoid.gameofmath.MathSounds.START;
+import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
+import static com.andraganoid.gameofmath.Misc.MathSounds.START;
 
 //import static com.andraganoid.gameofmath.Game.mathBase;
 

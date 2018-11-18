@@ -11,11 +11,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import static com.andraganoid.gameofmath.Game.calc;
-import static com.andraganoid.gameofmath.Game.task;
-import static com.andraganoid.gameofmath.MathSounds.RIGHT_ANSWER;
-import static com.andraganoid.gameofmath.MathSounds.SILENCE;
-import static com.andraganoid.gameofmath.MathSounds.WRONG_ANSWER;
+import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
+import static com.andraganoid.gameofmath.Misc.MathSounds.WRONG_ANSWER;
 
 public abstract class GameBoard extends Game {
 

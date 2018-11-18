@@ -1,6 +1,6 @@
 package com.andraganoid.gameofmath.Fast;
 
-import com.andraganoid.gameofmath.Calc;
+import com.andraganoid.gameofmath.Operation.Calc;
 
 import java.util.List;
 
