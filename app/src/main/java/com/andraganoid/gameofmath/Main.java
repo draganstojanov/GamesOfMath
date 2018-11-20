@@ -14,24 +14,30 @@ import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Misc.MathSounds;
 import com.andraganoid.gameofmath.Operation.Calc;
 import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.squareup.leakcanary.LeakCanary;
 
 
 // TODO
 
-
 //hiscores  googleplay
-//reklame proveri
-//extra life dialog
 
-//help text
+
+// LEADERBOARDS SHOW
+// LEADERBOARDS DB&LOGIC
+// leaderboards listview
+// leaderboards on/off OK OK!!!
+
+//game onpause pogasi sve dijaloge i menije
+
+
+
 
 //text & code cleaning
 
 
 public class Main extends AppCompatActivity {
     ImageView logo_main;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,6 +54,8 @@ public class Main extends AppCompatActivity {
             }
 
         };
+
+
 
 
 
@@ -103,6 +111,8 @@ public class Main extends AppCompatActivity {
 
 
     }
+
+
 
     private void goGame() {
 

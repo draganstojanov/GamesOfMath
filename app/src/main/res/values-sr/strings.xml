@@ -47,6 +47,16 @@
     <string name="hints">"Savet\n"</string>
     <string name="top_scores">"Globalni\ntop\nrezultati"</string>
     <string name="play">Igraj</string>
+    <string name="global_leaderboards">"Globalni\nrezultati"</string>
+    <string name="signin_other_error">Globalni rezultati su nedostupni!</string>
+    <string name="lboard_connect">Povežite se sa Google Play Service</string>
+    <string name="yes">Da</string>
+    <string name="no">Ne</string>
+    <string name="out_of_lives">Ostali ste bez života!</string>
+    <string name="out_of_lives_msg_1">"Imate "</string>
+    <string name="out_of_lives_msg_2">" dodatne živote. Da li želite da ih koristite sad da bi nastavili igru?"</string>
+
+
     <string name="reward_e_skips">"Laka računica\nPreskoči"</string>
     <string name="reward_e_xtra_time">"Laka računica\nDodatno vreme"</string>
     <string name="reward_e_resets">"Laka računica\nResetuj tajmer"</string>
@@ -106,5 +116,6 @@
         \"DODATNO VREME\" - imate dodatnih 30 sekundi za rešavanje trenutnog zadatka.\n
         \"DODATNI ŽIVOTI\" - možete iskoristiti kad izgubite sve života da bi nastavili igru.\n\n
         Uživajte!"</string>
+
 
 </resources>

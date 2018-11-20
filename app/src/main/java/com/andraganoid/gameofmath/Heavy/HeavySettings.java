@@ -45,8 +45,12 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
 
         calc = new Heavy(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)));
 
-        ((TextView) findViewById(R.id.heavy_10_1)).setText(calc.levelNames.get(0).toUpperCase().replace("_", " "));
-        ((TextView) findViewById(R.id.heavy_100_1)).setText(calc.levelNames.get(1).toUpperCase().replace("_", " "));
+
+        ((TextView) findViewById(R.id.heavy_10_1)).setText(getString(R.string.heavy_calc) + " 10");
+        ((TextView) findViewById(R.id.heavy_100_1)).setText(getString(R.string.heavy_calc) + " 100");
+
+//        ((TextView) findViewById(R.id.heavy_10_1)).setText(calc.levelNames.get(0).toUpperCase().replace("_", " "));
+//        ((TextView) findViewById(R.id.heavy_100_1)).setText(calc.levelNames.get(1).toUpperCase().replace("_", " "));
 
         ((TextView) findViewById(R.id.heavy_10_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(0));
         ((TextView) findViewById(R.id.heavy_100_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(1));
@@ -93,7 +97,7 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
 
     public void goHelp(View v) {
         findViewById(R.id.help_layout).setVisibility(View.VISIBLE);
-        ((TextView) findViewById(R.id.help_title)).setText("HEAVY CALC");
+        ((TextView) findViewById(R.id.help_title)).setText(getString(R.string.heavy_calc));
         ((TextView) findViewById(R.id.help_text)).setText(getString(R.string.help_heavy_calc));
         findViewById(R.id.heavy_set_lay).setClickable(false);
     }

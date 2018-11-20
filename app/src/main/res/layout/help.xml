@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/help_layout"
@@ -28,12 +27,12 @@
             android:layout_marginLeft="4dp"
             android:layout_marginTop="4dp"
             android:layout_marginRight="4dp"
-            app:autoSizeTextType="uniform"
             android:background="@color/checked"
             android:gravity="center"
             android:paddingTop="2dp"
             android:text="@string/help"
             android:textColor="@color/info"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@id/help_title"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,12 +40,14 @@
             android:id="@+id/help_title"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            app:autoSizeTextType="uniform"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
             android:gravity="center"
             android:textColor="@color/info"
+            app:autoSizeTextType="uniform"
             app:layout_constraintBottom_toTopOf="@id/help_content"
             app:layout_constraintTop_toBottomOf="@id/help_top"
-            tools:text="HELP TITLE" />
+            tools:text="HELP TITLEeeeeeee" />
 
         <ScrollView
             android:id="@+id/help_content"
@@ -60,9 +61,9 @@
                 android:id="@+id/help_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-             android:textSize="16sp"
                 android:gravity="center"
                 android:padding="4dp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/help_content"
                 app:layout_constraintTop_toBottomOf="@id/help_top" />
         </ScrollView>

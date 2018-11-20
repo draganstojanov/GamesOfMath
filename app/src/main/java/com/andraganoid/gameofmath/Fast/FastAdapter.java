@@ -44,7 +44,7 @@ public class FastAdapter extends ArrayAdapter {
             vh.f1 = convertView.findViewById(R.id.fast_1);
             vh.f2 = convertView.findViewById(R.id.fast_2);
             vh.f4 = convertView.findViewById(R.id.fast_4);
-            vh.hs = convertView.findViewById(R.id.fast_hs);
+          //  vh.hs = convertView.findViewById(R.id.fast_hs);
             vh.go = convertView.findViewById(R.id.fast_go);
 
             convertView.setTag(vh);
@@ -56,7 +56,7 @@ public class FastAdapter extends ArrayAdapter {
         vh.f1.setText(fLine.get(position).getfName());
         vh.f2.setText(fLine.get(position).getfDesc());
         vh.f4.setText(context.getResources().getString(R.string.best_score_time) + " " + fLine.get(position).getfScore());
-        vh.hs.setTag(position);
+       // vh.hs.setTag(position);
         vh.go.setTag(position);
 
         return convertView;
@@ -66,7 +66,7 @@ public class FastAdapter extends ArrayAdapter {
         private TextView f1;
         private TextView f2;
         private TextView f4;
-        private TextView hs;
+      //  private TextView hs;
         private TextView go;
 
     }

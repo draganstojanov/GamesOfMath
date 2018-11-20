@@ -27,10 +27,11 @@
                 android:id="@+id/fast_1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:layout_marginRight="8dp"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toTopOf="@id/fast_2"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/fast_hs"
+                app:layout_constraintRight_toLeftOf="@id/fast_go"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_weight="3"
                 tools:text="FAST CALC 01" />
@@ -56,35 +57,33 @@
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@id/fast_hs"
+                app:layout_constraintRight_toLeftOf="@id/fast_go"
                 app:layout_constraintTop_toBottomOf="@id/fast_2"
                 app:layout_constraintVertical_weight="2"
                 tools:text="Your Best Time: 12345" />
 
-            <TextView
-                android:id="@+id/fast_hs"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="8dp"
-                android:background="@color/checked"
-                android:gravity="center"
-                android:onClick="goFastGlobalHighScores"
-                android:padding="4dp"
-                android:text="@string/top_scores"
+            <!--<TextView-->
+                <!--android:id="@+id/fast_hs"-->
+                <!--android:layout_width="80dp"-->
+                <!--android:layout_height="80dp"-->
+                <!--android:layout_marginLeft="8dp"-->
+                <!--android:background="@color/checked"-->
+                <!--android:gravity="center"-->
+                <!--android:onClick="goFastGlobalHighScores"-->
+                <!--android:padding="4dp"-->
+                <!--android:text="@string/top_scores"-->
 
-                android:textColor="@color/info"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/fast_1"
-                app:layout_constraintRight_toLeftOf="@id/fast_go"
-                app:layout_constraintTop_toTopOf="parent" />
+                <!--android:textColor="@color/info"-->
+                <!--app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--app:layout_constraintLeft_toRightOf="@id/fast_1"-->
+                <!--app:layout_constraintRight_toLeftOf="@id/fast_go"-->
+                <!--app:layout_constraintTop_toTopOf="parent" />-->
 
             <TextView
                 android:id="@+id/fast_go"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:layout_marginLeft="8dp"
                 android:background="@color/info"
-
                 android:gravity="center"
                 android:maxLines="1"
                 android:onClick="goFastPlay"
@@ -93,7 +92,7 @@
                 android:textColor="@color/checked"
                 app:autoSizeTextType="uniform"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@id/fast_hs"
+
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 

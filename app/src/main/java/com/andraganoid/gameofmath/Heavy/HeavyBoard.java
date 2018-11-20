@@ -1,12 +1,17 @@
 package com.andraganoid.gameofmath.Heavy;
 
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.v4.content.res.ResourcesCompat;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -47,9 +52,7 @@ public class HeavyBoard extends Game implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.heavy_board);
-      //  play(SILENCE);
 
-        //goMain = true;
         isEnd = false;
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind / 100));
 
@@ -98,14 +101,15 @@ public class HeavyBoard extends Game implements View.OnClickListener {
         board.setVisibility(View.GONE);
         start.setVisibility(View.VISIBLE);
         start.setText("3");
-      //  play(START);
+        //  play(START);
         goMain = false;
         intro = new CountDownTimer(5000, 1000) {
 
             @Override
             public void onTick(long l) {
 
-                if (l < 4000) { play(START);
+                if (l < 4000) {
+                    play(START);
                     start.setText(String.valueOf(l / 1000));
                 }
             }
@@ -220,27 +224,45 @@ public class HeavyBoard extends Game implements View.OnClickListener {
 
     void checkXtraLives() {
 
-        new AlertDialog.Builder(this)
-                .setTitle("Out of lives")
-                .setMessage("You have " + String.valueOf(calc.heavyXtraLives) + " extra lives. Do you want to use it one now in order to continue game?")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        calc.heavyXtraLives = calc.setBonus(calc.HEAVY_XTRA_LIVES, calc.heavyXtraLives - 1);
-                        xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
-                        startAnimation(xtraLives, 1);
-                        calc.lives++;
-                        prepHeavy();
-                    }
-                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+
+        AlertDialog adb = new AlertDialog.Builder(HeavyBoard.this).create();
+        adb.setTitle(getString(R.string.out_of_lives));
+        adb.setMessage(getString(R.string.out_of_lives_msg_1)
+                + String.valueOf(calc.heavyXtraLives)
+                + getString(R.string.out_of_lives_msg_2));
+        adb.setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                calc.heavyXtraLives = calc.setBonus(calc.HEAVY_XTRA_LIVES, calc.heavyXtraLives - 1);
+                xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
+                startAnimation(xtraLives, 1);
+                calc.lives++;
+                prepHeavy();
+            }
+        });
+        adb.setButton(Dialog.BUTTON_NEGATIVE, getString(R.string.no), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 heavyGameOver();
             }
-        }).setCancelable(false)
-                .create()
-                .show();
+        });
+        adb.setCancelable(false);
+        adb.show();
 
+
+        Typeface typeface = ResourcesCompat.getFont(this, R.font.luckiestguy);
+
+        int titleId = getResources().getIdentifier("alertTitle", "id", "android");
+        if (titleId > 0) {
+            TextView title = (TextView) adb.findViewById(titleId);
+            if (title != null) {
+                title.setTypeface(typeface);
+            }
+        }
+
+        ((TextView) adb.getWindow().findViewById(android.R.id.message)).setTypeface(typeface);
+        ((Button) adb.getWindow().findViewById(android.R.id.button1)).setTypeface(typeface);
+        ((Button) adb.getWindow().findViewById(android.R.id.button2)).setTypeface(typeface);
 
     }
 
@@ -321,12 +343,12 @@ public class HeavyBoard extends Game implements View.OnClickListener {
                         }
 
                         if (allSigns == 4) {
-                           // rl.setVisibility(View.VISIBLE);
+                            // rl.setVisibility(View.VISIBLE);
                             qTarget.setClickable(true);
 
                             if (isCorrect()) {
                                 qTarget.setText(getString(R.string.right));
-                              //  qResult.setText("OK");
+                                //  qResult.setText("OK");
                                 qResult.setBackgroundColor(getResources().getColor(R.color.checked));
                             } else {
                                 rl.setVisibility(View.VISIBLE);
@@ -335,9 +357,9 @@ public class HeavyBoard extends Game implements View.OnClickListener {
                             }
 
                         } else {
-                           // rl.setVisibility(View.GONE);
-                           // qResult.setBackgroundColor(0);
-                          //  qResult.setText("");
+                            // rl.setVisibility(View.GONE);
+                            // qResult.setBackgroundColor(0);
+                            //  qResult.setText("");
                             qTarget.setClickable(false);
                             qTarget.setText(String.valueOf(task.getResult()));
                         }

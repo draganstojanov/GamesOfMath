@@ -3,18 +3,26 @@ package com.andraganoid.gameofmath;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Easy.EasySettings;
 import com.andraganoid.gameofmath.Fast.FastSettings;
@@ -33,6 +41,16 @@ import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.games.Games;
+import com.google.android.gms.games.LeaderboardsClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.Random;
@@ -48,7 +66,8 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     public static Calc calc;
     public static Task task;
 
-
+    private GoogleSignInClient mGoogleSignInClient;
+    private LeaderboardsClient mLeaderboardsClient;
     Intent intent;
     public InterstitialAd fullscreenAd;
     private RewardedVideoAd rewardAd;
@@ -133,6 +152,10 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         bottomAd.loadAd(new AdRequest.Builder().build());
         loadFullscreenAd();
 
+        // if (prefs.getBoolean("leaderboardsPermission", false)) {
+        //    if(!isSignedIn())  {signInSilently();}
+        //  }
+
 
         // cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
     }
@@ -174,10 +197,10 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         //  cl = (android.support.constraint.ConstraintLayout) findViewById(R.id.game_lay);
         //  cl.setBackground(new BitmapDrawable(getResources(), back.getBack()));
 
-    }
 
+        mGoogleSignInClient = GoogleSignIn.getClient(this,
+                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
 
-    private void initAdsResume() {
 
     }
 
@@ -390,6 +413,67 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     }
 
 
+    public void goSetLeaderboardPermission(View v) {
+
+        if (!prefs.getBoolean("leaderboardsPermission", false)) {
+
+            AlertDialog lad = new AlertDialog.Builder(Game.this).create();
+            lad.setMessage(getString(R.string.lboard_connect));
+            lad.setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    startAnimation(findViewById(R.id.lboard_on_off), 1);
+                    prefsEditor
+                            .putBoolean("leaderboardsPermission", true)
+                            .apply();
+                    slp();
+
+
+                }
+            });
+            lad.setButton(Dialog.BUTTON_NEGATIVE, getString(R.string.no), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    slp();
+
+                }
+            });
+            lad.setCancelable(false);
+            lad.show();
+
+
+            Typeface typeface = ResourcesCompat.getFont(this, R.font.luckiestguy);
+
+
+            ((TextView) lad.getWindow().findViewById(android.R.id.message)).setTypeface(typeface);
+            ((Button) lad.getWindow().findViewById(android.R.id.button1)).setTypeface(typeface);
+            ((Button) lad.getWindow().findViewById(android.R.id.button2)).setTypeface(typeface);
+
+
+        } else {
+            startAnimation(findViewById(R.id.lboard_on_off), 1);
+            prefsEditor
+                    .putBoolean("leaderboardsPermission", false)
+                    .apply();
+            slp();
+        }
+
+    }
+
+
+    public void slp() {
+
+        if (prefs.getBoolean("leaderboardsPermission", false)) {
+            ((TextView) findViewById(R.id.lboard_on_off)).setText(getString(R.string.on));
+
+        } else {
+            ((TextView) findViewById(R.id.lboard_on_off)).setText(getString(R.string.off));
+        }
+
+    }
+
+
     public void goSound(View v) {
         startAnimation(findViewById(R.id.sound_on_off), 1);
         prefsEditor
@@ -417,15 +501,18 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
     }
 
     public void goAbout(View v) {
+
         intent = new Intent(this, About.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
     public void goSettings(View v) {
+
         findViewById(R.id.game_settings).setVisibility(View.VISIBLE);
         goSettings = true;
         soundState();
+        slp();
     }
 
     public void goSettingsOk(View v) {
@@ -576,11 +663,112 @@ public class Game extends AppCompatActivity implements RewardedVideoAdListener {
         for (int i = 1; i < rl.getChildCount() - 1; i++) {
             rl.getChildAt(i).setBackground(getResources().getDrawable(R.drawable.tv_stroke));
         }
-
-        v.setBackgroundColor(getResources().getColor(R.color.checked));
+        if (v.getId() != R.id.reward_submit) {
+            v.setBackgroundColor(getResources().getColor(R.color.checked));
+        }
 
 
     }
+
+
+    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
+
+    private void signInSilently() {
+        GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
+                GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
+        signInClient.silentSignIn().addOnCompleteListener(this,
+                new OnCompleteListener<GoogleSignInAccount>() {
+                    @Override
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<GoogleSignInAccount> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(Game.this, "SILENT OK", Toast.LENGTH_SHORT).show();
+                            // The signed in account is stored in the task's result.
+                            GoogleSignInAccount signedInAccount = task.getResult();
+                        } else {
+                            startSignInIntent();
+                            // Player will need to sign-in explicitly using via UI
+                        }
+                    }
+                });
+    }
+
+
+    private void startSignInIntent() {
+        GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
+                GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
+        Intent intent = signInClient.getSignInIntent();
+        startActivityForResult(intent, 9001);
+
+
+    }
+
+    private boolean isSignedIn() {
+        return GoogleSignIn.getLastSignedInAccount(this) != null;
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 9001) {
+            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
+            if (result.isSuccess()) {
+
+                Toast.makeText(Game.this, "SIGNED IN", Toast.LENGTH_SHORT).show();
+                // The signed in account is stored in the result.
+                GoogleSignInAccount signedInAccount = result.getSignInAccount();
+            } else {
+                String message = result.getStatus().getStatusMessage();
+                if (message == null || message.isEmpty()) {
+                    message = getString(R.string.signin_other_error);
+                }
+                new AlertDialog.Builder(this).setMessage(message)
+                        .setNeutralButton(android.R.string.ok, null).show();
+            }
+        }
+    }
+
+
+    private void signOut() {
+        GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
+                GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
+        signInClient.signOut().addOnCompleteListener(this,
+                new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
+
+                    }
+
+                });
+    }
+
+
+    public void submitScore() {
+//        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+////////                .submitScore(getString(R.string.leaderboard_id), 1337);
+
+        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                .submitScore("CgkIo5LlzL0eEAIQEA", 1313);
+    }
+
+
+    private void showLeaderboard() {
+        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+//                .getLeaderboardIntent(getString(R.string.leaderboard_id))
+                .getLeaderboardIntent("CgkIo5LlzL0eEAIQEA")
+                .addOnSuccessListener(new OnSuccessListener<Intent>() {
+                    @Override
+                    public void onSuccess(Intent intent) {
+                        startActivityForResult(intent, 9004);
+                    }
+                });
+    }
+
+//        if(isSignedIn()){
+//            Toast.makeText(this, "SIGNED IN", Toast.LENGTH_SHORT).show();
+//
+//        }else{ signInSilently();}
 
 
 }

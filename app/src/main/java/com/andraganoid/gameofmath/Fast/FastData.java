@@ -7,20 +7,25 @@ public class FastData {
     private String fName;
     private String fDesc;
     private String fScore;
+    private StringBuilder sb = new StringBuilder();
 
 
-    public FastData(String n, String d, long s) {
+    public FastData(String fc, int n, String d, long s) {
 
-        fName = n.replace("_"," ");
+        //  fName = n.replace("_"," ");
+
+        sb.setLength(0);
+        sb.append(fc);
+        sb.append(" ");
+        sb.append(n < 10 ? "0" : "");
+        sb.append(n);
+
+        fName = sb.toString();
         fDesc = d;
-       // fScore = s==0?"None":String.valueOf(calc.showTime(s));
-        fScore="  "+String.valueOf(calc.showTime(s));
+        fScore = "  " + String.valueOf(calc.showTime(s));
 
     }
 
-    public FastData() {
-
-    }
 
     public String getfName() {
         return fName;

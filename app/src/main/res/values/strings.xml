@@ -7,13 +7,10 @@
     <!--<string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-7832187166369477/6484184623</string>REAL-->
 
 
-    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
-    TEST
+    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>TEST
 
-    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    TEST
-    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-    TEST
+    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>TEST
+    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>TEST
     <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
 
@@ -76,9 +73,26 @@
     <string name="milena" translatable="false">Milena Nikolić</string>
     <string name="policy" translatable="false">Privacy policy</string>
     <string name="mail_feedback" translatable="false">Games Of Math feedback</string>
-    <string name="mail_chooser">Choose...</string>
+    <string name="mail_chooser">Choose\#8230\</string>
     <string name="top_scores">"Global\ntop\nscores"</string>
     <string name="play">Play</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="out_of_lives">Out of lives!</string>
+    <string name="out_of_lives_msg_1">"You have "</string>
+    <string name="out_of_lives_msg_2">" extra lives. Do you want to use it now in order to continue the game?"</string>
+
+
+
+
+    <string name="global_leaderboards">"Global\nleaderboards"</string>
+    <string name="lboard_connect">Connect to Google Play Service</string>
+
+
+    <string name="signin_other_error">Global Scores are unavailable!</string>
+
+
+
 
 
     <string-array name="easy_calc_levels">

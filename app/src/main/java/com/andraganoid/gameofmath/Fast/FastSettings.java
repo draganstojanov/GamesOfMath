@@ -70,7 +70,8 @@ public class FastSettings extends AppCompatActivity {
 
         for (int j = 0; j < calc.levelNames.size(); j++) {
             adFast.add(new FastData
-                    (calc.levelNames.get(j),
+                    (getString(R.string.fast_calc),
+                            j,
                             Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)).get(j),
                             calc.scoreMap.get(calc.levelNames.get(j))));
         }

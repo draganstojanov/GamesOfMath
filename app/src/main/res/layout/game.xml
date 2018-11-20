@@ -344,9 +344,9 @@
     </android.support.constraint.ConstraintLayout>
 
 
-    <!--<include layout="@layout/game_settings" />-->
+    <include layout="@layout/game_settings" />
 
-    <!--<include layout="@layout/about" />-->
+    <include layout="@layout/about" />
 
 
 </android.support.constraint.ConstraintLayout>

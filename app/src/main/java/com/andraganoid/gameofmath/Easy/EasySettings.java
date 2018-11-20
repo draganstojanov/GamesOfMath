@@ -51,9 +51,13 @@ public class EasySettings extends AppCompatActivity implements View.OnClickListe
 
         calc = new Easy(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)));
 
-        ((TextView) findViewById(R.id.easy_2_1)).setText(calc.levelNames.get(0).toUpperCase().replace("_", " "));
-        ((TextView) findViewById(R.id.easy_3_1)).setText(calc.levelNames.get(1).toUpperCase().replace("_", " "));
-        ((TextView) findViewById(R.id.easy_4_1)).setText(calc.levelNames.get(2).toUpperCase().replace("_", " "));
+//        ((TextView) findViewById(R.id.easy_2_1)).setText(calc.levelNames.get(0).toUpperCase().replace("_", " "));
+//////        ((TextView) findViewById(R.id.easy_3_1)).setText(calc.levelNames.get(1).toUpperCase().replace("_", " "));
+//////        ((TextView) findViewById(R.id.easy_4_1)).setText(calc.levelNames.get(2).toUpperCase().replace("_", " "));
+
+        ((TextView) findViewById(R.id.easy_2_1)).setText(getString(R.string.easy_calc)+" 2");
+        ((TextView) findViewById(R.id.easy_3_1)).setText(getString(R.string.easy_calc)+" 3");
+        ((TextView) findViewById(R.id.easy_4_1)).setText(getString(R.string.easy_calc)+" 4");
 
         ((TextView) findViewById(R.id.easy_2_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(0));
         ((TextView) findViewById(R.id.easy_3_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(1));
