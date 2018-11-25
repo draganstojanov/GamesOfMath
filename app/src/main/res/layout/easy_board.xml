@@ -9,6 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="8dp"
+    android:onClick="easyOver"
     tools:context=".Easy.EasyBoard">
 
 
@@ -237,7 +238,7 @@
             android:layout_weight="8"
             android:background="@color/base"
             android:gravity="center"
-            android:onClick="easyOver"
+
             android:padding="4dp"
             app:autoSizeTextType="uniform" />
 
@@ -382,6 +383,7 @@
 
     <include layout="@layout/firework" />
 
+    <include layout="@layout/again_or_leaderboard" />
 
 </android.support.constraint.ConstraintLayout>
 

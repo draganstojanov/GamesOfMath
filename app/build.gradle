@@ -9,8 +9,8 @@ android {
         applicationId "com.andraganoid.gameofmath"
         minSdkVersion 16
         targetSdkVersion 26
-        versionCode 3
-        versionName "0.2"
+        versionCode 6
+        versionName "0.6"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -45,8 +45,7 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.2'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.2'
 
-
-  //  implementation 'com.google.android.gms:play-services-location:16.0.0'
+    //  implementation 'com.google.android.gms:play-services-location:16.0.0'
     implementation 'com.google.android.gms:play-services-games:16.0.0'
     implementation 'com.google.android.gms:play-services-auth:16.0.1'
 

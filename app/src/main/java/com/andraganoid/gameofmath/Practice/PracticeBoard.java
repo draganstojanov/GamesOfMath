@@ -172,6 +172,11 @@ public class PracticeBoard extends GameBoard {
         //  }
     }
 
+    @Override
+    public void goAgain(View v) {
+
+    }
+
 
     @Override
     protected void onPause() {

@@ -16,8 +16,8 @@
         android:layout_height="0dp"
         android:layout_marginTop="32dp"
         android:background="@drawable/text1_stroke"
+        android:contentDescription="LOGO"
         app:layout_constraintBottom_toTopOf="@+id/menu"
-
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -41,7 +41,7 @@
         android:id="@+id/menu"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_margin="32dp"
+        android:layout_margin="24dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_bar"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -199,7 +199,7 @@
         android:clickable="true"
         android:padding="48dp"
         android:visibility="gone"
-        tools:visibility="visible">
+        tools:visibility="gone">
 
 
         <TextView

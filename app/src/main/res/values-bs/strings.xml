@@ -114,6 +114,8 @@
     <string name="out_of_lives">Ostali ste bez života!</string>
     <string name="out_of_lives_msg_1">"Imate "</string>
     <string name="out_of_lives_msg_2">" dodatne živote. Da li želite da ih koristite sad da bi nastavili igru?"</string>
+    <string name="play_again">Igraj ponovo</string>
+    <string name="go_leaderboard">Prikaži liste</string>
 
 
 </resources>

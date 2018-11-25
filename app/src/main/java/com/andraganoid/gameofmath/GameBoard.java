@@ -8,15 +8,16 @@ import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
 import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
 import static com.andraganoid.gameofmath.Misc.MathSounds.WRONG_ANSWER;
 
-public abstract class GameBoard extends Game {
+public abstract class GameBoard extends GamePlay {
 
-
+    protected View pBoard, fBoard;
     protected TextView formula;
     protected android.support.constraint.ConstraintLayout multic;
     protected LinearLayout keyboard;
@@ -36,15 +37,12 @@ public abstract class GameBoard extends Game {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_board);
-       // play(SILENCE);
-
-        // findViewById(R.id.game_board_lay).setBackground(new BitmapDrawable(getResources(), background));
-
+        Toast.makeText(this, "GAME BOARD CREATE", Toast.LENGTH_SHORT).show();
         formula = findViewById(R.id.game_board_formula);
         multic = findViewById(R.id.multi_choice);
         typed = findViewById(R.id.game_board_typed);
         keyboard = findViewById(R.id.keyboard);
-
+        board = findViewById(R.id.game_board_lay);
 
         cho0 = findViewById(R.id.game_board_choice_0);
         cho1 = findViewById(R.id.game_board_choice_1);
@@ -58,7 +56,7 @@ public abstract class GameBoard extends Game {
         goodAnswers = 0;
         badAnswers = 0;
         formula.setClickable(false);
-        isEnd=false;
+        isEnd = false;
         prepareTask();
 
 
@@ -72,6 +70,12 @@ public abstract class GameBoard extends Game {
 
     public abstract void goNext(View v);
 
+    public abstract void goBack(View v);
+
+    public abstract void goPause(View v);
+
+    public abstract void goAgain(View v);
+
 
     public void multiChoice(View v) {
 
@@ -84,19 +88,19 @@ public abstract class GameBoard extends Game {
     }
 
     public void keyboard(View v) {
-if(!isEnd) {
-    if (typedResult.equals("0")) {
-        typedResult = "";
-    }
-    if (typedResult.length() < 4) {
-        typedResult += v.getTag();
-        typed.setText(typedResult);
-    }
-}
+        if (!isEnd) {
+            if (typedResult.equals("0")) {
+                typedResult = "";
+            }
+            if (typedResult.length() < 4) {
+                typedResult += v.getTag();
+                typed.setText(typedResult);
+            }
+        }
     }
 
     public void keyboardEnter(View v) {
-        if(!isEnd) {
+        if (!isEnd) {
             if (typedResult.length() > 0) {
                 if (calc.gameMode == "Practice") {
                     keyboard.setVisibility(View.INVISIBLE);
@@ -136,14 +140,12 @@ if(!isEnd) {
     }
 
 
-
     public void wrong() {
 
         play(WRONG_ANSWER);
         badAnswers++;
         setProgress("Wrong!", R.color.checked, "\u2573");
     }
-
 
 
     public void setProgress(String p, int c, String s) {

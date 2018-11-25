@@ -71,7 +71,7 @@ public class FastSettings extends AppCompatActivity {
         for (int j = 0; j < calc.levelNames.size(); j++) {
             adFast.add(new FastData
                     (getString(R.string.fast_calc),
-                            j,
+                            j+1,
                             Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)).get(j),
                             calc.scoreMap.get(calc.levelNames.get(j))));
         }
@@ -106,10 +106,10 @@ public class FastSettings extends AppCompatActivity {
 //                String[] s = Arrays.asList(mContext.getResources().getStringArray(R.array.fast_calc_levels_description)).get(holder.getAdapterPosition()).split(" ");
         String[] s = Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)).get(calc.gameKind).split(" ");
 
-        String g = "";
-        for (int i = 0; i < s.length; i++) {
-            g += s[i] + "~";
-        }
+//        String g = "";
+//        for (int i = 0; i < s.length; i++) {
+//            g += s[i] + "~";
+//        }
 
         calc.setOperationTypeByIndex(0, Arrays.asList(opSign).indexOf(s[1]));
 

@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 
 import com.andraganoid.gameofmath.Game;
+import com.andraganoid.gameofmath.GamePlay;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;
@@ -29,7 +30,7 @@ import static com.andraganoid.gameofmath.Misc.MathSounds.START;
 import static com.andraganoid.gameofmath.Misc.MathSounds.USE_BONUS;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
-public class HeavyBoard extends Game implements View.OnClickListener {
+public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
 
     TextView qTimer, qResult, qTarget, start, hScore, go, hLives, xtraLives;

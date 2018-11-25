@@ -7,10 +7,13 @@
     <!--<string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-7832187166369477/6484184623</string>REAL-->
 
 
-    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>TEST
+    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
+    TEST
 
-    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>TEST
-    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>TEST
+    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    TEST
+    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
+    TEST
     <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
 
 
@@ -81,89 +84,14 @@
     <string name="out_of_lives">Out of lives!</string>
     <string name="out_of_lives_msg_1">"You have "</string>
     <string name="out_of_lives_msg_2">" extra lives. Do you want to use it now in order to continue the game?"</string>
-
-
-
+    <string name="play_again">Play again</string>
+    <string name="go_leaderboard">Show leaderboards</string>
 
     <string name="global_leaderboards">"Global\nleaderboards"</string>
     <string name="lboard_connect">Connect to Google Play Service</string>
-
-
     <string name="signin_other_error">Global Scores are unavailable!</string>
 
 
-
-
-
-    <string-array name="easy_calc_levels">
-        <item>easy_calc_2</item>
-        <item>easy_calc_3</item>
-        <item>easy_calc_4</item>
-    </string-array>
-
-    <string-array name="easy_calc_levels_description">
-        <item>max 2 operands\nX ? X</item>
-        <item>max 3 operands\nX ? X ? X</item>
-        <item>max 4 operands\nX ? X ? X ? X</item>
-    </string-array>
-
-    <string-array name="heavy_calc_levels">
-        <item>heavy_calc_10</item>
-        <item>heavy_calc_100</item>
-    </string-array>
-
-
-    <string-array name="heavy_calc_levels_description">
-        <item>max operand val: 10</item>
-        <item>max operand val: 100</item>
-    </string-array>
-
-    <string-array name="fast_calc_levels">
-        <item>fast_calc_01</item>
-        <item>fast_calc_02</item>
-        <item>fast_calc_03</item>
-
-        <item>fast_calc_04</item>
-        <item>fast_calc_05</item>
-        <item>fast_calc_06</item>
-
-        <item>fast_calc_07</item>
-
-        <item>fast_calc_08</item>
-
-        <item>fast_calc_09</item>
-        <item>fast_calc_10</item>
-        <item>fast_calc_11</item>
-
-        <item>fast_calc_12</item>
-        <item>fast_calc_13</item>
-        <item>fast_calc_14</item>
-
-    </string-array>
-
-
-    <string-array name="fast_calc_levels_description">
-        <item>X + X</item>01
-        <item>XX + X</item>02
-        <item>XX + XX</item>03
-
-        <item>X - X</item>04
-        <item>XX - X</item>05
-        <item>XX - XX</item>06
-
-        <item>X × X</item>107
-
-        <item>XX ÷ X</item>108
-
-        <item>X + X - X</item>09
-        <item>X × X + X</item>10
-        <item>X × X - X</item>11
-
-        <item>XX ÷ X + X</item>12
-        <item>XX ÷ X - X</item>13
-        <item>XX ÷ X × X</item>14
-
-    </string-array>
     <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="action_settings" translatable="false">Settings</string>
 

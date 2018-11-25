@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
+import com.andraganoid.gameofmath.GamePlay;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Lit;
 import com.andraganoid.gameofmath.R;
@@ -14,6 +16,7 @@ import com.andraganoid.gameofmath.R;
 
 import java.util.ArrayList;
 
+import static com.andraganoid.gameofmath.GamePlay.calc;
 import static com.andraganoid.gameofmath.Misc.MathSounds.GET_BONUS;
 import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
 import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
@@ -22,7 +25,7 @@ import static com.andraganoid.gameofmath.Misc.MathSounds.TIME_IS_OUT;
 import static com.andraganoid.gameofmath.Misc.MathSounds.USE_BONUS;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
-public class EasyBoard extends Game {
+public class EasyBoard extends GamePlay {
 
     TextView lNum[], lOper[], lEr[];
     ArrayList<Integer> easyFornulaArr = new ArrayList<>();
@@ -30,19 +33,16 @@ public class EasyBoard extends Game {
     boolean isNum;
 
     int secondsLeft;
-    View board;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
         board = findViewById(R.id.easy_board_lay);
-      //  play(SILENCE);
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
-
-        //  findViewById(R.id.lite_board_lay).setBackground(new BitmapDrawable(getResources(), background));
         start = findViewById(R.id.easy_start);
         lResult = findViewById(R.id.easy_result);
         lTarget = findViewById(R.id.easy_target);
@@ -76,7 +76,7 @@ public class EasyBoard extends Game {
 
         start.setVisibility(View.VISIBLE);
         start.setText("3");
-       // play(START);
+
 
         eScore.setText(calc.resetScore());
         isEnd = true;
@@ -108,14 +108,12 @@ public class EasyBoard extends Game {
 
     void runEasy() {
 
-      //  Toast.makeText(this, "START", Toast.LENGTH_SHORT).show();
         calc.gameLevel++;
         checkForBonusesEasy();
 
+board.setClickable(false);
+      //  formula.setClickable(false);
 
-        formula.setClickable(false);
-
-        //  board.setVisibility(View.VISIBLE);
         task = new Lit();
 
         eScore.setText(calc.easyScore("nextLvl"));
@@ -184,7 +182,6 @@ public class EasyBoard extends Game {
 
         if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
 
-//            MathBase.getInstance().saveEasyResult(calc.levelNames.get(calc.gameKind), (long) (calc.currentScore));
             MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind), (long) (calc.currentScore));
             formula.setText(getString(R.string.new_high));
             startAnimation(formula, 5);
@@ -193,8 +190,8 @@ public class EasyBoard extends Game {
             formula.setText(getString(R.string.game_over));
             play(LOST_LIFE);
         }
-        formula.setClickable(true);
-
+      //  formula.setClickable(true);
+       board.setClickable(true);
     }
 
     void writeFormula() {
@@ -464,9 +461,35 @@ public class EasyBoard extends Game {
 
     public void easyOver(View v) {
 
-        showFullscreenAd();
+       // showFullscreenAd();
         //   goMain = false;
         //  finish();
+
+
+        if (fireTimer != null) {
+            fireTimer.cancel();
+        }
+        showFullscreenAd();
+
+        board.setClickable(false);
+        (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+
+    }
+
+
+    public void goAgain(View v) {
+
+        Toast.makeText(this, "GO AGAIN", Toast.LENGTH_SHORT).show();
+
+       // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
+        calc.gameLevel = 1;
+        adIsShowing = true;
+        recreate();
+//        Intent intent = new Intent(this, FastBoard.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
+
+
     }
 
     @Override

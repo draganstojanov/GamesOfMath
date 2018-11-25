@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,8 +25,6 @@ import java.util.Arrays;
 import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
 import static com.andraganoid.gameofmath.Misc.MathSounds.START;
 
-//import static com.andraganoid.gameofmath.Game.mathBase;
-
 
 public class FastBoard extends GameBoard {
 
@@ -33,18 +32,18 @@ public class FastBoard extends GameBoard {
     private Handler handler = new Handler();
     TextView sw, start;
     Long timeInMillis;
-    // ArrayList<Long> top = new ArrayList<>();
-//    ArrayList<Integer> prog = new ArrayList<>();
-
 
     @Override
     public void prepareTask() {
+
+        Toast.makeText(this, "PREPARE TASK", Toast.LENGTH_SHORT).show();
+
         goMain = true;
         keyboard.setVisibility(View.VISIBLE);
-        //   (findViewById(R.id.game_board_scores)).setVisibility(View.GONE);
         typed.setVisibility(View.VISIBLE);
-        typed.setClickable(false);
-        formula.setClickable(false);
+//        typed.setClickable(false);
+//        formula.setClickable(false);
+        board.setClickable(false);
 
         (findViewById(R.id.fast_bar)).setVisibility(View.VISIBLE);
         sw = findViewById(R.id.fast_timer);
@@ -93,16 +92,15 @@ public class FastBoard extends GameBoard {
 
         start.setVisibility(View.VISIBLE);
         start.setText("3");
-      //  play(START);
-
         isEnd = true;
         goMain = false;
         intro = new CountDownTimer(5000, 1000) {
 
             @Override
             public void onTick(long l) {
-
-                if (l < 4000) {   play(START);
+                Log.d("intro", String.valueOf(l));
+                if (l < 4000) {
+                    play(START);
                     start.setText(String.valueOf(l / 1000));
                 }
             }
@@ -163,7 +161,8 @@ public class FastBoard extends GameBoard {
 
             typed.setText(calc.showTime(timeInMillis));
 
-            typed.setClickable(true);
+//            typed.setClickable(true);
+//            formula.setClickable(true);
             formula.setClickable(true);
 
             keyboard.setVisibility(View.INVISIBLE);
@@ -176,15 +175,62 @@ public class FastBoard extends GameBoard {
 
     @Override
     public void goNext(View v) {
-        if (calc.gameLevel > calc.getHowManyTasks()) {
+        //   if (calc.gameLevel > calc.getHowManyTasks()) {
 
-            showFullscreenAd();
-            //  goMain = false;
-            // finish();
+//            if (!fullscreenIsShowed) {
+////                showFullscreenAd();
+////            } else {
+////                fullscreenIsShowed=false;
+////                fastCheckLeaderboard();
+////            }
 
-        } else {
-            prepareTask();
+
+        if (fireTimer != null) {
+            fireTimer.cancel();
         }
+        showFullscreenAd();
+//        typed.setClickable(false);
+//        formula.setClickable(false);
+        board.setClickable(false);
+      //  fastCheckLeaderboard();
+        (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+
+        //  } else {
+        //       prepareTask();
+        //  }
+    }
+
+    private void fastCheckLeaderboard() {
+
+        // xxxx vidi da li ima rezultat za lb
+
+
+        // again or backtomenu?
+
+
+        (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+
+
+//
+//        goMain = false;
+//        finish();
+
+
+    }
+
+    public void goAgain(View v) {
+
+        Toast.makeText(this, "GO AGAIN", Toast.LENGTH_SHORT).show();
+
+        calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
+        calc.gameLevel = 1;
+        adIsShowing = true;
+        recreate();
+//        Intent intent = new Intent(this, FastBoard.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
+
+
     }
 
 
@@ -216,6 +262,7 @@ public class FastBoard extends GameBoard {
 
     @Override
     protected void onPause() {
+
 
         super.onPause();
         if (!adIsShowing) {

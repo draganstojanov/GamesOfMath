@@ -19,7 +19,12 @@ import com.squareup.leakcanary.LeakCanary;
 
 // TODO
 
-//hiscores  googleplay
+//HEAVY HINT NE RADI
+
+//checkLeaderboardDesire
+//practice i heavy again or leaderboard
+
+// heavy calc kad ispise ocisti, prvo pise tacno, pa tek onda your score
 
 
 // LEADERBOARDS SHOW
@@ -56,9 +61,6 @@ public class Main extends AppCompatActivity {
         };
 
 
-
-
-
         MathBase mb = new MathBase(getApplicationContext());
         MathSounds ms = MathSounds.getInstance(getApplicationContext());
 
@@ -68,8 +70,8 @@ public class Main extends AppCompatActivity {
         logo_main = findViewById(R.id.game_logo_main);
 
 
-        ObjectAnimator animator = ObjectAnimator
-                .ofFloat(logo_main, View.ALPHA, 0f, 1f);
+        ObjectAnimator animator =
+                ObjectAnimator.ofFloat(logo_main, View.ALPHA, 0f, 1f);
 
         animator.setDuration(5000)
                 .start();
@@ -81,6 +83,8 @@ public class Main extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animator animation) {
+
+                //checkLeaderboardDesire();
                 goGame();
             }
 
@@ -102,16 +106,23 @@ public class Main extends AppCompatActivity {
 //        });
 
 
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(getApplication());
+//        if (LeakCanary.isInAnalyzerProcess(this)) {
+//            // This process is dedicated to LeakCanary for heap analysis.
+//            // You should not init your app in this process.
+//            return;
+//        }
+//        LeakCanary.install(getApplication());
 
 
     }
 
+
+    private void checkLeaderboardDesire(){
+
+        // alert da li zelis da s nakacis
+
+
+    }
 
 
     private void goGame() {

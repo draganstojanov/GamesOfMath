@@ -116,6 +116,8 @@
         \"DODATNO VREME\" - imate dodatnih 30 sekundi za rešavanje trenutnog zadatka.\n
         \"DODATNI ŽIVOTI\" - možete iskoristiti kad izgubite sve života da bi nastavili igru.\n\n
         Uživajte!"</string>
+    <string name="play_again">Igraj ponovo</string>
+    <string name="go_leaderboard">Prikaži liste</string>
 
 
 </resources>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/again_or_leaderboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#e0000000"
+    android:padding="48dp"
+    android:visibility="gone"
+    tools:visibility="visible">
+
+
+    <TextView
+        android:id="@+id/go_leaderboard"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/tv_stroke"
+        android:gravity="center"
+        android:onClick="goLeaderboards"
+        android:padding="8dp"
+        android:text="@string/go_leaderboard"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/play_again"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/play_again"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="48dp"
+        android:background="@drawable/tv_stroke"
+        android:gravity="center"
+        android:onClick="goAgain"
+        android:padding="8dp"
+        android:text="@string/play_again"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/go_to_menu"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/go_leaderboard" />
+
+
+    <TextView
+        android:id="@+id/go_to_menu"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/tv_stroke"
+        android:gravity="center"
+        android:onClick="goBack"
+        android:padding="8dp"
+        android:text="@string/go_back"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/play_again" />
+
+
+</android.support.constraint.ConstraintLayout>
