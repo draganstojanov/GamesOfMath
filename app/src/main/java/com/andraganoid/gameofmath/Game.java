@@ -4,7 +4,9 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
@@ -61,6 +63,7 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
     @Override
     protected void onResume() {
         super.onResume();
+        turnTheScreenOff();
         Toast.makeText(this, "RESUME GAME", Toast.LENGTH_SHORT).show();
 
 
@@ -93,6 +96,7 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         rl = findViewById(R.id.reward_dialog);
         rewardAd = MobileAds.getRewardedVideoAdInstance(this);
         rewardAd.setRewardedVideoAdListener(this);
+        checkForLeaderboards();
 
     }
 
@@ -120,7 +124,6 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-
 
 
     public void goSetLeaderboardPermission(View v) {
@@ -153,12 +156,9 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
             lad.show();
 
 
-            Typeface typeface = ResourcesCompat.getFont(this, R.font.luckiestguy);
-
-
-            ((TextView) lad.getWindow().findViewById(android.R.id.message)).setTypeface(typeface);
-            ((Button) lad.getWindow().findViewById(android.R.id.button1)).setTypeface(typeface);
-            ((Button) lad.getWindow().findViewById(android.R.id.button2)).setTypeface(typeface);
+            ((TextView) lad.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
+            ((Button) lad.getWindow().findViewById(android.R.id.button1)).setTypeface(alertTypeface);
+            ((Button) lad.getWindow().findViewById(android.R.id.button2)).setTypeface(alertTypeface);
 
 
         } else {
@@ -188,7 +188,6 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         }
 
     }
-
 
 
     @Override
@@ -266,7 +265,7 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdClosed() {
-      //  loadRewardAd();
+        //  loadRewardAd();
         if (getReward) {
             getReward = false;
             play(REWARD);
@@ -348,5 +347,76 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
     }
 
+
+    void checkForLeaderboards() {
+
+
+        if (prefs.getBoolean("askForLeaderboards", true)) {
+
+
+            android.app.AlertDialog adb = new android.app.AlertDialog.Builder(this).create();
+            // adb.setTitle(getString(R.string.out_of_lives));
+            adb.setMessage(getString(R.string.join_leaderboards));
+            adb.setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                    prefsEditor.putBoolean("leaderboardsPermission", true).apply();
+                    startSignInIntentLeaderboard();
+
+                    //positive
+                    //  goMenu(false);
+
+                }
+            });
+
+            adb.setButton(Dialog.BUTTON_NEGATIVE, getString(R.string.no), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //negative
+
+                    goMenu(false);
+                }
+            });
+
+            adb.setButton(Dialog.BUTTON_NEUTRAL, getString(R.string.ask_later), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    //ask later
+
+                    goMenu(true);
+
+                }
+            });
+
+            adb.setCancelable(false);
+            adb.show();
+
+
+//            int titleId = getResources().getIdentifier("alertTitle", "id", "android");
+//            if (titleId > 0) {
+//                TextView title = (TextView) adb.findViewById(titleId);
+//                if (title != null) {
+//                    title.setTypeface(alertTypeface);
+//                }
+//            }
+
+            ((TextView) adb.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
+//            ((Button) adb.getWindow().findViewById(android.R.id.button1)).setTypeface(alertTypeface);
+//            ((Button) adb.getWindow().findViewById(android.R.id.button2)).setTypeface(alertTypeface);
+//            ((Button) adb.getWindow().findViewById(android.R.id.button3)).setTypeface(alertTypeface);
+
+            //OVO RADI  adb.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.info)));
+
+        } else {
+            goMenu(false);
+        }
+    }
+
+
+    public void goMenu(boolean ask) {
+        prefsEditor.putBoolean("askForLeaderboards", ask).apply();
+        (findViewById(R.id.first_logo)).setVisibility(View.GONE);
+    }
 
 }

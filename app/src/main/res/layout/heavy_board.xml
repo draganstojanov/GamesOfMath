@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
+        android:onClick="heavyOver"
         android:orientation="vertical">
 
 
@@ -411,6 +412,11 @@
 
     <include layout="@layout/pause_dialog" />
 
-    <include layout="@layout/firework" />
+    <include layout="@layout/firework"/>
+
+    <include
+        layout="@layout/again_or_leaderboard"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </android.support.constraint.ConstraintLayout>

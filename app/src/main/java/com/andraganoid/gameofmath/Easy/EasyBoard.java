@@ -86,7 +86,8 @@ public class EasyBoard extends GamePlay {
             @Override
             public void onTick(long l) {
 
-                if (l < 4000) {  play(START);
+                if (l < 4000) {
+                    play(START);
                     start.setText(String.valueOf(l / 1000));
                 }
             }
@@ -111,8 +112,8 @@ public class EasyBoard extends GamePlay {
         calc.gameLevel++;
         checkForBonusesEasy();
 
-board.setClickable(false);
-      //  formula.setClickable(false);
+        board.setClickable(false);
+        //  formula.setClickable(false);
 
         task = new Lit();
 
@@ -190,8 +191,8 @@ board.setClickable(false);
             formula.setText(getString(R.string.game_over));
             play(LOST_LIFE);
         }
-      //  formula.setClickable(true);
-       board.setClickable(true);
+        //  formula.setClickable(true);
+        board.setClickable(true);
     }
 
     void writeFormula() {
@@ -460,20 +461,13 @@ board.setClickable(false);
     }
 
     public void easyOver(View v) {
-
-       // showFullscreenAd();
-        //   goMain = false;
-        //  finish();
-
-
+        board.setClickable(false);
         if (fireTimer != null) {
             fireTimer.cancel();
         }
         showFullscreenAd();
-
-        board.setClickable(false);
         (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
-
+        turnTheScreenOff();
     }
 
 
@@ -481,7 +475,7 @@ board.setClickable(false);
 
         Toast.makeText(this, "GO AGAIN", Toast.LENGTH_SHORT).show();
 
-       // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
+        // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
         calc.gameLevel = 1;
         adIsShowing = true;
         recreate();

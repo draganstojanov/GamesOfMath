@@ -24,7 +24,6 @@
     <string name="get_bonus">Uzmi bonus</string>
     <string name="time">Vreme</string>
     <string name="progress">Napredak</string>
-    <string name="your_result">Tvoj rezultat</string>
     <string name="clear">Očisti</string>
     <string name="pright">Tačno:</string>
     <string name="pwrong">Pogrešno:</string>
@@ -48,7 +47,7 @@
     <string name="top_scores">"Globalni\ntop\nrezultati"</string>
     <string name="play">Igraj</string>
     <string name="global_leaderboards">"Globalni\nrezultati"</string>
-    <string name="signin_other_error">Globalni rezultati su nedostupni!</string>
+    <string name="signin_other_error">Tabele sa rezultatima su nedostupne!</string>
     <string name="lboard_connect">Povežite se sa Google Play Service</string>
     <string name="yes">Da</string>
     <string name="no">Ne</string>
@@ -118,6 +117,9 @@
         Uživajte!"</string>
     <string name="play_again">Igraj ponovo</string>
     <string name="go_leaderboard">Prikaži liste</string>
+    <string name="ask_later">Pitaj kasnije</string>
+    <string name="join_leaderboards">Games Of Math koristi Google Play Games Services Leaderboards za čuvanje i prikazs najboljih rezultata igrača. Da li želite da se pridružite? Besplatno je i zabavno!</string>
+    <string name="your_result">Tabele sa rezultatima su nedostupne!</string>
 
 
 </resources>

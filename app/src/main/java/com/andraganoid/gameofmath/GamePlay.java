@@ -5,20 +5,23 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Misc.MathSounds;
 import com.andraganoid.gameofmath.Operation.Calc;
@@ -32,11 +35,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
-import com.google.android.gms.common.api.Result;
-import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.games.Games;
 import com.google.android.gms.games.LeaderboardsClient;
-import com.google.android.gms.games.leaderboard.Leaderboards;
 import com.google.android.gms.games.leaderboard.ScoreSubmissionData;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -61,7 +61,7 @@ public class GamePlay extends AppCompatActivity {
     public SharedPreferences prefs;;
 
     public SharedPreferences.Editor prefsEditor;
-
+    public Typeface alertTypeface;
 public View board;
     public CountDownTimer cdt, intro, fireTimer;
     public Intent boardIntent;
@@ -98,6 +98,8 @@ public View board;
     @Override
     protected void onResume() {
         super.onResume();
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         Toast.makeText(this, "RESUME GAME PLAY", Toast.LENGTH_SHORT).show();
         MathBase mb = new MathBase(getApplicationContext());
 
@@ -111,7 +113,7 @@ public View board;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
       //  setContentView(R.layout.game_play);
-        Toast.makeText(this, "CREATE GAME PLAY", Toast.LENGTH_SHORT).show();
+        alertTypeface = ResourcesCompat.getFont(this, R.font.luckiestguy);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefsEditor = prefs.edit();
         mathSounds = MathSounds.getInstance(getApplicationContext());
@@ -387,11 +389,11 @@ public View board;
     }
 
 
-    private void startSignInIntentLeaderboard() {
+    public void startSignInIntentLeaderboard() {
         GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
                 GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
         Intent intent = signInClient.getSignInIntent();
-        startActivityForResult(intent, 9001);
+        startActivityForResult(intent, 9013);
 
 
     }
@@ -404,30 +406,30 @@ public View board;
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 9001) {
+        if (requestCode == 9013) {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
 
-
-            Log.d("RESULT", String.valueOf(result));
             if (result.isSuccess()) {
 
                 Toast.makeText(GamePlay.this, "SIGNED IN", Toast.LENGTH_SHORT).show();
-                // The signed in account is stored in the result.
                 GoogleSignInAccount signedInAccount = result.getSignInAccount();
+                (findViewById(R.id.first_logo)).setVisibility(View.GONE);
             } else {
                 String message = result.getStatus().getStatusMessage();
                 if (message == null || message.isEmpty()) {
                     message = getString(R.string.signin_other_error);
 
-                    prefsEditor
-                            .putBoolean("leaderboardsPermission", false)
-                            .apply();
+                    prefsEditor.putBoolean("leaderboardsPermission", false).apply();
                   //  slp(false);
 
-
                 }
+                (findViewById(R.id.first_logo)).setVisibility(View.GONE);
                 new AlertDialog.Builder(this).setMessage(message)
-                        .setNeutralButton(R.string.ok, null).show();
+                        .setCancelable(true).show();
+
+
+
+
             }
         }
     }
@@ -488,6 +490,11 @@ public View board;
 
 
 
+
+    public void turnTheScreenOff(){
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
+    }
 
 }
 

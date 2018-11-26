@@ -175,29 +175,14 @@ public class FastBoard extends GameBoard {
 
     @Override
     public void goNext(View v) {
-        //   if (calc.gameLevel > calc.getHowManyTasks()) {
 
-//            if (!fullscreenIsShowed) {
-////                showFullscreenAd();
-////            } else {
-////                fullscreenIsShowed=false;
-////                fastCheckLeaderboard();
-////            }
-
-
+        board.setClickable(false);
         if (fireTimer != null) {
             fireTimer.cancel();
         }
         showFullscreenAd();
-//        typed.setClickable(false);
-//        formula.setClickable(false);
-        board.setClickable(false);
-      //  fastCheckLeaderboard();
         (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
 
-        //  } else {
-        //       prepareTask();
-        //  }
     }
 
     private void fastCheckLeaderboard() {

@@ -6,19 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".Main">
 
-
-
-
     <ImageView
         android:id="@+id/game_logo_main"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:padding="8dp"
         android:src="@drawable/math_title_transparent" />
-
-
-
-
 
 </android.support.constraint.ConstraintLayout>
 

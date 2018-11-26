@@ -89,7 +89,11 @@
 
     <string name="global_leaderboards">"Global\nleaderboards"</string>
     <string name="lboard_connect">Connect to Google Play Service</string>
-    <string name="signin_other_error">Global Scores are unavailable!</string>
+    <string name="signin_other_error">Leaderboards are unavailable!</string>
+
+    <string name="join_leaderboards">Games Of Math using Google Play Games Services Leaderboards to store and display the players hi-scores. Do you want to join? Its free and fun!</string>
+    <string name="ask_later">Ask me later</string>
+
 
 
     <string name="title_activity_main" translatable="false">MainActivity</string>

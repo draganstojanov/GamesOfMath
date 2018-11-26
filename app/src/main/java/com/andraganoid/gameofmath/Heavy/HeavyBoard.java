@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.andraganoid.gameofmath.Game;
@@ -27,6 +28,7 @@ import static com.andraganoid.gameofmath.Misc.MathSounds.GET_BONUS;
 import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
 import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
 import static com.andraganoid.gameofmath.Misc.MathSounds.START;
+import static com.andraganoid.gameofmath.Misc.MathSounds.TIME_IS_OUT;
 import static com.andraganoid.gameofmath.Misc.MathSounds.USE_BONUS;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
@@ -57,7 +59,8 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         isEnd = false;
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind / 100));
 
-
+        board = findViewById(R.id.heavy_board_lay);
+        board.setClickable(false);
         hScore = findViewById(R.id.heavy_score);
         go = findViewById(R.id.heavy_go);
 
@@ -167,8 +170,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         cdt = new CountDownTimer(sec + 1000, 500) {
             @Override
             public void onTick(long l) {
-                // qTimer.setText("Seconds left: " + String.valueOf(l / 1000));
-                Log.d("heavy tick", String.valueOf(l));
+
                 timerTick = (int) l - 1000;
 
                 calc.secondsRemain = (int) l / 1000;
@@ -176,6 +178,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 if ((l / 1000 - 1) < 11) {
                     if (colorChange) {
                         qTimer.setTextColor(getResources().getColor(R.color.checked));
+                        play(TIME_IS_OUT);
                     } else {
                         qTimer.setTextColor(getResources().getColor(R.color.info));
                     }
@@ -251,19 +254,19 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         adb.show();
 
 
-        Typeface typeface = ResourcesCompat.getFont(this, R.font.luckiestguy);
+
 
         int titleId = getResources().getIdentifier("alertTitle", "id", "android");
         if (titleId > 0) {
             TextView title = (TextView) adb.findViewById(titleId);
             if (title != null) {
-                title.setTypeface(typeface);
+                title.setTypeface(alertTypeface);
             }
         }
 
-        ((TextView) adb.getWindow().findViewById(android.R.id.message)).setTypeface(typeface);
-        ((Button) adb.getWindow().findViewById(android.R.id.button1)).setTypeface(typeface);
-        ((Button) adb.getWindow().findViewById(android.R.id.button2)).setTypeface(typeface);
+        ((TextView) adb.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
+        ((Button) adb.getWindow().findViewById(android.R.id.button1)).setTypeface(alertTypeface);
+        ((Button) adb.getWindow().findViewById(android.R.id.button2)).setTypeface(alertTypeface);
 
     }
 
@@ -273,6 +276,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
         findViewById(R.id.heavy_tr).setVisibility(View.GONE);
         go.setVisibility(View.VISIBLE);
+        board.setClickable(true);
 
         if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
 
@@ -303,7 +307,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 prepHeavy();
             } else {
                 hScore.setText(calc.heavyScore("clear"));
-                runHeavy();
+                runHeavy(); rl.setVisibility(View.GONE);
                 // lostLife();
             }
         }
@@ -312,6 +316,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
+       rl.setVisibility(View.GONE);
         if (!isEnd) {
             hScore.setText(calc.heavyScore("click"));
             int ix = Integer.parseInt(String.valueOf(view.getTag()));
@@ -348,6 +353,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                             qTarget.setClickable(true);
 
                             if (isCorrect()) {
+                                rl.setVisibility(View.GONE);
                                 qTarget.setText(getString(R.string.right));
                                 //  qResult.setText("OK");
                                 qResult.setBackgroundColor(getResources().getColor(R.color.checked));
@@ -358,7 +364,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                             }
 
                         } else {
-                            // rl.setVisibility(View.GONE);
+                           rl.setVisibility(View.GONE);
                             // qResult.setBackgroundColor(0);
                             //  qResult.setText("");
                             qTarget.setClickable(false);
@@ -389,13 +395,13 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     boolean isCorrect() {
 
-
-        if (task.getResult() == yourRes()) {
-            return true;
-        } else {
-            return false;
-
-        }
+        return task.getResult() == yourRes();
+//        if (task.getResult() == yourRes()) {
+//            return true;
+//        } else {
+//            return false;
+//
+//        }
     }
 
     public void hint(View v) {
@@ -548,10 +554,29 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     }
 
     public void heavyOver(View v) {
+        board.setClickable(false);
+        if (fireTimer != null) {
+            fireTimer.cancel();
+        }
         showFullscreenAd();
-        //   goMain = false;
-        //  finish();
+        (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+        turnTheScreenOff();
     }
+
+    public void goAgain(View v) {
+
+        Toast.makeText(this, "GO AGAIN", Toast.LENGTH_SHORT).show();
+
+
+        adIsShowing = true;
+        recreate();
+//        Intent intent = new Intent(this, FastBoard.class);
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        startActivity(intent);
+
+
+    }
+
 
     @Override
     public void onBackPressed() {

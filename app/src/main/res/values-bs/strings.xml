@@ -107,7 +107,7 @@
         \"DODATNO VRIJEME\" - imate dodatnih 30 sekundi za rješavanje trenutnog zadatka.\n
         \"DODATNI ŽIVOTI\" - možete iskoristiti kad izgubite sve živote kako biste nastavili igru.\n\n
         Uživajte!"</string>
-    <string name="signin_other_error">Globalni rezultati su nedostupni!</string>
+    <string name="signin_other_error">Tabele sa rezultatima su nedostupne!</string>
     <string name="lboard_connect">Povežite se sa Google Play Service</string>
     <string name="yes">Da</string>
     <string name="no">Ne</string>
@@ -116,6 +116,8 @@
     <string name="out_of_lives_msg_2">" dodatne živote. Da li želite da ih koristite sad da bi nastavili igru?"</string>
     <string name="play_again">Igraj ponovo</string>
     <string name="go_leaderboard">Prikaži liste</string>
+    <string name="ask_later">Pitaj kasnije</string>
+    <string name="join_leaderboards">Games Of Math koristi Google Play Games Services Leaderboards za čuvanje i prikaz najboljih rezultata igrača. Da li želite da se pridružite? Besplatno je i zabavno!</string>
 
 
 </resources>
