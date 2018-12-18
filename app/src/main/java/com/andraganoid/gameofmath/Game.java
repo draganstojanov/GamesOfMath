@@ -351,7 +351,9 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
     void checkForLeaderboards() {
 
 
-        if (prefs.getBoolean("askForLeaderboards", true)) {
+        if (prefs.getBoolean("askForLeaderboards", true) && prefs.getBoolean("askForLeaderboardsAtStart", false)) {
+
+            prefsEditor.putBoolean("askForLeaderboardsAtStart", false).apply();
 
 
             android.app.AlertDialog adb = new android.app.AlertDialog.Builder(this).create();
@@ -406,7 +408,7 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 //            ((Button) adb.getWindow().findViewById(android.R.id.button2)).setTypeface(alertTypeface);
 //            ((Button) adb.getWindow().findViewById(android.R.id.button3)).setTypeface(alertTypeface);
 
-            //OVO RADI  adb.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.info)));
+    //adb.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.checked)));
 
         } else {
             goMenu(false);

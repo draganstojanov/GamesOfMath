@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/game_settings"
@@ -15,7 +16,8 @@
     <LinearLayout
         android:id="@+id/sound"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/tv_stroke"
         android:gravity="center"
         app:autoSizeTextType="uniform"
@@ -34,9 +36,10 @@
 
         android:id="@+id/l_boards"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
         android:background="@drawable/tv_stroke"
-        app:layout_constraintBottom_toTopOf="@id/game_settings_ok"
+        app:layout_constraintBottom_toTopOf="@id/lboard_show"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sound">
@@ -45,36 +48,53 @@
         <TextView
             android:id="@+id/lboard_set_title"
             android:layout_width="0dp"
-            android:layout_weight="2"
             android:layout_height="match_parent"
+            android:layout_weight="2"
             android:gravity="center"
             android:maxLines="2"
             android:onClick="goSetLeaderboardPermission"
             android:padding="8dp"
             android:text="@string/global_leaderboards"
-            app:autoSizeTextType="uniform"
-            />
+            app:autoSizeTextType="uniform" />
 
 
         <TextView
             android:id="@+id/lboard_on_off"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_margin="8dp"
+            android:layout_weight="1"
             android:background="@color/info"
             android:gravity="center"
             android:onClick="goSetLeaderboardPermission"
             android:padding="4dp"
             android:textColor="@color/checked"
             app:autoSizeTextType="uniform" />
+
     </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/lboard_show"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/tv_stroke"
+        android:gravity="center"
+        android:onClick="showLeaderboardsList"
+        android:padding="8dp"
+        android:text="@string/go_leaderboard"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@id/game_settings_ok"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/l_boards" />
+
 
     <TextView
         android:id="@+id/game_settings_ok"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="0dp"
         android:background="@drawable/tv_stroke"
         android:gravity="center"
         android:onClick="goSettingsOk"
@@ -84,7 +104,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/l_boards"></TextView>
+        app:layout_constraintTop_toBottomOf="@id/lboard_show" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -3,12 +3,15 @@ package com.andraganoid.gameofmath;
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -19,9 +22,12 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.Button;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Misc.MathSounds;
 import com.andraganoid.gameofmath.Operation.Calc;
@@ -42,6 +48,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.plattysoft.leonids.ParticleSystem;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import static com.andraganoid.gameofmath.Misc.MathSounds.BEST_RESULT;
@@ -57,12 +65,13 @@ public class GamePlay extends AppCompatActivity {
 
 
     public InterstitialAd fullscreenAd;
-    public static boolean adIsShowing,fullscreenIsShowed;
-    public SharedPreferences prefs;;
+    public static boolean adIsShowing, fullscreenIsShowed;
+    public SharedPreferences prefs;
+    ;
 
     public SharedPreferences.Editor prefsEditor;
     public Typeface alertTypeface;
-public View board;
+    public View board;
     public CountDownTimer cdt, intro, fireTimer;
     public Intent boardIntent;
     public boolean goMain, isEnd;
@@ -112,14 +121,14 @@ public View board;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-      //  setContentView(R.layout.game_play);
+        //  setContentView(R.layout.game_play);
         alertTypeface = ResourcesCompat.getFont(this, R.font.luckiestguy);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefsEditor = prefs.edit();
         mathSounds = MathSounds.getInstance(getApplicationContext());
         rand = new Random();
 
-        fullscreenIsShowed=false;
+        fullscreenIsShowed = false;
         if (fullscreenAd == null) {
             fullscreenAd = new InterstitialAd(this);
         }
@@ -356,7 +365,7 @@ public View board;
 //            if (fireTimer != null) {
 //                fireTimer.cancel();
 //            }
-            fullscreenIsShowed=true;
+            fullscreenIsShowed = true;
             adIsShowing = true;
             fullscreenAd.show();
         } else {
@@ -373,9 +382,9 @@ public View board;
         GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
                 GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
         signInClient.silentSignIn().addOnCompleteListener(this,
-                new OnCompleteListener<GoogleSignInAccount>() {
+                new OnCompleteListener <GoogleSignInAccount>() {
                     @Override
-                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<GoogleSignInAccount> task) {
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task <GoogleSignInAccount> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(GamePlay.this, "SILENT OK", Toast.LENGTH_SHORT).show();
                             // The signed in account is stored in the task's result.
@@ -420,15 +429,23 @@ public View board;
                     message = getString(R.string.signin_other_error);
 
                     prefsEditor.putBoolean("leaderboardsPermission", false).apply();
-                  //  slp(false);
+                    //  slp(false);
 
                 }
                 (findViewById(R.id.first_logo)).setVisibility(View.GONE);
-                new AlertDialog.Builder(this).setMessage(message)
-                        .setCancelable(true).show();
 
 
+                AlertDialog ad = new AlertDialog.Builder(GamePlay.this).create();
+                ad.setMessage(message);
+                ad.setCancelable(true);
+                ad.show();
 
+
+                ((TextView) ad.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
+
+//                new AlertDialog.Builder(this).setMessage(message)
+//                        .setCancelable(true).show();
+//
 
             }
         }
@@ -439,10 +456,10 @@ public View board;
         GoogleSignInClient signInClient = GoogleSignIn.getClient(this,
                 GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN);
         signInClient.signOut().addOnCompleteListener(this,
-                new OnCompleteListener<Void>() {
+                new OnCompleteListener <Void>() {
                     @Override
-                    public void onComplete(@NonNull com.google.android.gms.tasks.Task<Void> task) {
-
+                    public void onComplete(@NonNull com.google.android.gms.tasks.Task <Void> task) {
+                        ((TextView) findViewById(R.id.lboard_on_off)).setText(getString(R.string.off));
                     }
 
                 });
@@ -456,7 +473,7 @@ public View board;
         int e = (rand.nextInt(1000));
 
 
-        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)).submitScoreImmediate("CgkItryh-O0OEAIQFQ",e).addOnSuccessListener(new OnSuccessListener<ScoreSubmissionData>() {
+        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)).submitScoreImmediate("CgkItryh-O0OEAIQFQ", e).addOnSuccessListener(new OnSuccessListener <ScoreSubmissionData>() {
             @Override
             public void onSuccess(ScoreSubmissionData scoreSubmissionData) {
 
@@ -467,15 +484,14 @@ public View board;
         });
 
 
-             //   .submitScore("CgkItryh-O0OEAIQFQ",e );callback
+        //   .submitScore("CgkItryh-O0OEAIQFQ",e );callback
     }
 
 
-    public void showLeaderboard() {
+    public void showLeaderboard(String lBoardId) {
         Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-//                .getLeaderboardIntent(getString(R.string.leaderboard_id))
-                .getLeaderboardIntent("CgkItryh-O0OEAIQFQ")
-                .addOnSuccessListener(new OnSuccessListener<Intent>() {
+                .getLeaderboardIntent(lBoardId)
+                .addOnSuccessListener(new OnSuccessListener <Intent>() {
                     @Override
                     public void onSuccess(Intent intent) {
                         startActivityForResult(intent, 9004);
@@ -489,12 +505,118 @@ public View board;
 //        }else{ signInSilentlyLeaderboard();}
 
 
+    //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
-
-    public void turnTheScreenOff(){
+    public void turnTheScreenOff() {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
     }
+
+
+    public void goLeaderboards(View v) {//koja tabela? ONCLICK POSLE ZAVRSENE IGRE
+
+
+    }
+
+    public void showLeaderboardsList(View v) {
+
+        final ConstraintLayout exp = findViewById(R.id.lboards_exp_list_wrapper);
+        ;
+        if (isSignedInLeaderboard()) {
+
+
+            final ArrayList <Level> levelList = new ArrayList <Level>();
+
+
+            levelList.add(new Level(getString(R.string.fast_calc),
+                    Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)),
+                    Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description))));
+
+            levelList.add(new Level(getString(R.string.easy_calc),
+                    Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)),
+                    Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description_short))));
+
+            levelList.add(new Level(getString(R.string.heavy_calc),
+                    Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)),
+                    Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description))));
+
+            levelList.add(new Level(getString(R.string.cancel), null, null));
+
+            ExpandableListView expListView = (ExpandableListView) findViewById(R.id.lboards_exp_list);
+
+
+            exp.setVisibility(View.VISIBLE);
+            ExpandableListAdapter elAdapter = new LeaderboardAdapter(this, levelList);
+
+            // setting list adapter
+            expListView.setAdapter(elAdapter);
+
+            // Listview Group click listener
+            expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+                @Override
+                public boolean onGroupClick(ExpandableListView parent, View v,
+                                            int groupPosition, long id) {
+                    if (groupPosition + 1 == levelList.size()) {
+                        exp.setVisibility(View.GONE);
+                    }
+                    return false;
+                }
+            });
+
+            // Listview Group expanded listener
+//        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+//
+//            @Override
+//            public void onGroupExpand(int groupPosition) { Toast.makeText(GamePlay.this, levelList.get(groupPosition).getGameName(), Toast.LENGTH_SHORT).show();
+////                Toast.makeText(getApplicationContext(),
+////                        listDataHeader.get(groupPosition) + " Expanded",
+////                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+            // Listview Group collasped listener
+//        expListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+//
+//            @Override
+//            public void onGroupCollapse(int groupPosition) { Toast.makeText(GamePlay.this, levelList.get(groupPosition).getGameName(), Toast.LENGTH_SHORT).show();
+////                Toast.makeText(getApplicationContext(),
+////                        listDataHeader.get(groupPosition) + " Collapsed",
+////                        Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+
+            // Listview on child click listener
+            expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+                @Override
+                public boolean onChildClick(ExpandableListView parent, View v,
+                                            int groupPosition, int childPosition, long id) {
+
+                    Toast.makeText(GamePlay.this, levelList.get(groupPosition).getLevel(childPosition), Toast.LENGTH_SHORT).show();
+
+                    showLeaderboard("leaderboard_" + levelList.get(groupPosition).getLevel(childPosition));
+
+                    return false;
+                }
+            });
+
+        } else {
+
+            AlertDialog ad = new AlertDialog.Builder(GamePlay.this).create();
+            ad.setMessage(getString(R.string.lboard_connect) + "!");
+            ad.setCancelable(true);
+            ad.show();
+
+            ((TextView) ad.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
+
+
+//            new AlertDialog.Builder(this).setMessage(getString(R.string.lboard_connect) + "!")
+//                    .setCancelable(true).show();
+            exp.setVisibility(View.GONE);
+        }
+    }
+
 
 }
 

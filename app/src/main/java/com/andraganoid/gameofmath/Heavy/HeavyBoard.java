@@ -30,6 +30,9 @@ import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
 import static com.andraganoid.gameofmath.Misc.MathSounds.START;
 import static com.andraganoid.gameofmath.Misc.MathSounds.TIME_IS_OUT;
 import static com.andraganoid.gameofmath.Misc.MathSounds.USE_BONUS;
+import static com.andraganoid.gameofmath.Operation.Calc.HEAVY_HINTS;
+import static com.andraganoid.gameofmath.Operation.Calc.HEAVY_XTRA_LIVES;
+import static com.andraganoid.gameofmath.Operation.Calc.HEAVY_XTRA_TIME;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class HeavyBoard extends GamePlay implements View.OnClickListener {
@@ -237,7 +240,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         adb.setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                calc.heavyXtraLives = calc.setBonus(calc.HEAVY_XTRA_LIVES, calc.heavyXtraLives - 1);
+                calc.heavyXtraLives = calc.setBonus(HEAVY_XTRA_LIVES, calc.heavyXtraLives - 1);
                 xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
                 startAnimation(xtraLives, 1);
                 calc.lives++;
@@ -434,7 +437,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                     tva[i].setText(ssl[i]);
                 }
 
-                calc.heavyHints = calc.setBonus(calc.HEAVY_HINTS, calc.heavyHints - 1);
+                calc.heavyHints = calc.setBonus(HEAVY_HINTS, calc.heavyHints - 1);
                 //  qHints--;
                 hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
 //                if (soundIsOn) {
@@ -458,7 +461,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                     cdt.cancel();
                 }
                 timerStart(timerTick + 30000);
-                calc.heavyXtraTime = calc.setBonus(calc.HEAVY_XTRA_TIME, calc.heavyXtraTime - 1);
+                calc.heavyXtraTime = calc.setBonus(HEAVY_XTRA_TIME, calc.heavyXtraTime - 1);
                 xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
                 play(USE_BONUS);
                 startAnimation(xtraTime, 1);
@@ -474,7 +477,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
 
         if (calc.gameLevel % 12 == 0) {//add HINT
-            calc.heavyHints = calc.setBonus(calc.HEAVY_HINTS, calc.heavyHints + 1);
+            calc.heavyHints = calc.setBonus(HEAVY_HINTS, calc.heavyHints + 1);
             hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
 
             play(GET_BONUS);
@@ -483,7 +486,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         }
 
         if (calc.gameLevel % 20 == 0) {//add XTRA
-            calc.heavyXtraTime = calc.setBonus(calc.HEAVY_XTRA_TIME, calc.heavyXtraTime + 1);
+            calc.heavyXtraTime = calc.setBonus(HEAVY_XTRA_TIME, calc.heavyXtraTime + 1);
             xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
             play(GET_BONUS);
             startAnimation(xtraTime, 1);
@@ -492,7 +495,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
 
         if (calc.gameLevel % 33 == 0) {//add XTRA
-            calc.heavyXtraLives = calc.setBonus(calc.HEAVY_XTRA_LIVES, calc.heavyXtraLives + 1);
+            calc.heavyXtraLives = calc.setBonus(HEAVY_XTRA_LIVES, calc.heavyXtraLives + 1);
             xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
             startAnimation(xtraLives, 1);
             //EEECT

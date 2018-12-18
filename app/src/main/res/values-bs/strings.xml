@@ -62,6 +62,12 @@
     <item>max 4 broja\nX ? X ? X ? X</item>
     </string-array>
 
+    <string-array name="easy_calc_levels_description_short">
+        <item>max 2 broja</item>
+        <item>max 3 broja</item>
+        <item>max 4 broja</item>
+    </string-array>
+
     <string-array name="heavy_calc_levels_description">
         <item>max vrednost broja: 10</item>
         <item>max max vrednost broja: 100</item>

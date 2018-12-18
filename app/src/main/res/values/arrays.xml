@@ -12,6 +12,13 @@
         <item>max 4 operands\nX ? X ? X ? X</item>
     </string-array>
 
+    <string-array name="easy_calc_levels_description_short">
+        <item>max 2 operands</item>
+        <item>max 3 operands</item>
+        <item>max 4 operands</item>
+    </string-array>
+
+
     <string-array name="heavy_calc_levels">
         <item>heavy_calc_10</item>
         <item>heavy_calc_100</item>

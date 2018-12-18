@@ -39,10 +39,13 @@ import com.squareup.leakcanary.LeakCanary;
 
 // LEADERBOARDS SHOW
 // LEADERBOARDS DB&LOGIC
-// leaderboards listview
 
-// leaderboards on!!//
-// leaderboards off!!
+// leaderboards  ON/OFF ispis???
+
+// leaderboards listview OK
+
+// leaderboards on!!//   OK
+// leaderboards off!!    OK
 
 //game onpause pogasi sve dijaloge i menije
 
@@ -62,8 +65,10 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        prefsEditor = prefs.edit();
 
-        new AsyncTask<Void, Void, Void>() {
+        new AsyncTask <Void, Void, Void>() {
 
             @Override
             protected Void doInBackground(Void... voids) {
@@ -76,6 +81,7 @@ public class Main extends AppCompatActivity {
 
         };
 
+        prefsEditor.putBoolean("askForLeaderboardsAtStart", true).apply();
 
         logo_main = findViewById(R.id.game_logo_main);
         startAnimator();
@@ -126,9 +132,6 @@ public class Main extends AppCompatActivity {
 
         animator.setDuration(5000).start();
     }
-
-
-
 
 
 }
