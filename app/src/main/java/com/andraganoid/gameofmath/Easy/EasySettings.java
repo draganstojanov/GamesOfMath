@@ -17,7 +17,7 @@ import java.util.Arrays;
 import static com.andraganoid.gameofmath.Game.calc;
 
 
-public class EasySettings extends AppCompatActivity implements View.OnClickListener {
+public class EasySettings extends AppCompatActivity  {
     private Intent intent;
     private final int TIME_2 = 30;
     private final int TIME_3 = 45;
@@ -70,9 +70,9 @@ public class EasySettings extends AppCompatActivity implements View.OnClickListe
         a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(2)));
         ((TextView) findViewById(R.id.easy_4_3)).setText(a);
 
-        findViewById(R.id.easy_2).setOnClickListener(this);
-        findViewById(R.id.easy_3).setOnClickListener(this);
-        findViewById(R.id.easy_4).setOnClickListener(this);
+//        findViewById(R.id.easy_2).setOnClickListener(this);
+//        findViewById(R.id.easy_3).setOnClickListener(this);
+//        findViewById(R.id.easy_4).setOnClickListener(this);
     }
 
 
@@ -83,27 +83,27 @@ public class EasySettings extends AppCompatActivity implements View.OnClickListe
     }
 
 
-    @Override
-    public void onClick(View v) {
+
+    public void goPlayGameEasy(View v) {
         v.setClickable(false);
         intent = new Intent(this, EasyBoard.class);
 
 
         switch (v.getId()) {
 
-            case R.id.easy_2:
+            case R.id.easy_go_2:
                 calc.gameKind = 0;
                 calc.secondsForTask = TIME_2;
                 calc.setHowManyOperands(2);
                 break;
 
-            case R.id.easy_3:
+            case R.id.easy_go_3:
                 calc.gameKind = 1;
                 calc.secondsForTask = TIME_3;
                 calc.setHowManyOperands(3);
                 break;
 
-            case R.id.easy_4:
+            case R.id.easy_go_4:
                 calc.gameKind = 2;
                 calc.secondsForTask = TIME_4;
                 calc.setHowManyOperands(4);

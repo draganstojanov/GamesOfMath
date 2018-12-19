@@ -292,5 +292,12 @@ public class FastBoard extends GameBoard {
     }
 
 
+    public void goLeaderboards (View v){
+
+        showLeaderboard(calc.levelNames.get(calc.gameKind));
+
+    }
+
+
 }
 

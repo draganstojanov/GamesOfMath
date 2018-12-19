@@ -257,8 +257,6 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         adb.show();
 
 
-
-
         int titleId = getResources().getIdentifier("alertTitle", "id", "android");
         if (titleId > 0) {
             TextView title = (TextView) adb.findViewById(titleId);
@@ -310,7 +308,8 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 prepHeavy();
             } else {
                 hScore.setText(calc.heavyScore("clear"));
-                runHeavy(); rl.setVisibility(View.GONE);
+                runHeavy();
+                rl.setVisibility(View.GONE);
                 // lostLife();
             }
         }
@@ -319,7 +318,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-       rl.setVisibility(View.GONE);
+        rl.setVisibility(View.GONE);
         if (!isEnd) {
             hScore.setText(calc.heavyScore("click"));
             int ix = Integer.parseInt(String.valueOf(view.getTag()));
@@ -367,7 +366,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                             }
 
                         } else {
-                           rl.setVisibility(View.GONE);
+                            rl.setVisibility(View.GONE);
                             // qResult.setBackgroundColor(0);
                             //  qResult.setText("");
                             qTarget.setClickable(false);
@@ -585,6 +584,13 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     public void onBackPressed() {
         super.onBackPressed();
         goMain = false;
+    }
+
+
+    public void goLeaderboards(View v) {
+
+        calc.levelNames.get(calc.gameKind / 100);
+
     }
 
 

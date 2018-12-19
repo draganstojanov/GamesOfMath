@@ -27,12 +27,12 @@ import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class EasyBoard extends GamePlay {
 
-    TextView lNum[], lOper[], lEr[];
-    ArrayList<Integer> easyFornulaArr = new ArrayList<>();
-    TextView lResult, lTarget, lErase, lTimer, skip, xtraTime, reset, start, eScore, formula;
-    boolean isNum;
+   private TextView lNum[], lOper[], lEr[];
+  private  ArrayList<Integer> easyFornulaArr = new ArrayList<>();
+  private  TextView lResult, lTarget, lErase, lTimer, skip, xtraTime, reset, start, eScore, formula;
+  private  boolean isNum;
 
-    int secondsLeft;
+   private int secondsLeft;
 
 
     @Override
@@ -107,7 +107,7 @@ public class EasyBoard extends GamePlay {
 
     }
 
-    void runEasy() {
+   private void runEasy() {
 
         calc.gameLevel++;
         checkForBonusesEasy();
@@ -142,7 +142,7 @@ public class EasyBoard extends GamePlay {
     }
 
 
-    void timerStart(int s) {
+  private  void timerStart(int s) {
         colorChange = true;
         cdt = new CountDownTimer(s * 1000 + 1000 + 250, 500) {
             @Override
@@ -177,7 +177,7 @@ public class EasyBoard extends GamePlay {
         cdt.start();
     }
 
-    void easyGameOver() {
+   private void easyGameOver() {
 
         isEnd = true;
 
@@ -195,7 +195,7 @@ public class EasyBoard extends GamePlay {
         board.setClickable(true);
     }
 
-    void writeFormula() {
+   private void writeFormula() {
 
         if (isNum) {
             prepare4click(lNum);
@@ -246,7 +246,7 @@ public class EasyBoard extends GamePlay {
 
     }
 
-    public void formulaRemove(View v) {
+   public void formulaRemove(View v) {
         if (!isEnd) {
             if (easyFornulaArr.size() > 0) {
                 eScore.setText(calc.easyScore("clear"));
@@ -259,7 +259,7 @@ public class EasyBoard extends GamePlay {
         }
     }
 
-    public void easyNum(View v) {
+   public void easyNum(View v) {
 
         if (!isEnd) {
 
@@ -289,12 +289,12 @@ public class EasyBoard extends GamePlay {
         }
     }
 
-    boolean isMax() {
+   private boolean isMax() {
         return (easyFornulaArr.size() < (2 * calc.getHowManyOperands() - 1));
     }
 
 
-    void prepare4click(TextView[] bv) {
+  private  void prepare4click(TextView[] bv) {
 
         for (TextView tv : bv) {
 
@@ -304,7 +304,7 @@ public class EasyBoard extends GamePlay {
     }
 
 
-    void unPrepare4click(TextView[] bv) {
+  private  void unPrepare4click(TextView[] bv) {
 
         for (TextView tv : bv) {
 
@@ -316,7 +316,7 @@ public class EasyBoard extends GamePlay {
     }
 
 
-    public void easyReset(View v) {
+   public void easyReset(View v) {
         if (!isEnd) {
 
             if (calc.easyResets > 0) {
@@ -359,7 +359,7 @@ public class EasyBoard extends GamePlay {
         }
     }
 
-    public void easyXtraTime(View v) {
+   public void easyXtraTime(View v) {
         if (!isEnd) {
             if (calc.easyXtraTime > 0) {
                 eScore.setText(calc.easyScore("xtra"));
@@ -408,7 +408,7 @@ public class EasyBoard extends GamePlay {
     }
 
 
-    public void goPause(View v) {
+     public void goPause(View v) {
         if (!isEnd) {
             cdt.cancel();
             findViewById(R.id.pause_dialog).setVisibility(View.VISIBLE);
@@ -503,6 +503,13 @@ public class EasyBoard extends GamePlay {
 
     private void setTimeResetText() {
         reset.setText(getString(R.string.resets) + String.valueOf(calc.easyResets));
+    }
+
+
+    public void goLeaderboards (View v){
+
+        showLeaderboard(calc.levelNames.get(calc.gameKind));
+
     }
 
 }

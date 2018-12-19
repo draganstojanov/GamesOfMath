@@ -28,7 +28,18 @@ public class Level {
         return levelName;
     }
 
-    public String getLevelNameItem(int indeks) {
+    public String getScreenLevelName(int indeks) {
+
+        switch(getGameName()){
+
+            case getString
+
+
+
+        }
+
+
+
         return levelName.get(indeks).replace("_"," ").toUpperCase();
     }
 

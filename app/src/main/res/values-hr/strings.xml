@@ -80,6 +80,7 @@
         <item>max vrijednost broja: 10</item>
         <item>max max vrijednost broja: 100</item>
     </string-array>
+
     <string name="reward_choose">Izaberi nagradu:</string>
     <string name="off">ISK</string>
     <string name="on">UK</string>

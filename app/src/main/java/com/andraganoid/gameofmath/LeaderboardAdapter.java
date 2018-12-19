@@ -1,7 +1,6 @@
 package com.andraganoid.gameofmath;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,6 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class LeaderboardAdapter extends BaseExpandableListAdapter {
 
@@ -48,7 +46,7 @@ public class LeaderboardAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return ((levels.get(groupPosition).getLevelNameItem(childPosition)));
+        return ((levels.get(groupPosition).getScreenLevelName(childPosition)));
         //+ levels.get(groupPosition).getLevelDescItem(childPosition)
         //  return allBoards.get(groupTitle.get(groupPosition)).get(childPosition);
     }
@@ -89,7 +87,9 @@ public class LeaderboardAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.leaderboards_items, null);
         }
 
-        ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getLevelNameItem(childPosition));
+//        ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getScreenLevelName(childPosition));
+
+        ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getScreenLevelName(childPosition));
         ((TextView) convertView.findViewById(R.id.lb_exp_desc)).setText(levels.get(groupPosition).getLevelDescItem(childPosition));
 
         return convertView;

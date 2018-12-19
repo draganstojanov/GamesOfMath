@@ -31,10 +31,12 @@ import com.squareup.leakcanary.LeakCanary;
 
 //HEAVY HINT NE RADI
 // heavy calc kad ispise ocisti, prvo pise tacno, pa tek onda your score
+
+//BONUSES ARE -1
 //??????????????????
 
 
-// ALERT DIALOG
+// ALERT DIALOG?
 
 
 // LEADERBOARDS SHOW

@@ -45,9 +45,11 @@ import com.google.android.gms.games.Games;
 import com.google.android.gms.games.LeaderboardsClient;
 import com.google.android.gms.games.leaderboard.ScoreSubmissionData;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.plattysoft.leonids.ParticleSystem;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -473,37 +475,44 @@ public class GamePlay extends AppCompatActivity {
         int e = (rand.nextInt(1000));
 
 
-        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)).submitScoreImmediate("CgkItryh-O0OEAIQFQ", e).addOnSuccessListener(new OnSuccessListener <ScoreSubmissionData>() {
-            @Override
-            public void onSuccess(ScoreSubmissionData scoreSubmissionData) {
+        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
+                .submitScoreImmediate("CgkItryh-O0OEAIQFQ", e)
+                .addOnSuccessListener(new OnSuccessListener <ScoreSubmissionData>() {
+                    @Override
+                    public void onSuccess(ScoreSubmissionData scoreSubmissionData) {
 
-                Log.d("SUBMIT SUCCESS", String.valueOf(scoreSubmissionData.toString()));
+                        Log.d("SUBMIT SUCCESS", String.valueOf(scoreSubmissionData.toString()));
 
 
-            }
-        });
+                    }
+                });
 
 
         //   .submitScore("CgkItryh-O0OEAIQFQ",e );callback
     }
 
 
-    public void showLeaderboard(String lBoardId) {
-        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                .getLeaderboardIntent(lBoardId)
-                .addOnSuccessListener(new OnSuccessListener <Intent>() {
-                    @Override
-                    public void onSuccess(Intent intent) {
-                        startActivityForResult(intent, 9004);
-                    }
-                });
+    public void showLeaderboard(String boardName) {
+        int boardId = getBoardId("leaderboard_" + boardName);
+        Log.d("exp", getString(boardId));
+
+      if (GoogleSignIn.getLastSignedInAccount(this) != null) {//TRY/CATCH
+            Games.getLeaderboardsClient(this,
+                    GoogleSignIn.getLastSignedInAccount(this))
+                    .getLeaderboardIntent(getString(boardId))
+                    .addOnSuccessListener(new OnSuccessListener <Intent>() {
+                        @Override
+                        public void onSuccess(Intent intent) {
+                            startActivityForResult(intent, 9004);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(GamePlay.this, "FAILED"+String.valueOf(e), Toast.LENGTH_SHORT).show();
+                }
+            });
+     }
     }
-
-//        if(isSignedInLeaderboard()){
-//            Toast.makeText(this, "SIGNED IN", Toast.LENGTH_SHORT).show();
-//
-//        }else{ signInSilentlyLeaderboard();}
-
 
     //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
@@ -521,7 +530,7 @@ public class GamePlay extends AppCompatActivity {
     public void showLeaderboardsList(View v) {
 
         final ConstraintLayout exp = findViewById(R.id.lboards_exp_list_wrapper);
-        ;
+
         if (isSignedInLeaderboard()) {
 
 
@@ -595,7 +604,7 @@ public class GamePlay extends AppCompatActivity {
 
                     Toast.makeText(GamePlay.this, levelList.get(groupPosition).getLevel(childPosition), Toast.LENGTH_SHORT).show();
 
-                    showLeaderboard("leaderboard_" + levelList.get(groupPosition).getLevel(childPosition));
+                    showLeaderboard(levelList.get(groupPosition).getLevel(childPosition));
 
                     return false;
                 }
@@ -614,6 +623,18 @@ public class GamePlay extends AppCompatActivity {
 //            new AlertDialog.Builder(this).setMessage(getString(R.string.lboard_connect) + "!")
 //                    .setCancelable(true).show();
             exp.setVisibility(View.GONE);
+        }
+    }
+
+
+    public static int getBoardId(String resName) {
+
+        try {
+            Field idField = R.string.class.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
         }
     }
 

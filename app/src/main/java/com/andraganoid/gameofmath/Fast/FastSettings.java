@@ -100,11 +100,13 @@ public class FastSettings extends AppCompatActivity {
         findViewById(R.id.help_layout).setVisibility(View.GONE);
     }
 
-    public void goFastPlay(View v) {
+    public void goPlayGameFast(View v) {
         calc.gameKind = (int) v.getTag();
 
 //                String[] s = Arrays.asList(mContext.getResources().getStringArray(R.array.fast_calc_levels_description)).get(holder.getAdapterPosition()).split(" ");
-        String[] s = Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)).get(calc.gameKind).split(" ");
+        String[] s = Arrays.asList(getResources()
+                .getStringArray(R.array.fast_calc_levels_description))
+                .get(calc.gameKind).split(" ");
 
 //        String g = "";
 //        for (int i = 0; i < s.length; i++) {
@@ -132,9 +134,13 @@ public class FastSettings extends AppCompatActivity {
         v.getContext().startActivity(intent);
     }
 
-    public void goFastGlobalHighScores(View v) {
-        Toast.makeText(this, "HIGH SCORE " + String.valueOf(v.getTag()), Toast.LENGTH_SHORT).show();
-    }
+//    public void goGlobalTopScores(View v) {
+//       // Toast.makeText(this, "HIGH SCORE " + String.valueOf(v.getTag()), Toast.LENGTH_SHORT).show();
+//
+//
+//            showLeaderboard(calc.levelNames.get(calc.gameKind));
+//
+//    }
 
 
 }
