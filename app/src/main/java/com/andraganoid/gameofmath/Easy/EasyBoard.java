@@ -16,7 +16,6 @@ import com.andraganoid.gameofmath.R;
 
 import java.util.ArrayList;
 
-import static com.andraganoid.gameofmath.GamePlay.calc;
 import static com.andraganoid.gameofmath.Misc.MathSounds.GET_BONUS;
 import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
 import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;

@@ -2,10 +2,8 @@ package com.andraganoid.gameofmath.Practice;
 
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.GameBoard;
@@ -14,9 +12,6 @@ import com.andraganoid.gameofmath.Operation.Div;
 import com.andraganoid.gameofmath.Operation.Mul;
 import com.andraganoid.gameofmath.Operation.Sub;
 import com.andraganoid.gameofmath.R;
-
-import static com.andraganoid.gameofmath.Game.calc;
-import static com.andraganoid.gameofmath.Game.task;
 
 
 public class PracticeBoard extends GameBoard {
@@ -210,11 +205,6 @@ public class PracticeBoard extends GameBoard {
     public void onBackPressed() {
         super.onBackPressed();
         goMain = false;
-    }
-
-
-    public void goHelp(View v) {
-        Toast.makeText(this, "PRACTICE HELP", Toast.LENGTH_LONG).show();
     }
 
 }

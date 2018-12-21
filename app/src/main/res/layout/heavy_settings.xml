@@ -18,125 +18,316 @@
         app:layout_constraintBottom_toTopOf="@id/ad_view_wrapper"
         app:layout_constraintTop_toBottomOf="@id/top_bar">
 
-        <LinearLayout
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/heavy_10"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="32dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:background="@drawable/tv_stroke"
             android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="4dp"
             app:layout_constraintBottom_toTopOf="@id/heavy_100"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_weight="3">
+            app:layout_constraintTop_toTopOf="parent">
+
 
 
             <TextView
                 android:id="@+id/heavy_10_1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:padding="4dp"
-                android:layout_marginTop="4dp"
                 app:autoSizeTextType="uniform"
-                tools:text="Heavy Calc 10"/>
+                android:paddingRight="4dp"
+                app:layout_constraintBottom_toTopOf="@id/heavy_10_2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/heavy_go_10"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_weight="3"
+                tools:text="HEAVY CALC 10" />
 
             <TextView
                 android:id="@+id/heavy_10_2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:padding="12dp"
                 app:autoSizeTextType="uniform"
-                tools:text="Max operand val: 10"/>
+                android:paddingRight="4dp"
+                app:layout_constraintBottom_toTopOf="@id/heavy_10_3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/heavy_10_1"
+                app:layout_constraintRight_toLeftOf="@id/heavy_go_10"
 
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="4dp"
-                android:text="@string/best_score_time"
-                android:textColor="@color/checked"
-                app:autoSizeTextType="uniform" />
+                app:layout_constraintVertical_weight="2"
+                tools:text="max operand val :10" />
 
             <TextView
                 android:id="@+id/heavy_10_3"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:padding="8dp"
+                android:gravity="center_vertical"
+                android:paddingRight="4dp"
                 android:textColor="@color/checked"
                 app:autoSizeTextType="uniform"
-                tools:text="123450"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/heavy_go_10"
+                app:layout_constraintTop_toBottomOf="@id/heavy_10_2"
+                app:layout_constraintVertical_weight="2"
+                tools:text="Best: 12345" />
 
-        </LinearLayout>
+            <!--<TextView-->
+            <!--android:id="@+id/card_hs"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:background="@color/checked"-->
+            <!--android:gravity="center"-->
+            <!--android:onClick="goGlobalTopScores"-->
+            <!--android:padding="4dp"-->
+            <!--android:text="@string/top_scores"-->
+            <!--android:textColor="@color/info"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintLeft_toRightOf="@id/card_1"-->
+            <!--app:layout_constraintRight_toLeftOf="@id/card_go"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <TextView
+                android:id="@+id/heavy_go_10"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:background="@color/info"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:text="@string/play"
+                android:textColor="@color/checked"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/heavy_10_3"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
-        <LinearLayout
+        </android.support.constraint.ConstraintLayout>
+
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/heavy_10"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginBottom="32dp"-->
+        <!--android:background="@drawable/tv_stroke"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintBottom_toTopOf="@id/heavy_100"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_weight="3">-->
+
+
+        <!--<TextView-->
+        <!--android:id="@+id/heavy_10_1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--tools:text="Heavy Calc 10"/>-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/heavy_10_2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="12dp"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--tools:text="Max operand val: 10"/>-->
+
+
+        <!--<TextView-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--android:text="@string/best_score_time"-->
+        <!--android:textColor="@color/checked"-->
+        <!--app:autoSizeTextType="uniform" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/heavy_10_3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="8dp"-->
+        <!--android:textColor="@color/checked"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--tools:text="123450"/>-->
+
+        <!--</LinearLayout>-->
+
+
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/heavy_100"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
             android:background="@drawable/tv_stroke"
-
             android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="4dp"
+            app:layout_constraintTop_toBottomOf="@id/heavy_10"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/heavy_10"
-            app:layout_constraintVertical_weight="3">
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
                 android:id="@+id/heavy_100_1"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:padding="4dp"
-                android:layout_marginTop="4dp"
                 app:autoSizeTextType="uniform"
-                tools:text="Heavy Calc 100"/>
+                android:paddingRight="4dp"
+                app:layout_constraintBottom_toTopOf="@id/heavy_100_2"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/heavy_go_100"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_weight="3"
+                tools:text="HEAVY CALC 100" />
 
             <TextView
                 android:id="@+id/heavy_100_2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:padding="12dp"
                 app:autoSizeTextType="uniform"
-                tools:text="Max operand val: 100"/>
-
-            <TextView
-
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:padding="4dp"
-                android:text="@string/best_score_time"
-                android:textColor="@color/checked"
-                app:autoSizeTextType="uniform" />
+                android:paddingRight="4dp"
+                app:layout_constraintBottom_toTopOf="@id/heavy_100_3"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/heavy_100_1"
+                app:layout_constraintRight_toLeftOf="@id/heavy_go_100"
+                app:layout_constraintVertical_weight="2"
+                tools:text="max operand val :100" />
 
             <TextView
                 android:id="@+id/heavy_100_3"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:padding="8dp"
+                android:gravity="center_vertical"
+                android:paddingRight="4dp"
                 android:textColor="@color/checked"
                 app:autoSizeTextType="uniform"
-                tools:text="0"/>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@id/heavy_go_100"
+                app:layout_constraintTop_toBottomOf="@id/heavy_100_2"
+                app:layout_constraintVertical_weight="2"
+                tools:text="Best: 12345" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/card_hs"-->
+            <!--android:layout_width="80dp"-->
+            <!--android:layout_height="80dp"-->
+            <!--android:layout_marginLeft="8dp"-->
+            <!--android:background="@color/checked"-->
+            <!--android:gravity="center"-->
+            <!--android:onClick="goGlobalTopScores"-->
+            <!--android:padding="4dp"-->
+            <!--android:text="@string/top_scores"-->
+            <!--android:textColor="@color/info"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintLeft_toRightOf="@id/card_1"-->
+            <!--app:layout_constraintRight_toLeftOf="@id/card_go"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
+
+            <TextView
+                android:id="@+id/heavy_go_100"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginLeft="8dp"
+                android:background="@color/info"
+                android:gravity="center"
+                android:maxLines="1"
+                android:padding="8dp"
+                android:text="@string/play"
+                android:textColor="@color/checked"
+                app:autoSizeTextType="uniform"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@id/heavy_100_3"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
+        </android.support.constraint.ConstraintLayout>
 
-        </LinearLayout>
+
+        <!--<LinearLayout-->
+        <!--android:id="@+id/heavy_100"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="@drawable/tv_stroke"-->
+
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/heavy_10"-->
+        <!--app:layout_constraintVertical_weight="3">-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/heavy_100_1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--android:layout_marginTop="4dp"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--tools:text="Heavy Calc 100"/>-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/heavy_100_2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="12dp"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--tools:text="Max operand val: 100"/>-->
+
+        <!--<TextView-->
+
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--android:text="@string/best_score_time"-->
+        <!--android:textColor="@color/checked"-->
+        <!--app:autoSizeTextType="uniform" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/heavy_100_3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="8dp"-->
+        <!--android:textColor="@color/checked"-->
+        <!--app:autoSizeTextType="uniform"-->
+        <!--tools:text="0"/>-->
+
+
+        <!--</LinearLayout>-->
 
     </android.support.constraint.ConstraintLayout>
 

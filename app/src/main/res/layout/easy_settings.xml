@@ -18,8 +18,7 @@
         app:layout_constraintBottom_toTopOf="@id/ad_view_wrapper"
         app:layout_constraintTop_toBottomOf="@id/top_bar">
 
-        <android.support.constraint.ConstraintLayout
-            xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/easy_2"
             android:layout_width="match_parent"
@@ -30,16 +29,17 @@
             android:paddingTop="4dp"
             android:paddingRight="8dp"
             android:paddingBottom="4dp"
-        app:layout_constraintBottom_toTopOf="@id/easy_3"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintBottom_toTopOf="@id/easy_3"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/easy_2_1"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:autoSizeTextType="uniform"
+                android:paddingRight="4dp"
                 app:layout_constraintBottom_toTopOf="@id/easy_2_2"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/easy_go_2"
@@ -49,12 +49,14 @@
 
             <TextView
                 android:id="@+id/easy_2_2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:autoSizeTextType="uniform"
+                android:paddingRight="4dp"
                 app:layout_constraintBottom_toTopOf="@id/easy_2_3"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/easy_2_1"
+                app:layout_constraintRight_toLeftOf="@id/easy_go_2"
                 app:layout_constraintVertical_weight="2"
                 tools:text="X ? X" />
 
@@ -111,56 +113,55 @@
         </android.support.constraint.ConstraintLayout>
 
 
-
         <!--<LinearLayout-->
-            <!--android:id="@+id/easy_2"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:background="@drawable/tv_stroke"-->
-            <!--android:orientation="vertical"-->
-            <!--app:layout_constraintBottom_toTopOf="@id/easy_3"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toTopOf="parent"-->
-            <!--app:layout_constraintVertical_weight="3">-->
+        <!--android:id="@+id/easy_2"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="@drawable/tv_stroke"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintBottom_toTopOf="@id/easy_3"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent"-->
+        <!--app:layout_constraintVertical_weight="3">-->
 
-            <!--<TextView-->
-                <!--android:id="@+id/easy_2_1"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="3"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="4dp"-->
-                <!--app:autoSizeTextType="uniform" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/easy_2_1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
-            <!--<TextView-->
-                <!--android:id="@+id/easy_2_2"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="3"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="4dp"-->
-                <!--app:autoSizeTextType="uniform" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/easy_2_2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
 
-            <!--<TextView-->
-                <!--android:id="@+id/easy_2_3"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="2"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="4dp"-->
-                <!--android:textColor="@color/checked"-->
-                <!--app:autoSizeTextType="uniform" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/easy_2_3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--android:textColor="@color/checked"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
         <!--</LinearLayout>-->
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/easy_3"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/tv_stroke"
             android:orientation="vertical"
-            android:id="@+id/easy_3"
             android:paddingLeft="8dp"
             android:paddingTop="4dp"
             android:paddingRight="8dp"
@@ -175,6 +176,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:autoSizeTextType="uniform"
+                android:paddingRight="4dp"
                 app:layout_constraintBottom_toTopOf="@id/easy_3_2"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/easy_go_3"
@@ -184,12 +186,14 @@
 
             <TextView
                 android:id="@+id/easy_3_2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:autoSizeTextType="uniform"
+                android:paddingRight="4dp"
                 app:layout_constraintBottom_toTopOf="@id/easy_3_3"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/easy_3_1"
+                app:layout_constraintRight_toLeftOf="@id/easy_go_3"
                 app:layout_constraintVertical_weight="2"
                 tools:text="X ? X ? X" />
 
@@ -247,58 +251,58 @@
 
 
         <!--<LinearLayout-->
-            <!--android:id="@+id/easy_3"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_marginTop="24dp"-->
-            <!--android:layout_marginBottom="24dp"-->
-            <!--android:background="@drawable/tv_stroke"-->
-            <!--android:orientation="vertical"-->
-            <!--app:layout_constraintBottom_toTopOf="@id/easy_4"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@id/easy_2"-->
-            <!--app:layout_constraintVertical_weight="3">-->
+        <!--android:id="@+id/easy_3"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_marginTop="24dp"-->
+        <!--android:layout_marginBottom="24dp"-->
+        <!--android:background="@drawable/tv_stroke"-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintBottom_toTopOf="@id/easy_4"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/easy_2"-->
+        <!--app:layout_constraintVertical_weight="3">-->
 
 
-            <!--<TextView-->
-                <!--android:id="@+id/easy_3_1"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="3"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="4dp"-->
-                <!--app:autoSizeTextType="uniform" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/easy_3_1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
-            <!--<TextView-->
-                <!--android:id="@+id/easy_3_2"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="3"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="4dp"-->
-                <!--app:autoSizeTextType="uniform" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/easy_3_2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
 
-            <!--<TextView-->
-                <!--android:id="@+id/easy_3_3"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="2"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="4dp"-->
-                <!--android:textColor="@color/checked"-->
-                <!--app:autoSizeTextType="uniform" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/easy_3_3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--android:textColor="@color/checked"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
         <!--</LinearLayout>-->
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/easy_4"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:background="@drawable/tv_stroke"
             android:orientation="vertical"
-            android:id="@+id/easy_4"
             android:paddingLeft="8dp"
             android:paddingTop="4dp"
             android:paddingRight="8dp"
@@ -313,6 +317,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:autoSizeTextType="uniform"
+                android:paddingRight="4dp"
                 app:layout_constraintBottom_toTopOf="@id/easy_4_2"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toLeftOf="@id/easy_go_4"
@@ -322,12 +327,14 @@
 
             <TextView
                 android:id="@+id/easy_4_2"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:autoSizeTextType="uniform"
+                android:paddingRight="4dp"
                 app:layout_constraintBottom_toTopOf="@id/easy_4_3"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/easy_4_1"
+                app:layout_constraintRight_toLeftOf="@id/easy_go_4"
                 app:layout_constraintVertical_weight="2"
                 tools:text="X ? X ? X ? X" />
 
@@ -384,46 +391,46 @@
         </android.support.constraint.ConstraintLayout>
 
         <!--<LinearLayout-->
-            <!--android:id="@+id/easy_4"-->
-            <!--android:layout_width="0dp"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:background="@drawable/tv_stroke"-->
+        <!--android:id="@+id/easy_4"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:background="@drawable/tv_stroke"-->
 
-            <!--android:orientation="vertical"-->
-            <!--app:layout_constraintBottom_toBottomOf="parent"-->
-            <!--app:layout_constraintLeft_toLeftOf="parent"-->
-            <!--app:layout_constraintRight_toRightOf="parent"-->
-            <!--app:layout_constraintTop_toBottomOf="@id/easy_3"-->
-            <!--app:layout_constraintVertical_weight="3">-->
+        <!--android:orientation="vertical"-->
+        <!--app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--app:layout_constraintLeft_toLeftOf="parent"-->
+        <!--app:layout_constraintRight_toRightOf="parent"-->
+        <!--app:layout_constraintTop_toBottomOf="@id/easy_3"-->
+        <!--app:layout_constraintVertical_weight="3">-->
 
-            <!--<TextView-->
-                <!--android:id="@+id/easy_4_1"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="3"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="4dp"-->
-                <!--app:autoSizeTextType="uniform" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/easy_4_1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
-            <!--<TextView-->
-                <!--android:id="@+id/easy_4_2"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="3"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="4dp"-->
-                <!--app:autoSizeTextType="uniform" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/easy_4_2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
 
-            <!--<TextView-->
-                <!--android:id="@+id/easy_4_3"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="2"-->
-                <!--android:gravity="center"-->
-                <!--android:padding="4dp"-->
-                <!--android:textColor="@color/checked"-->
-                <!--app:autoSizeTextType="uniform" />-->
+        <!--<TextView-->
+        <!--android:id="@+id/easy_4_3"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="4dp"-->
+        <!--android:textColor="@color/checked"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
         <!--</LinearLayout>-->
 
@@ -453,7 +460,7 @@
     </RelativeLayout>
 
 
-    <!--<include layout="@layout/help" />-->
+    <include layout="@layout/help" />
 
 
 </android.support.constraint.ConstraintLayout>

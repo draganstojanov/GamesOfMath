@@ -287,11 +287,6 @@ public class FastBoard extends GameBoard {
     }
 
 
-    public void goHelp(View v) {
-        Toast.makeText(this, "FAST CALC HELP", Toast.LENGTH_LONG).show();
-    }
-
-
     public void goLeaderboards (View v){
 
         showLeaderboard(calc.levelNames.get(calc.gameKind));

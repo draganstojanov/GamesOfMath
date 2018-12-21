@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.R;
@@ -55,11 +54,11 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
         ((TextView) findViewById(R.id.heavy_10_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(0));
         ((TextView) findViewById(R.id.heavy_100_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(1));
 
-        ((TextView) findViewById(R.id.heavy_10_3)).setText(String.valueOf(calc.scoreMap.get(calc.levelNames.get(0))));
-        ((TextView) findViewById(R.id.heavy_100_3)).setText(String.valueOf(calc.scoreMap.get(calc.levelNames.get(1))));
+        ((TextView) findViewById(R.id.heavy_10_3)).setText(getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0))));
+        ((TextView) findViewById(R.id.heavy_100_3)).setText(getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1))));
 
-        findViewById(R.id.heavy_10).setOnClickListener(this);
-        findViewById(R.id.heavy_100).setOnClickListener(this);
+        findViewById(R.id.heavy_go_10).setOnClickListener(this);
+        findViewById(R.id.heavy_go_100).setOnClickListener(this);
 
     }
 
@@ -78,12 +77,12 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
 
         switch (v.getId()) {
 
-            case R.id.heavy_10:
+            case R.id.heavy_go_10:
                 calc.gameKind = 10;
                 calc.secondsForTask = 120;
                 break;
 
-            case R.id.heavy_100:
+            case R.id.heavy_go_100:
                 calc.gameKind = 100;
                 calc.secondsForTask = 180;
                 break;

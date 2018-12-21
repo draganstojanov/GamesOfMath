@@ -10,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andraganoid.gameofmath.Game;
+import com.andraganoid.gameofmath.R;
+
 import java.util.ArrayList;
 
 import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
@@ -49,7 +52,7 @@ public abstract class GameBoard extends GamePlay {
         cho2 = findViewById(R.id.game_board_choice_2);
         cho3 = findViewById(R.id.game_board_choice_3);
 
-        calc.gameLevel = 1;
+        GamePlay.calc.gameLevel = 1;
 
         progress = new SpannableString("");
         prog.clear();
@@ -79,7 +82,7 @@ public abstract class GameBoard extends GamePlay {
 
     public void multiChoice(View v) {
 
-        if (task.getResult() == (task.choices).get(Integer.parseInt(v.getTag().toString()))) {
+        if (GamePlay.task.getResult() == (GamePlay.task.choices).get(Integer.parseInt(v.getTag().toString()))) {
             right();
 
         } else {
@@ -102,10 +105,10 @@ public abstract class GameBoard extends GamePlay {
     public void keyboardEnter(View v) {
         if (!isEnd) {
             if (typedResult.length() > 0) {
-                if (calc.gameMode == "Practice") {
+                if (GamePlay.calc.gameMode == "Practice") {
                     keyboard.setVisibility(View.INVISIBLE);
                 }
-                if (task.getResult() == Integer.parseInt(typedResult)) {
+                if (GamePlay.task.getResult() == Integer.parseInt(typedResult)) {
                     right();
 
                 } else {

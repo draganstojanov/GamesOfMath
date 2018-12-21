@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
+import com.andraganoid.gameofmath.Leaderboards.Level;
+
 import java.util.ArrayList;
 
 public class LeaderboardAdapter extends BaseExpandableListAdapter {

@@ -21,13 +21,13 @@ import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
-import android.widget.Button;
 import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andraganoid.gameofmath.Leaderboards.Level;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Misc.MathSounds;
 import com.andraganoid.gameofmath.Operation.Calc;
@@ -468,15 +468,15 @@ public class GamePlay extends AppCompatActivity {
     }
 
 
-    public void submitScoreLeaderboard() {
-//        Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-////////                .submitScoreLeaderboard(getString(R.string.leaderboard_id), 1337);
+    public void submitScoreLeaderboard(String boardID, long result) {
 
-        int e = (rand.nextInt(1000));
+        // Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)).submitScoreLeaderboard(getString(R.string.leaderboard_id), 1337);
+        // Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this)).submitScore(getString(R.string.leaderboard_id), 1337);
+        //  int e = (rand.nextInt(1000));
 
-
+//        if (isSignedInLeaderboard()) {xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
         Games.getLeaderboardsClient(this, GoogleSignIn.getLastSignedInAccount(this))
-                .submitScoreImmediate("CgkItryh-O0OEAIQFQ", e)
+                .submitScoreImmediate(boardID, result)
                 .addOnSuccessListener(new OnSuccessListener <ScoreSubmissionData>() {
                     @Override
                     public void onSuccess(ScoreSubmissionData scoreSubmissionData) {
@@ -485,33 +485,77 @@ public class GamePlay extends AppCompatActivity {
 
 
                     }
-                });
+                }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
 
+                Log.d("SUBMIT FAILED", String.valueOf(e.toString()));
 
+            }
+        });
+
+        // }
         //   .submitScore("CgkItryh-O0OEAIQFQ",e );callback
     }
 
 
     public void showLeaderboard(String boardName) {
-        int boardId = getBoardId("leaderboard_" + boardName);
-        Log.d("exp", getString(boardId));
 
-      if (GoogleSignIn.getLastSignedInAccount(this) != null) {//TRY/CATCH
-            Games.getLeaderboardsClient(this,
-                    GoogleSignIn.getLastSignedInAccount(this))
-                    .getLeaderboardIntent(getString(boardId))
-                    .addOnSuccessListener(new OnSuccessListener <Intent>() {
-                        @Override
-                        public void onSuccess(Intent intent) {
-                            startActivityForResult(intent, 9004);
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
+        if (isSignedInLeaderboard()) {//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            int boardId = getBoardId("leaderboard_" + boardName);
+            Log.d("exp", getString(boardId));
+
+            if (GoogleSignIn.getLastSignedInAccount(this) != null) {//TRY/CATCH
+                Games.getLeaderboardsClient(this,
+                        GoogleSignIn.getLastSignedInAccount(this))
+                        .getLeaderboardIntent(getString(boardId))
+                        .addOnSuccessListener(new OnSuccessListener <Intent>() {
+                            @Override
+                            public void onSuccess(Intent intent) {
+                                startActivityForResult(intent, 9004);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(GamePlay.this, "FAILED" + String.valueOf(e), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        } else {
+
+
+            //connectAlert();
+
+          final  AlertDialog ad = new AlertDialog.Builder(GamePlay.this).create();
+            ad.setMessage(String.format("%s!", getString(R.string.lboard_connect)));
+
+            ad.setButton(Dialog.BUTTON_POSITIVE, getString(R.string.connect), new DialogInterface.OnClickListener() {
                 @Override
-                public void onFailure(@NonNull Exception e) {
-                    Toast.makeText(GamePlay.this, "FAILED"+String.valueOf(e), Toast.LENGTH_SHORT).show();
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    ad.cancel();
+                    signInSilentlyLeaderboard();
+
                 }
             });
-     }
+
+            ad.setButton(Dialog.BUTTON_NEGATIVE, getString(R.string.cancel), new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+//cancel
+                    ad.cancel();
+                }
+            });
+
+
+            ad.setCancelable(true);
+            ad.show();
+
+            ((TextView) ad.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
+
+
+
+        }
     }
 
     //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
@@ -531,8 +575,8 @@ public class GamePlay extends AppCompatActivity {
 
         final ConstraintLayout exp = findViewById(R.id.lboards_exp_list_wrapper);
 
-        if (isSignedInLeaderboard()) {
-
+     //   if (isSignedInLeaderboard()) {//xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+            //    if (true) {
 
             final ArrayList <Level> levelList = new ArrayList <Level>();
 
@@ -543,7 +587,7 @@ public class GamePlay extends AppCompatActivity {
 
             levelList.add(new Level(getString(R.string.easy_calc),
                     Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)),
-                    Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description_short))));
+                    Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description))));
 
             levelList.add(new Level(getString(R.string.heavy_calc),
                     Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)),
@@ -555,7 +599,7 @@ public class GamePlay extends AppCompatActivity {
 
 
             exp.setVisibility(View.VISIBLE);
-            ExpandableListAdapter elAdapter = new LeaderboardAdapter(this, levelList);
+            ExpandableListAdapter elAdapter = new com.andraganoid.gameofmath.LeaderboardAdapter(this, levelList);
 
             // setting list adapter
             expListView.setAdapter(elAdapter);
@@ -605,25 +649,30 @@ public class GamePlay extends AppCompatActivity {
                     Toast.makeText(GamePlay.this, levelList.get(groupPosition).getLevel(childPosition), Toast.LENGTH_SHORT).show();
 
                     showLeaderboard(levelList.get(groupPosition).getLevel(childPosition));
-
                     return false;
                 }
             });
 
-        } else {
+      //  } else {
 
-            AlertDialog ad = new AlertDialog.Builder(GamePlay.this).create();
-            ad.setMessage(getString(R.string.lboard_connect) + "!");
-            ad.setCancelable(true);
-            ad.show();
+            //  exp.setVisibility(View.GONE);
+      //      connectAlert();
+      //  }
+    }
 
-            ((TextView) ad.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
+
+    private void connectAlert() {
+//        AlertDialog ad = new AlertDialog.Builder(GamePlay.this).create();
+//        ad.setMessage(String.format("%s!", getString(R.string.lboard_connect)));
+//        ad.setCancelable(true);
+//        ad.show();
+//
+//        ((TextView) ad.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
 
 
 //            new AlertDialog.Builder(this).setMessage(getString(R.string.lboard_connect) + "!")
 //                    .setCancelable(true).show();
-            exp.setVisibility(View.GONE);
-        }
+
     }
 
 
