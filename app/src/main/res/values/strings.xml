@@ -94,6 +94,7 @@
 
     <string name="join_leaderboards">Games Of Math using Google Play Games Services Leaderboards to store and display the players hi-scores. Do you want to join? Its free and fun!</string>
     <string name="ask_later">Ask me later</string>
+    <string name="connecting">Connecting...</string> <string name="succes_conn_lb">Succesfully connected to global leaderboards</string>
 
 
 

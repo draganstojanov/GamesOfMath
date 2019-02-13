@@ -1,4 +1,4 @@
-package com.andraganoid.gameofmath;
+package com.andraganoid.gameofmath.Game;
 
 
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andraganoid.gameofmath.Game;
 import com.andraganoid.gameofmath.R;
 
 import java.util.ArrayList;

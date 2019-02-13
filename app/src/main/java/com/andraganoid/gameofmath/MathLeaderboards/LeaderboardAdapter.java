@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.Leaderboards.Level;
+import com.andraganoid.gameofmath.MathLeaderboards.Level;
 
 import java.util.ArrayList;
 

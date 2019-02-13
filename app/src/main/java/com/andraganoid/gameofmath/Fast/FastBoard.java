@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andraganoid.gameofmath.Game;
-import com.andraganoid.gameofmath.GameBoard;
+import com.andraganoid.gameofmath.Game.Game;
+import com.andraganoid.gameofmath.Game.GameBoard;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Add;
 import com.andraganoid.gameofmath.Operation.Big;
@@ -35,14 +35,14 @@ public class FastBoard extends GameBoard {
 
     @Override
     public void prepareTask() {
-
         Toast.makeText(this, "PREPARE TASK", Toast.LENGTH_SHORT).show();
+
 
         goMain = true;
         keyboard.setVisibility(View.VISIBLE);
         typed.setVisibility(View.VISIBLE);
-//        typed.setClickable(false);
-//        formula.setClickable(false);
+        typed.setClickable(false);
+        formula.setClickable(false);
         board.setClickable(false);
 
         (findViewById(R.id.fast_bar)).setVisibility(View.VISIBLE);
@@ -185,6 +185,12 @@ public class FastBoard extends GameBoard {
 
     }
 
+    public void goLeaderboards(View v) {
+
+        showLeaderboard(calc.levelNames.get(calc.gameKind));
+
+    }
+
     private void fastCheckLeaderboard() {
 
         // xxxx vidi da li ima rezultat za lb
@@ -287,11 +293,7 @@ public class FastBoard extends GameBoard {
     }
 
 
-    public void goLeaderboards (View v){
 
-        showLeaderboard(calc.levelNames.get(calc.gameKind));
-
-    }
 
 
 }

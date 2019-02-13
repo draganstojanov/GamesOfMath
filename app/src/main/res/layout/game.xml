@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
-    tools:context=".Game">
+    tools:context=".Game.Game">
 
 
     <android.support.constraint.ConstraintLayout
@@ -347,19 +347,33 @@
 
     <include layout="@layout/leaderboards_list" />
 
+    <!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+        <!--xmlns:tools="http://schemas.android.com/tools"-->
+        <!--android:id="@+id/first_logo"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="@color/base"-->
+        <!--android:visibility="gone">-->
+
+        <!--<ImageView-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="100sp"-->
+            <!--android:src="@drawable/math_title_transparent" />-->
+
+
+    <!--</android.support.constraint.ConstraintLayout>-->
+
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/first_logo"
+        android:id="@+id/full_screen_transparent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/transparent"
+        android:clickable="true"
+        android:visibility="gone">
 
-        android:background="@color/base">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="100sp"
-            android:src="@drawable/math_title_transparent" />
 
 
     </android.support.constraint.ConstraintLayout>

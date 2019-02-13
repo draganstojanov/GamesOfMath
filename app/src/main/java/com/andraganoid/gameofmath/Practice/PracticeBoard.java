@@ -5,8 +5,8 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.Game;
-import com.andraganoid.gameofmath.GameBoard;
+import com.andraganoid.gameofmath.Game.Game;
+import com.andraganoid.gameofmath.Game.GameBoard;
 import com.andraganoid.gameofmath.Operation.Add;
 import com.andraganoid.gameofmath.Operation.Div;
 import com.andraganoid.gameofmath.Operation.Mul;

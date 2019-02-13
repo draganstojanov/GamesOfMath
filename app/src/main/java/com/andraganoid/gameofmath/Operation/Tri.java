@@ -1,7 +1,7 @@
 package com.andraganoid.gameofmath.Operation;
 
 
-import static com.andraganoid.gameofmath.Game.calc;
+import static com.andraganoid.gameofmath.Game.Game.calc;
 
 public class Tri extends Task {
 

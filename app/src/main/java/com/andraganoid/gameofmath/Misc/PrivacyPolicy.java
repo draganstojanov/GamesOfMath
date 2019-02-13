@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 
-import com.andraganoid.gameofmath.Game;
+import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.R;
 
 

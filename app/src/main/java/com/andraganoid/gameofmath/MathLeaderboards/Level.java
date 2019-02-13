@@ -1,4 +1,4 @@
-package com.andraganoid.gameofmath.Leaderboards;
+package com.andraganoid.gameofmath.MathLeaderboards;
 
 
 import java.util.List;

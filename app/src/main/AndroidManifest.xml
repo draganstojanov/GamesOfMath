@@ -29,7 +29,7 @@
             android:name=".Practice.PracticeBoard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".GameBoard"
+            android:name=".Game.GameBoard"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Fast.FastBoard"
@@ -50,7 +50,7 @@
             android:name=".Easy.EasyBoard"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".Game"
+            android:name=".Game.Game"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Misc.About"
@@ -78,7 +78,8 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".GamePlay"></activity>
+        <activity android:name=".Game.GamePlay" />
+        <activity android:name=".MathLeaderboards.MathAddMob"></activity>
     </application>
 
 </manifest>

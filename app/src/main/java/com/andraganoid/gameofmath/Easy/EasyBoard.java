@@ -7,8 +7,8 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andraganoid.gameofmath.Game;
-import com.andraganoid.gameofmath.GamePlay;
+import com.andraganoid.gameofmath.Game.Game;
+import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Lit;
 import com.andraganoid.gameofmath.R;
@@ -481,7 +481,11 @@ public class EasyBoard extends GamePlay {
 //        Intent intent = new Intent(this, FastBoard.class);
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        startActivity(intent);
+    }
 
+    public void goLeaderboards (View v){
+
+        showLeaderboard(calc.levelNames.get(calc.gameKind));
 
     }
 
@@ -505,10 +509,6 @@ public class EasyBoard extends GamePlay {
     }
 
 
-    public void goLeaderboards (View v){
 
-        showLeaderboard(calc.levelNames.get(calc.gameKind));
-
-    }
 
 }

@@ -5,7 +5,7 @@ import com.andraganoid.gameofmath.Misc.MathBase;
 
 import java.util.List;
 
-//import static com.andraganoid.gameofmath.Game.mathBase;
+//import static com.andraganoid.gameofmath.Game.Game.mathBase;
 
 
 public class Heavy extends Calc {

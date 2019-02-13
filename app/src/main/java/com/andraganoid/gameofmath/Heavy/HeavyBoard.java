@@ -13,8 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.andraganoid.gameofmath.Game;
-import com.andraganoid.gameofmath.GamePlay;
+import com.andraganoid.gameofmath.Game.Game;
+import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;

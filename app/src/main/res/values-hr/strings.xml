@@ -135,6 +135,8 @@
     <string name="ask_later">Pitaj kasnije</string>
     <string name="join_leaderboards">Games Of Math koristi Google Play Games Services Leaderboards za pohranu i prikaz najboljih rezultata igrača. Želite li se pridružiti? Besplatno je i zabavno!</string>
     <string name="connect">Poveži</string>
+    <string name="connecting">Povezivanje...</string>
+    <string name="succes_conn_lb">Uspešno povezivanje sa globalnim tabelama</string>
 
 
 </resources>

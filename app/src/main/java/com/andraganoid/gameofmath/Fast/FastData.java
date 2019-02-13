@@ -1,6 +1,6 @@
 package com.andraganoid.gameofmath.Fast;
 
-import static com.andraganoid.gameofmath.Game.calc;
+import static com.andraganoid.gameofmath.Game.Game.calc;
 
 public class FastData {
 

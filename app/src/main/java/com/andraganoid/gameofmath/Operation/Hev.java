@@ -5,7 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import static com.andraganoid.gameofmath.Game.calc;
+import static com.andraganoid.gameofmath.Game.Game.calc;
 
 
 public class Hev extends Task {

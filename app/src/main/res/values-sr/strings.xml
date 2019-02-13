@@ -134,6 +134,8 @@
     <string name="join_leaderboards">Games Of Math koristi Google Play Games Services Leaderboards za čuvanje i prikazs najboljih rezultata igrača. Da li želite da se pridružite? Besplatno je i zabavno!</string>
     <string name="your_result">Tabele sa rezultatima su nedostupne!</string>
     <string name="connect">Poveži</string>
+    <string name="connecting">Povezivanje...</string>
+    <string name="succes_conn_lb">Uspešno povezivanje sa globalnim tabelama</string>
 
 
 </resources>

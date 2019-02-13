@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 
-import static com.andraganoid.gameofmath.Game.calc;
+import static com.andraganoid.gameofmath.Game.Game.calc;
 import static com.andraganoid.gameofmath.Operation.Calc.opSign;
 
 public class Task {

@@ -8,7 +8,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
-import com.andraganoid.gameofmath.Game;
+import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdRequest;
@@ -19,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.andraganoid.gameofmath.Operation.Calc.opSign;
-import static com.andraganoid.gameofmath.Game.calc;
+import static com.andraganoid.gameofmath.Game.Game.calc;
 
 
 public class FastSettings extends AppCompatActivity {

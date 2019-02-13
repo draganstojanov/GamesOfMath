@@ -6,14 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.Game;
+import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.Arrays;
 
-import static com.andraganoid.gameofmath.Game.calc;
+import static com.andraganoid.gameofmath.Game.Game.calc;
 
 
 public class EasySettings extends AppCompatActivity  {

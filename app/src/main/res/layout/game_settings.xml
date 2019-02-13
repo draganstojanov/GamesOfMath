@@ -52,7 +52,7 @@
             android:layout_weight="2"
             android:gravity="center"
             android:maxLines="2"
-            android:onClick="goSetLeaderboardPermission"
+            android:onClick="goToggleLeaderboards"
             android:padding="8dp"
             android:text="@string/global_leaderboards"
             app:autoSizeTextType="uniform" />
@@ -67,7 +67,7 @@
             android:layout_weight="1"
             android:background="@color/info"
             android:gravity="center"
-            android:onClick="goSetLeaderboardPermission"
+            android:onClick="goToggleLeaderboards"
             android:padding="4dp"
             android:textColor="@color/checked"
             app:autoSizeTextType="uniform" />
