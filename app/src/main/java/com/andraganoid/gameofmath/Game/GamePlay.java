@@ -9,16 +9,21 @@ import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.res.ResourcesCompat;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.ExpandableListAdapter;
+import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andraganoid.gameofmath.MathLeaderboards.MathLeaderboards;
+import com.andraganoid.gameofmath.HighScores.HighScoresAdapter;
+import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Misc.MathSounds;
 import com.andraganoid.gameofmath.Operation.Calc;
@@ -27,18 +32,17 @@ import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.games.LeaderboardsClient;
 import com.plattysoft.leonids.ParticleSystem;
 
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 import static com.andraganoid.gameofmath.Misc.MathSounds.BEST_RESULT;
 import static com.andraganoid.gameofmath.Misc.MathSounds.FIREWORK;
 
-public class GamePlay extends MathLeaderboards {
+public class GamePlay extends AppCompatActivity {
 
     public static Calc calc;
     public static Task task;
@@ -115,6 +119,8 @@ public class GamePlay extends MathLeaderboards {
         }
         fullscreenAd.setAdUnitId(getString(R.string.AD_MOB_MATH_FULLSCREEN));
         fullscreenAd.setAdListener(new AdListener() {
+
+
             @Override
             public void onAdClosed() {
                 super.onAdClosed();
@@ -360,6 +366,106 @@ public class GamePlay extends MathLeaderboards {
     public void turnTheScreenOff() {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+    }
+
+
+    public void showHighScoresList(View v) {
+
+        final ConstraintLayout exp = findViewById(R.id.lboards_exp_list_wrapper);
+
+        final ArrayList <Level> levelList = new ArrayList <Level>();
+
+        levelList.add(new Level(getString(R.string.fast_calc),
+                Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)),
+                Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description))));
+
+        levelList.add(new Level(getString(R.string.easy_calc),
+                Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)),
+                Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description))));
+
+        levelList.add(new Level(getString(R.string.heavy_calc),
+                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)),
+                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description))));
+
+        levelList.add(new Level(getString(R.string.cancel), null, null));
+
+        ExpandableListView expListView = (ExpandableListView) findViewById(R.id.lboards_exp_list);
+
+
+        exp.setVisibility(View.VISIBLE);
+        ExpandableListAdapter elAdapter = new HighScoresAdapter(this, levelList);
+
+        // setting list adapter
+        expListView.setAdapter(elAdapter);
+
+        // Listview Group click listener
+        expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
+            @Override
+            public boolean onGroupClick(ExpandableListView parent, View v,
+                                        int groupPosition, long id) {
+                if (groupPosition + 1 == levelList.size()) {
+                    exp.setVisibility(View.GONE);
+                }
+                return false;
+            }
+        });
+
+        // Listview Group expanded listener
+//        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
+//
+//            @Override
+//            public void onGroupExpand(int groupPosition) { Toast.makeText(GamePlay.this, levelList.get(groupPosition).getGameName(), Toast.LENGTH_SHORT).show();
+////                Toast.makeText(getApplicationContext(),
+////                        listDataHeader.get(groupPosition) + " Expanded",
+////                        Toast.LENGTH_SHORT).show();
+//            }
+//        });
+
+        // Listview Group collasped listener
+//        expListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
+//
+//            @Override
+//            public void onGroupCollapse(int groupPosition) { Toast.makeText(GamePlay.this, levelList.get(groupPosition).getGameName(), Toast.LENGTH_SHORT).show();
+////                Toast.makeText(getApplicationContext(),
+////                        listDataHeader.get(groupPosition) + " Collapsed",
+////                        Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
+
+        // Listview on child click listener
+        expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
+
+            @Override
+            public boolean onChildClick(ExpandableListView parent, View v,
+                                        int groupPosition, int childPosition, long id) {
+
+                showHighScoresTable(levelList.get(groupPosition).getLevel(childPosition));
+
+                return false;
+            }
+        });
+
+
+    }
+
+    public void showHighScoresTable(String boardName) {
+
+        Toast.makeText(getApplicationContext(), boardName, Toast.LENGTH_LONG).show();
+        System.out.println("showLeaderboard: " + boardName);
+
+    }
+
+
+    public static int getBoardId(String resName) {
+
+        try {
+            Field idField = R.string.class.getDeclaredField(resName);
+            return idField.getInt(idField);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return -1;
+        }
     }
 
 

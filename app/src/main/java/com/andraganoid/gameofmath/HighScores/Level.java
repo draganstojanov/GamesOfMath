@@ -1,4 +1,4 @@
-package com.andraganoid.gameofmath.MathLeaderboards;
+package com.andraganoid.gameofmath.HighScores;
 
 
 import java.util.List;

@@ -472,8 +472,6 @@ public class EasyBoard extends GamePlay {
 
     public void goAgain(View v) {
 
-        Toast.makeText(this, "GO AGAIN", Toast.LENGTH_SHORT).show();
-
         // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
         calc.gameLevel = 1;
         adIsShowing = true;
@@ -483,9 +481,9 @@ public class EasyBoard extends GamePlay {
 //        startActivity(intent);
     }
 
-    public void goLeaderboards (View v){
+    public void goHiScores(View v){
 
-        showLeaderboard(calc.levelNames.get(calc.gameKind));
+       showHighScoresTable(calc.levelNames.get(calc.gameKind));
 
     }
 

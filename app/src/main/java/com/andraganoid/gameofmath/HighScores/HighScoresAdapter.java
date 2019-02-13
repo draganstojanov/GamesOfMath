@@ -1,4 +1,4 @@
-package com.andraganoid.gameofmath;
+package com.andraganoid.gameofmath.HighScores;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,18 +7,18 @@ import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.MathLeaderboards.Level;
+import com.andraganoid.gameofmath.R;
 
 import java.util.ArrayList;
 
-public class LeaderboardAdapter extends BaseExpandableListAdapter {
+public class HighScoresAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     //    private ArrayList <String> groupTitle;
 //    private HashMap <String, ArrayList <String>> allBoards;
     private ArrayList <Level> levels;
 
-    public LeaderboardAdapter(Context context, ArrayList <Level> levels) {
+    public HighScoresAdapter(Context context, ArrayList <Level> levels) {
         this.context = context;
 //        this.groupTitle = title;
 ////        this.allBoards = allBoards;

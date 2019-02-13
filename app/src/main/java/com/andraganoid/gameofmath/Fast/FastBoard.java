@@ -41,8 +41,10 @@ public class FastBoard extends GameBoard {
         goMain = true;
         keyboard.setVisibility(View.VISIBLE);
         typed.setVisibility(View.VISIBLE);
-        typed.setClickable(false);
-        formula.setClickable(false);
+        nextBtn.setVisibility(View.GONE);
+        pauseBtn.setClickable(true);
+        // typed.setClickable(false);
+        //  formula.setClickable(false);
         board.setClickable(false);
 
         (findViewById(R.id.fast_bar)).setVisibility(View.VISIBLE);
@@ -158,12 +160,13 @@ public class FastBoard extends GameBoard {
                 play(LOST_LIFE);
             }
 
-
+            nextBtn.setVisibility(View.VISIBLE);
+            pauseBtn.setClickable(false);
             typed.setText(calc.showTime(timeInMillis));
 
 //            typed.setClickable(true);
 //            formula.setClickable(true);
-            formula.setClickable(true);
+            // formula.setClickable(true);
 
             keyboard.setVisibility(View.INVISIBLE);
 
@@ -187,7 +190,7 @@ public class FastBoard extends GameBoard {
 
     public void goLeaderboards(View v) {
 
-        showLeaderboard(calc.levelNames.get(calc.gameKind));
+        showHighScoresTable(calc.levelNames.get(calc.gameKind));
 
     }
 
@@ -210,8 +213,6 @@ public class FastBoard extends GameBoard {
     }
 
     public void goAgain(View v) {
-
-        Toast.makeText(this, "GO AGAIN", Toast.LENGTH_SHORT).show();
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
         calc.gameLevel = 1;
@@ -291,9 +292,6 @@ public class FastBoard extends GameBoard {
         super.onBackPressed();
         goMain = false;
     }
-
-
-
 
 
 }

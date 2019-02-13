@@ -71,11 +71,6 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         }
         bottomAd.loadAd(new AdRequest.Builder().build());
 
-//        if (prefs.getBoolean("leaderboardsPermissionGranted", false)) {
-//            if (!isSignedInLeaderboard()) {
-//                signInSilentlyLeaderboard(REQUEST_CODE_GAME);
-//            }
-//        }
     }
 
 
@@ -91,8 +86,6 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         rl = findViewById(R.id.reward_dialog);
         rewardAd = MobileAds.getRewardedVideoAdInstance(this);
         rewardAd.setRewardedVideoAdListener(this);
-        // checkForLeaderboards();
-
     }
 
 
@@ -120,65 +113,13 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         startActivity(intent);
     }
 
-    public void goToggleLeaderboards(View v) {
-
-        if (isSignedInLeaderboard()) {
-            signOutLeaderboard();
-        } else {
-            //startSignInIntentLeaderboard(REQUEST_CODE_SETTINGS);
-            signInSilentlyLeaderboard(REQUEST_CODE_SETTINGS);
-        }
-    }
-
-
-//    public void goSetLeaderboardPermission(View v) {
-//
-//        if (!prefs.getBoolean("leaderboardsPermission", false)) {
-//
-//            AlertDialog lad = new AlertDialog.Builder(Game.this).create();
-//            lad.setMessage(getString(R.string.lboard_connect));
-//            lad.setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                    startAnimation(findViewById(R.id.lboard_on_off), 1);
-//                    prefsEditor
-//                            .putBoolean("leaderboardsPermission", true)
-//                            .apply();
-//                    slp(true);
-//
-//
-//                }
-//            });
-//            lad.setButton(Dialog.BUTTON_NEGATIVE, getString(R.string.no), new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    slp(false);
-//
-//                }
-//            });
-//            lad.setCancelable(false);
-//            lad.show();
-//
-//
-//            ((TextView) lad.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
-//          //  ((Button) lad.getWindow().findViewById(android.R.id.button1)).setTypeface(alertTypeface);
-//          //  ((Button) lad.getWindow().findViewById(android.R.id.button2)).setTypeface(alertTypeface);
-//
-//
-//        } else {
-//            startAnimation(findViewById(R.id.lboard_on_off), 1);
-//            prefsEditor
-//                    .putBoolean("leaderboardsPermission", false)
-//                    .apply();
-//            slp(true);
-//        }
-//
-//    }
 
 
     @Override
     public void onBackPressed() {
+        findViewById(R.id.lboards_exp_list_wrapper).setVisibility(View.GONE);
+        findViewById(R.id.game_settings).setVisibility(View.GONE);
+
         if (goSettings) {
             goSettings = false;
         } else {
@@ -198,41 +139,8 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         findViewById(R.id.game_settings).setVisibility(View.VISIBLE);
         goSettings = true;
         soundState();
-        if (isSignedInLeaderboard()) {
-            ((TextView) findViewById(R.id.lboard_on_off)).setText(getString(R.string.on));
-        } else {
-            ((TextView) findViewById(R.id.lboard_on_off)).setText(getString(R.string.off));
-        }
-
-
-        //  slp(false);
     }
 
-    @Override
-    public void slp(boolean onoff) {
-
-        int o = onoff ? R.string.on : R.string.off;
-        ((TextView) findViewById(R.id.lboard_on_off)).setText(o);
-        startAnimation(findViewById(R.id.lboard_on_off), 1);
-    }
-
-//    public void slp(boolean check) {
-//
-//        if (prefs.getBoolean("leaderboardsPermission", false)) {
-//            ((TextView) findViewById(R.id.lboard_on_off)).setText(getString(R.string.on));
-//            if (check) {
-//                signInSilentlyLeaderboard();
-//                xxx
-//            }
-//
-//        } else {
-//            ((TextView) findViewById(R.id.lboard_on_off)).setText(getString(R.string.off));
-//            if (check) {
-//                signOutLeaderboard();
-//            }
-//        }
-//
-//    }
 
     public void goSettingsOk(View v) {
         findViewById(R.id.game_settings).setVisibility(View.GONE);
@@ -364,79 +272,5 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
 
     }
-
-
-//    void checkForLeaderboards() {
-//
-//
-//        if (prefs.getBoolean("askForLeaderboards", true) && prefs.getBoolean("askForLeaderboardsAtStart", false)) {
-//
-//            prefsEditor.putBoolean("askForLeaderboardsAtStart", false).apply();
-//
-//
-//            android.app.AlertDialog adb = new android.app.AlertDialog.Builder(this).create();
-//            // adb.setTitle(getString(R.string.out_of_lives));
-//            adb.setMessage(getString(R.string.join_leaderboards));
-//            adb.setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//
-//                    prefsEditor.putBoolean("leaderboardsPermission", true).apply();
-//                    startSignInIntentLeaderboard();
-//
-//                    //positive
-//                    //  goMenu(false);
-//
-//                }
-//            });
-//
-//            adb.setButton(Dialog.BUTTON_NEGATIVE, getString(R.string.no), new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    //negative
-//
-//                    goMenu(false);
-//                }
-//            });
-//
-//            adb.setButton(Dialog.BUTTON_NEUTRAL, getString(R.string.ask_later), new DialogInterface.OnClickListener() {
-//                @Override
-//                public void onClick(DialogInterface dialogInterface, int i) {
-//                    //ask later
-//
-//                    goMenu(true);
-//
-//                }
-//            });
-//
-//            adb.setCancelable(false);
-//            adb.show();
-//
-//
-////            int titleId = getResources().getIdentifier("alertTitle", "id", "android");
-////            if (titleId > 0) {
-////                TextView title = (TextView) adb.findViewById(titleId);
-////                if (title != null) {
-////                    title.setTypeface(alertTypeface);
-////                }
-////            }
-//
-//            ((TextView) adb.getWindow().findViewById(android.R.id.message)).setTypeface(alertTypeface);
-////            ((Button) adb.getWindow().findViewById(android.R.id.button1)).setTypeface(alertTypeface);
-////            ((Button) adb.getWindow().findViewById(android.R.id.button2)).setTypeface(alertTypeface);
-////            ((Button) adb.getWindow().findViewById(android.R.id.button3)).setTypeface(alertTypeface);
-//
-//    //adb.getWindow().setBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.checked)));
-//
-//        } else {
-//            goMenu(false);
-//        }
-//    }
-
-
-//    public void goMenu(boolean ask) {
-//        prefsEditor.putBoolean("askForLeaderboards", ask).apply();
-//        (findViewById(R.id.first_logo)).setVisibility(View.GONE);
-//    }
 
 }

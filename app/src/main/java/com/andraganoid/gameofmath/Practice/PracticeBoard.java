@@ -2,6 +2,7 @@ package com.andraganoid.gameofmath.Practice;
 
 
 import android.content.Intent;
+import android.text.SpannableString;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,11 +20,14 @@ public class PracticeBoard extends GameBoard {
 
     @Override
     public void prepareTask() {
+
         goMain = true;
-        ((TextView) findViewById(R.id.board_pause)).setText(getString(R.string.cancel));
+        pauseBtn.setText(getString(R.string.cancel));
+        pauseBtn.setClickable(true);
         findViewById((R.id.practice_progress)).setVisibility(View.VISIBLE);
-        typed.setClickable(false);
-        formula.setClickable(false);
+        //  typed.setClickable(false);
+        // formula.setClickable(false);
+        nextBtn.setVisibility(View.GONE);
 
         switch (calc.getAnswerType()) {
             case "multichoice":
@@ -94,8 +98,7 @@ public class PracticeBoard extends GameBoard {
 
         typed.setVisibility(View.VISIBLE);
         typed.setText(String.valueOf(task.getResult()));
-        typed.setClickable(true);
-
+        // typed.setClickable(true);
 
 
 //
@@ -105,8 +108,9 @@ public class PracticeBoard extends GameBoard {
 //            formula.setText("Next");
 //        }
         formula.setText(c);
-        formula.setClickable(true);
-
+        //  formula.setClickable(true);
+        nextBtn.setVisibility(View.VISIBLE);
+        pauseBtn.setClickable(false);
     }
 
     @Override
@@ -115,8 +119,11 @@ public class PracticeBoard extends GameBoard {
 //        Log.d("prakt",String.valueOf(calc.gameLevel));
         if (isEnd) {
             showFullscreenAd();
-           // goMain = false;
-           // finish();
+            (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+                (findViewById(R.id.go_leaderboard)).setVisibility(View.GONE);
+            // goMain = false;
+            // finish();
+
         } else {
 
             if (calc.gameLevel > calc.getHowManyTasks()) {
@@ -126,6 +133,7 @@ public class PracticeBoard extends GameBoard {
 
 
             } else {
+
                 prepareTask();
             }
 
@@ -169,6 +177,17 @@ public class PracticeBoard extends GameBoard {
 
     @Override
     public void goAgain(View v) {
+        (findViewById(R.id.again_or_leaderboard)).setVisibility(View.GONE);
+        calc.gameLevel = 1;
+
+        progress = new SpannableString("");
+        ((TextView) findViewById(R.id.pprog)).setText(progress);
+        prog.clear();
+        goodAnswers = 0;
+        badAnswers = 0;
+
+        isEnd = false;
+        prepareTask();
 
     }
 

@@ -19,21 +19,16 @@ import static com.andraganoid.gameofmath.Misc.MathSounds.WRONG_ANSWER;
 
 public abstract class GameBoard extends GamePlay {
 
-    protected View pBoard, fBoard;
-    protected TextView formula;
+    //  protected View pBoard, fBoard;
+    protected TextView formula, typed, nextBtn, pauseBtn, cho0, cho1, cho2, cho3;
     protected android.support.constraint.ConstraintLayout multic;
     protected LinearLayout keyboard;
 
-    protected TextView typed;
-    protected TextView cho0, cho1, cho2, cho3;
-
-    protected int goodAnswers;
-    protected int badAnswers;
+    protected int goodAnswers, badAnswers;
     public SpannableString progress;
-    public ArrayList<Integer> prog = new ArrayList<>();
+    public ArrayList <Integer> prog = new ArrayList <>();
 
     protected String typedResult;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,24 +40,28 @@ public abstract class GameBoard extends GamePlay {
         typed = findViewById(R.id.game_board_typed);
         keyboard = findViewById(R.id.keyboard);
         board = findViewById(R.id.game_board_lay);
+        nextBtn = findViewById(R.id.game_board_next);
+        pauseBtn = findViewById(R.id.board_pause);
 
         cho0 = findViewById(R.id.game_board_choice_0);
         cho1 = findViewById(R.id.game_board_choice_1);
         cho2 = findViewById(R.id.game_board_choice_2);
         cho3 = findViewById(R.id.game_board_choice_3);
 
-        GamePlay.calc.gameLevel = 1;
+        calc.gameLevel = 1;
 
         progress = new SpannableString("");
         prog.clear();
         goodAnswers = 0;
         badAnswers = 0;
-        formula.setClickable(false);
+        // formula.setClickable(false);
         isEnd = false;
         prepareTask();
 
 
     }
+
+
 
     protected abstract void prepareTask();
 

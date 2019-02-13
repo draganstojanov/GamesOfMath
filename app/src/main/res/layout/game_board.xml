@@ -168,7 +168,7 @@
         android:clickable="false"
         android:gravity="center"
         android:maxLines="1"
-        android:onClick="goNext"
+
         android:padding="4dp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/game_board_typed"
@@ -183,12 +183,30 @@
         android:layout_marginBottom="8dp"
         android:background="@color/base"
         android:gravity="center"
-        android:onClick="goNext"
+
         android:padding="4dp"
         app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toTopOf="@id/fast_btn"
         app:layout_constraintTop_toBottomOf="@+id/game_board_formula"
         app:layout_constraintVertical_weight="3" />
+
+    <TextView
+        android:id="@+id/game_board_next"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="48dp"
+        android:background="@color/base"
+        android:gravity="center"
+        android:padding="4dp"
+        android:text="@string/next"
+        app:autoSizeTextType="uniform"
+        android:onClick="goNext"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/game_board_typed"
+        app:layout_constraintVertical_weight="3"
+        android:visibility="gone"/>
+
 
     <LinearLayout
 
@@ -199,44 +217,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/game_board_typed"
         app:layout_constraintVertical_weight="6">
-
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/again_or_menu"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:orientation="vertical"-->
-            <!--android:visibility="gone">-->
-
-            <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="0dp"-->
-            <!--android:layout_weight="1"-->
-                <!--android:layout_margin="16dp"-->
-            <!--android:background="@drawable/tv_stroke"-->
-            <!--android:gravity="center"-->
-            <!--android:maxLines="1"-->
-            <!--android:onClick="goAgain"-->
-            <!--android:padding="4dp"-->
-            <!--android:text="@string/play_again"-->
-            <!--app:autoSizeTextType="uniform" />-->
-
-            <!--<TextView-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="0dp"-->
-                <!--android:layout_weight="1"-->
-                <!--android:layout_margin="16dp"-->
-                <!--android:background="@drawable/tv_stroke"-->
-                <!--android:gravity="center"-->
-                <!--android:maxLines="1"-->
-                <!--android:onClick="goBack"-->
-                <!--android:padding="4dp"-->
-                <!--android:text="@string/go_back"-->
-                <!--app:autoSizeTextType="uniform" />-->
-            <!--goback-->
-
-
-        <!--</LinearLayout>-->
 
 
         <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -451,7 +431,7 @@
 
     <include layout="@layout/firework" />
 
-    <include layout="@layout/again_or_leaderboard"/>
+    <include layout="@layout/again_or_leaderboard" />
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -462,7 +442,6 @@
         android:background="@android:color/transparent"
         android:clickable="true"
         android:visibility="gone">
-
 
 
     </android.support.constraint.ConstraintLayout>
