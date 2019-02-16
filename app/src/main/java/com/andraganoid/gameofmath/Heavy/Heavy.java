@@ -38,9 +38,9 @@ public class Heavy extends Calc {
 //            heavyXtraLives = setBonus(HEAVY_XTRA_LIVES, DEFAULT_HEAVY_XTRA_LIVES);
 //        }
 
-        heavyHints = MathBase.getInstance().getBonusValue(HEAVY_HINTS);
-        heavyXtraTime = MathBase.getInstance().getBonusValue(HEAVY_XTRA_TIME);
-        heavyXtraLives = MathBase.getInstance().getBonusValue(HEAVY_XTRA_LIVES);
+//        heavyHints = MathBase.getInstance().getBonusValue(HEAVY_HINTS);
+//        heavyXtraTime = MathBase.getInstance().getBonusValue(HEAVY_XTRA_TIME);
+//        heavyXtraLives = MathBase.getInstance().getBonusValue(HEAVY_XTRA_LIVES);
 
     }
 

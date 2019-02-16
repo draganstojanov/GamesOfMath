@@ -375,15 +375,15 @@ public class GamePlay extends AppCompatActivity {
 
         final ArrayList <Level> levelList = new ArrayList <Level>();
 
-        levelList.add(new Level(getString(R.string.fast_calc),
+        levelList.add(new Level(Level.FAST_CALC,
                 Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)),
                 Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description))));
 
-        levelList.add(new Level(getString(R.string.easy_calc),
+        levelList.add(new Level(Level.EASY_CALC,
                 Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)),
                 Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description))));
 
-        levelList.add(new Level(getString(R.string.heavy_calc),
+        levelList.add(new Level(Level.HEAVY_CALC,
                 Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)),
                 Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description))));
 

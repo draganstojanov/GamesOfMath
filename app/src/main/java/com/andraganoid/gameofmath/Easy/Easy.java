@@ -35,9 +35,11 @@ public class Easy extends Calc {
 //            easyResets = setBonus(EASY_RESETS, DEFAULT_EASY_RESET);
 //        }
 
-        easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
-        easyXtraTime = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
-        easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
+//        easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
+//        easyXtraTime = MathBase.getInstance().getBonusValue(EASY_XTRA_TIME);
+//        easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
+
+
 
     }
 

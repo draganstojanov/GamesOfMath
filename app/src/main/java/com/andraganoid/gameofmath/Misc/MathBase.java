@@ -52,7 +52,7 @@ public class MathBase extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE high_scores (high_scores_level TEXT UNIQUE,high_scores_result INTEGER)");
-        db.execSQL("CREATE TABLE bonus (bonus_type TEXT UNIQUE,bonus_val INTEGER)");
+      //  db.execSQL("CREATE TABLE bonus (bonus_type TEXT UNIQUE,bonus_val INTEGER)");
 
 //        db.execSQL("CREATE TABLE arcade (arcade_level TEXT UNIQUE,arcade_result INTEGER)");
 //        db.execSQL("CREATE TABLE easy (easy_level TEXT UNIQUE,easy_result INTEGER)");
@@ -63,7 +63,7 @@ public class MathBase extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS high_scores");
-        db.execSQL("DROP TABLE IF EXISTS bonus");
+      //  db.execSQL("DROP TABLE IF EXISTS bonus");
 
 //        db.execSQL("DROP TABLE IF EXISTS arcade");
 //        db.execSQL("DROP TABLE IF EXISTS easy");
@@ -183,31 +183,31 @@ public class MathBase extends SQLiteOpenHelper {
     }*/
 
 
-    public int getBonusValue(String typ) {
-        int r = -1;
-        t[0] = typ;
-        db = this.getReadableDatabase();
-        cursor = db.rawQuery("SELECT bonus_val FROM bonus WHERE bonus_type=? ", t);
+//    public int getBonusValue(String typ) {
+//        int r = -1;
+//        t[0] = typ;
+//        db = this.getReadableDatabase();
+//        cursor = db.rawQuery("SELECT bonus_val FROM bonus WHERE bonus_type=? ", t);
+//
+//        if (cursor.moveToFirst()) {
+//
+//            r = cursor.getInt(cursor.getColumnIndexOrThrow("bonus_val"));
+//        }
+//        db.close();
+//        return r;
+//
+//    }
 
-        if (cursor.moveToFirst()) {
 
-            r = cursor.getInt(cursor.getColumnIndexOrThrow("bonus_val"));
-        }
-        db.close();
-        return r;
-
-    }
-
-
-    public void saveBonus(String typ, int val) {
-        cv.clear();
-        cv.put("bonus_type", typ);
-        cv.put("bonus_val", val);
-        db = this.getWritableDatabase();
-        //   db.update("bonus", cv, "bonus_type=" + typ, null);
-        db.insertWithOnConflict("bonus", null, cv, SQLiteDatabase.CONFLICT_REPLACE);
-        db.close();
-    }
+//    public void saveBonus(String typ, int val) {
+//        cv.clear();
+//        cv.put("bonus_type", typ);
+//        cv.put("bonus_val", val);
+//        db = this.getWritableDatabase();
+//        //   db.update("bonus", cv, "bonus_type=" + typ, null);
+//        db.insertWithOnConflict("bonus", null, cv, SQLiteDatabase.CONFLICT_REPLACE);
+//        db.close();
+//    }
 
 
 }

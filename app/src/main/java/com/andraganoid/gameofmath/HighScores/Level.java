@@ -5,6 +5,9 @@ import java.util.List;
 
 public class Level {
 
+    public static final String FAST_CALC = "Fast Calc";
+    public static final String EASY_CALC = "Easy Calc";
+    public static final String HEAVY_CALC = "Heavy Calc";
 
     private String gameName;
     private List <String> levelName;
@@ -41,20 +44,20 @@ public class Level {
 
         switch (n) {
 
-            case "Fast Calc":
+            case FAST_CALC:
 
                 sb.append(indeks + 1 < 10 ? "0" : "");
                 sb.append(indeks + 1);
 
                 break;
 
-            case "Easy Calc":
+            case EASY_CALC:
 
                 sb.append(indeks + 2);
 
                 break;
 
-            case "Heavy Calc":
+            case HEAVY_CALC:
 
                 sb.append(indeks == 0 ? "10" : "100");
 
@@ -65,7 +68,7 @@ public class Level {
         return sb.toString();
 
 
-      //  return levelName.get(indeks).replace("_", " ").toUpperCase();
+        //  return levelName.get(indeks).replace("_", " ").toUpperCase();
     }
 
     public List <String> getLevelDesc() {

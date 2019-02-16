@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andraganoid.gameofmath.DataBase.Bonus;
+import com.andraganoid.gameofmath.DataBase.Repo;
 import com.andraganoid.gameofmath.Easy.EasySettings;
 import com.andraganoid.gameofmath.Fast.FastSettings;
 import com.andraganoid.gameofmath.Heavy.HeavySettings;
@@ -240,26 +242,27 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
         switch (v.getId()) {
             case R.id.reward_e_skip:
-                rc = Calc.EASY_SKIPS;
+                rc = Bonus.EASY_SKIPS;
                 break;
             case R.id.reward_e_xtra:
-                rc = Calc.EASY_XTRA_TIME;
+                rc = Bonus.EASY_XTRA_TIME;
                 break;
             case R.id.reward_e_reset:
-                rc = Calc.EASY_RESETS;
+                rc = Bonus.EASY_RESETS;
                 break;
             case R.id.reward_h_hint:
-                rc = Calc.HEAVY_HINTS;
+                rc = Bonus.HEAVY_HINTS;
                 break;
             case R.id.reward_h_xtra:
-                rc = Calc.HEAVY_XTRA_TIME;
+                rc = Bonus.HEAVY_XTRA_TIME;
                 break;
             case R.id.reward_h_live:
-                rc = Calc.HEAVY_XTRA_LIVES;
+                rc = Bonus.HEAVY_XTRA_LIVES;
                 break;
             case R.id.reward_submit:
                 (findViewById(R.id.reward_dialog)).setVisibility(View.GONE);
-                new Calc().addRewards(rc);
+             //   new Calc().addRewards(rc);
+                new Repo (getApplicationContext()).setRewardBonus(rc,Bonus.INCREASE);
                 break;
         }
 

@@ -5,16 +5,20 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.andraganoid.gameofmath.DataBase.Bonus;
+import com.andraganoid.gameofmath.DataBase.BonusCallback;
+import com.andraganoid.gameofmath.DataBase.Repo;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
+import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Lit;
 import com.andraganoid.gameofmath.R;
 
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.andraganoid.gameofmath.Misc.MathSounds.GET_BONUS;
 import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
@@ -26,22 +30,24 @@ import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class EasyBoard extends GamePlay {
 
-   private TextView lNum[], lOper[], lEr[];
-  private  ArrayList<Integer> easyFornulaArr = new ArrayList<>();
-  private  TextView lResult, lTarget, lErase, lTimer, skip, xtraTime, reset, start, eScore, formula;
-  private  boolean isNum;
-
-   private int secondsLeft;
-
+    private TextView lNum[], lOper[], lEr[];
+    private ArrayList <Integer> easyFornulaArr = new ArrayList <>();
+    private TextView lResult, lTarget, lErase, lTimer, skip, xtraTime, reset, start, eScore, formula;
+    private boolean isNum;
+    private int secondsLeft;
+    private Repo repo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
-        board = findViewById(R.id.easy_board_lay);
+
+        repo = new Repo(getApplicationContext());
+        repo.getBonusesForGame(Level.EASY_CALC, bonusCallback);
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
+        board = findViewById(R.id.easy_board_lay);
         start = findViewById(R.id.easy_start);
         lResult = findViewById(R.id.easy_result);
         lTarget = findViewById(R.id.easy_target);
@@ -76,7 +82,6 @@ public class EasyBoard extends GamePlay {
         start.setVisibility(View.VISIBLE);
         start.setText("3");
 
-
         eScore.setText(calc.resetScore());
         isEnd = true;
         goMain = false;
@@ -106,7 +111,7 @@ public class EasyBoard extends GamePlay {
 
     }
 
-   private void runEasy() {
+    private void runEasy() {
 
         calc.gameLevel++;
         checkForBonusesEasy();
@@ -141,7 +146,7 @@ public class EasyBoard extends GamePlay {
     }
 
 
-  private  void timerStart(int s) {
+    private void timerStart(int s) {
         colorChange = true;
         cdt = new CountDownTimer(s * 1000 + 1000 + 250, 500) {
             @Override
@@ -176,7 +181,7 @@ public class EasyBoard extends GamePlay {
         cdt.start();
     }
 
-   private void easyGameOver() {
+    private void easyGameOver() {
 
         isEnd = true;
 
@@ -194,7 +199,7 @@ public class EasyBoard extends GamePlay {
         board.setClickable(true);
     }
 
-   private void writeFormula() {
+    private void writeFormula() {
 
         if (isNum) {
             prepare4click(lNum);
@@ -245,7 +250,7 @@ public class EasyBoard extends GamePlay {
 
     }
 
-   public void formulaRemove(View v) {
+    public void formulaRemove(View v) {
         if (!isEnd) {
             if (easyFornulaArr.size() > 0) {
                 eScore.setText(calc.easyScore("clear"));
@@ -258,7 +263,7 @@ public class EasyBoard extends GamePlay {
         }
     }
 
-   public void easyNum(View v) {
+    public void easyNum(View v) {
 
         if (!isEnd) {
 
@@ -288,12 +293,12 @@ public class EasyBoard extends GamePlay {
         }
     }
 
-   private boolean isMax() {
+    private boolean isMax() {
         return (easyFornulaArr.size() < (2 * calc.getHowManyOperands() - 1));
     }
 
 
-  private  void prepare4click(TextView[] bv) {
+    private void prepare4click(TextView[] bv) {
 
         for (TextView tv : bv) {
 
@@ -303,7 +308,7 @@ public class EasyBoard extends GamePlay {
     }
 
 
-  private  void unPrepare4click(TextView[] bv) {
+    private void unPrepare4click(TextView[] bv) {
 
         for (TextView tv : bv) {
 
@@ -315,22 +320,24 @@ public class EasyBoard extends GamePlay {
     }
 
 
-   public void easyReset(View v) {
+    public void easyReset(View v) {
         if (!isEnd) {
 
-            if (calc.easyResets > 0) {
+            if (calc.easyResets.getValue() > 0) {
 
                 eScore.setText(calc.easyScore("reset"));
                 if (cdt != null) {
                     cdt.cancel();
                 }
                 secondsLeft = calc.secondsForTask + 1;
-                calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets - 1);
+                // calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets - 1);
+                repo.saveBonus(calc.easyResets, Bonus.DECREASE, bonusCallback);
 
-                setTimeResetText();
-                play(USE_BONUS);
-                startAnimation(reset, 1);
-                runEasy();
+
+//             setTimeResetText ();
+//                play(USE_BONUS);
+//                startAnimation(reset, 1);
+//                runEasy();
 
             }
         }
@@ -340,38 +347,41 @@ public class EasyBoard extends GamePlay {
     public void easySkip(View v) {
         if (!isEnd) {
 
-            if (calc.easySkips > 0) {
+            if (calc.easySkips.getValue() > 0) {
                 eScore.setText(calc.easyScore("skip"));
                 if (cdt != null) {
                     cdt.cancel();
                 }
 
-                calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips - 1);
+                // calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips - 1);
+                repo.saveBonus(calc.easySkips, Bonus.DECREASE, bonusCallback);
 
-                setSkipText();
-                play(USE_BONUS);
-                startAnimation(skip, 1);
-                runEasy();
+//                 setSkipText ();
+//                play(USE_BONUS);
+//                startAnimation(skip, 1);
+//                runEasy();
             }
 
 
         }
     }
 
-   public void easyXtraTime(View v) {
+    public void easyXtraTime(View v) {
         if (!isEnd) {
-            if (calc.easyXtraTime > 0) {
+            if (calc.easyXtraTime.getValue() > 0) {
                 eScore.setText(calc.easyScore("xtra"));
                 if (cdt != null) {
                     cdt.cancel();
                 }
 
                 timerStart(calc.secondsRemain + 30);
-                calc.easyXtraTime = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTime - 1);
+                // calc.easyXtraTime = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTime - 1);
+                repo.saveBonus(calc.easyXtraTime, Bonus.DECREASE, bonusCallback);
 
-                setXtraTimeText();
-                play(USE_BONUS);
-                startAnimation(xtraTime, 1);
+
+//                setXtraTimeText ();
+//                play(USE_BONUS);
+//                startAnimation(xtraTime, 1);
             }
         }
     }
@@ -384,30 +394,34 @@ public class EasyBoard extends GamePlay {
         setTimeResetText();
 
         if (calc.gameLevel % 20 == 0) {//add SKIP
-            calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips + 1);
-            setSkipText();
-            play(GET_BONUS);
-            startAnimation(skip, 1);
+            // calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips + 1);
+            repo.saveBonus(calc.easySkips, Bonus.INCREASE, bonusCallback);
+//            setSkipText();
+//            play(GET_BONUS);
+//            startAnimation(skip, 1);
 
         }
         if (calc.gameLevel % 24 == 0) {//add XTRA
-            calc.easyXtraTime = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTime + 1);
-            setXtraTimeText();
-            startAnimation(xtraTime, 1);
+            // calc.easyXtraTime = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTime + 1);
+            repo.saveBonus(calc.easyXtraTime, Bonus.INCREASE, bonusCallback);
+//            setXtraTimeText();
+//            play(GET_BONUS);
+//            startAnimation(xtraTime, 1);
 
         }
         if (calc.gameLevel % 33 == 0) {//add RESET
-            calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets + 1);
-            setTimeResetText();
-            play(GET_BONUS);
-            startAnimation(reset, 1);
+           // calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets + 1);
+            repo.saveBonus(calc.easyResets, Bonus.INCREASE, bonusCallback);
+//            setTimeResetText();
+//            play(GET_BONUS);
+//            startAnimation(reset, 1);
         }
 
 
     }
 
 
-     public void goPause(View v) {
+    public void goPause(View v) {
         if (!isEnd) {
             cdt.cancel();
             findViewById(R.id.pause_dialog).setVisibility(View.VISIBLE);
@@ -481,9 +495,9 @@ public class EasyBoard extends GamePlay {
 //        startActivity(intent);
     }
 
-    public void goHiScores(View v){
+    public void goHiScores(View v) {
 
-       showHighScoresTable(calc.levelNames.get(calc.gameKind));
+        showHighScoresTable(calc.levelNames.get(calc.gameKind));
 
     }
 
@@ -495,18 +509,118 @@ public class EasyBoard extends GamePlay {
 
 
     private void setSkipText() {
-        skip.setText(getString(R.string.skips) + String.valueOf(calc.easySkips));
+        skip.setText(getString(R.string.skips) + String.valueOf(calc.easySkips.getValue()));
     }
 
     private void setXtraTimeText() {
-        xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.easyXtraTime));
+        xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.easyXtraTime.getValue()));
     }
 
     private void setTimeResetText() {
-        reset.setText(getString(R.string.resets) + String.valueOf(calc.easyResets));
+        reset.setText(getString(R.string.resets) + String.valueOf(calc.easyResets.getValue()));
     }
 
 
+    BonusCallback bonusCallback = new BonusCallback() {
 
+        @Override
+        public void easy(final Bonus bonus) {
+
+runOnUiThread(new Runnable() {
+    @Override
+    public void run() {
+        bonusHandler(bonus);
+    }
+});
+
+            //   (decrease)
+
+            //    setTimeResetText ();
+            //  play(USE_BONUS);
+            //  startAnimation(reset, 1);
+            //  runEasy();
+
+            // setSkipText ();
+            //  play(USE_BONUS);
+            //  startAnimation(skip, 1);
+            //  runEasy();
+
+            // setXtraTimeText ();
+            //  play(USE_BONUS);
+            //  startAnimation(xtraTime, 1);
+
+            //  (increase)
+            // setSkipText();
+            //  play(GET_BONUS);
+            //  startAnimation(skip, 1);
+
+            //  setXtraTimeText();
+            //  play(GET_BONUS);
+            //    startAnimation(xtraTime, 1);
+
+            //  setTimeResetText();
+            //   play(GET_BONUS);
+            //  startAnimation(reset, 1);
+
+
+        }
+
+        @Override
+        public void heavy(Bonus bonus) {
+            //  xxx
+        }
+
+        @Override
+        public void game(List <Bonus> bonusesForGame) {
+            for (Bonus bonus : bonusesForGame) {
+
+                switch (bonus.getBonusName()) {
+                    case Bonus.EASY_SKIPS:
+                        calc.easySkips = bonus;
+                        break;
+                    case Bonus.EASY_XTRA_TIME:
+                        calc.easyXtraTime = bonus;
+                        break;
+                    case Bonus.EASY_RESETS:
+                        calc.easyResets = bonus;
+                        break;
+                }
+            }
+
+
+        }
+    };
+
+
+    private void bonusHandler(Bonus bonus){
+
+        View v=null;
+        switch (bonus.getBonusName()) {
+            case Bonus.EASY_SKIPS:
+                v = skip;
+                setSkipText();
+                break;
+            case Bonus.EASY_RESETS:
+                v = reset;
+                setTimeResetText();
+                break;
+            case Bonus.EASY_XTRA_TIME:
+                v = xtraTime;
+                setXtraTimeText();
+                break;
+        }
+
+        play(bonus.getPlay() == Bonus.INCREASE ? GET_BONUS : USE_BONUS);
+        startAnimation(v,1);
+
+        if (bonus.getPlay() == Bonus.DECREASE) {
+            if (bonus.getBonusName().equals(Bonus.EASY_RESETS) || bonus.getBonusName().equals(Bonus.EASY_SKIPS)) {
+                runEasy();
+            }
+        }
+
+
+
+    }
 
 }

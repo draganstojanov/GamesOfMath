@@ -13,12 +13,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.andraganoid.gameofmath.DataBase.Bonus;
+import com.andraganoid.gameofmath.DataBase.BonusCallback;
+import com.andraganoid.gameofmath.DataBase.Repo;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
+import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;
 
+
+import java.util.List;
 
 import static com.andraganoid.gameofmath.Misc.MathSounds.GET_BONUS;
 import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
@@ -26,15 +32,12 @@ import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
 import static com.andraganoid.gameofmath.Misc.MathSounds.START;
 import static com.andraganoid.gameofmath.Misc.MathSounds.TIME_IS_OUT;
 import static com.andraganoid.gameofmath.Misc.MathSounds.USE_BONUS;
-import static com.andraganoid.gameofmath.Operation.Calc.HEAVY_HINTS;
-import static com.andraganoid.gameofmath.Operation.Calc.HEAVY_XTRA_LIVES;
-import static com.andraganoid.gameofmath.Operation.Calc.HEAVY_XTRA_TIME;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
 
-    TextView qTimer, qResult, qTarget, start, hScore, go, hLives, xtraLives;
+    TextView qTimer, qResult, qTarget, start, hScore, go, hLives, hint, xtraTime, xtraLives;
     int timerTick;
 
     String[] signState = new String[4];
@@ -42,12 +45,12 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     TextView tva[];
 
     int ch, ch1, ch2;
-    TextView hint, xtraTime;
     boolean hintIsNotUsed;
     View board;
 
-
     LinearLayout rl;
+
+    private Repo repo;
 
 
     @Override
@@ -55,27 +58,25 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.heavy_board);
 
-        isEnd = false;
+        repo = new Repo(getApplicationContext());
+        repo.getBonusesForGame(Level.HEAVY_CALC, bonusCallback);
+
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind / 100));
 
+        isEnd = false;
         board = findViewById(R.id.heavy_board_lay);
         board.setClickable(false);
         hScore = findViewById(R.id.heavy_score);
         go = findViewById(R.id.heavy_go);
-
-        board = findViewById(R.id.heavy_board_lay);
         start = findViewById(R.id.heavy_start);
         qTimer = findViewById(R.id.heavy_timer);
         qResult = findViewById(R.id.heavy_result);
         qTarget = findViewById(R.id.heavy_target);
         rl = findViewById(R.id.result_lay);
         hLives = findViewById(R.id.heavy_lives);
-
-
         hint = findViewById(R.id.heavy_hint);
         xtraTime = findViewById(R.id.heavy_xtra_time);
         xtraLives = findViewById(R.id.heavy_xtra_lives);
-
 
         tva = new TextView[]
                 {findViewById(R.id.heavy_sign_0),
@@ -97,9 +98,11 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
 
     void prepHeavy() {
+
+
         hScore.setText(calc.heavyScore("nextLvl"));
         calc.gameLevel++;
-        checkForBonusesHeavy();
+      //  checkForBonusesHeavy();
 
         board.setVisibility(View.GONE);
         start.setVisibility(View.VISIBLE);
@@ -123,6 +126,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 task = new Hev();
                 start.setVisibility(View.GONE);
                 goMain = true;
+                checkForBonusesHeavy();
                 runHeavy();
             }
         };
@@ -133,18 +137,15 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     void runHeavy() {
         rl.setVisibility(View.GONE);
         board.setVisibility(View.VISIBLE);
-
+       // checkForBonusesHeavy();
         qResult.setBackgroundColor(0);
         qResult.setText("");
-
         qTarget.setText(String.valueOf(task.getResult()));
-
 
         ((TextView) findViewById(R.id.heavy_op_0)).setText(String.valueOf(task.getOperandValue(0)));
         ((TextView) findViewById(R.id.heavy_op_1)).setText(String.valueOf(task.getOperandValue(1)));
         ((TextView) findViewById(R.id.heavy_op_2)).setText(String.valueOf(task.getOperandValue(2)));
         ((TextView) findViewById(R.id.heavy_op_3)).setText(String.valueOf(task.getOperandValue(3)));
-        ((TextView) findViewById(R.id.heavy_op_4)).setText(String.valueOf(task.getOperandValue(4)));
         ((TextView) findViewById(R.id.heavy_op_4)).setText(String.valueOf(task.getOperandValue(4)));
 
 
@@ -154,7 +155,9 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         }
 
         hLives.setText(String.valueOf(calc.lives));
+        // setHintText();
 //        hint.setText("Hints: " + String.valueOf(calc.heavyHints));
+        //  setXtraTimeText();
 //        xtraTime.setText("XtraTime: " + String.valueOf(calc.heavyXtraTime));
 
         ch = 0;
@@ -215,7 +218,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         if (calc.lives > 0) {
             prepHeavy();
         } else {
-            if (calc.heavyXtraLives > 0) {
+            if (calc.heavyXtraLives.getValue() > 0) {
                 checkXtraLives();
             } else {
                 heavyGameOver();
@@ -231,16 +234,21 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         AlertDialog adb = new AlertDialog.Builder(HeavyBoard.this).create();
         adb.setTitle(getString(R.string.out_of_lives));
         adb.setMessage(getString(R.string.out_of_lives_msg_1)
-                + String.valueOf(calc.heavyXtraLives)
+                + String.valueOf(calc.heavyXtraLives.getValue())
                 + getString(R.string.out_of_lives_msg_2));
         adb.setButton(Dialog.BUTTON_POSITIVE, getString(R.string.yes), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                calc.heavyXtraLives = calc.setBonus(HEAVY_XTRA_LIVES, calc.heavyXtraLives - 1);
-                xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
-                startAnimation(xtraLives, 1);
-                calc.lives++;
-                prepHeavy();
+                // calc.heavyXtraLives = calc.setBonus(HEAVY_XTRA_LIVES, calc.heavyXtraLives - 1);
+                repo.saveBonus(calc.heavyXtraLives, Bonus.DECREASE, bonusCallback);
+                // xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
+
+
+//           xxx
+//            calc.lives++;
+//                setXtraLivesText();
+//                startAnimation(xtraLives, 1);
+//                prepHeavy();
             }
         });
         adb.setButton(Dialog.BUTTON_NEGATIVE, getString(R.string.no), new DialogInterface.OnClickListener() {
@@ -295,10 +303,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 cdt.cancel();
             }
             if (isCorrect()) {
-//                if (soundIsOn) {
-//                    sRight_answer.start();
-//                }
-                play(RIGHT_ANSWER);
+                //  play(RIGHT_ANSWER);
                 hScore.setText(calc.heavyScore("submit", (int) ((1 + (int) (calc.gameKind / 100) / 20) * (((float) calc.secondsRemain / (float) calc.secondsForTask * 100) * (100 + (float) calc.gameLevel) / 20))));
 
                 prepHeavy();
@@ -353,6 +358,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                             if (isCorrect()) {
                                 rl.setVisibility(View.GONE);
                                 qTarget.setText(getString(R.string.right));
+                                play(RIGHT_ANSWER);
                                 //  qResult.setText("OK");
                                 qResult.setBackgroundColor(getResources().getColor(R.color.checked));
                             } else {
@@ -379,7 +385,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         }
     }
 
-    int yourRes() {
+    private int yourRes() {
         String f = "";
         for (int j = 0; j < 5; j++) {
 
@@ -388,6 +394,8 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 f += signState[j];
             }
         }
+        System.out.println("EVAL: " + f);
+        System.out.println("EVAL-R" + eval(f));
         return eval(f);
     }
 
@@ -404,24 +412,18 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     public void hint(View v) {
         if (!isEnd) {
-            if (calc.heavyHints > 0 && hintIsNotUsed) {
+            if (calc.heavyHints.getValue() > 0 && hintIsNotUsed) {
 
                 hScore.setText(calc.heavyScore("hint"));
-
                 hintIsNotUsed = false;
 
-
-//                ssl = new String[]{"", "", "", "", "+", "-", "*", "/"};
+                ssl = new String[]{"", "", "", "", "+", "-", "\u00D7", "\u00F7"};
 
                 for (int i = 0; i < 4; i++) {
-
                     int o = calc.getOperationType(i);
                     if (o == 2 || o == 3) {
-
                         ssl[i] = ssl[4 + o];
                         ssl[4 + o] = "";
-
-
                         break;
                     }
 
@@ -432,14 +434,20 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                     tva[i].setText(ssl[i]);
                 }
 
-                calc.heavyHints = calc.setBonus(HEAVY_HINTS, calc.heavyHints - 1);
+                // calc.heavyHints = calc.setBonus(HEAVY_HINTS, calc.heavyHints - 1);
+                repo.saveBonus(calc.heavyHints, Bonus.DECREASE, bonusCallback);
+
                 //  qHints--;
-                hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
+
+                //   hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
 //                if (soundIsOn) {
 //                    sUseBonus.start();
 //                }
-                play(USE_BONUS);
-                startAnimation(hint, 1);
+
+//              xxx
+//            setHintText();
+//                play(USE_BONUS);
+//                startAnimation(hint, 1);
             }
         }
 
@@ -448,7 +456,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     public void xtraTime(View v) {
         if (!isEnd) {
 
-            if (calc.heavyXtraTime > 0) {
+            if (calc.heavyXtraTime.getValue() > 0) {
 
                 hScore.setText(calc.heavyScore("xtra"));
 
@@ -456,43 +464,61 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                     cdt.cancel();
                 }
                 timerStart(timerTick + 30000);
-                calc.heavyXtraTime = calc.setBonus(HEAVY_XTRA_TIME, calc.heavyXtraTime - 1);
-                xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
-                play(USE_BONUS);
-                startAnimation(xtraTime, 1);
+                //  calc.heavyXtraTime = calc.setBonus(HEAVY_XTRA_TIME, calc.heavyXtraTime - 1);
+                repo.saveBonus(calc.heavyXtraTime, Bonus.DECREASE, bonusCallback);
+                //  xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
+
+//           xxx
+//            setXtraTimeText();
+//                play(USE_BONUS);
+//                startAnimation(xtraTime, 1);
             }
         }
     }
 
 
     private void checkForBonusesHeavy() {
-
-        hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
-        xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
-        xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
+        setHintText();
+        setXtraTimeText();
+        setXtraLivesText();
+        //  hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
+        // xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
+        // xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
 
         if (calc.gameLevel % 12 == 0) {//add HINT
-            calc.heavyHints = calc.setBonus(HEAVY_HINTS, calc.heavyHints + 1);
-            hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
+            // calc.heavyHints = calc.setBonus(HEAVY_HINTS, calc.heavyHints + 1);
+            repo.saveBonus(calc.heavyHints, Bonus.INCREASE, bonusCallback);
+            // hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
 
-            play(GET_BONUS);
-            startAnimation(hint, 1);
+//         xxx
+//        setHintText();
+//            play(GET_BONUS);
+//            startAnimation(hint, 1);
 
         }
 
         if (calc.gameLevel % 20 == 0) {//add XTRA
-            calc.heavyXtraTime = calc.setBonus(HEAVY_XTRA_TIME, calc.heavyXtraTime + 1);
-            xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
-            play(GET_BONUS);
-            startAnimation(xtraTime, 1);
+            // calc.heavyXtraTime = calc.setBonus(HEAVY_XTRA_TIME, calc.heavyXtraTime + 1);
+            repo.saveBonus(calc.heavyXtraTime, Bonus.INCREASE, bonusCallback);
+            // xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
+
+//          xxx
+//        setXtraTimeText();
+//            play(GET_BONUS);
+//            startAnimation(xtraTime, 1);
 
         }
 
 
         if (calc.gameLevel % 33 == 0) {//add XTRA
-            calc.heavyXtraLives = calc.setBonus(HEAVY_XTRA_LIVES, calc.heavyXtraLives + 1);
-            xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
-            startAnimation(xtraLives, 1);
+            //  calc.heavyXtraLives = calc.setBonus(HEAVY_XTRA_LIVES, calc.heavyXtraLives + 1);
+            repo.saveBonus(calc.heavyXtraLives, Bonus.INCREASE, bonusCallback);
+            // xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
+
+//         xxx
+//        setXtraLivesText();
+//            play(GET_BONUS);
+//            startAnimation(xtraLives, 1);
             //EEECT
         }
 
@@ -563,9 +589,6 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     public void goAgain(View v) {
 
-        Toast.makeText(this, "GO AGAIN", Toast.LENGTH_SHORT).show();
-
-
         adIsShowing = true;
         recreate();
 //        Intent intent = new Intent(this, FastBoard.class);
@@ -583,10 +606,127 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     }
 
 
+    private void setHintText() {
+      //  Toast.makeText(this, String.valueOf(calc.heavyHints.getValue()), Toast.LENGTH_SHORT).show();
+       hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints.getValue()));
+    }
+
+    private void setXtraTimeText() {
+        xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime.getValue()));
+    }
+
+    private void setXtraLivesText() {
+        xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives.getValue()));
+    }
+
+
     public void goHiScores(View v) {
-        
+
         showHighScoresTable(calc.levelNames.get((int) calc.gameKind / 100));
     }
 
 
+    BonusCallback bonusCallback = new BonusCallback() {
+
+        @Override
+        public void easy(Bonus bonus) {
+
+        }
+
+        @Override
+        public void heavy(final Bonus bonus) {
+
+
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    bonusHandler(bonus);
+                }
+            });
+
+
+            //  decrease
+
+            //  calc.lives++;
+            // prepHeavy();
+
+            //  setXtraLivesText();
+            //   play(USE_BONUS);
+            //  startAnimation(xtraLives, 1);
+
+
+            //  setHintText();
+            //  play(USE_BONUS);
+            //   startAnimation(hint, 1);
+
+            // setXtraTimeText();
+            //  play(USE_BONUS);
+            // startAnimation(xtraTime, 1);
+
+
+            //  increase
+
+            //  setHintText();
+            //   play(GET_BONUS);
+            //  startAnimation(hint, 1);
+
+            //  setXtraTimeText();
+            //  play(GET_BONUS);
+            //  startAnimation(xtraTime, 1);
+
+            //  setXtraLivesText();
+            //  play(GET_BONUS);
+            //   startAnimation(xtraLives, 1);
+
+
+        }
+
+        @Override
+        public void game(List <Bonus> bonusesForGame) {
+            for (Bonus bonus : bonusesForGame) {
+
+                switch (bonus.getBonusName()) {
+                    case Bonus.HEAVY_HINTS:
+                        calc.heavyHints = bonus;
+                        break;
+                    case Bonus.HEAVY_XTRA_TIME:
+                        calc.heavyXtraTime = bonus;
+                        break;
+                    case Bonus.HEAVY_XTRA_LIVES:
+                        calc.heavyXtraLives = bonus;
+                        break;
+                }
+
+            }
+
+
+        }
+    };
+
+    private void bonusHandler(Bonus bonus) {
+
+        View v = null;
+        switch (bonus.getBonusName()) {
+            case Bonus.HEAVY_XTRA_LIVES:
+                v = xtraLives;
+                setXtraLivesText();
+                break;
+            case Bonus.HEAVY_HINTS:
+                v = hint;
+                setHintText();
+                break;
+            case Bonus.HEAVY_XTRA_TIME:
+                v = xtraTime;
+                setXtraTimeText();
+                break;
+        }
+
+        play(bonus.getPlay() == Bonus.INCREASE ? GET_BONUS : USE_BONUS);
+        startAnimation(v, 1);
+
+        if (bonus.getPlay() == Bonus.DECREASE && bonus.getBonusName().equals(Bonus.HEAVY_XTRA_LIVES)) {
+            calc.lives++;
+            prepHeavy();
+        }
+    }
 }
