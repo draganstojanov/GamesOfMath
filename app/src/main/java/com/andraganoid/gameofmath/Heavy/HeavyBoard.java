@@ -10,19 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 import com.andraganoid.gameofmath.DataBase.Bonus;
 import com.andraganoid.gameofmath.DataBase.BonusCallback;
-import com.andraganoid.gameofmath.DataBase.Repo;
+import com.andraganoid.gameofmath.DataBase.BonusRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;
-
 
 import java.util.List;
 
@@ -50,7 +48,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     LinearLayout rl;
 
-    private Repo repo;
+    private BonusRepository bonusRepository;
 
 
     @Override
@@ -58,8 +56,8 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.heavy_board);
 
-        repo = new Repo(getApplicationContext());
-        repo.getBonusesForGame(Level.HEAVY_CALC, bonusCallback);
+        bonusRepository = new BonusRepository(getApplicationContext());
+
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind / 100));
 
@@ -93,6 +91,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         }
 
         hScore.setText(calc.resetScore());
+        bonusRepository.getBonusesForGame(Level.HEAVY_CALC, bonusCallback);
         prepHeavy();
     }
 
@@ -102,7 +101,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
         hScore.setText(calc.heavyScore("nextLvl"));
         calc.gameLevel++;
-      //  checkForBonusesHeavy();
+        //  checkForBonusesHeavy();
 
         board.setVisibility(View.GONE);
         start.setVisibility(View.VISIBLE);
@@ -137,7 +136,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     void runHeavy() {
         rl.setVisibility(View.GONE);
         board.setVisibility(View.VISIBLE);
-       // checkForBonusesHeavy();
+        // checkForBonusesHeavy();
         qResult.setBackgroundColor(0);
         qResult.setText("");
         qTarget.setText(String.valueOf(task.getResult()));
@@ -240,7 +239,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 // calc.heavyXtraLives = calc.setBonus(HEAVY_XTRA_LIVES, calc.heavyXtraLives - 1);
-                repo.saveBonus(calc.heavyXtraLives, Bonus.DECREASE, bonusCallback);
+                bonusRepository.saveBonus(calc.heavyXtraLives, Bonus.DECREASE, bonusCallback);
                 // xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
 
 
@@ -374,13 +373,10 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                             qTarget.setClickable(false);
                             qTarget.setText(String.valueOf(task.getResult()));
                         }
-
                     }
 
                     ch = 0;
                     break;
-
-
             }
         }
     }
@@ -435,7 +431,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 }
 
                 // calc.heavyHints = calc.setBonus(HEAVY_HINTS, calc.heavyHints - 1);
-                repo.saveBonus(calc.heavyHints, Bonus.DECREASE, bonusCallback);
+                bonusRepository.saveBonus(calc.heavyHints, Bonus.DECREASE, bonusCallback);
 
                 //  qHints--;
 
@@ -465,7 +461,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 }
                 timerStart(timerTick + 30000);
                 //  calc.heavyXtraTime = calc.setBonus(HEAVY_XTRA_TIME, calc.heavyXtraTime - 1);
-                repo.saveBonus(calc.heavyXtraTime, Bonus.DECREASE, bonusCallback);
+                bonusRepository.saveBonus(calc.heavyXtraTime, Bonus.DECREASE, bonusCallback);
                 //  xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
 
 //           xxx
@@ -487,7 +483,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
         if (calc.gameLevel % 12 == 0) {//add HINT
             // calc.heavyHints = calc.setBonus(HEAVY_HINTS, calc.heavyHints + 1);
-            repo.saveBonus(calc.heavyHints, Bonus.INCREASE, bonusCallback);
+            bonusRepository.saveBonus(calc.heavyHints, Bonus.INCREASE, bonusCallback);
             // hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints));
 
 //         xxx
@@ -499,7 +495,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
         if (calc.gameLevel % 20 == 0) {//add XTRA
             // calc.heavyXtraTime = calc.setBonus(HEAVY_XTRA_TIME, calc.heavyXtraTime + 1);
-            repo.saveBonus(calc.heavyXtraTime, Bonus.INCREASE, bonusCallback);
+            bonusRepository.saveBonus(calc.heavyXtraTime, Bonus.INCREASE, bonusCallback);
             // xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime));
 
 //          xxx
@@ -512,7 +508,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
         if (calc.gameLevel % 33 == 0) {//add XTRA
             //  calc.heavyXtraLives = calc.setBonus(HEAVY_XTRA_LIVES, calc.heavyXtraLives + 1);
-            repo.saveBonus(calc.heavyXtraLives, Bonus.INCREASE, bonusCallback);
+            bonusRepository.saveBonus(calc.heavyXtraLives, Bonus.INCREASE, bonusCallback);
             // xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives));
 
 //         xxx
@@ -607,8 +603,8 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
 
     private void setHintText() {
-      //  Toast.makeText(this, String.valueOf(calc.heavyHints.getValue()), Toast.LENGTH_SHORT).show();
-       hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints.getValue()));
+        //  Toast.makeText(this, String.valueOf(calc.heavyHints.getValue()), Toast.LENGTH_SHORT).show();
+        hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints.getValue()));
     }
 
     private void setXtraTimeText() {
@@ -705,28 +701,31 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     private void bonusHandler(Bonus bonus) {
 
-        View v = null;
-        switch (bonus.getBonusName()) {
-            case Bonus.HEAVY_XTRA_LIVES:
-                v = xtraLives;
-                setXtraLivesText();
-                break;
-            case Bonus.HEAVY_HINTS:
-                v = hint;
-                setHintText();
-                break;
-            case Bonus.HEAVY_XTRA_TIME:
-                v = xtraTime;
-                setXtraTimeText();
-                break;
-        }
-
-        play(bonus.getPlay() == Bonus.INCREASE ? GET_BONUS : USE_BONUS);
-        startAnimation(v, 1);
-
         if (bonus.getPlay() == Bonus.DECREASE && bonus.getBonusName().equals(Bonus.HEAVY_XTRA_LIVES)) {
+            setXtraLivesText();
             calc.lives++;
             prepHeavy();
+        } else {
+            View v = null;
+            switch (bonus.getBonusName()) {
+                case Bonus.HEAVY_XTRA_LIVES:
+                    v = xtraLives;
+                    setXtraLivesText();
+                    break;
+                case Bonus.HEAVY_HINTS:
+                    v = hint;
+                    setHintText();
+                    break;
+                case Bonus.HEAVY_XTRA_TIME:
+                    v = xtraTime;
+                    setXtraTimeText();
+                    break;
+            }
+
+            play(bonus.getPlay() == Bonus.INCREASE ? GET_BONUS : USE_BONUS);
+            startAnimation(v, 1);
         }
+
+
     }
 }

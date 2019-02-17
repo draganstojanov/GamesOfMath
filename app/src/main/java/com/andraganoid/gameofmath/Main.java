@@ -13,13 +13,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.andraganoid.gameofmath.DataBase.Bonus;
-import com.andraganoid.gameofmath.DataBase.Repo;
+import com.andraganoid.gameofmath.DataBase.BonusRepository;
+import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.DataBase.ScoreCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
-import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Misc.MathSounds;
-import com.andraganoid.gameofmath.Operation.Calc;
 import com.google.android.gms.ads.MobileAds;
+
+import java.util.List;
 
 
 // TODO
@@ -70,17 +72,28 @@ public class Main extends AppCompatActivity {
 
         new addInit().execute();
 
+        //          new ScoreRepository(getApplicationContext()).getBestPoints("fast_calc_01",sc);
+
+       // int score = 666666;
+
+       // for (int i = 0; i < 51; i++) {
+         //   new ScoreRepository(getApplicationContext()).saveScore(new Score("fast_calc_02", score), sc);
+      //  }
+
+
+        //  new ScoreRepository(getApplicationContext()).getBestPoints("fast_calc_02",sc);
+
+
         lb_check_lay = findViewById(R.id.lb_connect_start_dialog);
         logo_main = findViewById(R.id.game_logo_main);
 
 
-
-//        new Repo(getApplicationContext()).getBonus();
+//        new BonusRepository(getApplicationContext()).getBonus();
 //
 //        Bonus test = new Bonus();
 //        test.setEasy_skips(99);
-//        new Repo(getApplicationContext()).saveBonus(test);
-//        new Repo(getApplicationContext()).getBonus();
+//        new BonusRepository(getApplicationContext()).saveBonus(test);
+//        new BonusRepository(getApplicationContext()).getBonus();
 
         startAnimator();
 
@@ -100,11 +113,11 @@ public class Main extends AppCompatActivity {
 
         @Override
         protected Object doInBackground(Object[] objects) {
-           new Repo(getApplicationContext()).initBonuses();
+            new BonusRepository(getApplicationContext()).initBonuses();
             MobileAds.initialize(getApplicationContext(), getString(R.string.AD_MOB_APP_ID));
-          //  MathBase mb = new MathBase(getApplicationContext());
+            //  MathBase mb = new MathBase(getApplicationContext());
             MathSounds ms = MathSounds.getInstance(getApplicationContext());
-          //  new Calc().initBonuses();
+            //  new Calc().initBonuses();
 
             return null;
         }
@@ -143,6 +156,45 @@ public class Main extends AppCompatActivity {
 
         animator.setDuration(5000).start();
     }
+
+
+//    ScoreCallback sc = new ScoreCallback() {
+//        @Override
+//        public void scoreSaved(List <Score> scoreList, String levelName) {
+//
+//            System.out.println("SCORE SAVED:" + scoreList.size() + "-" + levelName);
+//
+//            for (int i = 0; i < scoreList.size(); i++) {
+//                System.out.println("SCORE LIST: " + i + "=" + scoreList.get(i).getScorePoints());
+//            }
+//
+//
+//            new ScoreRepository(getApplicationContext()).getBestPoints("fast_calc_02", sc);
+//        }
+//
+//        @Override
+//        public void bestPoints(Score bestScorePoints) {
+//
+//            System.out.println("SCORE POINTS:" + bestScorePoints.getScorePoints());
+//
+//
+//        }
+//
+//        @Override
+//        public void bestPointsList(List <Score> scoreListPoints) {
+//
+//        }
+//
+//        @Override
+//        public void bestTimes(Score bestScoreTime) {
+//
+//        }
+//
+//        @Override
+//        public void bestTimesList(List <Score> scoreListTime) {
+//
+//        }
+//    };
 
 
 }

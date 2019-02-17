@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andraganoid.gameofmath.DataBase.Score;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GameBoard;
 import com.andraganoid.gameofmath.Misc.MathBase;
@@ -144,7 +145,11 @@ public class FastBoard extends GameBoard {
             handler.removeCallbacks(stopwatch);
             // formula.setText("Finish!");
             timeInMillis += badAnswers * 60 * 1000;
-            sw.setText(calc.showTime(timeInMillis));
+           // sw.setText(calc.showTime(timeInMillis));
+            sw.setText(Score.setScoreTimeStringFromMillis(timeInMillis));
+
+
+
             //  typed.setText(Fast.showTime(timeInMillis));
             // Toast.makeText(this, String.valueOf(Fast.showTime(timeInMillis)), Toast.LENGTH_SHORT).show();
 
@@ -162,7 +167,8 @@ public class FastBoard extends GameBoard {
 
             nextBtn.setVisibility(View.VISIBLE);
             pauseBtn.setClickable(false);
-            typed.setText(calc.showTime(timeInMillis));
+           // typed.setText(calc.showTime(timeInMillis));
+            typed.setText(Score.setScoreTimeStringFromMillis(timeInMillis));
 
 //            typed.setClickable(true);
 //            formula.setClickable(true);
@@ -188,11 +194,17 @@ public class FastBoard extends GameBoard {
 
     }
 
-    public void goLeaderboards(View v) {
+    public void goHiScores(View v) {
 
         showHighScoresTable(calc.levelNames.get(calc.gameKind));
 
     }
+
+//    public void goLeaderboards(View v) {
+//
+//        showHighScoresTable(calc.levelNames.get(calc.gameKind));
+//
+//    }
 
     private void fastCheckLeaderboard() {
 
@@ -229,7 +241,9 @@ public class FastBoard extends GameBoard {
     private Runnable stopwatch = new Runnable() {
         public void run() {
             timeInMillis = SystemClock.uptimeMillis() - startTime;
-            sw.setText(calc.showTime(timeInMillis + badAnswers * 60 * 1000));
+          //  sw.setText(calc.showTime(timeInMillis + badAnswers * 60 * 1000));
+            sw.setText(Score.setScoreTimeStringFromMillis(timeInMillis + badAnswers * 60 * 1000));
+
             handler.postDelayed(this, 0);
         }
     };

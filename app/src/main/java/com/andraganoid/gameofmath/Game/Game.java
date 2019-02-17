@@ -1,25 +1,17 @@
 package com.andraganoid.gameofmath.Game;
 
-import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.constraint.ConstraintLayout;
-import android.support.v7.app.AlertDialog;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.andraganoid.gameofmath.DataBase.Bonus;
-import com.andraganoid.gameofmath.DataBase.Repo;
+import com.andraganoid.gameofmath.DataBase.BonusRepository;
 import com.andraganoid.gameofmath.Easy.EasySettings;
 import com.andraganoid.gameofmath.Fast.FastSettings;
 import com.andraganoid.gameofmath.Heavy.HeavySettings;
 import com.andraganoid.gameofmath.Misc.About;
-import com.andraganoid.gameofmath.Operation.Calc;
 import com.andraganoid.gameofmath.Practice.PracticeSettings;
 import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdRequest;
@@ -262,7 +254,7 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
             case R.id.reward_submit:
                 (findViewById(R.id.reward_dialog)).setVisibility(View.GONE);
              //   new Calc().addRewards(rc);
-                new Repo (getApplicationContext()).setRewardBonus(rc,Bonus.INCREASE);
+                new BonusRepository(getApplicationContext()).setRewardBonus(rc,Bonus.INCREASE);
                 break;
         }
 

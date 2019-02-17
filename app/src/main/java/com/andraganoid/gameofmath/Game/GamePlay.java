@@ -355,10 +355,11 @@ public class GamePlay extends AppCompatActivity {
             fullscreenIsShowed = true;
             adIsShowing = true;
             fullscreenAd.show();
-        } else {
-            goMain = false;
-            finish();
         }
+//        else {
+//            goMain = false;
+//            finish();
+//        }
 
     }
 
@@ -457,16 +458,16 @@ public class GamePlay extends AppCompatActivity {
     }
 
 
-    public static int getBoardId(String resName) {
-
-        try {
-            Field idField = R.string.class.getDeclaredField(resName);
-            return idField.getInt(idField);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return -1;
-        }
-    }
+//    public static int getBoardId(String resName) {
+//
+//        try {
+//            Field idField = R.string.class.getDeclaredField(resName);
+//            return idField.getInt(idField);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return -1;
+//        }
+//    }
 
 
 }

@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import com.andraganoid.gameofmath.DataBase.Bonus;
 import com.andraganoid.gameofmath.DataBase.BonusCallback;
-import com.andraganoid.gameofmath.DataBase.Repo;
+import com.andraganoid.gameofmath.DataBase.BonusRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.HighScores.Level;
@@ -35,15 +35,15 @@ public class EasyBoard extends GamePlay {
     private TextView lResult, lTarget, lErase, lTimer, skip, xtraTime, reset, start, eScore, formula;
     private boolean isNum;
     private int secondsLeft;
-    private Repo repo;
+    private BonusRepository bonusRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
 
-        repo = new Repo(getApplicationContext());
-        repo.getBonusesForGame(Level.EASY_CALC, bonusCallback);
+        bonusRepository = new BonusRepository(getApplicationContext());
+        bonusRepository.getBonusesForGame(Level.EASY_CALC, bonusCallback);
 
         calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
@@ -331,7 +331,7 @@ public class EasyBoard extends GamePlay {
                 }
                 secondsLeft = calc.secondsForTask + 1;
                 // calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets - 1);
-                repo.saveBonus(calc.easyResets, Bonus.DECREASE, bonusCallback);
+                bonusRepository.saveBonus(calc.easyResets, Bonus.DECREASE, bonusCallback);
 
 
 //             setTimeResetText ();
@@ -354,7 +354,7 @@ public class EasyBoard extends GamePlay {
                 }
 
                 // calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips - 1);
-                repo.saveBonus(calc.easySkips, Bonus.DECREASE, bonusCallback);
+                bonusRepository.saveBonus(calc.easySkips, Bonus.DECREASE, bonusCallback);
 
 //                 setSkipText ();
 //                play(USE_BONUS);
@@ -376,7 +376,7 @@ public class EasyBoard extends GamePlay {
 
                 timerStart(calc.secondsRemain + 30);
                 // calc.easyXtraTime = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTime - 1);
-                repo.saveBonus(calc.easyXtraTime, Bonus.DECREASE, bonusCallback);
+                bonusRepository.saveBonus(calc.easyXtraTime, Bonus.DECREASE, bonusCallback);
 
 
 //                setXtraTimeText ();
@@ -395,7 +395,7 @@ public class EasyBoard extends GamePlay {
 
         if (calc.gameLevel % 20 == 0) {//add SKIP
             // calc.easySkips = calc.setBonus(calc.EASY_SKIPS, calc.easySkips + 1);
-            repo.saveBonus(calc.easySkips, Bonus.INCREASE, bonusCallback);
+            bonusRepository.saveBonus(calc.easySkips, Bonus.INCREASE, bonusCallback);
 //            setSkipText();
 //            play(GET_BONUS);
 //            startAnimation(skip, 1);
@@ -403,7 +403,7 @@ public class EasyBoard extends GamePlay {
         }
         if (calc.gameLevel % 24 == 0) {//add XTRA
             // calc.easyXtraTime = calc.setBonus(calc.EASY_XTRA_TIME, calc.easyXtraTime + 1);
-            repo.saveBonus(calc.easyXtraTime, Bonus.INCREASE, bonusCallback);
+            bonusRepository.saveBonus(calc.easyXtraTime, Bonus.INCREASE, bonusCallback);
 //            setXtraTimeText();
 //            play(GET_BONUS);
 //            startAnimation(xtraTime, 1);
@@ -411,7 +411,7 @@ public class EasyBoard extends GamePlay {
         }
         if (calc.gameLevel % 33 == 0) {//add RESET
            // calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets + 1);
-            repo.saveBonus(calc.easyResets, Bonus.INCREASE, bonusCallback);
+            bonusRepository.saveBonus(calc.easyResets, Bonus.INCREASE, bonusCallback);
 //            setTimeResetText();
 //            play(GET_BONUS);
 //            startAnimation(reset, 1);

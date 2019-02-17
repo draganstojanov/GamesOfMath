@@ -1,5 +1,7 @@
 package com.andraganoid.gameofmath.Fast;
 
+import com.andraganoid.gameofmath.DataBase.Score;
+
 import static com.andraganoid.gameofmath.Game.Game.calc;
 
 public class FastData {
@@ -22,7 +24,8 @@ public class FastData {
 
         fName = sb.toString();
         fDesc = d;
-        fScore = "  " + String.valueOf(calc.showTime(s));
+       // fScore = "  " + String.valueOf(calc.showTime(s));
+        fScore="  " + Score.setScoreTimeStringFromMillis(s);
 
     }
 
