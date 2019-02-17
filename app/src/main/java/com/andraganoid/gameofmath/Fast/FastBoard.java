@@ -196,13 +196,13 @@ public class FastBoard extends GameBoard {
 
     public void goHiScores(View v) {
 
-        showHighScoresTable(calc.levelNames.get(calc.gameKind));
+      //  showHighScoresList(calc.levelNames.get(calc.gameKind));
 
     }
 
 //    public void goLeaderboards(View v) {
 //
-//        showHighScoresTable(calc.levelNames.get(calc.gameKind));
+//        showHighScoresList(calc.levelNames.get(calc.gameKind));
 //
 //    }
 

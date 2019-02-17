@@ -90,7 +90,7 @@ public class ScoreRepository {
     }
 
 
-    private static class GetScores extends AsyncTask <String, Void, Void> {
+    private static class GetScores extends AsyncTask <String, Void, Score> {
 
         private ScoreDao dao;
         private ScoreCallback scoreCallback;
@@ -103,7 +103,7 @@ public class ScoreRepository {
         }
 
         @Override
-        protected Void doInBackground(String... strings) {
+        protected Score doInBackground(String... strings) {
             Score scr = null;
 
             switch (getType) {
@@ -113,11 +113,11 @@ public class ScoreRepository {
                     if (scr == null) {
                         scr = new Score(strings[0], (int) 0);
                     }
-                    scoreCallback.bestPoints(scr);
+                    scoreCallback.bestScore(scr);
                     break;
 
                 case BEST_POINTS_LIST:
-                    scoreCallback.bestPointsList(dao.getScoreListPoints(strings[0]));
+                    scoreCallback.scoreList(dao.getScoreListPoints(strings[0]));
                     break;
 
                 case BEST_TIME:
@@ -125,16 +125,21 @@ public class ScoreRepository {
                     if (scr == null) {
                         scr = new Score(strings[0], 0l);
                     }
-                    scoreCallback.bestTimes(scr);
+                    scoreCallback.bestScore(scr);
                     break;
 
                 case BEST_TIMES_LIST:
-                    scoreCallback.bestTimesList(dao.getScoreListTime(strings[0]));
+                    scoreCallback.scoreList(dao.getScoreListTime(strings[0]));
                     break;
 
             }
 
-            return null;
+            return scr;
+        }
+
+        @Override
+        protected void onPostExecute(Score score) {
+            super.onPostExecute(score);
         }
     }
 

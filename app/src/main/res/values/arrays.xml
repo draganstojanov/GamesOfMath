@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <!--<string name="easy_matrix">easy_calc_</string>-->
+    <!--<string name="fast_matrix">fast_calc_</string>-->
+    <!--<string name="heavy_matrix">heavy_calc_</string>-->
+
     <string-array name="easy_calc_levels">
         <item>easy_calc_2</item>
         <item>easy_calc_3</item>
@@ -12,18 +17,6 @@
         <item>max 3 operands</item>
         <item>max 4 operands</item>
     </string-array>
-
-    <!--<string-array name="easy_calc_levels_description">-->
-        <!--<item>max 2 operands X ? X</item>-->
-        <!--<item>max 3 operands X ? X ? X</item>-->
-        <!--<item>max 4 operands X ? X ? X ? X</item>-->
-    <!--</string-array>-->
-
-    <!--<string-array name="easy_calc_levels_description_short">-->
-        <!--<item>max 2 operands</item>-->
-        <!--<item>max 3 operands</item>-->
-        <!--<item>max 4 operands</item>-->
-    <!--</string-array>-->
 
 
     <string-array name="heavy_calc_levels">

@@ -618,7 +618,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     public void goHiScores(View v) {
 
-        showHighScoresTable(calc.levelNames.get((int) calc.gameKind / 100));
+      //  showHighScoresList(calc.levelNames.get((int) calc.gameKind / 100));
     }
 
 

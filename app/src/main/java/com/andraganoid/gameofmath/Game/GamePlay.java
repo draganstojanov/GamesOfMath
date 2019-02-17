@@ -22,6 +22,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.DataBase.ScoreCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.HighScores.HighScoresAdapter;
 import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.Misc.MathBase;
@@ -34,9 +37,9 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
 import com.plattysoft.leonids.ParticleSystem;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 import static com.andraganoid.gameofmath.Misc.MathSounds.BEST_RESULT;
@@ -377,18 +380,40 @@ public class GamePlay extends AppCompatActivity {
         final ArrayList <Level> levelList = new ArrayList <Level>();
 
         levelList.add(new Level(Level.FAST_CALC,
-                Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)),
+                getString(R.string.fast_calc),
                 Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description))));
 
         levelList.add(new Level(Level.EASY_CALC,
-                Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)),
+                getString(R.string.easy_calc),
                 Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description))));
 
         levelList.add(new Level(Level.HEAVY_CALC,
-                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)),
+                getString(R.string.heavy_calc),
                 Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description))));
+//
+//        levelList.add(new Level(Level.FAST_CALC,
+//                Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)),
+//                Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description))));
+//
+//        levelList.add(new Level(Level.EASY_CALC,
+//                Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)),
+//                Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description))));
+//
+//        levelList.add(new Level(Level.HEAVY_CALC,
+//                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)),
+//                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description))));
 
-        levelList.add(new Level(getString(R.string.cancel), null, null));
+        levelList.add(new Level(getString(R.string.cancel),getString(R.string.cancel), null));
+
+//        for (Level level : levelList) {
+//            System.out.println("LEVEL LIST" + level.getGameName());
+//            System.out.println("LEVEL LIST" + level.getScreenGameName());
+//            System.out.println("LEVEL LIST" + level.getLevelName().size());
+//            System.out.println("LEVEL LIST" + level.getScreenLevelName().size());
+//            System.out.println("LEVEL LIST" + level.getLevelDesc().size());
+//
+//        }
+
 
         ExpandableListView expListView = (ExpandableListView) findViewById(R.id.lboards_exp_list);
 
@@ -441,7 +466,7 @@ public class GamePlay extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
 
-                showHighScoresTable(levelList.get(groupPosition).getLevel(childPosition));
+                showHighScoresList(levelList.get(groupPosition).getGameName(), levelList.get(groupPosition).getLevelNameItem(childPosition));
 
                 return false;
             }
@@ -450,12 +475,43 @@ public class GamePlay extends AppCompatActivity {
 
     }
 
-    public void showHighScoresTable(String boardName) {
+    public void showHighScoresList(String gameName, String levelName) {
 
-        Toast.makeText(getApplicationContext(), boardName, Toast.LENGTH_LONG).show();
-        System.out.println("showLeaderboard: " + boardName);
+        Toast.makeText(getApplicationContext(), levelName, Toast.LENGTH_LONG).show();
+        System.out.println("showLeaderboard: " + gameName + levelName);
+
+
+        switch (gameName) {
+            case Level.FAST_CALC:
+                new ScoreRepository(getApplicationContext()).getBestTimesList(levelName, scoreCallback);
+                break;
+
+            case Level.EASY_CALC:
+            case Level.HEAVY_CALC:
+                new ScoreRepository(getApplicationContext()).getBestPointsList(levelName, scoreCallback);
+                break;
+        }
 
     }
+
+    ScoreCallback scoreCallback = new ScoreCallback() {
+        @Override
+        public void scoreSaved(List <Score> scoreList, String levelName) {
+
+        }
+
+        @Override
+        public void bestScore(Score scr) {
+
+        }
+
+        @Override
+        public void scoreList(List <Score> scoreListPoints) {
+
+        }
+
+
+    };
 
 
 //    public static int getBoardId(String resName) {

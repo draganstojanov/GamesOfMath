@@ -44,12 +44,9 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
 
         calc = new Heavy(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)));
 
-
         ((TextView) findViewById(R.id.heavy_10_1)).setText(getString(R.string.heavy_calc) + " 10");
         ((TextView) findViewById(R.id.heavy_100_1)).setText(getString(R.string.heavy_calc) + " 100");
 
-//        ((TextView) findViewById(R.id.heavy_10_1)).setText(calc.levelNames.get(0).toUpperCase().replace("_", " "));
-//        ((TextView) findViewById(R.id.heavy_100_1)).setText(calc.levelNames.get(1).toUpperCase().replace("_", " "));
 
         ((TextView) findViewById(R.id.heavy_10_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(0));
         ((TextView) findViewById(R.id.heavy_100_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(1));

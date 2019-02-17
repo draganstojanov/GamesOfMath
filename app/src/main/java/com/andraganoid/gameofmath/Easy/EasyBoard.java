@@ -497,7 +497,7 @@ public class EasyBoard extends GamePlay {
 
     public void goHiScores(View v) {
 
-        showHighScoresTable(calc.levelNames.get(calc.gameKind));
+      //  showHighScoresList(calc.levelNames.get(calc.gameKind));
 
     }
 

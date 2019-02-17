@@ -43,12 +43,12 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getGroup(int groupPosition) {
-        return levels.get(groupPosition).getGameName();
+        return levels.get(groupPosition).getScreenGameName();
     }
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        return ((levels.get(groupPosition).getScreenLevelName(childPosition)));
+        return ((levels.get(groupPosition).getScreenLevelNameItem(childPosition)));
         //+ levels.get(groupPosition).getLevelDescItem(childPosition)
         //  return allBoards.get(groupTitle.get(groupPosition)).get(childPosition);
     }
@@ -76,7 +76,7 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
             convertView = infalInflater.inflate(R.layout.leaderboards_groups, null);
         }
 
-        ((TextView) convertView.findViewById(R.id.lb_exp_title)).setText(levels.get(groupPosition).getGameName());
+        ((TextView) convertView.findViewById(R.id.lb_exp_title)).setText(levels.get(groupPosition).getScreenGameName());
 
         return convertView;
     }
@@ -91,7 +91,7 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
 
 //        ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getScreenLevelName(childPosition));
 
-        ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getScreenLevelName(childPosition));
+        ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getScreenLevelNameItem(childPosition));
         ((TextView) convertView.findViewById(R.id.lb_exp_desc)).setText(levels.get(groupPosition).getLevelDescItem(childPosition));
 
         return convertView;
