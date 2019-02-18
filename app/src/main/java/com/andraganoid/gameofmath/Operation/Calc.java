@@ -1,6 +1,8 @@
 package com.andraganoid.gameofmath.Operation;
 
 import com.andraganoid.gameofmath.DataBase.Bonus;
+import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.Misc.MathBase;
 
 import java.util.HashMap;
@@ -58,10 +60,11 @@ public class Calc {
     public int secondsForTask;
     public int gameLevel;
     public int gameKind;
-    public long highScore;
+    public Score highScore;
     public int currentScore;
     public int lives;
     public int secondsRemain;
+    public Level level;
 
 
     public Task fastList[] = new Task[10];

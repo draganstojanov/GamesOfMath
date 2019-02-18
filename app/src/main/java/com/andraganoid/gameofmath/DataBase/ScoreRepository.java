@@ -16,37 +16,31 @@ public class ScoreRepository {
     private static final int BEST_TIME = 3;
     private static final int BEST_TIMES_LIST = 4;
 
-
-    // private BonusDao bonusDao;
     private ScoreDao scoreDao;
-    // private Context context;
 
     public ScoreRepository(Context context) {
         RoomBase db = RoomBase.getDatabase(context);
         scoreDao = db.scoreDao();
-        //  this.context = context;
     }
-
 
     public void saveScore(Score score, ScoreCallback scoreCallback) {
         new SaveScore(scoreDao, scoreCallback).execute(score);
     }
 
-
     public void getBestPoints(String levelName, ScoreCallback scoreCallback) {
-        new GetScores(scoreDao, scoreCallback, BEST_POINTS).execute(levelName);
+        new GetScore(scoreDao, scoreCallback, BEST_POINTS).execute(levelName);
     }
 
-    public void getBestPointsList(String levelName, ScoreCallback scoreCallback) {
-        new GetScores(scoreDao, scoreCallback, BEST_POINTS_LIST).execute(levelName);
+    public void getBestPointsList(String levelName, ScoreListCallback scoreCallback) {
+        new GetScoreList(scoreDao, scoreCallback, BEST_POINTS_LIST).execute(levelName);
     }
 
     public void getBestTime(String levelName, ScoreCallback scoreCallback) {
-        new GetScores(scoreDao, scoreCallback, BEST_TIME).execute(levelName);
+        new GetScore(scoreDao, scoreCallback, BEST_TIME).execute(levelName);
     }
 
-    public void getBestTimesList(String levelName, ScoreCallback scoreCallback) {
-        new GetScores(scoreDao, scoreCallback, BEST_TIMES_LIST).execute(levelName);
+    public void getBestTimesList(String levelName, ScoreListCallback scoreCallback) {
+        new GetScoreList(scoreDao, scoreCallback, BEST_TIMES_LIST).execute(levelName);
     }
 
 
@@ -90,13 +84,51 @@ public class ScoreRepository {
     }
 
 
-    private static class GetScores extends AsyncTask <String, Void, Score> {
+    private static class GetScoreList extends AsyncTask <String, Void, Score> {
+
+        private ScoreDao dao;
+        private ScoreListCallback scoreCallback;
+        private int getType;
+
+        GetScoreList(ScoreDao dao, ScoreListCallback scoreCallback, int getType) {
+            this.dao = dao;
+            this.scoreCallback = scoreCallback;
+            this.getType = getType;
+        }
+
+        @Override
+        protected Score doInBackground(String... strings) {
+            Score scr = null;
+
+            switch (getType) {
+
+
+                case BEST_POINTS_LIST:
+                    scoreCallback.scoreList(dao.getScoreListPoints(strings[0]));
+                    break;
+
+                case BEST_TIMES_LIST:
+                    scoreCallback.scoreList(dao.getScoreListTime(strings[0]));
+                    break;
+            }
+
+            return scr;
+        }
+
+        @Override
+        protected void onPostExecute(Score score) {
+            super.onPostExecute(score);
+        }
+    }
+
+
+    private static class GetScore extends AsyncTask <String, Void, Score> {
 
         private ScoreDao dao;
         private ScoreCallback scoreCallback;
         private int getType;
 
-        GetScores(ScoreDao dao, ScoreCallback scoreCallback, int getType) {
+        GetScore(ScoreDao dao, ScoreCallback scoreCallback, int getType) {
             this.dao = dao;
             this.scoreCallback = scoreCallback;
             this.getType = getType;
@@ -116,10 +148,6 @@ public class ScoreRepository {
                     scoreCallback.bestScore(scr);
                     break;
 
-                case BEST_POINTS_LIST:
-                    scoreCallback.scoreList(dao.getScoreListPoints(strings[0]));
-                    break;
-
                 case BEST_TIME:
                     scr = dao.getBestScoreTime(strings[0]);
                     if (scr == null) {
@@ -127,11 +155,6 @@ public class ScoreRepository {
                     }
                     scoreCallback.bestScore(scr);
                     break;
-
-                case BEST_TIMES_LIST:
-                    scoreCallback.scoreList(dao.getScoreListTime(strings[0]));
-                    break;
-
             }
 
             return scr;
@@ -142,6 +165,5 @@ public class ScoreRepository {
             super.onPostExecute(score);
         }
     }
-
 
 }

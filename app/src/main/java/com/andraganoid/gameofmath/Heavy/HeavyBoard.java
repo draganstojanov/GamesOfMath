@@ -15,6 +15,9 @@ import android.widget.TextView;
 import com.andraganoid.gameofmath.DataBase.Bonus;
 import com.andraganoid.gameofmath.DataBase.BonusCallback;
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
+import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.DataBase.ScoreCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.HighScores.Level;
@@ -58,8 +61,8 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
         bonusRepository = new BonusRepository(getApplicationContext());
 
-
-        calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind / 100));
+      //  calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind / 100));
+        new ScoreRepository(getApplicationContext()).getBestPoints(Level.HEAVY_CALC,scoreCallback);
 
         isEnd = false;
         board = findViewById(R.id.heavy_board_lay);
@@ -282,10 +285,10 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         go.setVisibility(View.VISIBLE);
         board.setClickable(true);
 
-        if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
-
+      //  if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
+        if (calc.currentScore >= calc.highScore.getScorePoints() || calc.highScore.getScorePoints() == 0) {
 //            MathBase.getInstance().saveHeavyResult(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
-            MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
+          //  MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
             go.setText("NEW HIGH SCORE");
             startAnimation(go, 5);
             goFire();
@@ -579,7 +582,10 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
             fireTimer.cancel();
         }
         showFullscreenAd();
-        (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+     //   (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+        calc.highScore.setScorePoints(calc.currentScore);
+        new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,scoreCallback);
+        (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
         turnTheScreenOff();
     }
 
@@ -726,6 +732,17 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
             startAnimation(v, 1);
         }
 
-
     }
+
+    ScoreCallback scoreCallback = new ScoreCallback() {
+        @Override
+        public void scoreSaved(List <Score> scoreList, String levelName) {
+
+        }
+
+        @Override
+        public void bestScore(Score scr) {
+            calc.highScore=scr;
+        }
+    };
 }

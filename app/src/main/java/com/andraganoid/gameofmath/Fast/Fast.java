@@ -6,10 +6,11 @@ import java.util.List;
 
 public class Fast extends Calc {
 
-    public Fast(List<String> ln) {
+//    public Fast(List<String> ln) {
+public Fast() {
         howManyTasks = 10;
         gameMode = "Fast Calc";
-        levelNames=ln;
+       // levelNames=ln;
 
     }
 }

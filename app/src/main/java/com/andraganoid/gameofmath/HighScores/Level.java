@@ -26,12 +26,12 @@ public class Level {
     private List <String> levelName;
     private List <String> screenLevelName;
     private List <String> levelDesc;
-    private Score bestResult;
+    private List <Score> bestResult;
 
 
-    public Level(String gameName,String screenGameName, List <String> desc) {
+    public Level(String gameName, String screenGameName, List <String> desc) {
         this.gameName = gameName;
-        this.screenGameName=screenGameName;
+        this.screenGameName = screenGameName;
         this.levelDesc = desc;
 
         switch (gameName) {
@@ -121,8 +121,8 @@ public class Level {
         sb.setLength(0);
         sb.append(screenGameName).append(" 10");
         tempList2.add(sb.toString());
-       // sb.setLength(0);
-       // sb.append(screenGameName).append(" 100");
+        // sb.setLength(0);
+        // sb.append(screenGameName).append(" 100");
         sb.append(0);
         tempList2.add(sb.toString());
         return tempList2;
@@ -172,7 +172,15 @@ public class Level {
         return screenLevelName.get(ideks);
     }
 
-        public String getLevelDescItem(int indeks) {
+    public List <Score> getBestResult() {
+        return bestResult;
+    }
+
+    public void setBestResult(List <Score> bestResult) {
+        this.bestResult = bestResult;
+    }
+
+    public String getLevelDescItem(int indeks) {
         return levelDesc.get(indeks);
     }
 
@@ -180,71 +188,18 @@ public class Level {
         return levelName.get(indeks);
     }
 
+    public String getLevelScreenNameItem(int indeks) {
+        return screenLevelName.get(indeks);
+    }
 
+    public Score getBestResultItem(int indeks) {
+        Score r = null;
+        if (bestResult.size() > 0) {
+            r = bestResult.get(indeks);
+        } else {
+            r = new Score();
+        }
+        return r;
+    }
 
-
-    //    public Level(String gn, List <String> ln, List <String> ld) {
-//
-//        this.gameName = gn;
-//        this.levelName = ln;
-//        this.levelDesc = ld;
-//
-//    }
-//
-//    public String getLevel(int indeks) {
-//        return levelName.get(indeks);
-//    }
-//
-//    public String getGameName() {
-//        return gameName;
-//    }
-//
-//    public List <String> getLevelName() {
-//        return levelName;
-//    }
-//
-//    public String getScreenLevelName(int indeks) {
-//
-//        String n = getGameName();
-//
-//        sb.setLength(0);
-//        sb.append(n);
-//        sb.append(" ");
-//
-//        switch (n) {
-//
-//            case FAST_CALC:
-//
-//                sb.append(indeks + 1 < 10 ? "0" : "");
-//                sb.append(indeks + 1);
-//
-//                break;
-//
-//            case EASY_CALC:
-//
-//                sb.append(indeks + 2);
-//
-//                break;
-//
-//            case HEAVY_CALC:
-//
-//                sb.append(indeks == 0 ? "10" : "100");
-//
-//                break;
-//
-//        }
-//
-//        return sb.toString();
-//
-//
-//        //  return levelName.get(indeks).replace("_", " ").toUpperCase();
-//    }
-//
-//    public List <String> getLevelDesc() {
-//        return levelDesc;
-//    }
-//
-//    public String getLevelDescItem(int indeks) {
-//        return levelDesc.get(indeks);
-//    }
 }

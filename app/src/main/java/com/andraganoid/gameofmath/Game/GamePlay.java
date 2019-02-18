@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.andraganoid.gameofmath.DataBase.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.HighScores.HighScoresAdapter;
 import com.andraganoid.gameofmath.HighScores.Level;
@@ -483,7 +484,7 @@ public class GamePlay extends AppCompatActivity {
 
         switch (gameName) {
             case Level.FAST_CALC:
-                new ScoreRepository(getApplicationContext()).getBestTimesList(levelName, scoreCallback);
+                new ScoreRepository(getApplicationContext()).getBestTimesList(levelName,  scoreCallback);
                 break;
 
             case Level.EASY_CALC:
@@ -494,25 +495,12 @@ public class GamePlay extends AppCompatActivity {
 
     }
 
-    ScoreCallback scoreCallback = new ScoreCallback() {
-        @Override
-        public void scoreSaved(List <Score> scoreList, String levelName) {
+ScoreListCallback scoreCallback =  new ScoreListCallback() {
+    @Override
+    public void scoreList(List <Score> scoreList) {
 
-        }
-
-        @Override
-        public void bestScore(Score scr) {
-
-        }
-
-        @Override
-        public void scoreList(List <Score> scoreListPoints) {
-
-        }
-
-
-    };
-
+}
+};
 
 //    public static int getBoardId(String resName) {
 //

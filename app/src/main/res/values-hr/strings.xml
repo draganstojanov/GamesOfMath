@@ -85,7 +85,7 @@
 
     <string-array name="heavy_calc_levels_description">
         <item>max vrijednost broja: 10</item>
-        <item>max max vrijednost broja: 100</item>
+        <item>max vrijednost broja: 100</item>
     </string-array>
 
     <string name="reward_choose">Izaberi nagradu:</string>

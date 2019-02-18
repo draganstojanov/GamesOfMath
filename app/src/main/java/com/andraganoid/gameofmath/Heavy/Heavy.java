@@ -11,17 +11,18 @@ import java.util.List;
 public class Heavy extends Calc {
 
 
-    public Heavy(List<String> ln) {
+    //    public Heavy(List<String> ln) {
+    public Heavy() {
         gameMode = "Heavy Calc";
         lives = DEFAULT_HEAVY_LIVES;
 
-        levelNames = ln;
+        // levelNames = ln;
         gameLevel = 0;
 
 
-        scoreMap.clear();
+        //  scoreMap.clear();
 
-        scoreMap.putAll(MathBase.getInstance().getHighScores(ln));
+        //  scoreMap.putAll(MathBase.getInstance().getHighScores(ln));
 
 //        heavyHints = MathBase.getInstance().getBonusValue(HEAVY_HINTS);
 //        if (heavyHints == -1) {

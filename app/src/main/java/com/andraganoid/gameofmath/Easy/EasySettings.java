@@ -6,17 +6,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
+import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static com.andraganoid.gameofmath.Game.Game.calc;
 
 
-public class EasySettings extends AppCompatActivity  {
+public class EasySettings extends AppCompatActivity {
     private Intent intent;
     private final int TIME_2 = 30;
     private final int TIME_3 = 45;
@@ -41,37 +46,78 @@ public class EasySettings extends AppCompatActivity  {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_settings);
 
-
         adViewBottomEasy = findViewById(R.id.add_view_bottom_easy);
         adViewBottomEasy.loadAd(new AdRequest.Builder().build());
 
 
         //    findViewById(R.id.lite_set_lay).setBackground(new BitmapDrawable(getResources(), background));
 
-        calc = new Easy(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)));
+        // calc = new Easy(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)));
 
 //        ((TextView) findViewById(R.id.easy_2_1)).setText(calc.levelNames.get(0).toUpperCase().replace("_", " "));
 //////        ((TextView) findViewById(R.id.easy_3_1)).setText(calc.levelNames.get(1).toUpperCase().replace("_", " "));
 //////        ((TextView) findViewById(R.id.easy_4_1)).setText(calc.levelNames.get(2).toUpperCase().replace("_", " "));
 
-        ((TextView) findViewById(R.id.easy_2_1)).setText(getString(R.string.easy_calc)+" 2");
-        ((TextView) findViewById(R.id.easy_3_1)).setText(getString(R.string.easy_calc)+" 3");
-        ((TextView) findViewById(R.id.easy_4_1)).setText(getString(R.string.easy_calc)+" 4");
-
-        ((TextView) findViewById(R.id.easy_2_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(0));
-        ((TextView) findViewById(R.id.easy_3_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(1));
-        ((TextView) findViewById(R.id.easy_4_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(2));
-
-        String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0)));
-        ((TextView) findViewById(R.id.easy_2_3)).setText(a);
-        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1)));
-        ((TextView) findViewById(R.id.easy_3_3)).setText(a);
-        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(2)));
-        ((TextView) findViewById(R.id.easy_4_3)).setText(a);
+//        ((TextView) findViewById(R.id.easy_2_1)).setText(getString(R.string.easy_calc) + " 2");
+//        ((TextView) findViewById(R.id.easy_3_1)).setText(getString(R.string.easy_calc) + " 3");
+//        ((TextView) findViewById(R.id.easy_4_1)).setText(getString(R.string.easy_calc) + " 4");
+//
+//        ((TextView) findViewById(R.id.easy_2_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(0));
+//        ((TextView) findViewById(R.id.easy_3_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(1));
+//        ((TextView) findViewById(R.id.easy_4_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(2));
+//
+//        String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0)));
+//        ((TextView) findViewById(R.id.easy_2_3)).setText(a);
+//        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1)));
+//        ((TextView) findViewById(R.id.easy_3_3)).setText(a);
+//        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(2)));
+//        ((TextView) findViewById(R.id.easy_4_3)).setText(a);
 
 //        findViewById(R.id.easy_2).setOnClickListener(this);
 //        findViewById(R.id.easy_3).setOnClickListener(this);
 //        findViewById(R.id.easy_4).setOnClickListener(this);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new ScoreRepository(getApplicationContext()).getBestPointsList(Level.EASY_CALC, scoreCallback);
+    }
+
+    ScoreListCallback scoreCallback = new ScoreListCallback() {
+        @Override
+        public void scoreList(List <Score> scoreListPoints) {
+
+            calc = new Easy();
+            calc.level = new Level(Level.EASY_CALC,
+                    getString(R.string.easy_calc),
+                    Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)));
+
+            calc.level.setBestResult(scoreListPoints);
+
+            initEasy();
+
+        }
+    };
+
+    private void initEasy() {
+
+        ((TextView) findViewById(R.id.easy_2_1)).setText(calc.level.getLevelScreenNameItem(0));
+        ((TextView) findViewById(R.id.easy_3_1)).setText(calc.level.getLevelScreenNameItem(1));
+        ((TextView) findViewById(R.id.easy_4_1)).setText(calc.level.getLevelScreenNameItem(2));
+
+        ((TextView) findViewById(R.id.easy_2_2)).setText(calc.level.getLevelDescItem(0));
+        ((TextView) findViewById(R.id.easy_3_2)).setText(calc.level.getLevelDescItem(1));
+        ((TextView) findViewById(R.id.easy_4_2)).setText(calc.level.getLevelDescItem(2));
+
+        String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(0).getScorePoints());
+        ((TextView) findViewById(R.id.easy_2_3)).setText(a);
+        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(1).getScorePoints());
+        ((TextView) findViewById(R.id.easy_3_3)).setText(a);
+        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(2).getScorePoints());
+        ((TextView) findViewById(R.id.easy_4_3)).setText(a);
+
+
     }
 
 
@@ -80,7 +126,6 @@ public class EasySettings extends AppCompatActivity  {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
-
 
 
     public void goPlayGameEasy(View v) {

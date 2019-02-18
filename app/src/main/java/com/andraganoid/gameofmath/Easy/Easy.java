@@ -10,15 +10,16 @@ import java.util.List;
 public class Easy extends Calc {
 
 
-    public Easy(List<String> ln) {
+   // public Easy(List <String> ln) {
 
+    public Easy(){
         gameMode = "Easy Calc";
-        levelNames = ln;
         gameLevel = 0;
 
-        scoreMap.clear();
+        //  levelNames = ln;
+        // scoreMap.clear();
 
-        scoreMap.putAll(MathBase.getInstance().getHighScores(ln));
+        // scoreMap.putAll(MathBase.getInstance().getHighScores(ln));
 
 //        easySkips = MathBase.getInstance().getBonusValue(EASY_SKIPS);
 //        if (easySkips == -1) {
@@ -40,10 +41,9 @@ public class Easy extends Calc {
 //        easyResets = MathBase.getInstance().getBonusValue(EASY_RESETS);
 
 
-
     }
 
-@Override
+    @Override
     public String easyScore(String sc) {
 
         switch (sc) {

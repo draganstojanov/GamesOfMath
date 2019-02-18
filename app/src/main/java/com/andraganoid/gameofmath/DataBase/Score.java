@@ -6,7 +6,6 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.util.Date;
 
 @Entity(tableName = "score-table")
 public class Score {
@@ -39,7 +38,11 @@ public class Score {
 
 
     public Score() {
+        this.scorePoints=0;
+        this.scoreMillis=0l;
+        this.scoreTimeString = setScoreTimeStringFromMillis(scoreMillis);
     }
+
 
     @Ignore
     public Score(String levelName, int scorePoints) {
@@ -64,7 +67,7 @@ public class Score {
         int secs = (int) (ms / 1000);
         int mins = secs / 60;
         secs = secs % 60;
-        return ("" + mins + ":"
+        return (mins + ":"
                 + String.format("%02d", secs) + ":"
                 + String.format("%03d", (int) (ms % 1000)));
 

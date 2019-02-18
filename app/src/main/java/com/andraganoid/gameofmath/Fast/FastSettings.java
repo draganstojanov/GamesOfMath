@@ -8,7 +8,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 
+import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreRepository;
+import com.andraganoid.gameofmath.Easy.Easy;
 import com.andraganoid.gameofmath.Game.Game;
+import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdRequest;
@@ -27,7 +32,7 @@ public class FastSettings extends AppCompatActivity {
     //    RecyclerView rv;
 //    RecyclerView.Adapter fastAdapter;
 //    RecyclerView.LayoutManager FastLayoutManager;
-    private List<FastData> adFast = new ArrayList<FastData>();
+    private List <FastData> adFast = new ArrayList <FastData>();
     FastAdapter fAdapter;
     private AdView adViewBottomFast;
     //  private AdView adViewBottomFast;
@@ -57,29 +62,71 @@ public class FastSettings extends AppCompatActivity {
 
         adViewBottomFast = findViewById(R.id.add_view_bottom_fast);
         adViewBottomFast.loadAd(new AdRequest.Builder().build());
-        calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
+        //  calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
 
 
 //        for (int i = 0; i < calc.levelNames.size(); i++) {
 //            calc.scoreMap.put(calc.levelNames.get(i), 0l);
 //        }
-        calc.scoreMap.putAll(MathBase.getInstance().getHighScores(calc.levelNames));
+        // calc.scoreMap.putAll(MathBase.getInstance().getHighScores(calc.levelNames));
+
+//        adFast.clear();
+//
+//        for (int j = 0; j < calc.levelNames.size(); j++) {
+//            adFast.add(new FastData
+//                    (getString(R.string.fast_calc),
+//                            j+1,
+//                            Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)).get(j),
+//                            calc.scoreMap.get(calc.levelNames.get(j))));
+//        }
+//
+//        fAdapter = new FastAdapter(this, adFast);
+//        ((ListView) findViewById(R.id.fast_list_view)).setAdapter(fAdapter);
+
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        new ScoreRepository(getApplicationContext()).getBestTimesList(Level.FAST_CALC, scoreCallback);
+    }
+
+    ScoreListCallback scoreCallback = new ScoreListCallback() {
+        @Override
+        public void scoreList(List <Score> scoreListPoints) {
+
+            calc = new Fast();
+            calc.level = new Level(Level.FAST_CALC,
+                    getString(R.string.fast_calc),
+                    Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)));
+
+            calc.level.setBestResult(scoreListPoints);
+runOnUiThread(new Runnable() {
+    @Override
+    public void run() {
+        initFast();
+    }
+});
+
+
+        }
+    };
+
+    private void initFast() {
 
         adFast.clear();
 
-        for (int j = 0; j < calc.levelNames.size(); j++) {
-            adFast.add(new FastData
-                    (getString(R.string.fast_calc),
-                            j+1,
-                            Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)).get(j),
-                            calc.scoreMap.get(calc.levelNames.get(j))));
+        for (int i = 0; i < 14; i++) {
+            adFast.add(new FastData(
+                    calc.level.getScreenLevelNameItem(i),
+                    calc.level.getLevelDescItem(i),
+                    calc.level.getBestResultItem(i).getScoreTimeString()));
         }
 
         fAdapter = new FastAdapter(this, adFast);
         ((ListView) findViewById(R.id.fast_list_view)).setAdapter(fAdapter);
-
     }
-
 
     public void goHome(View v) {
         Intent intent = new Intent(this, Game.class);
@@ -125,7 +172,7 @@ public class FastSettings extends AppCompatActivity {
         }
 
 
-        calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
+       // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
 
         Intent intent = new Intent(v.getContext(), FastBoard.class);

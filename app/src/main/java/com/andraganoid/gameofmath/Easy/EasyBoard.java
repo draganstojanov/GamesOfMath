@@ -9,6 +9,9 @@ import android.widget.TextView;
 import com.andraganoid.gameofmath.DataBase.Bonus;
 import com.andraganoid.gameofmath.DataBase.BonusCallback;
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
+import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.DataBase.ScoreCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.HighScores.Level;
@@ -42,10 +45,12 @@ public class EasyBoard extends GamePlay {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
 
+        new ScoreRepository(getApplicationContext()).getBestPoints(Level.EASY_CALC,scoreCallback);
+
         bonusRepository = new BonusRepository(getApplicationContext());
         bonusRepository.getBonusesForGame(Level.EASY_CALC, bonusCallback);
 
-        calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
+       // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
         board = findViewById(R.id.easy_board_lay);
         start = findViewById(R.id.easy_start);
@@ -185,9 +190,10 @@ public class EasyBoard extends GamePlay {
 
         isEnd = true;
 
-        if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
+        if (calc.currentScore >= calc.highScore.getScorePoints() || calc.highScore.getScorePoints() == 0) {
 
-            MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind), (long) (calc.currentScore));
+
+//            MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind), (long) (calc.currentScore));
             formula.setText(getString(R.string.new_high));
             startAnimation(formula, 5);
             goFire();
@@ -479,7 +485,9 @@ public class EasyBoard extends GamePlay {
             fireTimer.cancel();
         }
         showFullscreenAd();
-        (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+        calc.highScore.setScorePoints(calc.currentScore);
+        new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,scoreCallback);
+        (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
         turnTheScreenOff();
     }
 
@@ -622,5 +630,18 @@ runOnUiThread(new Runnable() {
 
 
     }
+
+    ScoreCallback scoreCallback = new ScoreCallback() {
+        @Override
+        public void scoreSaved(List <Score> scoreList, String levelName) {
+
+        }
+
+        @Override
+        public void bestScore(Score scr) {
+            calc.highScore=scr;
+        }
+    };
+
 
 }

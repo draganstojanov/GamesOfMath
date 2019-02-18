@@ -383,7 +383,9 @@
 
     <include layout="@layout/firework" />
 
-    <include layout="@layout/again_or_leaderboard" />
+    <!--<include layout="@layout/again_or_leaderboard" />-->
+
+   <include layout="@layout/highscore_table" />
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
