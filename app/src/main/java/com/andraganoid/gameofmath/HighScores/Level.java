@@ -4,7 +4,9 @@ package com.andraganoid.gameofmath.HighScores;
 import com.andraganoid.gameofmath.DataBase.Score;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Level {
 
@@ -26,13 +28,14 @@ public class Level {
     private List <String> levelName;
     private List <String> screenLevelName;
     private List <String> levelDesc;
-    private List <Score> bestResult;
+    private Map <String, Score> bestResult;
 
 
     public Level(String gameName, String screenGameName, List <String> desc) {
         this.gameName = gameName;
         this.screenGameName = screenGameName;
         this.levelDesc = desc;
+        this.bestResult = new HashMap <>();
 
         switch (gameName) {
 
@@ -67,7 +70,10 @@ public class Level {
             }
             sb.append(i);
             tempList.add(sb.toString());
+            System.out.println("NAME FAST: "+sb);
         }
+
+
         return tempList;
     }
 
@@ -81,6 +87,7 @@ public class Level {
             }
             sb.append(i);
             tempList2.add(sb.toString());
+
         }
         return tempList2;
     }
@@ -91,6 +98,7 @@ public class Level {
             sb.setLength(0);
             sb.append(EASY_CALC).append("_").append(i);
             tempList.add(sb.toString());
+            System.out.println("NAME EASY: "+sb);
         }
         return tempList;
     }
@@ -109,10 +117,10 @@ public class Level {
         tempList.clear();
         sb.setLength(0);
         sb.append(HEAVY_CALC).append("_10");
-        tempList.add(sb.toString());
+        tempList.add(sb.toString());    System.out.println("NAME HEAVY: "+sb);
         sb.setLength(0);
         sb.append(HEAVY_CALC).append("_100");
-        tempList.add(sb.toString());
+        tempList.add(sb.toString()); System.out.println("NAME HEAVY: "+sb);
         return tempList;
     }
 
@@ -172,11 +180,11 @@ public class Level {
         return screenLevelName.get(ideks);
     }
 
-    public List <Score> getBestResult() {
+    public Map <String, Score> getBestResult() {
         return bestResult;
     }
 
-    public void setBestResult(List <Score> bestResult) {
+    public void setBestResult(Map <String, Score> bestResult) {
         this.bestResult = bestResult;
     }
 
@@ -192,14 +200,28 @@ public class Level {
         return screenLevelName.get(indeks);
     }
 
-    public Score getBestResultItem(int indeks) {
-        Score r = null;
-        if (bestResult.size() > 0) {
-            r = bestResult.get(indeks);
-        } else {
-            r = new Score();
-        }
-        return r;
+    public Score getBestResultItem(String key) {
+
+//        Score r = null;
+//        if (bestResult.size() > 0) {
+//            r = bestResult.get(indeks);
+//        } else {
+//            r = new Score();
+//        }
+//        return r;
+
+        return bestResult.get(key);
     }
+
+    public boolean setBestResultItem(String key, Score score) {
+        this.bestResult.put(key, score);
+        if (bestResult.size() != levelName.size()) {
+            return false;
+        } else {
+            return true;
+        }
+
+    }
+
 
 }

@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.andraganoid.gameofmath.DataBase.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GameBoard;
@@ -41,7 +42,8 @@ public class FastBoard extends GameBoard {
     @Override
     protected void onResume() {
         super.onResume();
-        new ScoreRepository(getApplicationContext()).getBestTime(Level.FAST_CALC,scoreCallback);
+       // new ScoreRepository(getApplicationContext()).getBestTime(Level.FAST_CALC,scoreCallback);
+        new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind),scoreCallback);
     }
 
     @Override
@@ -199,40 +201,14 @@ public class FastBoard extends GameBoard {
         }
         showFullscreenAd();
       //  (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
-        calc.highScore.setScorePoints(calc.currentScore);
-        new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,scoreCallback);
+       // calc.highScore.setScorePoints(calc.currentScore);
+       // new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
+        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),calc.currentScore),slc);xx
         (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+        (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
+        ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
     }
 
-    public void goHiScores(View v) {
-
-      //  showHighScoresList(calc.levelNames.get(calc.gameKind));
-
-    }
-
-//    public void goLeaderboards(View v) {
-//
-//        showHighScoresList(calc.levelNames.get(calc.gameKind));
-//
-//    }
-
-    private void fastCheckLeaderboard() {
-
-        // xxxx vidi da li ima rezultat za lb
-
-
-        // again or backtomenu?
-
-
-      //  (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
-
-
-//
-//        goMain = false;
-//        finish();
-
-
-    }
 
     public void goAgain(View v) {
 
@@ -244,7 +220,11 @@ public class FastBoard extends GameBoard {
 //        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        startActivity(intent);
 
+    }
 
+    public void goMain(View v){
+
+        goMain=true;finish();
     }
 
 
@@ -318,14 +298,25 @@ public class FastBoard extends GameBoard {
     }
 
     ScoreCallback scoreCallback = new ScoreCallback() {
-        @Override
-        public void scoreSaved(List<Score> scoreList, String levelName) {
 
-        }
 
         @Override
         public void bestScore(Score scr) {
             calc.highScore=scr;
+        }
+    };
+
+    ScoreListCallback slc = new ScoreListCallback() {
+        @Override
+        public void scoreSaved(List <Score> scoreList, String levelName) {
+
+            // xxx hs adapter
+
+        }
+
+        @Override
+        public void scoreList(List <Score> scoreList) {
+
         }
     };
 }

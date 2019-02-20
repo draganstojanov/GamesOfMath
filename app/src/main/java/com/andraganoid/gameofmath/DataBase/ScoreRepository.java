@@ -23,7 +23,8 @@ public class ScoreRepository {
         scoreDao = db.scoreDao();
     }
 
-    public void saveScore(Score score, ScoreCallback scoreCallback) {
+    public void saveScore(Score score, ScoreListCallback scoreCallback) {
+        System.out.println("SAVE: "+score.getScoreTimeString()+score.getLevelName()+score.getScorePoints());
         new SaveScore(scoreDao, scoreCallback).execute(score);
     }
 
@@ -35,6 +36,10 @@ public class ScoreRepository {
         new GetScoreList(scoreDao, scoreCallback, BEST_POINTS_LIST).execute(levelName);
     }
 
+//    public void getBestPointsForAll(List<String> levelList, ScoreForAllCallback scoreCallback) {
+//        new GetScore(scoreDao, scoreCallback, BEST_POINTS).execute(levelList);
+    //   }
+
     public void getBestTime(String levelName, ScoreCallback scoreCallback) {
         new GetScore(scoreDao, scoreCallback, BEST_TIME).execute(levelName);
     }
@@ -43,13 +48,17 @@ public class ScoreRepository {
         new GetScoreList(scoreDao, scoreCallback, BEST_TIMES_LIST).execute(levelName);
     }
 
+//    public void getBestTimesForAll(List<String> levelList, ScoreForAllCallback scoreCallback) {
+//        new GetScore(scoreDao, scoreCallback, BEST_TIME).execute(levelList);
+//    }
+
 
     private static class SaveScore extends AsyncTask <Score, Void, Void> {
 
         private ScoreDao dao;
-        private ScoreCallback scoreCallback;
+        private ScoreListCallback scoreCallback;
 
-        SaveScore(ScoreDao dao, ScoreCallback scoreCallback) {
+        SaveScore(ScoreDao dao, ScoreListCallback scoreCallback) {
             this.dao = dao;
             this.scoreCallback = scoreCallback;
         }
@@ -66,17 +75,21 @@ public class ScoreRepository {
 
                 case Score.SCORE_TYPE_POINTS:
                     scoreList = dao.getScoreListPoints(scr.getLevelName());
+                 //   dao.deleteOverPoints(scoreList.get(MAX_SCORES_IN_LIST - 1).getScorePoints());
                     break;
 
                 case Score.SCORE_TYPE_TIME:
                     scoreList = dao.getScoreListTime(scr.getLevelName());
+                //    dao.deleteOverTimes(scoreList.get(MAX_SCORES_IN_LIST - 1).getScoreMillis());
                     break;
             }
-            if (scoreList.size() > MAX_SCORES_IN_LIST) {
+            //  if (scoreList.size() > MAX_SCORES_IN_LIST) {//xxxxxxxxxxxxxxxxx
 
-                dao.deleteScore(scoreList.get(MAX_SCORES_IN_LIST));
-                scoreList.remove(MAX_SCORES_IN_LIST);
-            }
+//                dao.deleteScore(scoreList.get(MAX_SCORES_IN_LIST));
+//                scoreList.remove(MAX_SCORES_IN_LIST);
+
+            // }
+
 
             scoreCallback.scoreSaved(scoreList, scr.getLevelName());
             return null;
@@ -157,13 +170,71 @@ public class ScoreRepository {
                     break;
             }
 
-            return scr;
+            return null;
         }
 
-        @Override
-        protected void onPostExecute(Score score) {
-            super.onPostExecute(score);
-        }
+        //   @Override
+        //  protected void onPostExecute(Score score) {
+        //   super.onPostExecute(score);
+        //  }
     }
+
+
+//    private static class GetScoreForAll extends AsyncTask <List <String>, Void, List <Score>> {
+//
+//        private ScoreDao dao;
+//        private ScoreForAllCallback scoreCallback;
+//        private int getType;
+//
+//        GetScoreForAll(ScoreDao dao, ScoreForAllCallback scoreCallback, int getType) {
+//            this.dao = dao;
+//            this.scoreCallback = scoreCallback;
+//            this.getType = getType;
+//        }
+//
+//        @Override
+//        protected List <Score> doInBackground(List <String>... strings) {
+//            Score scr = null;
+//            List <Score> l = new ArrayList <>();
+//            for (String s : strings[0]) {
+//
+//
+//                switch (getType) {
+//
+//                    case BEST_POINTS:
+//
+//                        l.add(dao.getBestScorePoints(s));
+//
+//
+////                    scr = dao.getBestScorePoints(strings[0]);
+////                    if (scr == null) {
+////                        scr = new Score(strings[0], (int) 0);
+////                    }
+////                    scoreCallback.bestScore(scr);
+//                        break;
+////
+//                    case BEST_TIME:
+//
+//                        l.add(dao.getBestScoreTime(s));
+//
+//
+////                    scr = dao.getBestScoreTime(strings[0]);
+////                    if (scr == null) {
+////                        scr = new Score(strings[0], 0l);
+////                    }
+////                    scoreCallback.bestScore(scr);
+//                        break;
+//                }
+//            }
+//            scoreCallback.scoresForAll(l);
+//            return null;
+//        }
+//
+////        @Override
+////        protected void onPostExecute(Score score) {
+////            super.onPostExecute(score);
+////        }
+//    }
+
 
 }

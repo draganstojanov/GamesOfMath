@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Easy.Easy;
@@ -46,46 +47,45 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
         adViewBottomHeavy = findViewById(R.id.add_view_bottom_heavy);
         adViewBottomHeavy.loadAd(new AdRequest.Builder().build());
 
-        // findViewById(R.id.heavy_set_lay).setBackground(new BitmapDrawable(getResources(), background));
-
-       // calc = new Heavy(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)));
-
-//        ((TextView) findViewById(R.id.heavy_10_1)).setText(getString(R.string.heavy_calc) + " 10");
-//        ((TextView) findViewById(R.id.heavy_100_1)).setText(getString(R.string.heavy_calc) + " 100");
-//
-//
-//        ((TextView) findViewById(R.id.heavy_10_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(0));
-//        ((TextView) findViewById(R.id.heavy_100_2)).setText(Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)).get(1));
-//
-//        ((TextView) findViewById(R.id.heavy_10_3)).setText(getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0))));
-//        ((TextView) findViewById(R.id.heavy_100_3)).setText(getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1))));
-//
-//        findViewById(R.id.heavy_go_10).setOnClickListener(this);
-//        findViewById(R.id.heavy_go_100).setOnClickListener(this);
-
     }
+
+
+
+
 
     @Override
     protected void onResume() {
         super.onResume();
-        new ScoreRepository(getApplicationContext()).getBestPointsList(Level.HEAVY_CALC, scoreCallback);
+        calc = new Heavy();
+        calc.level = new Level(Level.HEAVY_CALC,
+                getString(R.string.heavy_calc),
+                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)));
+      //  new ScoreRepository(getApplicationContext()).getBestPointsList(Level.HEAVY_CALC, sc);
+        for (String lvl : calc.level.getLevelName()) {
+
+            new ScoreRepository(getApplicationContext()).getBestTime(lvl, sc);
+        }
+
+       // initHeavy();
     }
 
-    ScoreListCallback scoreCallback = new ScoreListCallback() {
+    ScoreCallback sc = new ScoreCallback() {
+
         @Override
-        public void scoreList(List<Score> scoreListPoints) {
+        public void bestScore(final Score scr) {
 
-            calc = new Heavy();
-            calc.level = new Level(Level.HEAVY_CALC,
-                    getString(R.string.heavy_calc),
-                    Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)));
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(  calc.level.setBestResultItem(scr.getLevelName(), scr)){initHeavy();};
+                }
+            });
 
-            calc.level.setBestResult(scoreListPoints);
-
-            initHeavy();
 
         }
     };
+
+
 
     private void  initHeavy(){
         ((TextView) findViewById(R.id.heavy_10_1)).setText(calc.level.getLevelScreenNameItem(0));
@@ -95,9 +95,9 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
         ((TextView) findViewById(R.id.heavy_10_2)).setText(calc.level.getLevelDescItem(0));
         ((TextView) findViewById(R.id.heavy_100_2)).setText(calc.level.getLevelDescItem(1));
 
-        String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(0).getScorePoints());
+        String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(calc.level.getLevelName().get(0)).getScorePoints());
         ((TextView) findViewById(R.id.heavy_10_3)).setText(a);
-        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(1).getScorePoints());
+        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(calc.level.getLevelName().get(1)).getScorePoints());
         ((TextView) findViewById(R.id.heavy_100_3)).setText(a);
 
         findViewById(R.id.heavy_go_10).setOnClickListener(this);

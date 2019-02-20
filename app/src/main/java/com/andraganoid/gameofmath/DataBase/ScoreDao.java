@@ -12,20 +12,21 @@ import java.util.List;
 @Dao
 public interface ScoreDao {
 
-    @Query("SELECT * FROM `score-table` WHERE levelName= :levelName ORDER BY scorePoints DESC")
+    @Query("SELECT * FROM `score-table` WHERE levelName= :levelName ORDER BY scorePoints DESC LIMIT 50")
     public List <Score> getScoreListPoints(String levelName);
 
     @Query("SELECT * FROM `score-table` WHERE levelName= :levelName ORDER BY scorePoints DESC LIMIT 1")
     public Score getBestScorePoints(String levelName);
 
-    @Query("SELECT * FROM `score-table` WHERE levelName= :levelName ORDER BY scoreMillis ASC")
+    @Query("SELECT * FROM `score-table` WHERE levelName= :levelName ORDER BY scoreMillis ASC LIMIT 50")
     public List <Score> getScoreListTime(String levelName);
 
     @Query("SELECT * FROM `score-table` WHERE levelName= :levelName ORDER BY scoreMillis ASC LIMIT 1")
     public Score getBestScoreTime(String levelName);
 
-   // @Insert
-  //  public void saveScore(Score score);
+
+    // @Insert
+    //  public void saveScore(Score score);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void saveScore(Score score);
@@ -39,6 +40,13 @@ public interface ScoreDao {
 
     @Delete
     void deleteScore(Score score);
+
+    @Query("DELETE FROM `score-table` WHERE scorePoints< :points")
+    public void deleteOverPoints(int points);
+
+    @Query("DELETE FROM `score-table` WHERE scoreMillis> :time")
+    public void deleteOverTimes(long time);
+
 
 //    @Delete
 //    void deleteScorePoints(Score score);

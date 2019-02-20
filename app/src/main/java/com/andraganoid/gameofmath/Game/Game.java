@@ -108,11 +108,11 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
     }
 
 
-
     @Override
     public void onBackPressed() {
         findViewById(R.id.lboards_exp_list_wrapper).setVisibility(View.GONE);
         findViewById(R.id.game_settings).setVisibility(View.GONE);
+        findViewById(R.id.highscore_table).setVisibility(View.GONE);
 
         if (goSettings) {
             goSettings = false;
@@ -138,6 +138,10 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
     public void goSettingsOk(View v) {
         findViewById(R.id.game_settings).setVisibility(View.GONE);
+    }
+
+    public void goCloseHsTable(View v) {
+        findViewById(R.id.highscore_table).setVisibility(View.GONE);
     }
 
 
@@ -253,8 +257,8 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
                 break;
             case R.id.reward_submit:
                 (findViewById(R.id.reward_dialog)).setVisibility(View.GONE);
-             //   new Calc().addRewards(rc);
-                new BonusRepository(getApplicationContext()).setRewardBonus(rc,Bonus.INCREASE);
+                //   new Calc().addRewards(rc);
+                new BonusRepository(getApplicationContext()).setRewardBonus(rc, Bonus.INCREASE);
                 break;
         }
 

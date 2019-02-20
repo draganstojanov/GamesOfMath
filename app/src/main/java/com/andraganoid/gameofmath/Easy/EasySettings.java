@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
@@ -49,53 +50,38 @@ public class EasySettings extends AppCompatActivity {
         adViewBottomEasy = findViewById(R.id.add_view_bottom_easy);
         adViewBottomEasy.loadAd(new AdRequest.Builder().build());
 
-
-        //    findViewById(R.id.lite_set_lay).setBackground(new BitmapDrawable(getResources(), background));
-
-        // calc = new Easy(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)));
-
-//        ((TextView) findViewById(R.id.easy_2_1)).setText(calc.levelNames.get(0).toUpperCase().replace("_", " "));
-//////        ((TextView) findViewById(R.id.easy_3_1)).setText(calc.levelNames.get(1).toUpperCase().replace("_", " "));
-//////        ((TextView) findViewById(R.id.easy_4_1)).setText(calc.levelNames.get(2).toUpperCase().replace("_", " "));
-
-//        ((TextView) findViewById(R.id.easy_2_1)).setText(getString(R.string.easy_calc) + " 2");
-//        ((TextView) findViewById(R.id.easy_3_1)).setText(getString(R.string.easy_calc) + " 3");
-//        ((TextView) findViewById(R.id.easy_4_1)).setText(getString(R.string.easy_calc) + " 4");
-//
-//        ((TextView) findViewById(R.id.easy_2_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(0));
-//        ((TextView) findViewById(R.id.easy_3_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(1));
-//        ((TextView) findViewById(R.id.easy_4_2)).setText(Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)).get(2));
-//
-//        String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(0)));
-//        ((TextView) findViewById(R.id.easy_2_3)).setText(a);
-//        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(1)));
-//        ((TextView) findViewById(R.id.easy_3_3)).setText(a);
-//        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.scoreMap.get(calc.levelNames.get(2)));
-//        ((TextView) findViewById(R.id.easy_4_3)).setText(a);
-
-//        findViewById(R.id.easy_2).setOnClickListener(this);
-//        findViewById(R.id.easy_3).setOnClickListener(this);
-//        findViewById(R.id.easy_4).setOnClickListener(this);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        new ScoreRepository(getApplicationContext()).getBestPointsList(Level.EASY_CALC, scoreCallback);
+        calc = new Easy();
+        calc.level = new Level(Level.EASY_CALC,
+                getString(R.string.easy_calc),
+                Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)));
+        for (String lvl : calc.level.getLevelName()) {
+
+            new ScoreRepository(getApplicationContext()).getBestTime(lvl, sc);
+        }
+
+       // initEasy();
+
+        // new ScoreRepository(getApplicationContext()).getBestPointsList(Level.EASY_CALC, scoreCallback);
     }
 
-    ScoreListCallback scoreCallback = new ScoreListCallback() {
+
+    ScoreCallback sc = new ScoreCallback() {
+
         @Override
-        public void scoreList(List <Score> scoreListPoints) {
+        public void bestScore(final Score scr) {
 
-            calc = new Easy();
-            calc.level = new Level(Level.EASY_CALC,
-                    getString(R.string.easy_calc),
-                    Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)));
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(  calc.level.setBestResultItem(scr.getLevelName(), scr)){initEasy();};
+                }
+            });
 
-            calc.level.setBestResult(scoreListPoints);
-
-            initEasy();
 
         }
     };
@@ -109,12 +95,14 @@ public class EasySettings extends AppCompatActivity {
         ((TextView) findViewById(R.id.easy_2_2)).setText(calc.level.getLevelDescItem(0));
         ((TextView) findViewById(R.id.easy_3_2)).setText(calc.level.getLevelDescItem(1));
         ((TextView) findViewById(R.id.easy_4_2)).setText(calc.level.getLevelDescItem(2));
-
-        String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(0).getScorePoints());
+        System.out.println("BBB"+calc.level.getLevelName().get(0));
+        System.out.println("CCC"+calc.level.getBestResult().size());
+        System.out.println("DDD"+calc.level.getBestResult().keySet().toString());
+        String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(calc.level.getLevelName().get(0)).getScorePoints());
         ((TextView) findViewById(R.id.easy_2_3)).setText(a);
-        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(1).getScorePoints());
+        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(calc.level.getLevelName().get(1)).getScorePoints());
         ((TextView) findViewById(R.id.easy_3_3)).setText(a);
-        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(2).getScorePoints());
+        a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(calc.level.getLevelName().get(2)).getScorePoints());
         ((TextView) findViewById(R.id.easy_4_3)).setText(a);
 
 

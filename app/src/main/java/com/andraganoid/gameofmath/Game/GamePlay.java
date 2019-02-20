@@ -467,7 +467,9 @@ public class GamePlay extends AppCompatActivity {
             public boolean onChildClick(ExpandableListView parent, View v,
                                         int groupPosition, int childPosition, long id) {
 
-                showHighScoresList(levelList.get(groupPosition).getGameName(), levelList.get(groupPosition).getLevelNameItem(childPosition));
+                showHighScoresList(levelList.get(groupPosition).getGameName(),
+                        levelList.get(groupPosition).getLevelNameItem(childPosition),
+                        levelList.get(groupPosition).getScreenLevelNameItem(childPosition));
 
                 return false;
             }
@@ -476,11 +478,14 @@ public class GamePlay extends AppCompatActivity {
 
     }
 
-    public void showHighScoresList(String gameName, String levelName) {
+    public void showHighScoresList(String gameName, String levelName,String title) {
 
         Toast.makeText(getApplicationContext(), levelName, Toast.LENGTH_LONG).show();
         System.out.println("showLeaderboard: " + gameName + levelName);
 
+        (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+        (findViewById(R.id.one_btn)).setVisibility(View.VISIBLE);
+        ((TextView) (findViewById(R.id.hs_name))).setText(title);
 
         switch (gameName) {
             case Level.FAST_CALC:
@@ -497,7 +502,16 @@ public class GamePlay extends AppCompatActivity {
 
 ScoreListCallback scoreCallback =  new ScoreListCallback() {
     @Override
+    public void scoreSaved(List <Score> scoreList, String levelName) {
+
+    }
+
+    @Override
     public void scoreList(List <Score> scoreList) {
+
+
+        System.out.println("SCORE LIST");
+
 
 }
 };

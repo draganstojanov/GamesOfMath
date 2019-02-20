@@ -17,6 +17,7 @@ import com.andraganoid.gameofmath.DataBase.BonusCallback;
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
 import com.andraganoid.gameofmath.DataBase.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
@@ -61,8 +62,8 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
         bonusRepository = new BonusRepository(getApplicationContext());
 
-      //  calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind / 100));
-        new ScoreRepository(getApplicationContext()).getBestPoints(Level.HEAVY_CALC,scoreCallback);
+    // new ScoreRepository(getApplicationContext()).getBestPoints(Level.HEAVY_CALC,scoreCallback);
+       new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind),scoreCallback);
 
         isEnd = false;
         board = findViewById(R.id.heavy_board_lay);
@@ -583,9 +584,12 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         }
         showFullscreenAd();
      //   (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
-        calc.highScore.setScorePoints(calc.currentScore);
-        new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,scoreCallback);
+      //  calc.highScore.setScorePoints(calc.currentScore);
+       // new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
+        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),calc.currentScore),slc);xx
         (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+        (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
+        ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
         turnTheScreenOff();
     }
 
@@ -598,6 +602,11 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 //        startActivity(intent);
 
 
+    }
+
+    public void goMain(View v){
+
+        goMain=true;finish();
     }
 
 
@@ -735,14 +744,26 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     }
 
     ScoreCallback scoreCallback = new ScoreCallback() {
-        @Override
-        public void scoreSaved(List <Score> scoreList, String levelName) {
 
-        }
 
         @Override
         public void bestScore(Score scr) {
             calc.highScore=scr;
+        }
+    };
+
+
+    ScoreListCallback slc = new ScoreListCallback() {
+        @Override
+        public void scoreSaved(List <Score> scoreList, String levelName) {
+
+            // xxx hs adapter
+
+        }
+
+        @Override
+        public void scoreList(List <Score> scoreList) {
+
         }
     };
 }

@@ -11,6 +11,7 @@ import com.andraganoid.gameofmath.DataBase.BonusCallback;
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
 import com.andraganoid.gameofmath.DataBase.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
@@ -45,7 +46,8 @@ public class EasyBoard extends GamePlay {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
 
-        new ScoreRepository(getApplicationContext()).getBestPoints(Level.EASY_CALC,scoreCallback);
+     // new ScoreRepository(getApplicationContext()).getBestPoints(Level.EASY_CALC,scoreCallback);
+       new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind),scoreCallback);
 
         bonusRepository = new BonusRepository(getApplicationContext());
         bonusRepository.getBonusesForGame(Level.EASY_CALC, bonusCallback);
@@ -485,9 +487,12 @@ public class EasyBoard extends GamePlay {
             fireTimer.cancel();
         }
         showFullscreenAd();
-        calc.highScore.setScorePoints(calc.currentScore);
-        new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,scoreCallback);
+       // calc.highScore.setScorePoints(calc.currentScore);
+//        new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
+        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),calc.currentScore),slc);xx
         (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+        (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
+        ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
         turnTheScreenOff();
     }
 
@@ -503,10 +508,10 @@ public class EasyBoard extends GamePlay {
 //        startActivity(intent);
     }
 
-    public void goHiScores(View v) {
 
-      //  showHighScoresList(calc.levelNames.get(calc.gameKind));
+    public void goMain(View v){
 
+        goMain=true;finish();
     }
 
     @Override
@@ -632,14 +637,26 @@ runOnUiThread(new Runnable() {
     }
 
     ScoreCallback scoreCallback = new ScoreCallback() {
-        @Override
-        public void scoreSaved(List <Score> scoreList, String levelName) {
 
-        }
 
         @Override
         public void bestScore(Score scr) {
             calc.highScore=scr;
+        }
+    };
+
+
+    ScoreListCallback slc = new ScoreListCallback() {
+        @Override
+        public void scoreSaved(List <Score> scoreList, String levelName) {
+
+            // xxx hs adapter
+
+        }
+
+        @Override
+        public void scoreList(List <Score> scoreList) {
+
         }
     };
 

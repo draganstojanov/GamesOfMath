@@ -5,8 +5,8 @@
     android:id="@+id/highscore_table"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:visibility="gone"
     android:background="@color/checked"
+    android:visibility="gone"
     tool:visibility="visible">
 
 
@@ -29,59 +29,79 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toTopOf="@id/hs_mid_btn"
-        app:layout_constraintTop_toBottomOf="@id/hs_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-
-
-    <TextView
-        android:id="@+id/hs_left_btn"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@drawable/bar_stroke"
-        android:gravity="center"
-
-        android:padding="6dp"
-        android:textColor="@color/base"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintTop_toBottomOf="@id/hs_listview"
+        android:paddingBottom="68dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/hs_mid_btn"
-        tool:text="Main Menu" />
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hs_name" />
+
+    <LinearLayout
+        android:id="@+id/three_btn"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:visibility="gone"
+        tool:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <TextView
+            android:id="@+id/hs_left_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginRight="24dp"
+            android:layout_weight="1"
+            android:background="@drawable/bar_stroke"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="@string/go_home"
+            android:onClick="goMain"
+            android:textColor="@color/base"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintRight_toLeftOf="@id/hs_mid_btn" />
+
+        <TextView
+            android:id="@+id/hs_mid_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bar_stroke"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="@string/go_back"
+            android:onClick="goBack"
+            android:textColor="@color/base"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <TextView
+            android:id="@+id/hs_right_btn"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="24dp"
+            android:layout_weight="1"
+            android:background="@drawable/bar_stroke"
+            android:gravity="center"
+            android:padding="6dp"
+            android:text="@string/play_again"
+            android:onClick="goAgain"
+            android:textColor="@color/base"
+            app:autoSizeTextType="uniform" />
+
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/hs_mid_btn"
-        android:layout_width="0dp"
+        android:id="@+id/one_btn"
+        android:layout_width="match_parent"
         android:layout_height="60dp"
         android:background="@drawable/bar_stroke"
         android:gravity="center"
-
+        android:onClick="goCloseHsTable"
         android:padding="6dp"
+        android:text="@string/ok"
         android:textColor="@color/base"
+        android:visibility="gone"
         app:autoSizeTextType="uniform"
-        tool:text="OK/Play again"
-        app:layout_constraintTop_toBottomOf="@id/hs_listview"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/hs_left_btn"
-        app:layout_constraintRight_toLeftOf="@id/hs_right_btn"/>
-
-    <TextView
-        android:id="@+id/hs_right_btn"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:background="@drawable/bar_stroke"
-        android:gravity="center"
-
-        android:padding="6dp"
-        android:text="@string/help"
-        android:textColor="@color/base"
-        app:autoSizeTextType="uniform"
-        tool:text="Back to menu"
-        app:layout_constraintTop_toBottomOf="@id/hs_listview"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/hs_mid_btn"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        tool:visibility="gone" />
 
 </android.support.constraint.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 
 import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Easy.Easy;
@@ -89,29 +90,59 @@ public class FastSettings extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        new ScoreRepository(getApplicationContext()).getBestTimesList(Level.FAST_CALC, scoreCallback);
+
+
+        calc = new Fast();
+        calc.level = new Level(Level.FAST_CALC,
+                getString(R.string.fast_calc),
+                Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)));
+        for (String lvl : calc.level.getLevelName()) {
+
+            new ScoreRepository(getApplicationContext()).getBestTime(lvl, sc);
+        }
+       // initFast();
+
+
+        //  new ScoreRepository(getApplicationContext()).getBestTimesList(Level.FAST_CALC, scoreCallback);
     }
 
-    ScoreListCallback scoreCallback = new ScoreListCallback() {
+
+    ScoreCallback sc = new ScoreCallback() {
+
         @Override
-        public void scoreList(List <Score> scoreListPoints) {
+        public void bestScore(final Score scr) {
 
-            calc = new Fast();
-            calc.level = new Level(Level.FAST_CALC,
-                    getString(R.string.fast_calc),
-                    Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)));
-
-            calc.level.setBestResult(scoreListPoints);
-runOnUiThread(new Runnable() {
-    @Override
-    public void run() {
-        initFast();
-    }
-});
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(  calc.level.setBestResultItem(scr.getLevelName(), scr)){initFast();};
+                }
+            });
 
 
         }
     };
+
+//    ScoreListCallback scoreCallback = new ScoreListCallback() {
+//        @Override
+//        public void scoreList(List <Score> scoreListPoints) {
+//
+//            calc = new Fast();
+//            calc.level = new Level(Level.FAST_CALC,
+//                    getString(R.string.fast_calc),
+//                    Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)));
+//
+//            calc.level.setBestResult(scoreListPoints);
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    initFast();
+//                }
+//            });
+//
+//
+//        }
+//    };
 
     private void initFast() {
 
@@ -121,7 +152,7 @@ runOnUiThread(new Runnable() {
             adFast.add(new FastData(
                     calc.level.getScreenLevelNameItem(i),
                     calc.level.getLevelDescItem(i),
-                    calc.level.getBestResultItem(i).getScoreTimeString()));
+                    calc.level.getBestResultItem(calc.level.getLevelName().get(i)).getScoreTimeString()));
         }
 
         fAdapter = new FastAdapter(this, adFast);
@@ -172,21 +203,12 @@ runOnUiThread(new Runnable() {
         }
 
 
-       // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
+        // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
 
         Intent intent = new Intent(v.getContext(), FastBoard.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         v.getContext().startActivity(intent);
     }
-
-//    public void goGlobalTopScores(View v) {
-//       // Toast.makeText(this, "HIGH SCORE " + String.valueOf(v.getTag()), Toast.LENGTH_SHORT).show();
-//
-//
-//            showLeaderboard(calc.levelNames.get(calc.gameKind));
-//
-//    }
-
 
 }
