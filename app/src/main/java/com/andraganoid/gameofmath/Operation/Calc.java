@@ -161,15 +161,15 @@ public class Calc {
     }
 
 
-    public String showTime(Long ms) {//TODO CALL:public static String setScoreTimeStringFromMillis(long ms) {}
-        int secs = (int) (ms / 1000);
-        int mins = secs / 60;
-        secs = secs % 60;
-        return ("" + mins + ":"
-                + String.format("%02d", secs) + ":"
-                + String.format("%03d", (int) (ms % 1000)));
-
-    }
+//    public String showTime(Long ms) {//TODO CALL:public static String setScoreTimeStringFromMillis(long ms) {}
+//        int secs = (int) (ms / 1000);
+//        int mins = secs / 60;
+//        secs = secs % 60;
+//        return ("" + mins + ":"
+//                + String.format("%02d", secs) + ":"
+//                + String.format("%03d", (int) (ms % 1000)));
+//
+//    }
 
 
 //    public int setBonus(String t, int s) {

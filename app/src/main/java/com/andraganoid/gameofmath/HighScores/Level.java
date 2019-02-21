@@ -214,6 +214,8 @@ public class Level {
     }
 
     public boolean setBestResultItem(String key, Score score) {
+        System.out.println("SET BEST: "+key+"---"+score.getScorePoints()+"---"+score.getScoreTimeString());
+
         this.bestResult.put(key, score);
         if (bestResult.size() != levelName.size()) {
             return false;

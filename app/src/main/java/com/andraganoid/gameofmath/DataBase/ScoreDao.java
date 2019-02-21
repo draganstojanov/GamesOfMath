@@ -16,21 +16,16 @@ public interface ScoreDao {
     public List <Score> getScoreListPoints(String levelName);
 
     @Query("SELECT * FROM `score-table` WHERE levelName= :levelName ORDER BY scorePoints DESC LIMIT 1")
-    public Score getBestScorePoints(String levelName);
+    public List <Score> getBestScorePoints(String levelName);
 
     @Query("SELECT * FROM `score-table` WHERE levelName= :levelName ORDER BY scoreMillis ASC LIMIT 50")
     public List <Score> getScoreListTime(String levelName);
 
     @Query("SELECT * FROM `score-table` WHERE levelName= :levelName ORDER BY scoreMillis ASC LIMIT 1")
-    public Score getBestScoreTime(String levelName);
-
-
-    // @Insert
-    //  public void saveScore(Score score);
+    public List <Score> getBestScoreTime(String levelName);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public void saveScore(Score score);
-
 
     @Query("SELECT COUNT(*) FROM `score-table` WHERE levelName= :levelName")//mozda i ne treba
     public int countScores(String levelName);//napravi if>50 brisi visak
@@ -46,12 +41,5 @@ public interface ScoreDao {
 
     @Query("DELETE FROM `score-table` WHERE scoreMillis> :time")
     public void deleteOverTimes(long time);
-
-
-//    @Delete
-//    void deleteScorePoints(Score score);
-//
-//    @Delete
-//    void deleteScoreTime(Score score);
 
 }

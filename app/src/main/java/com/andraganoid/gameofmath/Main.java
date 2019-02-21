@@ -26,25 +26,7 @@ import java.util.List;
 
 // TODO
 
-//HEAVY HINT NE RADI
-// heavy calc kad ispise ocisti, prvo pise tacno, pa tek onda your score
-
-//BONUSES ARE -1
-//??????????????????
-
-
-// ALERT DIALOG?
-
-
-// LEADERBOARDS SHOW
-// LEADERBOARDS DB&LOGIC
-
-// leaderboards  ON/OFF ispis???OK
-
-// leaderboards listview OK
-
-// leaderboards on!!//   OK
-// leaderboards off!!    OK
+// game over - ispis hs tabele nakratko pa reklama - resi u reklami!!!
 
 //game onpause pogasi sve dijaloge i menije
 

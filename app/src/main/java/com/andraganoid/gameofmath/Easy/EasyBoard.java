@@ -482,14 +482,14 @@ public class EasyBoard extends GamePlay {
     }
 
     public void easyOver(View v) {
+        showFullscreenAd();
         board.setClickable(false);
         if (fireTimer != null) {
             fireTimer.cancel();
         }
-        showFullscreenAd();
        // calc.highScore.setScorePoints(calc.currentScore);
 //        new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
-        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),calc.currentScore),slc);xx
+        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),calc.currentScore),slc);
         (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
         (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
         ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
@@ -648,9 +648,14 @@ runOnUiThread(new Runnable() {
 
     ScoreListCallback slc = new ScoreListCallback() {
         @Override
-        public void scoreSaved(List <Score> scoreList, String levelName) {
+        public void scoreSaved(final List <Score> scoreList, String levelName) {
 
-            // xxx hs adapter
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    setHighScoreTableAdapter(scoreList);
+                }
+            });
 
         }
 

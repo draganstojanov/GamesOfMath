@@ -63,27 +63,6 @@ public class FastSettings extends AppCompatActivity {
 
         adViewBottomFast = findViewById(R.id.add_view_bottom_fast);
         adViewBottomFast.loadAd(new AdRequest.Builder().build());
-        //  calc = new Fast(Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)));
-
-
-//        for (int i = 0; i < calc.levelNames.size(); i++) {
-//            calc.scoreMap.put(calc.levelNames.get(i), 0l);
-//        }
-        // calc.scoreMap.putAll(MathBase.getInstance().getHighScores(calc.levelNames));
-
-//        adFast.clear();
-//
-//        for (int j = 0; j < calc.levelNames.size(); j++) {
-//            adFast.add(new FastData
-//                    (getString(R.string.fast_calc),
-//                            j+1,
-//                            Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)).get(j),
-//                            calc.scoreMap.get(calc.levelNames.get(j))));
-//        }
-//
-//        fAdapter = new FastAdapter(this, adFast);
-//        ((ListView) findViewById(R.id.fast_list_view)).setAdapter(fAdapter);
-
     }
 
 
@@ -100,10 +79,6 @@ public class FastSettings extends AppCompatActivity {
 
             new ScoreRepository(getApplicationContext()).getBestTime(lvl, sc);
         }
-       // initFast();
-
-
-        //  new ScoreRepository(getApplicationContext()).getBestTimesList(Level.FAST_CALC, scoreCallback);
     }
 
 

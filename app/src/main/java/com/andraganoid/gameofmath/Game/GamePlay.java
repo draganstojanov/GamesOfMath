@@ -12,6 +12,8 @@ import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -27,6 +29,7 @@ import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.HighScores.HighScoresAdapter;
+import com.andraganoid.gameofmath.HighScores.HighScoresTableAdapter;
 import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Misc.MathSounds;
@@ -404,7 +407,7 @@ public class GamePlay extends AppCompatActivity {
 //                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)),
 //                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description))));
 
-        levelList.add(new Level(getString(R.string.cancel),getString(R.string.cancel), null));
+        levelList.add(new Level(getString(R.string.cancel), getString(R.string.cancel), null));
 
 //        for (Level level : levelList) {
 //            System.out.println("LEVEL LIST" + level.getGameName());
@@ -478,7 +481,7 @@ public class GamePlay extends AppCompatActivity {
 
     }
 
-    public void showHighScoresList(String gameName, String levelName,String title) {
+    public void showHighScoresList(String gameName, String levelName, String title) {
 
         Toast.makeText(getApplicationContext(), levelName, Toast.LENGTH_LONG).show();
         System.out.println("showLeaderboard: " + gameName + levelName);
@@ -489,7 +492,7 @@ public class GamePlay extends AppCompatActivity {
 
         switch (gameName) {
             case Level.FAST_CALC:
-                new ScoreRepository(getApplicationContext()).getBestTimesList(levelName,  scoreCallback);
+                new ScoreRepository(getApplicationContext()).getBestTimesList(levelName, scoreCallback);
                 break;
 
             case Level.EASY_CALC:
@@ -500,32 +503,35 @@ public class GamePlay extends AppCompatActivity {
 
     }
 
-ScoreListCallback scoreCallback =  new ScoreListCallback() {
-    @Override
-    public void scoreSaved(List <Score> scoreList, String levelName) {
+    ScoreListCallback scoreCallback = new ScoreListCallback() {
+        @Override
+        public void scoreSaved(List <Score> scoreList, String levelName) {
+
+        }
+
+        @Override
+        public void scoreList(final List <Score> scoreList) {
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    setHighScoreTableAdapter(scoreList);
+                }
+            });
+        }
+    };
+
+    public void setHighScoreTableAdapter(List <Score> scoreList) {
+
+
+
+
+        RecyclerView hsrv = new RecyclerView(this);
+        hsrv = findViewById(R.id.hs_rec_view);
+        HighScoresTableAdapter hstAdapter = new HighScoresTableAdapter(scoreList);
+        RecyclerView.LayoutManager hslm = new LinearLayoutManager(this);
+        hsrv.setLayoutManager(hslm);
+        hsrv.setAdapter(hstAdapter);
 
     }
-
-    @Override
-    public void scoreList(List <Score> scoreList) {
-
-
-        System.out.println("SCORE LIST");
-
-
-}
-};
-
-//    public static int getBoardId(String resName) {
-//
-//        try {
-//            Field idField = R.string.class.getDeclaredField(resName);
-//            return idField.getInt(idField);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return -1;
-//        }
-//    }
-
 
 }

@@ -62,8 +62,8 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
         bonusRepository = new BonusRepository(getApplicationContext());
 
-    // new ScoreRepository(getApplicationContext()).getBestPoints(Level.HEAVY_CALC,scoreCallback);
-       new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind),scoreCallback);
+        // new ScoreRepository(getApplicationContext()).getBestPoints(Level.HEAVY_CALC,scoreCallback);
+        new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind), scoreCallback);
 
         isEnd = false;
         board = findViewById(R.id.heavy_board_lay);
@@ -286,10 +286,10 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         go.setVisibility(View.VISIBLE);
         board.setClickable(true);
 
-      //  if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
+        //  if (calc.currentScore >= calc.highScore || calc.highScore == 0) {
         if (calc.currentScore >= calc.highScore.getScorePoints() || calc.highScore.getScorePoints() == 0) {
 //            MathBase.getInstance().saveHeavyResult(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
-          //  MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
+            //  MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
             go.setText("NEW HIGH SCORE");
             startAnimation(go, 5);
             goFire();
@@ -578,15 +578,16 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     }
 
     public void heavyOver(View v) {
+        showFullscreenAd();
         board.setClickable(false);
         if (fireTimer != null) {
             fireTimer.cancel();
         }
-        showFullscreenAd();
-     //   (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
-      //  calc.highScore.setScorePoints(calc.currentScore);
-       // new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
-        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),calc.currentScore),slc);xx
+
+        //   (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+        //  calc.highScore.setScorePoints(calc.currentScore);
+        // new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
+        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind), calc.currentScore), slc);
         (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
         (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
         ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
@@ -604,9 +605,10 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     }
 
-    public void goMain(View v){
+    public void goMain(View v) {
 
-        goMain=true;finish();
+        goMain = true;
+        finish();
     }
 
 
@@ -633,7 +635,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     public void goHiScores(View v) {
 
-      //  showHighScoresList(calc.levelNames.get((int) calc.gameKind / 100));
+        //  showHighScoresList(calc.levelNames.get((int) calc.gameKind / 100));
     }
 
 
@@ -748,16 +750,21 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
         @Override
         public void bestScore(Score scr) {
-            calc.highScore=scr;
+            calc.highScore = scr;
         }
     };
 
 
     ScoreListCallback slc = new ScoreListCallback() {
         @Override
-        public void scoreSaved(List <Score> scoreList, String levelName) {
+        public void scoreSaved(final List <Score> scoreList, String levelName) {
 
-            // xxx hs adapter
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    setHighScoreTableAdapter(scoreList);
+                }
+            });
 
         }
 

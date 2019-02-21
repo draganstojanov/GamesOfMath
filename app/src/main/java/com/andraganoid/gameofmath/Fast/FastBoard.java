@@ -43,7 +43,7 @@ public class FastBoard extends GameBoard {
     protected void onResume() {
         super.onResume();
        // new ScoreRepository(getApplicationContext()).getBestTime(Level.FAST_CALC,scoreCallback);
-        new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind),scoreCallback);
+        new ScoreRepository(getApplicationContext()).getBestTime(calc.level.getLevelNameItem(calc.gameKind),scoreCallback);
     }
 
     @Override
@@ -194,16 +194,17 @@ public class FastBoard extends GameBoard {
 
     @Override
     public void goNext(View v) {
-
+        showFullscreenAd();
         board.setClickable(false);
         if (fireTimer != null) {
             fireTimer.cancel();
         }
-        showFullscreenAd();
+
       //  (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
        // calc.highScore.setScorePoints(calc.currentScore);
        // new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
-        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),calc.currentScore),slc);xx
+
+        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),timeInMillis),slc);
         (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
         (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
         ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
@@ -308,9 +309,14 @@ public class FastBoard extends GameBoard {
 
     ScoreListCallback slc = new ScoreListCallback() {
         @Override
-        public void scoreSaved(List <Score> scoreList, String levelName) {
+        public void scoreSaved(final List <Score>  scoreList, String levelName) {
 
-            // xxx hs adapter
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    setHighScoreTableAdapter(scoreList);
+                }
+            });
 
         }
 

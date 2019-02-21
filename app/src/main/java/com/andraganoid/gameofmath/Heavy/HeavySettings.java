@@ -63,7 +63,7 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
       //  new ScoreRepository(getApplicationContext()).getBestPointsList(Level.HEAVY_CALC, sc);
         for (String lvl : calc.level.getLevelName()) {
 
-            new ScoreRepository(getApplicationContext()).getBestTime(lvl, sc);
+            new ScoreRepository(getApplicationContext()).getBestPoints(lvl, sc);
         }
 
        // initHeavy();

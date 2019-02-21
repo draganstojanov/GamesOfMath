@@ -6,6 +6,9 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+
 
 @Entity(tableName = "score-table")
 public class Score {
@@ -38,8 +41,8 @@ public class Score {
 
 
     public Score() {
-        this.scorePoints=0;
-        this.scoreMillis=0l;
+        this.scorePoints = 0;
+        this.scoreMillis = 0l;
         this.scoreTimeString = setScoreTimeStringFromMillis(scoreMillis);
     }
 
@@ -127,5 +130,19 @@ public class Score {
 
     public void setScoreType(int scoreType) {
         this.scoreType = scoreType;
+    }
+
+    public String getScoreDate() {
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(timestamp);
+        StringBuilder sb = new StringBuilder();
+        sb.append(cal.get(Calendar.DAY_OF_MONTH+1))
+                .append(".")
+                .append(cal.get(Calendar.MONTH))
+                .append(".\n")
+                .append(cal.get(Calendar.YEAR))
+                .append(".");
+        return sb.toString();
     }
 }
