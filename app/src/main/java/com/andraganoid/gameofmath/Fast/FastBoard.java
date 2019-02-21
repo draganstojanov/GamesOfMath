@@ -7,7 +7,6 @@ import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.andraganoid.gameofmath.DataBase.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
@@ -15,8 +14,6 @@ import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GameBoard;
-import com.andraganoid.gameofmath.HighScores.Level;
-import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Add;
 import com.andraganoid.gameofmath.Operation.Big;
 import com.andraganoid.gameofmath.Operation.Div;

@@ -1,9 +1,6 @@
 package com.andraganoid.gameofmath.Easy;
 
 import com.andraganoid.gameofmath.Operation.Calc;
-import com.andraganoid.gameofmath.Misc.MathBase;
-
-import java.util.List;
 
 //import static com.andraganoid.gameofmath.Game.Game.mathBase;
 

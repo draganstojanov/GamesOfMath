@@ -55,7 +55,7 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
     protected void onResume() {
         super.onResume();
         turnTheScreenOff();
-
+        soundState();
         rewardAd.resume(this);
         if (rewardAd.isLoaded()) {
             getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
@@ -75,7 +75,7 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
         //  prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //  prefsEditor = prefs.edit();
-        getBonusClick = findViewById(R.id.get_bonus_btn);
+     // getBonusClick = findViewById(R.id.get_bonus_btn);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
         bottomAd = findViewById(R.id.add_view_bottom_game);
         rl = findViewById(R.id.reward_dialog);
         rewardAd = MobileAds.getRewardedVideoAdInstance(this);
@@ -110,12 +110,15 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
     @Override
     public void onBackPressed() {
-        findViewById(R.id.lboards_exp_list_wrapper).setVisibility(View.GONE);
-        findViewById(R.id.game_settings).setVisibility(View.GONE);
-        findViewById(R.id.highscore_table).setVisibility(View.GONE);
+        //
 
-        if (goSettings) {
+
+        if (goHiScore) {
+            goHiScore = false;
+            findViewById(R.id.highscore_table).setVisibility(View.GONE);
+        } else if (goSettings) {
             goSettings = false;
+            findViewById(R.id.lboards_exp_list_wrapper).setVisibility(View.GONE);
         } else {
             super.onBackPressed();
         }
@@ -130,9 +133,12 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
     public void goSettings(View v) {
 
-        findViewById(R.id.game_settings).setVisibility(View.VISIBLE);
+        //  findViewById(R.id.game_settings).setVisibility(View.VISIBLE);
         goSettings = true;
-        soundState();
+        highScoresList();
+
+
+        //  soundState();
     }
 
 
@@ -154,7 +160,6 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
     public void goLogoEffect(View v) {
         startAnimation(findViewById(R.id.logo), 1);
-
     }
 
 

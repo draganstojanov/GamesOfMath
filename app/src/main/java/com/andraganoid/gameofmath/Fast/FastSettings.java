@@ -10,12 +10,9 @@ import android.widget.TextView;
 
 import com.andraganoid.gameofmath.DataBase.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
-import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
-import com.andraganoid.gameofmath.Easy.Easy;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.HighScores.Level;
-import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.R;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;

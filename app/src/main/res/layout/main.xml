@@ -11,94 +11,96 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:padding="8dp"
-        android:src="@drawable/math_title_transparent" />
+        android:src="@drawable/math_title_transparent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
 
-    <android.support.constraint.ConstraintLayout
-        android:id="@+id/lb_connect_start_dialog"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#e0000000"
-        android:padding="48dp"
-        android:visibility="gone"
-        tools:visibility="visible">
+    <!--<android.support.constraint.ConstraintLayout-->
+        <!--android:id="@+id/lb_connect_start_dialog"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:background="#e0000000"-->
+        <!--android:padding="48dp"-->
+        <!--android:visibility="gone"-->
+        <!--tools:visibility="visible">-->
 
 
-        <TextView
-            android:id="@+id/lb_connect_start"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="24dp"
-            android:background="@color/checked"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="@string/join_leaderboards"
+        <!--<TextView-->
+            <!--android:id="@+id/lb_connect_start"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginBottom="24dp"-->
+            <!--android:background="@color/checked"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="8dp"-->
+            <!--android:text="@string/join_leaderboards"-->
 
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/google_button"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_weight="3" />
-
-
-        <LinearLayout
-            android:id="@+id/google_button"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="24dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@id/lb_cancel"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lb_connect_start"
-            app:layout_constraintVertical_weight="1">
-
-            <com.google.android.gms.common.SignInButton
-                android:id="@+id/lb_sign_in_button"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-            </com.google.android.gms.common.SignInButton>
-
-        </LinearLayout>
+            <!--app:autoSizeTextType="uniform"-->
+            <!--app:layout_constraintBottom_toTopOf="@+id/google_button"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--app:layout_constraintVertical_weight="3" />-->
 
 
-        <TextView
-            android:id="@+id/lb_cancel"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/tv_stroke"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="@string/cancel"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toTopOf="@+id/lb_again"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/google_button"
-            app:layout_constraintVertical_weight="1" />
+        <!--<LinearLayout-->
+            <!--android:id="@+id/google_button"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginBottom="24dp"-->
+            <!--android:orientation="horizontal"-->
+            <!--app:layout_constraintBottom_toTopOf="@id/lb_cancel"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/lb_connect_start"-->
+            <!--app:layout_constraintVertical_weight="1">-->
+
+            <!--<com.google.android.gms.common.SignInButton-->
+                <!--android:id="@+id/lb_sign_in_button"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent">-->
+
+            <!--</com.google.android.gms.common.SignInButton>-->
+
+        <!--</LinearLayout>-->
 
 
-        <TextView
-            android:id="@+id/lb_again"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/tv_stroke"
-            android:gravity="center"
-            android:padding="8dp"
-            android:text="@string/ask_later"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lb_cancel"
-            app:layout_constraintVertical_weight="1" />
+        <!--<TextView-->
+            <!--android:id="@+id/lb_cancel"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginBottom="24dp"-->
+            <!--android:background="@drawable/tv_stroke"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="8dp"-->
+            <!--android:text="@string/cancel"-->
+            <!--app:autoSizeTextType="uniform"-->
+            <!--app:layout_constraintBottom_toTopOf="@+id/lb_again"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/google_button"-->
+            <!--app:layout_constraintVertical_weight="1" />-->
 
 
-    </android.support.constraint.ConstraintLayout>
+        <!--<TextView-->
+            <!--android:id="@+id/lb_again"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="0dp"-->
+            <!--android:layout_marginBottom="24dp"-->
+            <!--android:background="@drawable/tv_stroke"-->
+            <!--android:gravity="center"-->
+            <!--android:padding="8dp"-->
+            <!--android:text="@string/ask_later"-->
+            <!--app:autoSizeTextType="uniform"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toBottomOf="@id/lb_cancel"-->
+            <!--app:layout_constraintVertical_weight="1" />-->
+
+
+    <!--</android.support.constraint.ConstraintLayout>-->
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

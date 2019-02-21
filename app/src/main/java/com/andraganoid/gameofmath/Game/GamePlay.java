@@ -25,13 +25,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.andraganoid.gameofmath.DataBase.Score;
-import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.HighScores.HighScoresAdapter;
 import com.andraganoid.gameofmath.HighScores.HighScoresTableAdapter;
 import com.andraganoid.gameofmath.HighScores.Level;
-import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Misc.MathSounds;
 import com.andraganoid.gameofmath.Operation.Calc;
 import com.andraganoid.gameofmath.Operation.Task;
@@ -72,6 +70,7 @@ public class GamePlay extends AppCompatActivity {
     Random rand;
     ParticleSystem ps;
     public MathSounds mathSounds;
+    public boolean goHiScore;
 
 
     int fireDots[] = new int[]{
@@ -100,13 +99,8 @@ public class GamePlay extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
-        Toast.makeText(this, "RESUME GAME PLAY", Toast.LENGTH_SHORT).show();
-        MathBase mb = new MathBase(getApplicationContext());
-
         adIsShowing = false;
         loadFullscreenAd();
-
     }
 
 
@@ -341,9 +335,11 @@ public class GamePlay extends AppCompatActivity {
     public void soundState() {
         if (prefs.getBoolean("sounds", true)) {
             ((TextView) findViewById(R.id.sound_on_off)).setText(getString(R.string.on));
+            ((TextView) findViewById(R.id.sound_btn)).setText(getString(R.string.sound_on));
 
         } else {
             ((TextView) findViewById(R.id.sound_on_off)).setText(getString(R.string.off));
+            ((TextView) findViewById(R.id.sound_btn)).setText(getString(R.string.sound_off));
         }
     }
 
@@ -377,7 +373,7 @@ public class GamePlay extends AppCompatActivity {
     }
 
 
-    public void showHighScoresList(View v) {
+    public void highScoresList() {
 
         final ConstraintLayout exp = findViewById(R.id.lboards_exp_list_wrapper);
 
@@ -521,10 +517,7 @@ public class GamePlay extends AppCompatActivity {
     };
 
     public void setHighScoreTableAdapter(List <Score> scoreList) {
-
-
-
-
+        goHiScore = true;
         RecyclerView hsrv = new RecyclerView(this);
         hsrv = findViewById(R.id.hs_rec_view);
         HighScoresTableAdapter hstAdapter = new HighScoresTableAdapter(scoreList);

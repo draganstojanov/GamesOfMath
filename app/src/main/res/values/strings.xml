@@ -85,7 +85,9 @@
     <string name="out_of_lives_msg_1">"You have "</string>
     <string name="out_of_lives_msg_2">" extra lives. Do you want to use it now in order to continue the game?"</string>
     <string name="play_again">Play again</string>
-    <string name="go_hiscores">Show high scores</string>
+    <string name="go_hiscores">"High\nscores"</string>
+    <string name="sound_on">"Sound\nON"</string>
+    <string name="sound_off">"Sound\nOFF"</string>
 
     <string name="global_leaderboards">"Global\nleaderboards"</string>
     <string name="lboard_connect">Connect to Google Play Service</string>

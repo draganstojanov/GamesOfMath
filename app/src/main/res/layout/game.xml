@@ -17,22 +17,53 @@
         android:layout_marginTop="32dp"
         android:background="@drawable/text1_stroke"
         android:contentDescription="LOGO"
+        app:layout_constraintVertical_weight="1"
         app:layout_constraintBottom_toTopOf="@+id/menu"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="1">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <ImageView
             android:id="@+id/game_logo"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
+            app:layout_constraintHorizontal_weight="4"
             android:layout_height="match_parent"
             android:onClick="goLogoEffect"
             android:padding="4dp"
             android:scaleType="fitXY"
-            android:src="@drawable/math_title" />
+            android:src="@drawable/math_title"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/get_bonus_btn"/>
 
+        <TextView
+            android:id="@+id/get_bonus_btn"
+            android:layout_width="0dp"
+            app:layout_constraintHorizontal_weight="1"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:onClick="goGetBonus"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:text="@string/get_bonus"
+            android:textColor="@color/info"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/game_logo"/>
+
+        <!--<TextView-->GET BONUS
+        <!--android:id="@+id/get_bonus_btn"-->
+        <!--android:layout_width="90dp"-->
+        <!--android:layout_height="60dp"-->
+        <!--android:layout_centerInParent="true"-->
+        <!--android:background="@drawable/bar_stroke"-->
+        <!--android:gravity="center"-->
+        <!--android:onClick="goGetBonus"-->
+        <!--android:padding="6dp"-->
+        <!--android:text="@string/get_bonus"-->
+        <!--android:textColor="@color/base"-->
+        <!--app:autoSizeTextType="uniform" />-->
 
     </android.support.constraint.ConstraintLayout>
 
@@ -136,23 +167,23 @@
             android:gravity="center"
             android:onClick="goSettings"
             android:padding="6dp"
-            android:text="@string/settings"
+            android:text="@string/go_hiscores"
             android:textColor="@color/base"
             app:autoSizeTextType="uniform" />
 
 
         <TextView
-            android:id="@+id/get_bonus_btn"
-            android:layout_width="90dp"
-            android:layout_height="60dp"
-            android:layout_centerInParent="true"
-            android:background="@drawable/bar_stroke"
-            android:gravity="center"
-            android:onClick="goGetBonus"
-            android:padding="6dp"
-            android:text="@string/get_bonus"
-            android:textColor="@color/base"
-            app:autoSizeTextType="uniform" />
+            android:id="@+id/sound_btn"
+        android:layout_width="90dp"
+        android:layout_height="60dp"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bar_stroke"
+        android:gravity="center"
+        android:onClick="goSound"
+        android:padding="6dp"
+
+        android:textColor="@color/base"
+        app:autoSizeTextType="uniform" />
 
 
         <TextView
@@ -340,31 +371,15 @@
 
     </android.support.constraint.ConstraintLayout>
 
+    <!--<include layout="@layout/game_settings" />-->
 
-    <include layout="@layout/game_settings" />
+    <!--<include layout="@layout/about" />-->
 
-    <include layout="@layout/about" />
+    <!--<include layout="@layout/leaderboards_list" />-->
 
-    <include layout="@layout/leaderboards_list" />
-
-    <include layout="@layout/highscore_table" />
-
-    <!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-        <!--xmlns:tools="http://schemas.android.com/tools"-->
-        <!--android:id="@+id/first_logo"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:background="@color/base"-->
-        <!--android:visibility="gone">-->
-
-        <!--<ImageView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="100sp"-->
-            <!--android:src="@drawable/math_title_transparent" />-->
+    <!--<include layout="@layout/highscore_table" />-->
 
 
-    <!--</android.support.constraint.ConstraintLayout>-->
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

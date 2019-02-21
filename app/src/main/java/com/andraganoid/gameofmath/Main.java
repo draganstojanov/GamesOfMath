@@ -66,7 +66,7 @@ public class Main extends AppCompatActivity {
         //  new ScoreRepository(getApplicationContext()).getBestPoints("fast_calc_02",sc);
 
 
-        lb_check_lay = findViewById(R.id.lb_connect_start_dialog);
+     //   lb_check_lay = findViewById(R.id.lb_connect_start_dialog);
         logo_main = findViewById(R.id.game_logo_main);
 
 

@@ -16,7 +16,6 @@ import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.HighScores.Level;
-import com.andraganoid.gameofmath.Misc.MathBase;
 import com.andraganoid.gameofmath.Operation.Lit;
 import com.andraganoid.gameofmath.R;
 
