@@ -98,6 +98,9 @@
     <string name="ask_later">Ask me later</string>
     <string name="connecting">Connecting...</string> <string name="succes_conn_lb">Succesfully connected to global leaderboards</string>
 
+    <string name="watch_ad">Do you want to watch the ad? It will bring you one bonus as a reward!</string>
+    <string name="dont_show_again">"Don't show this message again"</string>
+
 
 
     <string name="title_activity_main" translatable="false">MainActivity</string>

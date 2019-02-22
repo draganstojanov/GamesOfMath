@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GameBoard;
+import com.andraganoid.gameofmath.Misc.FullscreenCallback;
 import com.andraganoid.gameofmath.Operation.Add;
 import com.andraganoid.gameofmath.Operation.Div;
 import com.andraganoid.gameofmath.Operation.Mul;
@@ -118,9 +119,10 @@ public class PracticeBoard extends GameBoard {
 //        Log.d("prakt",String.valueOf(isEnd));
 //        Log.d("prakt",String.valueOf(calc.gameLevel));
         if (isEnd) {
-            showFullscreenAd();
-            (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
-                (findViewById(R.id.go_leaderboard)).setVisibility(View.GONE);
+            showFullscreenAd(fc);
+//            turnTheScreenOff();
+//            (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+//                (findViewById(R.id.go_leaderboard)).setVisibility(View.GONE);
             // goMain = false;
             // finish();
 
@@ -154,6 +156,15 @@ public class PracticeBoard extends GameBoard {
 //            }
 //        }
     }
+
+    FullscreenCallback fc = new FullscreenCallback() {
+        @Override
+        public void afterFullscreenAd() {
+            turnTheScreenOff();
+            (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+            (findViewById(R.id.go_leaderboard)).setVisibility(View.GONE);
+        }
+    };
 
 
 //    void practiceOver() {

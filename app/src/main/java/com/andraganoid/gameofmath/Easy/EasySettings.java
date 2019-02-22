@@ -61,7 +61,7 @@ public class EasySettings extends AppCompatActivity {
                 Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description)));
         for (String lvl : calc.level.getLevelName()) {
 
-            new ScoreRepository(getApplicationContext()).getBestTime(lvl, sc);
+            new ScoreRepository(getApplicationContext()).getBestPoints(lvl, sc);
         }
 
        // initEasy();

@@ -14,8 +14,8 @@ import com.andraganoid.gameofmath.R;
 
 import java.util.ArrayList;
 
-import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
-import static com.andraganoid.gameofmath.Misc.MathSounds.WRONG_ANSWER;
+import static com.andraganoid.gameofmath.Misc.Sounds.RIGHT_ANSWER;
+import static com.andraganoid.gameofmath.Misc.Sounds.WRONG_ANSWER;
 
 public abstract class GameBoard extends GamePlay {
 

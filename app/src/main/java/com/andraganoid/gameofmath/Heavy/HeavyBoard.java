@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -22,17 +23,19 @@ import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.HighScores.Level;
+import com.andraganoid.gameofmath.Misc.FullscreenCallback;
 import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;
 
 import java.util.List;
 
-import static com.andraganoid.gameofmath.Misc.MathSounds.GET_BONUS;
-import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
-import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
-import static com.andraganoid.gameofmath.Misc.MathSounds.START;
-import static com.andraganoid.gameofmath.Misc.MathSounds.TIME_IS_OUT;
-import static com.andraganoid.gameofmath.Misc.MathSounds.USE_BONUS;
+import static com.andraganoid.gameofmath.Misc.Sounds.GET_BONUS;
+import static com.andraganoid.gameofmath.Misc.Sounds.LOST_LIFE;
+import static com.andraganoid.gameofmath.Misc.Sounds.NO_BONUS;
+import static com.andraganoid.gameofmath.Misc.Sounds.RIGHT_ANSWER;
+import static com.andraganoid.gameofmath.Misc.Sounds.START;
+import static com.andraganoid.gameofmath.Misc.Sounds.TIME_IS_OUT;
+import static com.andraganoid.gameofmath.Misc.Sounds.USE_BONUS;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class HeavyBoard extends GamePlay implements View.OnClickListener {
@@ -62,7 +65,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         bonusRepository = new BonusRepository(getApplicationContext());
 
         // new ScoreRepository(getApplicationContext()).getBestPoints(Level.HEAVY_CALC,scoreCallback);
-        new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind), scoreCallback);
+   new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind/100), scoreCallback);
 
         isEnd = false;
         board = findViewById(R.id.heavy_board_lay);
@@ -289,11 +292,11 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         if (calc.currentScore >= calc.highScore.getScorePoints() || calc.highScore.getScorePoints() == 0) {
 //            MathBase.getInstance().saveHeavyResult(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
             //  MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind / 100), (long) (calc.currentScore));
-            go.setText("NEW HIGH SCORE");
+            go.setText(R.string.new_high);
             startAnimation(go, 5);
             goFire();
         } else {
-            go.setText("GAME OVER!");
+            go.setText(R.string.game_over);
         }
 
     }
@@ -306,7 +309,8 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
             }
             if (isCorrect()) {
                 //  play(RIGHT_ANSWER);
-                hScore.setText(calc.heavyScore("submit", (int) ((1 + (int) (calc.gameKind / 100) / 20) * (((float) calc.secondsRemain / (float) calc.secondsForTask * 100) * (100 + (float) calc.gameLevel) / 20))));
+                hScore.setText(calc.heavyScore("submit",
+                        (int) ((1 + (int) (calc.gameKind / 100) / 20) * (((float) calc.secondsRemain / (float) calc.secondsForTask * 100) * (100 + (float) calc.gameLevel) / 20))));
 
                 prepHeavy();
             } else {
@@ -393,8 +397,6 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 f += signState[j];
             }
         }
-        System.out.println("EVAL: " + f);
-        System.out.println("EVAL-R" + eval(f));
         return eval(f);
     }
 
@@ -448,9 +450,15 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 //                play(USE_BONUS);
 //                startAnimation(hint, 1);
             }
+
+            if (calc.heavyHints.getValue() == 0) {
+                play(NO_BONUS);
+            }
         }
 
     }
+
+
 
     public void xtraTime(View v) {
         if (!isEnd) {
@@ -471,9 +479,11 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 //            setXtraTimeText();
 //                play(USE_BONUS);
 //                startAnimation(xtraTime, 1);
-            }
+            }else{play(NO_BONUS);}
         }
     }
+
+    public void xtraLives(View v){play(NO_BONUS);}
 
 
     private void checkForBonusesHeavy() {
@@ -577,7 +587,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     }
 
     public void heavyOver(View v) {
-        showFullscreenAd();
+        showFullscreenAd(fc);
         board.setClickable(false);
         if (fireTimer != null) {
             fireTimer.cancel();
@@ -586,12 +596,26 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         //   (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
         //  calc.highScore.setScorePoints(calc.currentScore);
         // new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
-        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind), calc.currentScore), slc);
-        (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
-        (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
-        ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
-        turnTheScreenOff();
+
+//        turnTheScreenOff();
+//
+//        (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+//        (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
+//        ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind/100));
+//        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind/100), calc.currentScore), slc);
     }
+
+    FullscreenCallback fc=new FullscreenCallback() {
+        @Override
+        public void afterFullscreenAd() {
+            turnTheScreenOff();
+
+            (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+            (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
+            ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind/100));
+            new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind/100), calc.currentScore), slc);
+        }
+    };
 
     public void goAgain(View v) {
 
@@ -619,16 +643,30 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
 
     private void setHintText() {
-        //  Toast.makeText(this, String.valueOf(calc.heavyHints.getValue()), Toast.LENGTH_SHORT).show();
         hint.setText(getString(R.string.hints) + String.valueOf(calc.heavyHints.getValue()));
+        if (calc.heavyHints.getValue() == 0) {
+            hint.setBackgroundColor(Color.TRANSPARENT);
+        } else {
+            hint.setBackgroundColor(getResources().getColor(R.color.info));
+        }
     }
 
     private void setXtraTimeText() {
         xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.heavyXtraTime.getValue()));
+        if (calc.heavyXtraTime.getValue() == 0) {
+            xtraTime.setBackgroundColor(Color.TRANSPARENT);
+        } else {
+            xtraTime.setBackgroundColor(getResources().getColor(R.color.info));
+        }
     }
 
     private void setXtraLivesText() {
         xtraLives.setText(getString(R.string.xtra_lives) + String.valueOf(calc.heavyXtraLives.getValue()));
+        if (calc.heavyXtraLives.getValue() == 0) {
+            xtraLives.setBackgroundColor(Color.TRANSPARENT);
+        } else {
+            xtraLives.setBackgroundColor(getResources().getColor(R.color.info));
+        }
     }
 
 
@@ -657,40 +695,6 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
             });
 
 
-            //  decrease
-
-            //  calc.lives++;
-            // prepHeavy();
-
-            //  setXtraLivesText();
-            //   play(USE_BONUS);
-            //  startAnimation(xtraLives, 1);
-
-
-            //  setHintText();
-            //  play(USE_BONUS);
-            //   startAnimation(hint, 1);
-
-            // setXtraTimeText();
-            //  play(USE_BONUS);
-            // startAnimation(xtraTime, 1);
-
-
-            //  increase
-
-            //  setHintText();
-            //   play(GET_BONUS);
-            //  startAnimation(hint, 1);
-
-            //  setXtraTimeText();
-            //  play(GET_BONUS);
-            //  startAnimation(xtraTime, 1);
-
-            //  setXtraLivesText();
-            //  play(GET_BONUS);
-            //   startAnimation(xtraLives, 1);
-
-
         }
 
         @Override
@@ -708,10 +712,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                         calc.heavyXtraLives = bonus;
                         break;
                 }
-
             }
-
-
         }
     };
 

@@ -90,31 +90,9 @@ public class FastSettings extends AppCompatActivity {
                     if(  calc.level.setBestResultItem(scr.getLevelName(), scr)){initFast();};
                 }
             });
-
-
         }
     };
 
-//    ScoreListCallback scoreCallback = new ScoreListCallback() {
-//        @Override
-//        public void scoreList(List <Score> scoreListPoints) {
-//
-//            calc = new Fast();
-//            calc.level = new Level(Level.FAST_CALC,
-//                    getString(R.string.fast_calc),
-//                    Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)));
-//
-//            calc.level.setBestResult(scoreListPoints);
-//            runOnUiThread(new Runnable() {
-//                @Override
-//                public void run() {
-//                    initFast();
-//                }
-//            });
-//
-//
-//        }
-//    };
 
     private void initFast() {
 

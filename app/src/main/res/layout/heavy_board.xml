@@ -388,6 +388,7 @@
             <TextView
                 android:id="@+id/heavy_xtra_lives"
                 style="@style/bonusButton"
+                android:onClick="xtraLives"
                 app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
 
@@ -412,16 +413,16 @@
 
     <include layout="@layout/pause_dialog" />
 
-    <include layout="@layout/firework"/>
+    <include layout="@layout/firework" />
 
     <!--<include-->
-        <!--layout="@layout/again_or_leaderboard"-->
-        <!--tools:layout_editor_absoluteX="0dp"-->
-        <!--tools:layout_editor_absoluteY="0dp" />-->
+    <!--layout="@layout/again_or_leaderboard"-->
+    <!--tools:layout_editor_absoluteX="0dp"-->
+    <!--tools:layout_editor_absoluteY="0dp" />-->
 
     <!--<include layout="@layout/again_or_leaderboard" />-->
 
-  <include layout="@layout/highscore_table" />
+    <include layout="@layout/highscore_table" />
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -432,7 +433,6 @@
         android:background="@android:color/transparent"
         android:clickable="true"
         android:visibility="gone">
-
 
 
     </android.support.constraint.ConstraintLayout>

@@ -132,13 +132,15 @@
     <string name="go_hiscores">"Top\nliste"</string>
     <string name="ask_later">Pitaj kasnije</string>
     <string name="join_leaderboards">Games Of Math koristi Google Play Games Services Leaderboards za čuvanje i prikazs najboljih rezultata igrača. Da li želite da se pridružite? Besplatno je i zabavno!</string>
-    <string name="your_result">Tabele sa rezultatima su nedostupne!</string>
+    <string name="your_result">Tvoj rezultat</string>
     <string name="connect">Poveži</string>
     <string name="connecting">Povezivanje...</string>
     <string name="succes_conn_lb">Uspešno povezivanje sa globalnim tabelama</string>
     <string name="next">Dalje</string>
     <string name="sound_on">"Zvuk\nUKLJ"</string>
     <string name="sound_off">"Zvuk\nISK"</string>
+    <string name="watch_ad">Želite li da pogledate oglas? Doneće vam jedan bonus kao nagradu!</string>
+    <string name="dont_show_again">Ne prikazuj ovu poruku ponovo</string>
 
 
 </resources>

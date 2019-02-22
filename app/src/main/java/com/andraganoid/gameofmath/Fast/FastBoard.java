@@ -14,6 +14,7 @@ import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GameBoard;
+import com.andraganoid.gameofmath.Misc.FullscreenCallback;
 import com.andraganoid.gameofmath.Operation.Add;
 import com.andraganoid.gameofmath.Operation.Big;
 import com.andraganoid.gameofmath.Operation.Div;
@@ -25,8 +26,8 @@ import com.andraganoid.gameofmath.R;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
-import static com.andraganoid.gameofmath.Misc.MathSounds.START;
+import static com.andraganoid.gameofmath.Misc.Sounds.LOST_LIFE;
+import static com.andraganoid.gameofmath.Misc.Sounds.START;
 
 
 public class FastBoard extends GameBoard {
@@ -39,13 +40,12 @@ public class FastBoard extends GameBoard {
     @Override
     protected void onResume() {
         super.onResume();
-       // new ScoreRepository(getApplicationContext()).getBestTime(Level.FAST_CALC,scoreCallback);
-        new ScoreRepository(getApplicationContext()).getBestTime(calc.level.getLevelNameItem(calc.gameKind),scoreCallback);
+        // new ScoreRepository(getApplicationContext()).getBestTime(Level.FAST_CALC,scoreCallback);
+        new ScoreRepository(getApplicationContext()).getBestTime(calc.level.getLevelNameItem(calc.gameKind), scoreCallback);
     }
 
     @Override
     public void prepareTask() {
-
 
 
         goMain = true;
@@ -153,7 +153,7 @@ public class FastBoard extends GameBoard {
             handler.removeCallbacks(stopwatch);
             // formula.setText("Finish!");
             timeInMillis += badAnswers * 60 * 1000;
-           // sw.setText(calc.showTime(timeInMillis));
+            // sw.setText(calc.showTime(timeInMillis));
             sw.setText(Score.setScoreTimeStringFromMillis(timeInMillis));
 
 
@@ -161,9 +161,9 @@ public class FastBoard extends GameBoard {
             // Toast.makeText(this, String.valueOf(Fast.showTime(timeInMillis)), Toast.LENGTH_SHORT).show();
 
 
-              if (timeInMillis <= calc.highScore.getScoreMillis() || calc.highScore.getScoreMillis() == 0) {
+            if (timeInMillis <= calc.highScore.getScoreMillis() || calc.highScore.getScoreMillis() == 0) {
 
-               // MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind), timeInMillis);
+                // MathBase.getInstance().saveHighScore(calc.levelNames.get(calc.gameKind), timeInMillis);
                 formula.setText(getString(R.string.new_high));
                 startAnimation(formula, 5);
                 goFire();
@@ -174,7 +174,7 @@ public class FastBoard extends GameBoard {
 
             nextBtn.setVisibility(View.VISIBLE);
             pauseBtn.setClickable(false);
-           // typed.setText(calc.showTime(timeInMillis));
+            // typed.setText(calc.showTime(timeInMillis));
             typed.setText(Score.setScoreTimeStringFromMillis(timeInMillis));
 
 //            typed.setClickable(true);
@@ -191,26 +191,42 @@ public class FastBoard extends GameBoard {
 
     @Override
     public void goNext(View v) {
-        showFullscreenAd();
+        showFullscreenAd(fc);
         board.setClickable(false);
         if (fireTimer != null) {
             fireTimer.cancel();
         }
 
-      //  (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
-       // calc.highScore.setScorePoints(calc.currentScore);
-       // new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
+        //  (findViewById(R.id.again_or_leaderboard)).setVisibility(View.VISIBLE);
+        // calc.highScore.setScorePoints(calc.currentScore);
+        // new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
 
-        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),timeInMillis),slc);
-        (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
-        (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
-        ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
+
+//        turnTheScreenOff();
+//
+//        (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+//        (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
+//        ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
+//        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind), timeInMillis), slc);
     }
+
+
+    FullscreenCallback fc =new FullscreenCallback() {
+        @Override
+        public void afterFullscreenAd() {
+            turnTheScreenOff();
+
+            (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+            (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
+            ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
+            new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind), timeInMillis), slc);
+        }
+    };
 
 
     public void goAgain(View v) {
 
-      //  calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
+        //  calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
         calc.gameLevel = 1;
         adIsShowing = true;
         recreate();
@@ -220,16 +236,17 @@ public class FastBoard extends GameBoard {
 
     }
 
-    public void goMain(View v){
+    public void goMain(View v) {
 
-        goMain=true;finish();
+        goMain = true;
+        finish();
     }
 
 
     private Runnable stopwatch = new Runnable() {
         public void run() {
             timeInMillis = SystemClock.uptimeMillis() - startTime;
-          //  sw.setText(calc.showTime(timeInMillis + badAnswers * 60 * 1000));
+            //  sw.setText(calc.showTime(timeInMillis + badAnswers * 60 * 1000));
             sw.setText(Score.setScoreTimeStringFromMillis(timeInMillis + badAnswers * 60 * 1000));
 
             handler.postDelayed(this, 0);
@@ -300,13 +317,13 @@ public class FastBoard extends GameBoard {
 
         @Override
         public void bestScore(Score scr) {
-            calc.highScore=scr;
+            calc.highScore = scr;
         }
     };
 
     ScoreListCallback slc = new ScoreListCallback() {
         @Override
-        public void scoreSaved(final List <Score>  scoreList, String levelName) {
+        public void scoreSaved(final List <Score> scoreList, String levelName) {
 
             runOnUiThread(new Runnable() {
                 @Override

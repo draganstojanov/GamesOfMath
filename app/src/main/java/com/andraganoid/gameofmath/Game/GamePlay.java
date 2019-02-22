@@ -30,7 +30,8 @@ import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.HighScores.HighScoresAdapter;
 import com.andraganoid.gameofmath.HighScores.HighScoresTableAdapter;
 import com.andraganoid.gameofmath.HighScores.Level;
-import com.andraganoid.gameofmath.Misc.MathSounds;
+import com.andraganoid.gameofmath.Misc.FullscreenCallback;
+import com.andraganoid.gameofmath.Misc.Sounds;
 import com.andraganoid.gameofmath.Operation.Calc;
 import com.andraganoid.gameofmath.Operation.Task;
 import com.andraganoid.gameofmath.R;
@@ -44,17 +45,13 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import static com.andraganoid.gameofmath.Misc.MathSounds.BEST_RESULT;
-import static com.andraganoid.gameofmath.Misc.MathSounds.FIREWORK;
+import static com.andraganoid.gameofmath.Misc.Sounds.BEST_RESULT;
+import static com.andraganoid.gameofmath.Misc.Sounds.FIREWORK;
 
 public class GamePlay extends AppCompatActivity {
 
     public static Calc calc;
     public static Task task;
-
-//    public GoogleSignInClient mGoogleSignInClient;
-//    public LeaderboardsClient mLeaderboardsClient;
-
 
     public InterstitialAd fullscreenAd;
     public static boolean adIsShowing, fullscreenIsShowed;
@@ -69,7 +66,7 @@ public class GamePlay extends AppCompatActivity {
     int shot, last, width, height;
     Random rand;
     ParticleSystem ps;
-    public MathSounds mathSounds;
+    public Sounds mathSounds;
     public boolean goHiScore;
 
 
@@ -111,7 +108,7 @@ public class GamePlay extends AppCompatActivity {
         alertTypeface = ResourcesCompat.getFont(this, R.font.luckiestguy);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefsEditor = prefs.edit();
-        mathSounds = MathSounds.getInstance(getApplicationContext());
+        mathSounds = Sounds.getInstance(getApplicationContext());
         rand = new Random();
 
         fullscreenIsShowed = false;
@@ -119,24 +116,6 @@ public class GamePlay extends AppCompatActivity {
             fullscreenAd = new InterstitialAd(this);
         }
         fullscreenAd.setAdUnitId(getString(R.string.AD_MOB_MATH_FULLSCREEN));
-        fullscreenAd.setAdListener(new AdListener() {
-
-
-            @Override
-            public void onAdClosed() {
-                super.onAdClosed();
-                adIsShowing = false;
-                loadFullscreenAd();
-                goMain = false;
-                //   finish();
-
-            }
-        });
-
-
-//        mGoogleSignInClient = GoogleSignIn.getClient(this,
-//                new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_GAMES_SIGN_IN).build());
-
 
     }
 
@@ -333,13 +312,18 @@ public class GamePlay extends AppCompatActivity {
     }
 
     public void soundState() {
+        TextView soundBtn = findViewById(R.id.sound_btn);
         if (prefs.getBoolean("sounds", true)) {
             ((TextView) findViewById(R.id.sound_on_off)).setText(getString(R.string.on));
-            ((TextView) findViewById(R.id.sound_btn)).setText(getString(R.string.sound_on));
+            if (soundBtn != null) {
+                soundBtn.setText(getString(R.string.sound_on));
+            }
 
         } else {
             ((TextView) findViewById(R.id.sound_on_off)).setText(getString(R.string.off));
-            ((TextView) findViewById(R.id.sound_btn)).setText(getString(R.string.sound_off));
+            if (soundBtn != null) {
+                soundBtn.setText(getString(R.string.sound_off));
+            }
         }
     }
 
@@ -350,19 +334,56 @@ public class GamePlay extends AppCompatActivity {
         }
     }
 
-    public void showFullscreenAd() {
+    public void showFullscreenAd(final FullscreenCallback fullscreenCallback) {
         if (fullscreenAd != null && fullscreenAd.isLoaded()) {
-//            if (fireTimer != null) {
-//                fireTimer.cancel();
-//            }
+            if (fireTimer != null) {
+                fireTimer.cancel();
+            }
+
+            fullscreenAd.setAdListener(new AdListener() {
+                @Override
+                public void onAdFailedToLoad(int i) {
+                    super.onAdFailedToLoad(i);
+                    Toast.makeText(GamePlay.this, "onAdFailedToLoad", Toast.LENGTH_LONG).show();
+                    fullscreenCallback.afterFullscreenAd();
+
+                }
+
+                @Override
+                public void onAdOpened() {
+                    Toast.makeText(GamePlay.this, "onAdOpened", Toast.LENGTH_LONG).show();
+                    super.onAdOpened();
+                }
+
+                @Override
+                public void onAdClicked() {
+                    Toast.makeText(GamePlay.this, "onAdClicked", Toast.LENGTH_LONG).show();
+                    super.onAdClicked();
+                }
+
+                @Override
+                public void onAdClosed() {
+                    super.onAdClosed();
+                    Toast.makeText(GamePlay.this, "onAdClosed", Toast.LENGTH_LONG).show();
+                    adIsShowing = false;
+                    goMain = false;
+                    loadFullscreenAd();
+                    fullscreenCallback.afterFullscreenAd();
+                    //   finish();
+
+                }
+            });
+
+            fullscreenAd.show();
             fullscreenIsShowed = true;
             adIsShowing = true;
-            fullscreenAd.show();
+
         }
-//        else {
-//            goMain = false;
-//            finish();
-//        }
+        else {
+            fullscreenCallback.afterFullscreenAd();
+          //  goMain = false;
+            //finish();
+        }
 
     }
 

@@ -124,6 +124,8 @@
     <string name="next">Dalje</string>
     <string name="sound_on">"Zvuk\nUKLJ"</string>
     <string name="sound_off">"Zvuk\nISK"</string>
+    <string name="watch_ad">Želite li da pogledate oglas? Donijeće vam jedan bonus kao nagradu!</string>
+    <string name="dont_show_again">Ne prikazuj ovu poruku ponovo</string>
 
 
 </resources>

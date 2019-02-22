@@ -1,6 +1,7 @@
 package com.andraganoid.gameofmath.Easy;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.HighScores.Level;
+import com.andraganoid.gameofmath.Misc.FullscreenCallback;
 import com.andraganoid.gameofmath.Operation.Lit;
 import com.andraganoid.gameofmath.R;
 
@@ -23,12 +25,13 @@ import com.andraganoid.gameofmath.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.andraganoid.gameofmath.Misc.MathSounds.GET_BONUS;
-import static com.andraganoid.gameofmath.Misc.MathSounds.LOST_LIFE;
-import static com.andraganoid.gameofmath.Misc.MathSounds.RIGHT_ANSWER;
-import static com.andraganoid.gameofmath.Misc.MathSounds.START;
-import static com.andraganoid.gameofmath.Misc.MathSounds.TIME_IS_OUT;
-import static com.andraganoid.gameofmath.Misc.MathSounds.USE_BONUS;
+import static com.andraganoid.gameofmath.Misc.Sounds.GET_BONUS;
+import static com.andraganoid.gameofmath.Misc.Sounds.LOST_LIFE;
+import static com.andraganoid.gameofmath.Misc.Sounds.NO_BONUS;
+import static com.andraganoid.gameofmath.Misc.Sounds.RIGHT_ANSWER;
+import static com.andraganoid.gameofmath.Misc.Sounds.START;
+import static com.andraganoid.gameofmath.Misc.Sounds.TIME_IS_OUT;
+import static com.andraganoid.gameofmath.Misc.Sounds.USE_BONUS;
 import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class EasyBoard extends GamePlay {
@@ -45,13 +48,13 @@ public class EasyBoard extends GamePlay {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
 
-     // new ScoreRepository(getApplicationContext()).getBestPoints(Level.EASY_CALC,scoreCallback);
-       new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind),scoreCallback);
+        // new ScoreRepository(getApplicationContext()).getBestPoints(Level.EASY_CALC,scoreCallback);
+        new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind), scoreCallback);
 
         bonusRepository = new BonusRepository(getApplicationContext());
         bonusRepository.getBonusesForGame(Level.EASY_CALC, bonusCallback);
 
-       // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
+        // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
 
         board = findViewById(R.id.easy_board_lay);
         start = findViewById(R.id.easy_start);
@@ -154,34 +157,36 @@ public class EasyBoard extends GamePlay {
 
     private void timerStart(int s) {
         colorChange = true;
-        cdt = new CountDownTimer(s * 1000 + 1000 + 250, 500) {
+        cdt = new CountDownTimer(s * 1000 + 250, 500) {
             @Override
             public void onTick(long l) {
                 calc.secondsRemain = (int) l / 1000;
-                if (l > 2000) {
-                    lTimer.setTextColor(getResources().getColor(R.color.info));
-                    lTimer.setText(String.valueOf(l / 1000 - 1));
+                //   if (l >500) {
+                lTimer.setTextColor(getResources().getColor(R.color.info));
+                lTimer.setText(String.valueOf(l / 1000));
 
-                    if ((l / 1000 - 1) < 11) {
-                        if (colorChange) {
-                            lTimer.setTextColor(getResources().getColor(R.color.checked));
-                            play(TIME_IS_OUT);
-                        }
-//
-                        colorChange = !colorChange;
+                if ((l / 1000) < 10) {
+                    if (colorChange) {
+                        lTimer.setTextColor(getResources().getColor(R.color.checked));
+                        play(TIME_IS_OUT);
                     }
-
-
-                } else {
-                    lTimer.setText("0");
-                    easyGameOver();
+//
+                    colorChange = !colorChange;
                 }
+
+
+                //  } else {
+                // lTimer.setText("0");
+                // easyGameOver();
+                //   }
 
             }
 
             @Override
             public void onFinish() {
-                lTimer.setTextColor(getResources().getColor(R.color.info));
+                lTimer.setTextColor(getResources().getColor(R.color.info))
+                ;
+                easyGameOver();
             }
         };
         cdt.start();
@@ -346,6 +351,8 @@ public class EasyBoard extends GamePlay {
 //                startAnimation(reset, 1);
 //                runEasy();
 
+            } else {
+                play(NO_BONUS);
             }
         }
     }
@@ -367,6 +374,8 @@ public class EasyBoard extends GamePlay {
 //                play(USE_BONUS);
 //                startAnimation(skip, 1);
 //                runEasy();
+            } else {
+                play(NO_BONUS);
             }
 
 
@@ -389,6 +398,8 @@ public class EasyBoard extends GamePlay {
 //                setXtraTimeText ();
 //                play(USE_BONUS);
 //                startAnimation(xtraTime, 1);
+            } else {
+                play(NO_BONUS);
             }
         }
     }
@@ -417,7 +428,7 @@ public class EasyBoard extends GamePlay {
 
         }
         if (calc.gameLevel % 33 == 0) {//add RESET
-           // calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets + 1);
+            // calc.easyResets = calc.setBonus(calc.EASY_RESETS, calc.easyResets + 1);
             bonusRepository.saveBonus(calc.easyResets, Bonus.INCREASE, bonusCallback);
 //            setTimeResetText();
 //            play(GET_BONUS);
@@ -481,20 +492,34 @@ public class EasyBoard extends GamePlay {
     }
 
     public void easyOver(View v) {
-        showFullscreenAd();
+        showFullscreenAd(fc);
         board.setClickable(false);
         if (fireTimer != null) {
             fireTimer.cancel();
         }
-       // calc.highScore.setScorePoints(calc.currentScore);
+        // calc.highScore.setScorePoints(calc.currentScore);
 //        new ScoreRepository(getApplicationContext()).saveScore(calc.highScore,slc);
-        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind),calc.currentScore),slc);
-        (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
-        (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
-        ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
-        turnTheScreenOff();
+
+//        turnTheScreenOff();
+//
+//        (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+//        (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
+//        ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
+//        new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind), calc.currentScore), slc);
     }
 
+
+    FullscreenCallback fc = new FullscreenCallback() {
+        @Override
+        public void afterFullscreenAd() {
+            turnTheScreenOff();
+
+            (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
+            (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
+            ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind));
+            new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind), calc.currentScore), slc);
+        }
+    };
 
     public void goAgain(View v) {
 
@@ -508,9 +533,10 @@ public class EasyBoard extends GamePlay {
     }
 
 
-    public void goMain(View v){
+    public void goMain(View v) {
 
-        goMain=true;finish();
+        goMain = true;
+        finish();
     }
 
     @Override
@@ -522,14 +548,29 @@ public class EasyBoard extends GamePlay {
 
     private void setSkipText() {
         skip.setText(getString(R.string.skips) + String.valueOf(calc.easySkips.getValue()));
+        if (calc.easySkips.getValue() == 0) {
+            skip.setBackgroundColor(Color.TRANSPARENT);
+        } else {
+            skip.setBackgroundColor(getResources().getColor(R.color.info));
+        }
     }
 
     private void setXtraTimeText() {
         xtraTime.setText(getString(R.string.xtra_time) + String.valueOf(calc.easyXtraTime.getValue()));
+        if (calc.easyXtraTime.getValue() == 0) {
+            xtraTime.setBackgroundColor(Color.TRANSPARENT);
+        } else {
+            xtraTime.setBackgroundColor(getResources().getColor(R.color.info));
+        }
     }
 
     private void setTimeResetText() {
         reset.setText(getString(R.string.resets) + String.valueOf(calc.easyResets.getValue()));
+        if (calc.easyResets.getValue() == 0) {
+            reset.setBackgroundColor(Color.TRANSPARENT);
+        } else {
+            reset.setBackgroundColor(getResources().getColor(R.color.info));
+        }
     }
 
 
@@ -538,42 +579,12 @@ public class EasyBoard extends GamePlay {
         @Override
         public void easy(final Bonus bonus) {
 
-runOnUiThread(new Runnable() {
-    @Override
-    public void run() {
-        bonusHandler(bonus);
-    }
-});
-
-            //   (decrease)
-
-            //    setTimeResetText ();
-            //  play(USE_BONUS);
-            //  startAnimation(reset, 1);
-            //  runEasy();
-
-            // setSkipText ();
-            //  play(USE_BONUS);
-            //  startAnimation(skip, 1);
-            //  runEasy();
-
-            // setXtraTimeText ();
-            //  play(USE_BONUS);
-            //  startAnimation(xtraTime, 1);
-
-            //  (increase)
-            // setSkipText();
-            //  play(GET_BONUS);
-            //  startAnimation(skip, 1);
-
-            //  setXtraTimeText();
-            //  play(GET_BONUS);
-            //    startAnimation(xtraTime, 1);
-
-            //  setTimeResetText();
-            //   play(GET_BONUS);
-            //  startAnimation(reset, 1);
-
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    bonusHandler(bonus);
+                }
+            });
 
         }
 
@@ -604,9 +615,9 @@ runOnUiThread(new Runnable() {
     };
 
 
-    private void bonusHandler(Bonus bonus){
+    private void bonusHandler(Bonus bonus) {
 
-        View v=null;
+        View v = null;
         switch (bonus.getBonusName()) {
             case Bonus.EASY_SKIPS:
                 v = skip;
@@ -623,16 +634,13 @@ runOnUiThread(new Runnable() {
         }
 
         play(bonus.getPlay() == Bonus.INCREASE ? GET_BONUS : USE_BONUS);
-        startAnimation(v,1);
+        startAnimation(v, 1);
 
         if (bonus.getPlay() == Bonus.DECREASE) {
             if (bonus.getBonusName().equals(Bonus.EASY_RESETS) || bonus.getBonusName().equals(Bonus.EASY_SKIPS)) {
                 runEasy();
             }
         }
-
-
-
     }
 
     ScoreCallback scoreCallback = new ScoreCallback() {
@@ -640,7 +648,7 @@ runOnUiThread(new Runnable() {
 
         @Override
         public void bestScore(Score scr) {
-            calc.highScore=scr;
+            calc.highScore = scr;
         }
     };
 

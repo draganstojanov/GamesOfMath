@@ -1,10 +1,15 @@
 package com.andraganoid.gameofmath.Game;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.view.View;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.andraganoid.gameofmath.DataBase.Bonus;
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
@@ -21,7 +26,7 @@ import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
-import static com.andraganoid.gameofmath.Misc.MathSounds.REWARD;
+import static com.andraganoid.gameofmath.Misc.Sounds.REWARD;
 
 public class Game extends GamePlay implements RewardedVideoAdListener {
 
@@ -58,8 +63,9 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         soundState();
         rewardAd.resume(this);
         if (rewardAd.isLoaded()) {
-            getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
-            getBonusClick.setTextColor(getResources().getColor(R.color.checked));
+//            getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
+////            getBonusClick.setTextColor(getResources().getColor(R.color.checked));
+            getBonusClick.setVisibility(View.VISIBLE);
         } else {
             loadRewardAd();
         }
@@ -75,7 +81,7 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
         //  prefs = PreferenceManager.getDefaultSharedPreferences(this);
         //  prefsEditor = prefs.edit();
-     // getBonusClick = findViewById(R.id.get_bonus_btn);//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        getBonusClick = findViewById(R.id.get_bonus_btn);
         bottomAd = findViewById(R.id.add_view_bottom_game);
         rl = findViewById(R.id.reward_dialog);
         rewardAd = MobileAds.getRewardedVideoAdInstance(this);
@@ -154,9 +160,47 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
     public void goGetBonus(View v) {
 
         if (rewardAd != null && rewardAd.isLoaded()) {
-            showRewardAd();
+
+
+            if (prefs.getBoolean("checkIfWatchBonusAd", true)) {
+                View cboxView = getLayoutInflater().inflate(R.layout.bonus_ad_checkbox, null);
+                CheckBox cbox = cboxView.findViewById(R.id.bonus_ad_checkbox);
+                cbox.setTypeface(alertTypeface);
+                AlertDialog.Builder adb = new AlertDialog.Builder(this);
+                adb.setMessage(getString(R.string.watch_ad));
+                adb.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                adb.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+
+                    }
+                });
+                adb.setView(cboxView);
+                adb.setCancelable(true);
+                adb.show();
+
+                cbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+
+                        prefsEditor.putBoolean("checkIfWatchBonusAd", !isChecked).apply();
+                        Toast.makeText(Game.this, String.valueOf(!isChecked), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            } else {
+                showRewardAd();
+            }
+
         }
+
     }
+
 
     public void goLogoEffect(View v) {
         startAnimation(findViewById(R.id.logo), 1);
@@ -182,8 +226,9 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdLoaded() {
-        getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
-        getBonusClick.setTextColor(getResources().getColor(R.color.checked));
+//        getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
+////        getBonusClick.setTextColor(getResources().getColor(R.color.checked));
+        getBonusClick.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -197,11 +242,11 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
     @Override
     public void onRewardedVideoAdClosed() {
         //  loadRewardAd();
+        getBonusClick.setVisibility(View.GONE);
         if (getReward) {
             getReward = false;
             play(REWARD);
             openRewardDialog();
-
         }
 
 
@@ -276,5 +321,6 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
 
     }
+
 
 }

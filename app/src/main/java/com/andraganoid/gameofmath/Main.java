@@ -14,14 +14,9 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
-import com.andraganoid.gameofmath.DataBase.Score;
-import com.andraganoid.gameofmath.DataBase.ScoreCallback;
-import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
-import com.andraganoid.gameofmath.Misc.MathSounds;
+import com.andraganoid.gameofmath.Misc.Sounds;
 import com.google.android.gms.ads.MobileAds;
-
-import java.util.List;
 
 
 // TODO
@@ -98,7 +93,7 @@ public class Main extends AppCompatActivity {
             new BonusRepository(getApplicationContext()).initBonuses();
             MobileAds.initialize(getApplicationContext(), getString(R.string.AD_MOB_APP_ID));
             //  MathBase mb = new MathBase(getApplicationContext());
-            MathSounds ms = MathSounds.getInstance(getApplicationContext());
+            Sounds ms = Sounds.getInstance(getApplicationContext());
             //  new Calc().initBonuses();
 
             return null;
