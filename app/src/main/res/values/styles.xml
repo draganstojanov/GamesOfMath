@@ -33,6 +33,11 @@
 
     <!--<style name="PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />-->
 
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/checked</item>
+        <item name="android:textColor">@color/text1</item>
+
+    </style>
 
     <style name="keyboard">
         <item name="android:layout_width">0dp</item>

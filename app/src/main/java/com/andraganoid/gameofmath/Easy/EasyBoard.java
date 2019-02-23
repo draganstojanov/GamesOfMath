@@ -10,7 +10,7 @@ import android.widget.TextView;
 import com.andraganoid.gameofmath.DataBase.Bonus;
 import com.andraganoid.gameofmath.DataBase.BonusCallback;
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
-import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
@@ -94,15 +94,15 @@ public class EasyBoard extends GamePlay {
         eScore.setText(calc.resetScore());
         isEnd = true;
         goMain = false;
-        intro = new CountDownTimer(5000, 1000) {
+        intro = new CountDownTimer(4000, 1000) {
 
             @Override
             public void onTick(long l) {
 
-                if (l < 4000) {
+              //  if (l < 4000) {
                     play(START);
                     start.setText(String.valueOf(l / 1000));
-                }
+               // }
             }
 
             @Override
@@ -655,12 +655,12 @@ public class EasyBoard extends GamePlay {
 
     ScoreListCallback slc = new ScoreListCallback() {
         @Override
-        public void scoreSaved(final List <Score> scoreList, String levelName) {
+        public void scoreSaved(final List <Score> scoreList, String levelName,final long lastScoreId) {
 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setHighScoreTableAdapter(scoreList);
+                    setHighScoreTableAdapter(scoreList,lastScoreId);
                 }
             });
 

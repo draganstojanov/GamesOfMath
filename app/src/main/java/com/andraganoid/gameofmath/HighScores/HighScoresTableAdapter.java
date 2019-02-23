@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.DataBase.Score;
 import com.andraganoid.gameofmath.R;
 
 import java.util.List;
@@ -16,6 +15,7 @@ public class HighScoresTableAdapter extends RecyclerView.Adapter <HighScoresTabl
     private List <Score> sList;
     private String res;
     private Score score;
+    private long lastScoreId;
 
     public static class HSTViewHolder extends RecyclerView.ViewHolder {
         private TextView pos;
@@ -31,8 +31,9 @@ public class HighScoresTableAdapter extends RecyclerView.Adapter <HighScoresTabl
         }
     }
 
-    public HighScoresTableAdapter(List <Score> sList) {
+    public HighScoresTableAdapter(List <Score> sList, long lastScoreId) {
         this.sList = sList;
+        this.lastScoreId = lastScoreId;
     }
 
 
@@ -65,6 +66,19 @@ public class HighScoresTableAdapter extends RecyclerView.Adapter <HighScoresTabl
 
         holder.result.setText(res);
         holder.date.setText(score.getScoreDate());
+        System.out.println("LAST SCORE: " + lastScoreId + "***" + score.getId() + "***" + score.getScorePoints());
+        if ((int) lastScoreId == score.getId()) {
+            int c = holder.itemView.getContext().getResources().getColor(R.color.text1);
+            holder.pos.setTextColor(c);
+            holder.result.setTextColor(c);
+            holder.date.setTextColor(c);
+        } else {
+            int cc = holder.itemView.getContext().getResources().getColor(R.color.base);
+            holder.pos.setTextColor(cc);
+            holder.result.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.info));
+            holder.date.setTextColor(cc);
+        }
+
 
     }
 

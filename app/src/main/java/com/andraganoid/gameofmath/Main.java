@@ -14,9 +14,14 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
+import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
+import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.Misc.Sounds;
 import com.google.android.gms.ads.MobileAds;
+
+import java.util.List;
 
 
 // TODO
@@ -53,9 +58,11 @@ public class Main extends AppCompatActivity {
 
        // int score = 666666;
 
-       // for (int i = 0; i < 51; i++) {
-         //   new ScoreRepository(getApplicationContext()).saveScore(new Score("fast_calc_02", score), sc);
-      //  }
+//        for (int i = 0; i < 51; i++) {
+//            new ScoreRepository(getApplicationContext()).saveScore(new Score("easy_calc_2", i*5), sc);
+//        }
+
+
 
 
         //  new ScoreRepository(getApplicationContext()).getBestPoints("fast_calc_02",sc);
@@ -85,6 +92,19 @@ public class Main extends AppCompatActivity {
 
     }
 
+    //xxxxxxxxxxxxxxxxxx
+
+//    ScoreListCallback sc= new ScoreListCallback() {
+//        @Override
+//        public void scoreSaved(List<Score> scoreList, String levelName, long lastScoreId) {
+//            System.out.println("TEST---"+scoreList.size()+"---"+lastScoreId);
+//        }
+//
+//        @Override
+//        public void scoreList(List <Score> scoreList) {
+//
+//        }
+//    };
 
     private class addInit extends AsyncTask {
 

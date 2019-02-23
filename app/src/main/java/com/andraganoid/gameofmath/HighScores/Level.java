@@ -1,8 +1,6 @@
 package com.andraganoid.gameofmath.HighScores;
 
 
-import com.andraganoid.gameofmath.DataBase.Score;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -202,19 +200,10 @@ public class Level {
 
     public Score getBestResultItem(String key) {
 
-//        Score r = null;
-//        if (bestResult.size() > 0) {
-//            r = bestResult.get(indeks);
-//        } else {
-//            r = new Score();
-//        }
-//        return r;
-
         return bestResult.get(key);
     }
 
     public boolean setBestResultItem(String key, Score score) {
-        System.out.println("SET BEST: "+key+"---"+score.getScorePoints()+"---"+score.getScoreTimeString());
 
         this.bestResult.put(key, score);
         if (bestResult.size() != levelName.size()) {

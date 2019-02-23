@@ -24,7 +24,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.HighScores.HighScoresAdapter;
@@ -378,10 +378,9 @@ public class GamePlay extends AppCompatActivity {
             fullscreenIsShowed = true;
             adIsShowing = true;
 
-        }
-        else {
+        } else {
             fullscreenCallback.afterFullscreenAd();
-          //  goMain = false;
+            //  goMain = false;
             //finish();
         }
 
@@ -522,7 +521,7 @@ public class GamePlay extends AppCompatActivity {
 
     ScoreListCallback scoreCallback = new ScoreListCallback() {
         @Override
-        public void scoreSaved(List <Score> scoreList, String levelName) {
+        public void scoreSaved(List <Score> scoreList, String levelName, long lastScoreId) {
 
         }
 
@@ -531,20 +530,31 @@ public class GamePlay extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setHighScoreTableAdapter(scoreList);
+                    setHighScoreTableAdapter(scoreList, -1L);
                 }
             });
         }
     };
 
-    public void setHighScoreTableAdapter(List <Score> scoreList) {
+    public void setHighScoreTableAdapter(List <Score> scoreList, long lastScoreId) {
         goHiScore = true;
-        RecyclerView hsrv = new RecyclerView(this);
-        hsrv = findViewById(R.id.hs_rec_view);
-        HighScoresTableAdapter hstAdapter = new HighScoresTableAdapter(scoreList);
+        RecyclerView  hsrv = findViewById(R.id.hs_rec_view);
+        HighScoresTableAdapter hstAdapter = new HighScoresTableAdapter(scoreList, lastScoreId);
         RecyclerView.LayoutManager hslm = new LinearLayoutManager(this);
         hsrv.setLayoutManager(hslm);
         hsrv.setAdapter(hstAdapter);
+
+        int s = 0;
+        for (int i = 0; i < scoreList.size(); i++) {
+            //  hsrv.smoothScrollToPosition(i);
+            if ((int) lastScoreId == scoreList.get(i).getId()) {
+                s = i;
+                break;
+            }
+        }
+
+((LinearLayoutManager) hslm).scrollToPositionWithOffset(s,0);
+     //   hsrv.smoothScrollToPosition(s);
 
     }
 

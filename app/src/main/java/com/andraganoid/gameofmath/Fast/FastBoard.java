@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.os.CountDownTimer;
 import android.os.Handler;
 import android.os.SystemClock;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
@@ -106,15 +105,15 @@ public class FastBoard extends GameBoard {
         start.setText("3");
         isEnd = true;
         goMain = false;
-        intro = new CountDownTimer(5000, 1000) {
+        intro = new CountDownTimer(4000, 1000) {
 
             @Override
             public void onTick(long l) {
-                Log.d("intro", String.valueOf(l));
-                if (l < 4000) {
+
+           //     if (l < 4000) {
                     play(START);
                     start.setText(String.valueOf(l / 1000));
-                }
+              //  }
             }
 
             @Override
@@ -323,12 +322,12 @@ public class FastBoard extends GameBoard {
 
     ScoreListCallback slc = new ScoreListCallback() {
         @Override
-        public void scoreSaved(final List <Score> scoreList, String levelName) {
+        public void scoreSaved(final List <Score> scoreList, String levelName,final long lastScoreId) {
 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setHighScoreTableAdapter(scoreList);
+                    setHighScoreTableAdapter(scoreList,lastScoreId);
                 }
             });
 

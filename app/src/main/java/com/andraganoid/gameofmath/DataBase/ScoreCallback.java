@@ -1,6 +1,6 @@
 package com.andraganoid.gameofmath.DataBase;
 
-import java.util.List;
+import com.andraganoid.gameofmath.HighScores.Score;
 
 public interface ScoreCallback {
 

@@ -27,8 +27,8 @@ public class Sounds {
     public static final int LOST_LIFE = 9;
     public static final int REWARD = 10;
     public static final int START = 11;
-    public static final int SILENCE = 12;
-    public static final int NO_BONUS = 13;
+  //  public static final int SILENCE = 12;
+    public static final int NO_BONUS = 12;
 
 
     private static Sounds mathSounds = null;
@@ -98,7 +98,7 @@ public class Sounds {
         sounds.put(LOST_LIFE, soundPool.load(mContext, R.raw.fail_game, 1));
         sounds.put(REWARD, soundPool.load(mContext, R.raw.game_reward, 1));
         sounds.put(START, soundPool.load(mContext, R.raw.beep_start, 1));
-        sounds.put(SILENCE, soundPool.load(mContext, R.raw.silence, 1));
+      //  sounds.put(SILENCE, soundPool.load(mContext, R.raw.silence, 1));
         sounds.put(NO_BONUS, soundPool.load(mContext, R.raw.no_bonus, 1));
         //  soundsToLoad = sounds.size();
 //

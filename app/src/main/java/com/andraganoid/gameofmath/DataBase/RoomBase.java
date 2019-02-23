@@ -5,6 +5,8 @@ import android.arch.persistence.room.Room;
 import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
+import com.andraganoid.gameofmath.HighScores.Score;
+
 
 @Database(entities = {
         Bonus.class, Score.class},

@@ -1,4 +1,4 @@
-package com.andraganoid.gameofmath.DataBase;
+package com.andraganoid.gameofmath.HighScores;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -137,9 +137,9 @@ public class Score {
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(timestamp);
         StringBuilder sb = new StringBuilder();
-        sb.append(cal.get(Calendar.DAY_OF_MONTH+1))
+        sb.append(cal.get(Calendar.DAY_OF_MONTH))
                 .append(".")
-                .append(cal.get(Calendar.MONTH))
+                .append(cal.get(Calendar.MONTH)+1)
                 .append(".\n")
                 .append(cal.get(Calendar.YEAR))
                 .append(".");

@@ -166,12 +166,13 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
                 View cboxView = getLayoutInflater().inflate(R.layout.bonus_ad_checkbox, null);
                 CheckBox cbox = cboxView.findViewById(R.id.bonus_ad_checkbox);
                 cbox.setTypeface(alertTypeface);
-                AlertDialog.Builder adb = new AlertDialog.Builder(this);
+                AlertDialog.Builder adb = new AlertDialog.Builder(this, R.style.MyDialogTheme);
+                adb.setTitle(getResources().getString(R.string.get_bonus));
                 adb.setMessage(getString(R.string.watch_ad));
                 adb.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
+                        showRewardAd();
                     }
                 });
                 adb.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {

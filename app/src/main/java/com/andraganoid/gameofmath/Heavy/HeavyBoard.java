@@ -16,7 +16,7 @@ import android.widget.TextView;
 import com.andraganoid.gameofmath.DataBase.Bonus;
 import com.andraganoid.gameofmath.DataBase.BonusCallback;
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
-import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
@@ -114,15 +114,15 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         start.setText("3");
         //  play(START);
         goMain = false;
-        intro = new CountDownTimer(5000, 1000) {
+        intro = new CountDownTimer(4000, 1000) {
 
             @Override
             public void onTick(long l) {
 
-                if (l < 4000) {
+               // if (l < 4000) {
                     play(START);
                     start.setText(String.valueOf(l / 1000));
-                }
+               // }
             }
 
             @Override
@@ -236,7 +236,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     void checkXtraLives() {
 
 
-        AlertDialog adb = new AlertDialog.Builder(HeavyBoard.this).create();
+        AlertDialog adb = new AlertDialog.Builder(HeavyBoard.this,R.style.MyDialogTheme).create();
         adb.setTitle(getString(R.string.out_of_lives));
         adb.setMessage(getString(R.string.out_of_lives_msg_1)
                 + String.valueOf(calc.heavyXtraLives.getValue())
@@ -757,12 +757,12 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     ScoreListCallback slc = new ScoreListCallback() {
         @Override
-        public void scoreSaved(final List <Score> scoreList, String levelName) {
+        public void scoreSaved(final List <Score> scoreList, String levelName, final long lastScoreId) {
 
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setHighScoreTableAdapter(scoreList);
+                    setHighScoreTableAdapter(scoreList,lastScoreId);
                 }
             });
 

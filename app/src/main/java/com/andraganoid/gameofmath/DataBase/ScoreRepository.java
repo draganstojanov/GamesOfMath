@@ -4,6 +4,8 @@ import android.content.Context;
 import android.os.AsyncTask;
 
 
+import com.andraganoid.gameofmath.HighScores.Score;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,7 +61,7 @@ public class ScoreRepository {
             Score scr = scores[0];
             List <Score> scoreList = new ArrayList <>();
 
-            dao.saveScore(scr);
+         long lastScoreId=   dao.saveScore(scr);
 
             switch (scr.getScoreType()) {
 
@@ -78,7 +80,7 @@ public class ScoreRepository {
                     break;
             }
 
-            scoreCallback.scoreSaved(scoreList, scr.getLevelName());
+            scoreCallback.scoreSaved(scoreList, scr.getLevelName(),lastScoreId);
             return null;
         }
     }

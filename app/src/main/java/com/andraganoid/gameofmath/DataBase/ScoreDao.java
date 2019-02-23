@@ -5,7 +5,8 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
-import android.arch.persistence.room.Update;
+
+import com.andraganoid.gameofmath.HighScores.Score;
 
 import java.util.List;
 
@@ -25,13 +26,10 @@ public interface ScoreDao {
     public List <Score> getBestScoreTime(String levelName);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    public void saveScore(Score score);
+    public long saveScore(Score score);
 
     @Query("SELECT COUNT(*) FROM `score-table` WHERE levelName= :levelName")//mozda i ne treba
     public int countScores(String levelName);//napravi if>50 brisi visak
-
-    // @Query("DELETE FROM `score-table`")
-    //  void deleteScorePoints(Score score);
 
     @Delete
     void deleteScore(Score score);

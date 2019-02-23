@@ -1,9 +1,5 @@
 package com.andraganoid.gameofmath.Fast;
 
-import com.andraganoid.gameofmath.DataBase.Score;
-
-import static com.andraganoid.gameofmath.Game.Game.calc;
-
 public class FastData {
 
     private String fName;

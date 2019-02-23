@@ -1,7 +1,7 @@
 package com.andraganoid.gameofmath.Operation;
 
 import com.andraganoid.gameofmath.DataBase.Bonus;
-import com.andraganoid.gameofmath.DataBase.Score;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.HighScores.Level;
 
 import java.util.HashMap;
