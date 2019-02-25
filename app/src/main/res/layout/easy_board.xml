@@ -12,7 +12,6 @@
     android:onClick="easyOver"
     tools:context=".Easy.EasyBoard">
 
-
     <LinearLayout
         android:id="@+id/easy_bar"
         android:layout_width="match_parent"
@@ -23,7 +22,6 @@
         app:layout_constraintVertical_weight="3">
 
         <LinearLayout
-
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginRight="4dp"
@@ -33,7 +31,6 @@
             android:padding="2dp">
 
             <TextView
-
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="2dp"
@@ -55,9 +52,7 @@
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
 
-
         <LinearLayout
-
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
@@ -68,7 +63,6 @@
             android:padding="2dp">
 
             <TextView
-
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="2dp"
@@ -79,7 +73,6 @@
                 android:textColor="@color/info"
                 app:autoSizeTextType="uniform" />
 
-
             <TextView
                 android:id="@+id/easy_score"
                 android:layout_width="match_parent"
@@ -89,6 +82,7 @@
                 android:padding="8dp"
                 android:textColor="@color/info"
                 app:autoSizeTextType="uniform" />
+
         </LinearLayout>
 
         <TextView
@@ -107,7 +101,6 @@
             app:autoSizeTextType="uniform" />
 
     </LinearLayout>
-
 
     <LinearLayout
         android:id="@+id/lll_1"
@@ -139,7 +132,6 @@
             style="@style/easyOper"
             android:onClick="easyNum"
             app:autoSizeTextType="uniform" />
-
 
     </LinearLayout>
 
@@ -173,7 +165,6 @@
             style="@style/easyOper"
             android:onClick="easyNum"
             app:autoSizeTextType="uniform" />
-
 
     </LinearLayout>
 
@@ -238,7 +229,6 @@
             android:layout_weight="8"
             android:background="@color/base"
             android:gravity="center"
-
             android:padding="4dp"
             app:autoSizeTextType="uniform" />
 
@@ -255,8 +245,8 @@
             android:text="CE"
             android:textStyle="bold"
             app:autoSizeTextType="uniform" />
-    </LinearLayout>
 
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/easy_result_wrap"
@@ -295,15 +285,14 @@
                 android:gravity="center"
                 android:padding="4dp"
                 app:autoSizeTextType="uniform" />
-        </LinearLayout>
 
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/result_lay"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="4dp"
-
             android:layout_weight="1"
             android:background="@drawable/tv_stroke"
             android:orientation="vertical"
@@ -327,6 +316,7 @@
                 android:gravity="center"
                 android:padding="4dp"
                 app:autoSizeTextType="uniform" />
+
         </LinearLayout>
 
     </LinearLayout>
@@ -342,7 +332,6 @@
         <TextView
             android:id="@+id/easy_skip"
             style="@style/bonusButton"
-
             android:onClick="easySkip"
             app:autoSizeMaxTextSize="24sp"
             app:autoSizeTextType="uniform" />
@@ -371,6 +360,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/checked"
+        android:clickable="true"
         android:gravity="center"
         android:text="3"
         android:textColor="@color/info"
@@ -383,9 +373,7 @@
 
     <include layout="@layout/firework" />
 
-    <!--<include layout="@layout/again_or_leaderboard" />-->
-
-   <include layout="@layout/highscore_table" />
+    <include layout="@layout/highscore_table" />
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -396,9 +384,7 @@
         android:background="@android:color/transparent"
         android:clickable="true"
         android:visibility="gone">
-
-
-
+        
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

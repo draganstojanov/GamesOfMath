@@ -5,7 +5,6 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
 public class Sub extends Task {
 
     public Sub() {
@@ -13,21 +12,13 @@ public class Sub extends Task {
     }
 
     private void setSub() {
-
         setOperandValue(0, getNumber(0));
         setOperandValue(1, getNumber(1));
-
-//       if (getOperandValue(1) >= getOperandValue(0)) {
-//           setOperandValue(1, getNumber(getOperandValue(0), calc.getOperandMinVal(1)));
-//       }
-
-      //  setFormula2();
         setFormula(2);
-
         if (getResult() < 1) {
             setSub();
         } else {
-            choices = new ArrayList<>();
+            choices = new ArrayList <>();
             int r = rnd.nextInt(4);
             int c;
             for (int i = 0; i < 4; i++) {
@@ -40,8 +31,5 @@ public class Sub extends Task {
             }
             Collections.shuffle(choices);
         }
-
     }
-
-
 }

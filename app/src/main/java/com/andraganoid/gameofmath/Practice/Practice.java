@@ -12,12 +12,5 @@ public class Practice extends Calc {
         answerType = "multichoice";
         setOperandMinVal(1, 1);
         setOperandMaxVal(10, 10);
-
     }
-
-
-
-
-
-
 }

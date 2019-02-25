@@ -6,13 +6,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#e0000000"
+    android:clickable="true"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="48dp"
     android:visibility="gone"
-    tools:visibility="visible"
-    android:clickable="true">
-
+    tools:visibility="visible">
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/about_app"
@@ -23,7 +22,6 @@
         android:padding="4dp">
 
         <TextView
-
             android:id="@+id/aap1"
             android:layout_width="match_parent"
             android:layout_height="21dp"
@@ -35,7 +33,6 @@
             app:autoSizeTextType="uniform"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <LinearLayout
             android:id="@+id/aap2"
             android:layout_width="match_parent"
@@ -44,7 +41,6 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -94,7 +90,6 @@
             app:autoSizeTextType="uniform"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <LinearLayout
             android:id="@+id/aau2"
             android:layout_width="match_parent"
@@ -131,7 +126,6 @@
 
     </android.support.constraint.ConstraintLayout>
 
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/about_designer"
         android:layout_width="match_parent"
@@ -141,7 +135,6 @@
         android:padding="4dp">
 
         <TextView
-
             android:id="@+id/aad1"
             android:layout_width="match_parent"
             android:layout_height="21dp"
@@ -153,7 +146,6 @@
             app:autoSizeTextType="uniform"
             app:layout_constraintTop_toTopOf="parent" />
 
-
         <LinearLayout
             android:id="@+id/aad2"
             android:layout_width="match_parent"
@@ -162,7 +154,6 @@
             app:layout_constraintBottom_toBottomOf="parent">
 
             <TextView
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="3"
@@ -195,6 +186,7 @@
         android:id="@+id/ap"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginBottom="25dp"
         android:background="@color/info"
         android:gravity="center"
         android:onClick="goPolicy"
@@ -203,11 +195,10 @@
         android:textColor="@color/checked"
         app:autoSizeTextType="uniform"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="25dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-       android:id="@+id/aok"
+        android:id="@+id/aok"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/info"
@@ -217,6 +208,5 @@
         android:text="@string/ok"
         android:textColor="@color/checked"
         app:autoSizeTextType="uniform" />
-
 
 </LinearLayout>

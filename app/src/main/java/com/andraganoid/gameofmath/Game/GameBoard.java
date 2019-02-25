@@ -3,6 +3,7 @@ package com.andraganoid.gameofmath.Game;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
@@ -19,15 +20,12 @@ import static com.andraganoid.gameofmath.Misc.Sounds.WRONG_ANSWER;
 
 public abstract class GameBoard extends GamePlay {
 
-    //  protected View pBoard, fBoard;
     protected TextView formula, typed, nextBtn, pauseBtn, cho0, cho1, cho2, cho3;
-    protected android.support.constraint.ConstraintLayout multic;
+    protected ConstraintLayout multic;
     protected LinearLayout keyboard;
-
     protected int goodAnswers, badAnswers;
     public SpannableString progress;
     public ArrayList <Integer> prog = new ArrayList <>();
-
     protected String typedResult;
 
     @Override
@@ -42,26 +40,18 @@ public abstract class GameBoard extends GamePlay {
         board = findViewById(R.id.game_board_lay);
         nextBtn = findViewById(R.id.game_board_next);
         pauseBtn = findViewById(R.id.board_pause);
-
         cho0 = findViewById(R.id.game_board_choice_0);
         cho1 = findViewById(R.id.game_board_choice_1);
         cho2 = findViewById(R.id.game_board_choice_2);
         cho3 = findViewById(R.id.game_board_choice_3);
-
         calc.gameLevel = 1;
-
         progress = new SpannableString("");
         prog.clear();
         goodAnswers = 0;
         badAnswers = 0;
-        // formula.setClickable(false);
         isEnd = false;
         prepareTask();
-
-
     }
-
-
 
     protected abstract void prepareTask();
 
@@ -77,12 +67,9 @@ public abstract class GameBoard extends GamePlay {
 
     public abstract void goAgain(View v);
 
-
     public void multiChoice(View v) {
-
         if (GamePlay.task.getResult() == (GamePlay.task.choices).get(Integer.parseInt(v.getTag().toString()))) {
             right();
-
         } else {
             wrong();
         }
@@ -108,7 +95,6 @@ public abstract class GameBoard extends GamePlay {
                 }
                 if (GamePlay.task.getResult() == Integer.parseInt(typedResult)) {
                     right();
-
                 } else {
                     wrong();
                 }
@@ -132,26 +118,19 @@ public abstract class GameBoard extends GamePlay {
         finish();
     }
 
-
     public void right() {
-
         play(RIGHT_ANSWER);
         goodAnswers++;
         setProgress("Right!", R.color.base, "\u2713");
     }
 
-
     public void wrong() {
-
         play(WRONG_ANSWER);
         badAnswers++;
         setProgress("Wrong!", R.color.checked, "\u2573");
     }
 
-
     public void setProgress(String p, int c, String s) {
-
-
         prog.add(c);
         progress = new SpannableString(progress + s);
         for (int i = 0; i < progress.length(); i++) {
@@ -159,6 +138,4 @@ public abstract class GameBoard extends GamePlay {
         }
         next(p);
     }
-
-
 }

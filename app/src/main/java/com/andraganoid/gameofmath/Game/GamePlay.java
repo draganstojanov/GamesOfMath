@@ -52,7 +52,6 @@ public class GamePlay extends AppCompatActivity {
 
     public static Calc calc;
     public static Task task;
-
     public InterstitialAd fullscreenAd;
     public static boolean adIsShowing, fullscreenIsShowed;
     public SharedPreferences prefs;
@@ -61,14 +60,13 @@ public class GamePlay extends AppCompatActivity {
     public View board;
     public CountDownTimer cdt, intro, fireTimer;
     public Intent boardIntent;
-    public boolean goMain, isEnd;
-    DisplayMetrics metrics;
-    int shot, last, width, height;
-    Random rand;
-    ParticleSystem ps;
+    public boolean goMain, isEnd, goHiScore, colorChange;
+    public DisplayMetrics metrics;
+    public int shot, last, width, height;
+    public Random rand;
+    public ParticleSystem ps;
     public Sounds mathSounds;
-    public boolean goHiScore;
-
+    public int aCount;
 
     int fireDots[] = new int[]{
             R.drawable.fw_01,
@@ -81,16 +79,11 @@ public class GamePlay extends AppCompatActivity {
             R.drawable.fw_08,
             R.drawable.fw_09,
             R.drawable.fw_10
-
     };
-
     ObjectAnimator animation;
     Keyframe kf0, kf1, kf2, kf3;
     float[] fx = new float[8];
     float[] fy = new float[8];
-    int aCount;
-    public boolean colorChange;
-
 
     @Override
     protected void onResume() {
@@ -100,35 +93,27 @@ public class GamePlay extends AppCompatActivity {
         loadFullscreenAd();
     }
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //  setContentView(R.layout.game_play);
         alertTypeface = ResourcesCompat.getFont(this, R.font.luckiestguy);
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         prefsEditor = prefs.edit();
         mathSounds = Sounds.getInstance(getApplicationContext());
         rand = new Random();
-
         fullscreenIsShowed = false;
         if (fullscreenAd == null) {
             fullscreenAd = new InterstitialAd(this);
         }
         fullscreenAd.setAdUnitId(getString(R.string.AD_MOB_MATH_FULLSCREEN));
-
     }
 
-
     public void goFire() {
-
         metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         width = metrics.widthPixels;
         height = metrics.heightPixels;
-
         play(BEST_RESULT);
-
         shot = 25;
         last = 0;
         fireTimer = new CountDownTimer(10000, 200) {
@@ -137,39 +122,28 @@ public class GamePlay extends AppCompatActivity {
                 last++;
                 if (shot > 0) {
                     if (last > 5 || (rand.nextInt(1000) % 2 == 1)) {
-
                         doFire();
-
                     }
                 }
             }
 
             @Override
             public void onFinish() {
-
-
             }
         };
         fireTimer.start();
-
     }
 
     void doFire() {
-
-
         findViewById(R.id.fireworks_wrapper).setVisibility(View.VISIBLE);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(rand.nextInt(width - 50), rand.nextInt(height - 50), 0, 0);
         findViewById(R.id.fireworks).setLayoutParams(params);
-
-
         shot--;
         last = 0;
-
         play(FIREWORK);
-
         ps = new ParticleSystem(this,
                 200, fireDots[rand.nextInt(1000) % 10],
                 1000 + 500 * (rand.nextInt(1000) % 9));
@@ -178,9 +152,7 @@ public class GamePlay extends AppCompatActivity {
                 .oneShot(findViewById(R.id.fireworks), 50 + rand.nextInt(150));
     }
 
-
     public void startAnimation(View view, int duration) {
-
         switch (getRnd()) {
             case 0:
                 animRotAndShake(view, 15f, 3 * duration);
@@ -190,7 +162,6 @@ public class GamePlay extends AppCompatActivity {
                 break;
             case 2:
                 String r = "";
-
                 switch (getRnd()) {
                     case 0:
                         r = "rotation";
@@ -214,23 +185,18 @@ public class GamePlay extends AppCompatActivity {
     }
 
     void animRotAndShake(View view, float amplitude, int repeat) {
-
         kf0 = Keyframe.ofFloat(0, -amplitude);
         kf1 = Keyframe.ofFloat(.25f, 0f);
         kf2 = Keyframe.ofFloat(.5f, amplitude);
         kf3 = Keyframe.ofFloat(1f, 0);
-
         PropertyValuesHolder pvh = PropertyValuesHolder.ofKeyframe("rotation", kf0, kf1, kf2, kf3);
         animation = ObjectAnimator.ofPropertyValuesHolder(view, pvh);
         animation.setDuration(200).setRepeatCount(repeat);
         animation.start();
     }
 
-
     void animShake1(final View view, final int repeat, int amplitude) {
-
         int ay = -amplitude;
-
         for (int i = 0; i < 8; i++) {
             if (i % 2 == 1) {
                 fx[i] = 0;
@@ -238,7 +204,6 @@ public class GamePlay extends AppCompatActivity {
             } else {
                 fy[i] = ay;
                 ay *= -1;
-
                 fx[i] = -amplitude;
                 {
                     if (i == 2 || i == 4) {
@@ -248,7 +213,6 @@ public class GamePlay extends AppCompatActivity {
             }
         }
 
-
         aCount = 0;
         intro = new CountDownTimer(5000, 66) {
             @Override
@@ -257,7 +221,6 @@ public class GamePlay extends AppCompatActivity {
                     view.setTranslationX(fx[aCount % 8]);
                     view.setTranslationY(fy[aCount % 8]);
                     aCount++;
-
                 } else {
                     view.setTranslationX(0);
                     view.setTranslationY(0);
@@ -267,12 +230,8 @@ public class GamePlay extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-
             }
-
         }.start();
-
-
     }
 
     void ctstop() {
@@ -280,7 +239,6 @@ public class GamePlay extends AppCompatActivity {
     }
 
     void animSimpleRot(View view, String rotationType, int rotations) {//ROTATION2
-
         animation = ObjectAnimator.ofFloat(view, rotationType, 0f, rotations * 360f);
         if (rotations != 1) {
             animation.setInterpolator(new DecelerateInterpolator());
@@ -288,9 +246,7 @@ public class GamePlay extends AppCompatActivity {
         animation.setDuration((Math.abs(rotations) == 1 ? 1000 : 5000)).start();
     }
 
-
     public void play(int sound) {
-
         if (prefs.getBoolean("sounds", true)) {
             int priority = 1;
             if (sound == 0) {
@@ -298,7 +254,6 @@ public class GamePlay extends AppCompatActivity {
                 priority = 0;
             }
             mathSounds.playSomeMusic(sound, priority);
-
         }
     }
 
@@ -327,7 +282,6 @@ public class GamePlay extends AppCompatActivity {
         }
     }
 
-
     public void loadFullscreenAd() {
         if (!fullscreenAd.isLoaded()) {
             fullscreenAd.loadAd(new AdRequest.Builder().build());
@@ -346,7 +300,6 @@ public class GamePlay extends AppCompatActivity {
                     super.onAdFailedToLoad(i);
                     Toast.makeText(GamePlay.this, "onAdFailedToLoad", Toast.LENGTH_LONG).show();
                     fullscreenCallback.afterFullscreenAd();
-
                 }
 
                 @Override
@@ -369,82 +322,37 @@ public class GamePlay extends AppCompatActivity {
                     goMain = false;
                     loadFullscreenAd();
                     fullscreenCallback.afterFullscreenAd();
-                    //   finish();
-
                 }
             });
-
             fullscreenAd.show();
             fullscreenIsShowed = true;
             adIsShowing = true;
-
         } else {
             fullscreenCallback.afterFullscreenAd();
-            //  goMain = false;
-            //finish();
         }
-
     }
-
 
     public void turnTheScreenOff() {
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
     }
 
-
     public void highScoresList() {
-
         final ConstraintLayout exp = findViewById(R.id.lboards_exp_list_wrapper);
-
-        final ArrayList <Level> levelList = new ArrayList <Level>();
-
+        final ArrayList <Level> levelList = new ArrayList <>();
         levelList.add(new Level(Level.FAST_CALC,
                 getString(R.string.fast_calc),
                 Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description))));
-
         levelList.add(new Level(Level.EASY_CALC,
                 getString(R.string.easy_calc),
                 Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description))));
-
         levelList.add(new Level(Level.HEAVY_CALC,
                 getString(R.string.heavy_calc),
                 Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description))));
-//
-//        levelList.add(new Level(Level.FAST_CALC,
-//                Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels)),
-//                Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description))));
-//
-//        levelList.add(new Level(Level.EASY_CALC,
-//                Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels)),
-//                Arrays.asList(getResources().getStringArray(R.array.easy_calc_levels_description))));
-//
-//        levelList.add(new Level(Level.HEAVY_CALC,
-//                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels)),
-//                Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description))));
-
         levelList.add(new Level(getString(R.string.cancel), getString(R.string.cancel), null));
-
-//        for (Level level : levelList) {
-//            System.out.println("LEVEL LIST" + level.getGameName());
-//            System.out.println("LEVEL LIST" + level.getScreenGameName());
-//            System.out.println("LEVEL LIST" + level.getLevelName().size());
-//            System.out.println("LEVEL LIST" + level.getScreenLevelName().size());
-//            System.out.println("LEVEL LIST" + level.getLevelDesc().size());
-//
-//        }
-
-
         ExpandableListView expListView = (ExpandableListView) findViewById(R.id.lboards_exp_list);
-
-
         exp.setVisibility(View.VISIBLE);
         ExpandableListAdapter elAdapter = new HighScoresAdapter(this, levelList);
-
-        // setting list adapter
         expListView.setAdapter(elAdapter);
-
-        // Listview Group click listener
         expListView.setOnGroupClickListener(new ExpandableListView.OnGroupClickListener() {
             @Override
             public boolean onGroupClick(ExpandableListView parent, View v,
@@ -456,73 +364,35 @@ public class GamePlay extends AppCompatActivity {
             }
         });
 
-        // Listview Group expanded listener
-//        expListView.setOnGroupExpandListener(new ExpandableListView.OnGroupExpandListener() {
-//
-//            @Override
-//            public void onGroupExpand(int groupPosition) { Toast.makeText(GamePlay.this, levelList.get(groupPosition).getGameName(), Toast.LENGTH_SHORT).show();
-////                Toast.makeText(getApplicationContext(),
-////                        listDataHeader.get(groupPosition) + " Expanded",
-////                        Toast.LENGTH_SHORT).show();
-//            }
-//        });
-
-        // Listview Group collasped listener
-//        expListView.setOnGroupCollapseListener(new ExpandableListView.OnGroupCollapseListener() {
-//
-//            @Override
-//            public void onGroupCollapse(int groupPosition) { Toast.makeText(GamePlay.this, levelList.get(groupPosition).getGameName(), Toast.LENGTH_SHORT).show();
-////                Toast.makeText(getApplicationContext(),
-////                        listDataHeader.get(groupPosition) + " Collapsed",
-////                        Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-
-        // Listview on child click listener
         expListView.setOnChildClickListener(new ExpandableListView.OnChildClickListener() {
-
             @Override
-            public boolean onChildClick(ExpandableListView parent, View v,
-                                        int groupPosition, int childPosition, long id) {
-
+            public boolean onChildClick(ExpandableListView parent, View v, int groupPosition, int childPosition, long id) {
                 showHighScoresList(levelList.get(groupPosition).getGameName(),
                         levelList.get(groupPosition).getLevelNameItem(childPosition),
                         levelList.get(groupPosition).getScreenLevelNameItem(childPosition));
-
                 return false;
             }
         });
-
-
     }
 
     public void showHighScoresList(String gameName, String levelName, String title) {
-
-        Toast.makeText(getApplicationContext(), levelName, Toast.LENGTH_LONG).show();
-        System.out.println("showLeaderboard: " + gameName + levelName);
-
         (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
         (findViewById(R.id.one_btn)).setVisibility(View.VISIBLE);
         ((TextView) (findViewById(R.id.hs_name))).setText(title);
-
         switch (gameName) {
             case Level.FAST_CALC:
                 new ScoreRepository(getApplicationContext()).getBestTimesList(levelName, scoreCallback);
                 break;
-
             case Level.EASY_CALC:
             case Level.HEAVY_CALC:
                 new ScoreRepository(getApplicationContext()).getBestPointsList(levelName, scoreCallback);
                 break;
         }
-
     }
 
     ScoreListCallback scoreCallback = new ScoreListCallback() {
         @Override
         public void scoreSaved(List <Score> scoreList, String levelName, long lastScoreId) {
-
         }
 
         @Override
@@ -538,24 +408,18 @@ public class GamePlay extends AppCompatActivity {
 
     public void setHighScoreTableAdapter(List <Score> scoreList, long lastScoreId) {
         goHiScore = true;
-        RecyclerView  hsrv = findViewById(R.id.hs_rec_view);
+        RecyclerView hsrv = findViewById(R.id.hs_rec_view);
         HighScoresTableAdapter hstAdapter = new HighScoresTableAdapter(scoreList, lastScoreId);
         RecyclerView.LayoutManager hslm = new LinearLayoutManager(this);
         hsrv.setLayoutManager(hslm);
         hsrv.setAdapter(hstAdapter);
-
         int s = 0;
         for (int i = 0; i < scoreList.size(); i++) {
-            //  hsrv.smoothScrollToPosition(i);
             if ((int) lastScoreId == scoreList.get(i).getId()) {
                 s = i;
                 break;
             }
         }
-
-((LinearLayoutManager) hslm).scrollToPositionWithOffset(s,0);
-     //   hsrv.smoothScrollToPosition(s);
-
+        ((LinearLayoutManager) hslm).scrollToPositionWithOffset(s, 0);
     }
-
 }

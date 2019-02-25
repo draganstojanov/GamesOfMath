@@ -8,19 +8,12 @@ import java.util.Map;
 
 public class Level {
 
-//    public static final String SCREEN_FAST_CALC = "Fast Calc";
-//    public static final String SCREEN_EASY_CALC = "Easy Calc";
-//    public static final String SCREEN_HEAVY_CALC = "Heavy Calc";
-
     public static final String FAST_CALC = "fast_calc";
     public static final String EASY_CALC = "easy_calc";
     public static final String HEAVY_CALC = "heavy_calc";
-
-
     private StringBuilder sb = new StringBuilder();
     private List <String> tempList = new ArrayList <>();
     private List <String> tempList2 = new ArrayList <>();
-
     private String gameName;
     private String screenGameName;
     private List <String> levelName;
@@ -28,35 +21,26 @@ public class Level {
     private List <String> levelDesc;
     private Map <String, Score> bestResult;
 
-
     public Level(String gameName, String screenGameName, List <String> desc) {
         this.gameName = gameName;
         this.screenGameName = screenGameName;
         this.levelDesc = desc;
         this.bestResult = new HashMap <>();
-
         switch (gameName) {
-
             case FAST_CALC:
                 this.levelName = getFastLevelName();
                 this.screenLevelName = getFastScreenLevelName();
                 break;
-
             case EASY_CALC:
                 this.levelName = getEasyLevelName();
                 this.screenLevelName = getEasyScreenLevelName();
-
                 break;
-
             case HEAVY_CALC:
                 this.levelName = getHeavyLevelName();
                 this.screenLevelName = getHeavyScreenLevelName();
-
                 break;
         }
-
     }
-
 
     private List <String> getFastLevelName() {
         tempList.clear();
@@ -68,10 +52,7 @@ public class Level {
             }
             sb.append(i);
             tempList.add(sb.toString());
-            System.out.println("NAME FAST: "+sb);
         }
-
-
         return tempList;
     }
 
@@ -85,7 +66,6 @@ public class Level {
             }
             sb.append(i);
             tempList2.add(sb.toString());
-
         }
         return tempList2;
     }
@@ -96,7 +76,7 @@ public class Level {
             sb.setLength(0);
             sb.append(EASY_CALC).append("_").append(i);
             tempList.add(sb.toString());
-            System.out.println("NAME EASY: "+sb);
+            System.out.println("NAME EASY: " + sb);
         }
         return tempList;
     }
@@ -115,10 +95,12 @@ public class Level {
         tempList.clear();
         sb.setLength(0);
         sb.append(HEAVY_CALC).append("_10");
-        tempList.add(sb.toString());    System.out.println("NAME HEAVY: "+sb);
+        tempList.add(sb.toString());
+        System.out.println("NAME HEAVY: " + sb);
         sb.setLength(0);
         sb.append(HEAVY_CALC).append("_100");
-        tempList.add(sb.toString()); System.out.println("NAME HEAVY: "+sb);
+        tempList.add(sb.toString());
+        System.out.println("NAME HEAVY: " + sb);
         return tempList;
     }
 
@@ -127,8 +109,6 @@ public class Level {
         sb.setLength(0);
         sb.append(screenGameName).append(" 10");
         tempList2.add(sb.toString());
-        // sb.setLength(0);
-        // sb.append(screenGameName).append(" 100");
         sb.append(0);
         tempList2.add(sb.toString());
         return tempList2;
@@ -138,16 +118,8 @@ public class Level {
         return gameName;
     }
 
-    public void setGameName(String gameName) {
-        this.gameName = gameName;
-    }
-
     public String getScreenGameName() {
         return screenGameName;
-    }
-
-    public void setScreenGameName(String screenGameName) {
-        this.screenGameName = screenGameName;
     }
 
     public List <String> getLevelName() {
@@ -158,32 +130,12 @@ public class Level {
         this.levelName = levelName;
     }
 
-    public List <String> getScreenLevelName() {
-        return screenLevelName;
-    }
-
-    public void setScreenLevelName(List <String> screenLevelName) {
-        this.screenLevelName = screenLevelName;
-    }
-
-    public List <String> getLevelDesc() {
-        return levelDesc;
-    }
-
-    public void setLevelDesc(List <String> levelDesc) {
-        this.levelDesc = levelDesc;
-    }
-
     public String getScreenLevelNameItem(int ideks) {
         return screenLevelName.get(ideks);
     }
 
     public Map <String, Score> getBestResult() {
         return bestResult;
-    }
-
-    public void setBestResult(Map <String, Score> bestResult) {
-        this.bestResult = bestResult;
     }
 
     public String getLevelDescItem(int indeks) {
@@ -199,20 +151,15 @@ public class Level {
     }
 
     public Score getBestResultItem(String key) {
-
         return bestResult.get(key);
     }
 
     public boolean setBestResultItem(String key, Score score) {
-
         this.bestResult.put(key, score);
         if (bestResult.size() != levelName.size()) {
             return false;
         } else {
             return true;
         }
-
     }
-
-
 }

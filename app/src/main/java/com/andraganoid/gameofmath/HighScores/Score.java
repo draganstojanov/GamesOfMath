@@ -6,16 +6,13 @@ import android.arch.persistence.room.Ignore;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
-
 
 @Entity(tableName = "score-table")
 public class Score {
 
     public static final int SCORE_TYPE_POINTS = 1;
     public static final int SCORE_TYPE_TIME = 2;
-
 
     @PrimaryKey(autoGenerate = true)
     @NonNull
@@ -39,26 +36,23 @@ public class Score {
     @ColumnInfo
     private int scoreType;
 
-
     public Score() {
         this.scorePoints = 0;
-        this.scoreMillis = 0l;
+        this.scoreMillis = 0L;
         this.scoreTimeString = setScoreTimeStringFromMillis(scoreMillis);
     }
 
-
     @Ignore
     public Score(String levelName, int scorePoints) {
-        this.timestamp = System.currentTimeMillis();//TODO
+        this.timestamp = System.currentTimeMillis();
         this.levelName = levelName;
         this.scorePoints = scorePoints;
         this.scoreType = SCORE_TYPE_POINTS;
-
     }
 
     @Ignore
     public Score(String levelName, long scoreMillis) {
-        this.timestamp = System.currentTimeMillis();//TODO
+        this.timestamp = System.currentTimeMillis();
         this.levelName = levelName;
         this.scoreMillis = scoreMillis;
         this.scoreTimeString = setScoreTimeStringFromMillis(scoreMillis);
@@ -66,14 +60,12 @@ public class Score {
     }
 
     public static String setScoreTimeStringFromMillis(long ms) {
-
         int secs = (int) (ms / 1000);
         int mins = secs / 60;
         secs = secs % 60;
         return (mins + ":"
                 + String.format("%02d", secs) + ":"
                 + String.format("%03d", (int) (ms % 1000)));
-
     }
 
     public int getId() {
@@ -133,13 +125,12 @@ public class Score {
     }
 
     public String getScoreDate() {
-
         Calendar cal = Calendar.getInstance();
         cal.setTimeInMillis(timestamp);
         StringBuilder sb = new StringBuilder();
         sb.append(cal.get(Calendar.DAY_OF_MONTH))
                 .append(".")
-                .append(cal.get(Calendar.MONTH)+1)
+                .append(cal.get(Calendar.MONTH) + 1)
                 .append(".\n")
                 .append(cal.get(Calendar.YEAR))
                 .append(".");

@@ -12,7 +12,6 @@ import java.util.List;
 public class ScoreRepository {
 
     private static final int MAX_SCORES_IN_LIST = 50;
-
     private static final int BEST_POINTS = 1;
     private static final int BEST_POINTS_LIST = 2;
     private static final int BEST_TIME = 3;
@@ -61,7 +60,7 @@ public class ScoreRepository {
             Score scr = scores[0];
             List <Score> scoreList = new ArrayList <>();
 
-         long lastScoreId=   dao.saveScore(scr);
+            long lastScoreId = dao.saveScore(scr);
 
             switch (scr.getScoreType()) {
 
@@ -80,7 +79,7 @@ public class ScoreRepository {
                     break;
             }
 
-            scoreCallback.scoreSaved(scoreList, scr.getLevelName(),lastScoreId);
+            scoreCallback.scoreSaved(scoreList, scr.getLevelName(), lastScoreId);
             return null;
         }
     }
@@ -104,7 +103,6 @@ public class ScoreRepository {
 
             switch (getType) {
 
-
                 case BEST_POINTS_LIST:
                     scoreCallback.scoreList(dao.getScoreListPoints(strings[0]));
                     break;
@@ -113,7 +111,6 @@ public class ScoreRepository {
                     scoreCallback.scoreList(dao.getScoreListTime(strings[0]));
                     break;
             }
-
             return scr;
         }
     }
@@ -133,8 +130,8 @@ public class ScoreRepository {
 
         @Override
         protected Score doInBackground(String... strings) {
-            Score scr = null;
-            List <Score> lst = new ArrayList <>();
+            Score scr;
+            List <Score> lst;
             switch (getType) {
 
                 case BEST_POINTS:
@@ -163,7 +160,5 @@ public class ScoreRepository {
 
             return null;
         }
-
     }
-
 }

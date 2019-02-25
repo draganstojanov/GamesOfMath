@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-
 import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
@@ -26,14 +25,9 @@ import static com.andraganoid.gameofmath.Game.Game.calc;
 
 
 public class FastSettings extends AppCompatActivity {
-
-    //    RecyclerView rv;
-//    RecyclerView.Adapter fastAdapter;
-//    RecyclerView.LayoutManager FastLayoutManager;
-    private List <FastData> adFast = new ArrayList <FastData>();
+    private List <FastData> adFast = new ArrayList <>();
     FastAdapter fAdapter;
     private AdView adViewBottomFast;
-    //  private AdView adViewBottomFast;
 
     @Override
     protected void onPause() {
@@ -47,47 +41,36 @@ public class FastSettings extends AppCompatActivity {
         adViewBottomFast.destroy();
     }
 
-    //    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        //   fastAdapter.notifyDataSetChanged();
-//    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fast_settings);
-
         adViewBottomFast = findViewById(R.id.add_view_bottom_fast);
         adViewBottomFast.loadAd(new AdRequest.Builder().build());
     }
 
-
     @Override
     protected void onResume() {
         super.onResume();
-
-
         calc = new Fast();
         calc.level = new Level(Level.FAST_CALC,
                 getString(R.string.fast_calc),
                 Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description)));
         for (String lvl : calc.level.getLevelName()) {
-
             new ScoreRepository(getApplicationContext()).getBestTime(lvl, sc);
         }
     }
 
-
     ScoreCallback sc = new ScoreCallback() {
-
         @Override
         public void bestScore(final Score scr) {
-
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(  calc.level.setBestResultItem(scr.getLevelName(), scr)){initFast();};
+                    if (calc.level.setBestResultItem(scr.getLevelName(), scr)) {
+                        initFast();
+                    }
+                    ;
                 }
             });
         }
@@ -95,9 +78,7 @@ public class FastSettings extends AppCompatActivity {
 
 
     private void initFast() {
-
         adFast.clear();
-
         for (int i = 0; i < 14; i++) {
             adFast.add(new FastData(
                     calc.level.getScreenLevelNameItem(i),
@@ -120,7 +101,6 @@ public class FastSettings extends AppCompatActivity {
         ((TextView) findViewById(R.id.help_title)).setText(getString(R.string.fast_calc));
         ((TextView) findViewById(R.id.help_text)).setText(getString(R.string.help_fast_calc));
         findViewById(R.id.fast_set_lay).setClickable(false);
-
     }
 
     public void goCloseHelp(View v) {
@@ -129,20 +109,10 @@ public class FastSettings extends AppCompatActivity {
 
     public void goPlayGameFast(View v) {
         calc.gameKind = (int) v.getTag();
-
-//                String[] s = Arrays.asList(mContext.getResources().getStringArray(R.array.fast_calc_levels_description)).get(holder.getAdapterPosition()).split(" ");
         String[] s = Arrays.asList(getResources()
                 .getStringArray(R.array.fast_calc_levels_description))
                 .get(calc.gameKind).split(" ");
-
-//        String g = "";
-//        for (int i = 0; i < s.length; i++) {
-//            g += s[i] + "~";
-//        }
-
         calc.setOperationTypeByIndex(0, Arrays.asList(opSign).indexOf(s[1]));
-
-
         if (s.length == 3) {
             calc.setOperandMinVal((int) Math.pow(10, s[0].length() - 1), (int) Math.pow(10, s[2].length() - 1));
             calc.setOperandMaxVal((int) Math.pow(10, s[0].length()) - 1, (int) Math.pow(10, s[2].length()) - 1);
@@ -151,14 +121,8 @@ public class FastSettings extends AppCompatActivity {
             calc.setOperandMinVal((int) Math.pow(10, s[0].length() - 1), (int) Math.pow(10, s[2].length() - 1), (int) Math.pow(10, s[4].length() - 1));
             calc.setOperandMaxVal((int) Math.pow(10, s[0].length()) - 1, (int) Math.pow(10, s[2].length()) - 1, (int) Math.pow(10, s[4].length()) - 1);
         }
-
-
-        // calc.highScore = calc.scoreMap.get(calc.levelNames.get(calc.gameKind));
-
-
         Intent intent = new Intent(v.getContext(), FastBoard.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         v.getContext().startActivity(intent);
     }
-
 }

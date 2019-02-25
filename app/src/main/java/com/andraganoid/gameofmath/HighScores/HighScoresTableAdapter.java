@@ -27,7 +27,6 @@ public class HighScoresTableAdapter extends RecyclerView.Adapter <HighScoresTabl
             pos = itemView.findViewById(R.id.hs_pos);
             result = itemView.findViewById(R.id.hs_result);
             date = itemView.findViewById(R.id.hs_date);
-
         }
     }
 
@@ -36,34 +35,25 @@ public class HighScoresTableAdapter extends RecyclerView.Adapter <HighScoresTabl
         this.lastScoreId = lastScoreId;
     }
 
-
     @Override
     public HighScoresTableAdapter.HSTViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         ConstraintLayout itemView = (ConstraintLayout) LayoutInflater.from(parent.getContext()).inflate(R.layout.highscore_row, parent, false);
-
         HSTViewHolder vh = new HSTViewHolder(itemView);
         return vh;
     }
 
-
     @Override
     public void onBindViewHolder(HSTViewHolder holder, int position) {
-
         holder.pos.setText(String.valueOf(position + 1) + ".");
-
         score = sList.get(position);
         switch (score.getScoreType()) {
-
             case Score.SCORE_TYPE_POINTS:
                 res = String.valueOf((score.getScorePoints()));
                 break;
-
             case Score.SCORE_TYPE_TIME:
                 res = score.getScoreTimeString();
                 break;
         }
-
         holder.result.setText(res);
         holder.date.setText(score.getScoreDate());
         System.out.println("LAST SCORE: " + lastScoreId + "***" + score.getId() + "***" + score.getScorePoints());
@@ -78,8 +68,6 @@ public class HighScoresTableAdapter extends RecyclerView.Adapter <HighScoresTabl
             holder.result.setTextColor(holder.itemView.getContext().getResources().getColor(R.color.info));
             holder.date.setTextColor(cc);
         }
-
-
     }
 
     @Override

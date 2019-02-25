@@ -8,5 +8,5 @@ public interface ScoreListCallback {
 
     void scoreSaved(List <Score> scoreList, String levelName, long lastScoreId);
 
-    void scoreList(List<Score> scoreList);
+    void scoreList(List <Score> scoreList);
 }

@@ -18,7 +18,6 @@ public class PrivacyPolicy extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.privacy_policy);
-
         WebView webview = findViewById(R.id.policy);
         webview.loadUrl(POLICY_URL);
     }

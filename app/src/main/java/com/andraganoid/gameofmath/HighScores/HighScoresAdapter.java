@@ -14,17 +14,12 @@ import java.util.ArrayList;
 public class HighScoresAdapter extends BaseExpandableListAdapter {
 
     private Context context;
-    //    private ArrayList <String> groupTitle;
-//    private HashMap <String, ArrayList <String>> allBoards;
     private ArrayList <Level> levels;
 
     public HighScoresAdapter(Context context, ArrayList <Level> levels) {
         this.context = context;
-//        this.groupTitle = title;
-////        this.allBoards = allBoards;
         this.levels = levels;
     }
-
 
     @Override
     public int getGroupCount() {
@@ -33,8 +28,7 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getChildrenCount(int groupPosition) {
-
-        if (groupPosition+1 < levels.size()) {
+        if (groupPosition + 1 < levels.size()) {
             return levels.get(groupPosition).getLevelName().size();
         } else {
             return 0;
@@ -49,8 +43,6 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         return ((levels.get(groupPosition).getScreenLevelNameItem(childPosition)));
-        //+ levels.get(groupPosition).getLevelDescItem(childPosition)
-        //  return allBoards.get(groupTitle.get(groupPosition)).get(childPosition);
     }
 
     @Override
@@ -70,30 +62,23 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.leaderboards_groups, null);
         }
-
         ((TextView) convertView.findViewById(R.id.lb_exp_title)).setText(levels.get(groupPosition).getScreenGameName());
-
         return convertView;
     }
 
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = infalInflater.inflate(R.layout.leaderboards_items, null);
         }
 
-//        ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getScreenLevelName(childPosition));
-
         ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getScreenLevelNameItem(childPosition));
         ((TextView) convertView.findViewById(R.id.lb_exp_desc)).setText(levels.get(groupPosition).getLevelDescItem(childPosition));
-
         return convertView;
     }
 

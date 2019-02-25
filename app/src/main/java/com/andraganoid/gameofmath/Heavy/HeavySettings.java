@@ -21,7 +21,8 @@ import static com.andraganoid.gameofmath.Game.Game.calc;
 
 
 public class HeavySettings extends AppCompatActivity implements View.OnClickListener {
-    Intent intent;
+
+    private Intent intent;
     private AdView adViewBottomHeavy;
 
     @Override
@@ -40,15 +41,9 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.heavy_settings);
-
         adViewBottomHeavy = findViewById(R.id.add_view_bottom_heavy);
         adViewBottomHeavy.loadAd(new AdRequest.Builder().build());
-
     }
-
-
-
-
 
     @Override
     protected void onResume() {
@@ -57,46 +52,35 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
         calc.level = new Level(Level.HEAVY_CALC,
                 getString(R.string.heavy_calc),
                 Arrays.asList(getResources().getStringArray(R.array.heavy_calc_levels_description)));
-      //  new ScoreRepository(getApplicationContext()).getBestPointsList(Level.HEAVY_CALC, sc);
         for (String lvl : calc.level.getLevelName()) {
-
             new ScoreRepository(getApplicationContext()).getBestPoints(lvl, sc);
         }
-
-       // initHeavy();
     }
 
     ScoreCallback sc = new ScoreCallback() {
-
         @Override
         public void bestScore(final Score scr) {
-
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if(  calc.level.setBestResultItem(scr.getLevelName(), scr)){initHeavy();};
+                    if (calc.level.setBestResultItem(scr.getLevelName(), scr)) {
+                        initHeavy();
+                    }
+                    ;
                 }
             });
-
-
         }
     };
 
-
-
-    private void  initHeavy(){
+    private void initHeavy() {
         ((TextView) findViewById(R.id.heavy_10_1)).setText(calc.level.getLevelScreenNameItem(0));
         ((TextView) findViewById(R.id.heavy_100_1)).setText(calc.level.getLevelScreenNameItem(1));
-
-
         ((TextView) findViewById(R.id.heavy_10_2)).setText(calc.level.getLevelDescItem(0));
         ((TextView) findViewById(R.id.heavy_100_2)).setText(calc.level.getLevelDescItem(1));
-
         String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(calc.level.getLevelName().get(0)).getScorePoints());
         ((TextView) findViewById(R.id.heavy_10_3)).setText(a);
         a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(calc.level.getLevelName().get(1)).getScorePoints());
         ((TextView) findViewById(R.id.heavy_100_3)).setText(a);
-
         findViewById(R.id.heavy_go_10).setOnClickListener(this);
         findViewById(R.id.heavy_go_100).setOnClickListener(this);
     }
@@ -107,30 +91,22 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
         startActivity(intent);
     }
 
-
     @Override
     public void onClick(View v) {
         v.setClickable(false);
         intent = new Intent(this, HeavyBoard.class);
-
-
         switch (v.getId()) {
-
             case R.id.heavy_go_10:
                 calc.gameKind = 10;
                 calc.secondsForTask = 120;
                 break;
-
             case R.id.heavy_go_100:
                 calc.gameKind = 100;
                 calc.secondsForTask = 180;
                 break;
-
         }
-
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
-
     }
 
     public void goHelp(View v) {
@@ -143,6 +119,4 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
     public void goCloseHelp(View v) {
         findViewById(R.id.help_layout).setVisibility(View.GONE);
     }
-
-
 }

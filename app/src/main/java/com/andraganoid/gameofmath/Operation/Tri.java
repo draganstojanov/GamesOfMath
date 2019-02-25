@@ -13,17 +13,13 @@ public class Tri extends Task {
         setOperandValue(0, getNumber(0));
         setOperandValue(1, getNumber(1));
         setOperandValue(2, getNumber(2));
-
         if (calc.getOperationType(0) == 3) {
             setOperandValue(0, (getOperandValue(0) / getOperandValue(1)) * getOperandValue(1));
         }
 
-        //setFormula3();
         setFormula(3);
         if (getResult() < 0) {
             setBigS();
         }
-
     }
-
 }

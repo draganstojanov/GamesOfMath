@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.R;
 
-
 public class About extends AppCompatActivity {
 
     final private String MAIL_TO_AUTHOR = "mailto:andraganoid@gmail.com";
@@ -22,7 +21,6 @@ public class About extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
-
         findViewById(R.id.about_lay).setVisibility(View.VISIBLE);
         ((TextView) findViewById(R.id.about_version)).setText(" v " + appVersionName());
     }

@@ -405,6 +405,7 @@
         android:background="@color/checked"
         android:gravity="center"
         android:text="3"
+        android:clickable="true"
         android:textColor="@color/info"
         android:textSize="300sp"
         android:visibility="gone">

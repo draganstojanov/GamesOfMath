@@ -1,7 +1,6 @@
 package com.andraganoid.gameofmath.DataBase;
 
 import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
@@ -27,12 +26,6 @@ public interface ScoreDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     public long saveScore(Score score);
-
-    @Query("SELECT COUNT(*) FROM `score-table` WHERE levelName= :levelName")//mozda i ne treba
-    public int countScores(String levelName);//napravi if>50 brisi visak
-
-    @Delete
-    void deleteScore(Score score);
 
     @Query("DELETE FROM `score-table` WHERE scorePoints< :points")
     public void deleteOverPoints(int points);

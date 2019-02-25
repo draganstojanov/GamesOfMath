@@ -36,13 +36,8 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
     private TextView getBonusClick;
     private boolean goSettings;
     private boolean getReward;
-
-    // public SharedPreferences prefs;
-    //  public SharedPreferences.Editor prefsEditor;
-
     private String rc;
     private ConstraintLayout rl;
-
 
     @Override
     protected void onPause() {
@@ -63,31 +58,23 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         soundState();
         rewardAd.resume(this);
         if (rewardAd.isLoaded()) {
-//            getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
-////            getBonusClick.setTextColor(getResources().getColor(R.color.checked));
             getBonusClick.setVisibility(View.VISIBLE);
         } else {
             loadRewardAd();
         }
         bottomAd.loadAd(new AdRequest.Builder().build());
-
     }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
-
-        //  prefs = PreferenceManager.getDefaultSharedPreferences(this);
-        //  prefsEditor = prefs.edit();
         getBonusClick = findViewById(R.id.get_bonus_btn);
         bottomAd = findViewById(R.id.add_view_bottom_game);
         rl = findViewById(R.id.reward_dialog);
         rewardAd = MobileAds.getRewardedVideoAdInstance(this);
         rewardAd.setRewardedVideoAdListener(this);
     }
-
 
     public void goPractice(View v) {
         intent = new Intent(this, PracticeSettings.class);
@@ -113,12 +100,8 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         startActivity(intent);
     }
 
-
     @Override
     public void onBackPressed() {
-        //
-
-
         if (goHiScore) {
             goHiScore = false;
             findViewById(R.id.highscore_table).setVisibility(View.GONE);
@@ -131,20 +114,14 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
     }
 
     public void goAbout(View v) {
-
         intent = new Intent(this, About.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
     public void goSettings(View v) {
-
-        //  findViewById(R.id.game_settings).setVisibility(View.VISIBLE);
         goSettings = true;
         highScoresList();
-
-
-        //  soundState();
     }
 
 
@@ -156,12 +133,8 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
         findViewById(R.id.highscore_table).setVisibility(View.GONE);
     }
 
-
     public void goGetBonus(View v) {
-
         if (rewardAd != null && rewardAd.isLoaded()) {
-
-
             if (prefs.getBoolean("checkIfWatchBonusAd", true)) {
                 View cboxView = getLayoutInflater().inflate(R.layout.bonus_ad_checkbox, null);
                 CheckBox cbox = cboxView.findViewById(R.id.bonus_ad_checkbox);
@@ -178,18 +151,14 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
                 adb.setNegativeButton(getString(R.string.no), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-
-
                     }
                 });
                 adb.setView(cboxView);
                 adb.setCancelable(true);
                 adb.show();
-
                 cbox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-
                         prefsEditor.putBoolean("checkIfWatchBonusAd", !isChecked).apply();
                         Toast.makeText(Game.this, String.valueOf(!isChecked), Toast.LENGTH_SHORT).show();
                     }
@@ -197,26 +166,20 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
             } else {
                 showRewardAd();
             }
-
         }
-
     }
-
 
     public void goLogoEffect(View v) {
         startAnimation(findViewById(R.id.logo), 1);
     }
 
-
     private void loadRewardAd() {
-
         if (rewardAd != null && !rewardAd.isLoaded()) {
             rewardAd.loadAd(getString(R.string.AD_MOB_MATH_REWARD), new AdRequest.Builder().build());
         }
     }
 
     private void showRewardAd() {
-
         if (rewardAd != null && rewardAd.isLoaded()) {
             if (fireTimer != null) {
                 fireTimer.cancel();
@@ -227,8 +190,6 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdLoaded() {
-//        getBonusClick.setBackgroundColor(getResources().getColor(R.color.info));
-////        getBonusClick.setTextColor(getResources().getColor(R.color.checked));
         getBonusClick.setVisibility(View.VISIBLE);
     }
 
@@ -242,29 +203,17 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
 
     @Override
     public void onRewardedVideoAdClosed() {
-        //  loadRewardAd();
         getBonusClick.setVisibility(View.GONE);
         if (getReward) {
             getReward = false;
             play(REWARD);
             openRewardDialog();
         }
-
-
     }
 
     @Override
     public void onRewarded(RewardItem rewardItem) {
-
-        //  Toast.makeText(this, "onRewarded! currency: " + rewardItem.getType() + "  amount: " +
-        //         rewardItem.getAmount(), Toast.LENGTH_LONG).show();
-
-        //NACRTAJ NAGRADU
-
-
         getReward = true;
-
-
         // Reward the user.
     }
 
@@ -286,7 +235,6 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
     }
 
     public void chooseReward(View v) {
-
         switch (v.getId()) {
             case R.id.reward_e_skip:
                 rc = Bonus.EASY_SKIPS;
@@ -308,20 +256,14 @@ public class Game extends GamePlay implements RewardedVideoAdListener {
                 break;
             case R.id.reward_submit:
                 (findViewById(R.id.reward_dialog)).setVisibility(View.GONE);
-                //   new Calc().addRewards(rc);
                 new BonusRepository(getApplicationContext()).setRewardBonus(rc, Bonus.INCREASE);
                 break;
         }
-
         for (int i = 1; i < rl.getChildCount() - 1; i++) {
             rl.getChildAt(i).setBackground(getResources().getDrawable(R.drawable.tv_stroke));
         }
         if (v.getId() != R.id.reward_submit) {
             v.setBackgroundColor(getResources().getColor(R.color.checked));
         }
-
-
     }
-
-
 }
