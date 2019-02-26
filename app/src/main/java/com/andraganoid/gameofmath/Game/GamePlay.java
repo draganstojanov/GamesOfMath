@@ -217,7 +217,7 @@ public class GamePlay extends AppCompatActivity {
         intro = new CountDownTimer(5000, 66) {
             @Override
             public void onTick(long l) {
-                if (aCount < repeat) {//1-6
+                if (aCount < repeat) {
                     view.setTranslationX(fx[aCount % 8]);
                     view.setTranslationY(fy[aCount % 8]);
                     aCount++;
@@ -259,23 +259,30 @@ public class GamePlay extends AppCompatActivity {
 
 
     public void goSound(View v) {
-        startAnimation(findViewById(R.id.sound_on_off), 1);
+        if (v == findViewById(R.id.sound_on_off)) {
+            startAnimation(v, 1);
+        }
         prefsEditor
                 .putBoolean("sounds", !prefs.getBoolean("sounds", true))
                 .apply();
         soundState();
     }
 
+
     public void soundState() {
         TextView soundBtn = findViewById(R.id.sound_btn);
+        TextView sound_on_off = findViewById(R.id.sound_on_off);
         if (prefs.getBoolean("sounds", true)) {
-            ((TextView) findViewById(R.id.sound_on_off)).setText(getString(R.string.on));
+            if (sound_on_off != null) {
+                sound_on_off.setText(getString(R.string.sound_on));
+            }
             if (soundBtn != null) {
                 soundBtn.setText(getString(R.string.sound_on));
             }
-
         } else {
-            ((TextView) findViewById(R.id.sound_on_off)).setText(getString(R.string.off));
+            if (sound_on_off != null) {
+                sound_on_off.setText(getString(R.string.sound_off));
+            }
             if (soundBtn != null) {
                 soundBtn.setText(getString(R.string.sound_off));
             }
@@ -298,26 +305,22 @@ public class GamePlay extends AppCompatActivity {
                 @Override
                 public void onAdFailedToLoad(int i) {
                     super.onAdFailedToLoad(i);
-                    Toast.makeText(GamePlay.this, "onAdFailedToLoad", Toast.LENGTH_LONG).show();
                     fullscreenCallback.afterFullscreenAd();
                 }
 
                 @Override
                 public void onAdOpened() {
-                    Toast.makeText(GamePlay.this, "onAdOpened", Toast.LENGTH_LONG).show();
                     super.onAdOpened();
                 }
 
                 @Override
                 public void onAdClicked() {
-                    Toast.makeText(GamePlay.this, "onAdClicked", Toast.LENGTH_LONG).show();
                     super.onAdClicked();
                 }
 
                 @Override
                 public void onAdClosed() {
                     super.onAdClosed();
-                    Toast.makeText(GamePlay.this, "onAdClosed", Toast.LENGTH_LONG).show();
                     adIsShowing = false;
                     goMain = false;
                     loadFullscreenAd();

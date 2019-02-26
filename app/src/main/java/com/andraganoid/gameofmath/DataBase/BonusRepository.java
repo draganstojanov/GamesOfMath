@@ -92,7 +92,6 @@ public class BonusRepository {
         protected Void doInBackground(String... strings) {
             Bonus b = dao.getBonus(strings[0]);
             b.setValue(b.getValue() + Integer.parseInt(strings[1]));
-            System.out.println("INIT1: " + b.getBonusName());
             dao.saveBonus(b);
             return null;
         }

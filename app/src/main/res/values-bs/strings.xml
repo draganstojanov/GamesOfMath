@@ -47,8 +47,6 @@
     <string name="hints">"Savjet\n"</string>
     <string name="top_scores">"Globalni\ntop\nrezultati"</string>
     <string name="play">Igraj</string>
-    <string name="global_leaderboards">"Globalni\nrezultati"</string>
-
     <string name="reward_e_skips">"Laka računica\nPreskoči"</string>
     <string name="reward_e_xtra_time">"Laka računica\nDodatno vrijeme"</string>
     <string name="reward_e_resets">"Laka računica\nResetuj tajmer"</string>
@@ -66,6 +64,7 @@
         <item>max vrednost broja: 10</item>
         <item>max vrednost broja: 100</item>
     </string-array>
+
     <string name="reward_choose">Izaberi nagradu:</string>
     <string name="off">ISK</string>
     <string name="on">UK</string>
@@ -107,8 +106,7 @@
         \"DODATNO VRIJEME\" - imate dodatnih 30 sekundi za rješavanje trenutnog zadatka.\n
         \"DODATNI ŽIVOTI\" - možete iskoristiti kad izgubite sve živote kako biste nastavili igru.\n\n
         Uživajte!"</string>
-    <string name="signin_other_error">Tabele sa rezultatima su nedostupne!</string>
-    <string name="lboard_connect">Povežite se sa Google Play Service</string>
+
     <string name="yes">Da</string>
     <string name="no">Ne</string>
     <string name="out_of_lives">Ostali ste bez života!</string>
@@ -117,10 +115,7 @@
     <string name="play_again">Igraj ponovo</string>
     <string name="go_hiscores">"Top\nliste"</string>
     <string name="ask_later">Pitaj kasnije</string>
-    <string name="join_leaderboards">Games Of Math koristi Google Play Games Services Leaderboards za čuvanje i prikaz najboljih rezultata igrača. Da li želite da se pridružite? Besplatno je i zabavno!</string>
     <string name="connect">Poveži</string>
-    <string name="connecting">Povezivanje...</string>
-    <string name="succes_conn_lb">Uspešno povezivanje sa globalnim tabelama</string>
     <string name="next">Dalje</string>
     <string name="sound_on">"Zvuk\nUKLJ"</string>
     <string name="sound_off">"Zvuk\nISK"</string>

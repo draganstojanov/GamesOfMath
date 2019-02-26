@@ -56,7 +56,6 @@ public class HighScoresTableAdapter extends RecyclerView.Adapter <HighScoresTabl
         }
         holder.result.setText(res);
         holder.date.setText(score.getScoreDate());
-        System.out.println("LAST SCORE: " + lastScoreId + "***" + score.getId() + "***" + score.getScorePoints());
         if ((int) lastScoreId == score.getId()) {
             int c = holder.itemView.getContext().getResources().getColor(R.color.text1);
             holder.pos.setTextColor(c);

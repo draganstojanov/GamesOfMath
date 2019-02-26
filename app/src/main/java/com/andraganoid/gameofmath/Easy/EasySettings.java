@@ -82,9 +82,6 @@ public class EasySettings extends AppCompatActivity {
         ((TextView) findViewById(R.id.easy_2_2)).setText(calc.level.getLevelDescItem(0));
         ((TextView) findViewById(R.id.easy_3_2)).setText(calc.level.getLevelDescItem(1));
         ((TextView) findViewById(R.id.easy_4_2)).setText(calc.level.getLevelDescItem(2));
-        System.out.println("BBB" + calc.level.getLevelName().get(0));
-        System.out.println("CCC" + calc.level.getBestResult().size());
-        System.out.println("DDD" + calc.level.getBestResult().keySet().toString());
         String a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(calc.level.getLevelName().get(0)).getScorePoints());
         ((TextView) findViewById(R.id.easy_2_3)).setText(a);
         a = getResources().getString(R.string.best_score_time) + "  " + String.valueOf(calc.level.getBestResultItem(calc.level.getLevelName().get(1)).getScorePoints());

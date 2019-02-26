@@ -23,7 +23,6 @@ public class Sub extends Task {
             int c;
             for (int i = 0; i < 4; i++) {
                 c = r + result - i;
-                Log.i("math", String.valueOf(c));
                 if (c < 0) {
                     c = i;
                 }

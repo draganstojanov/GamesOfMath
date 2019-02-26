@@ -76,7 +76,6 @@ public class Level {
             sb.setLength(0);
             sb.append(EASY_CALC).append("_").append(i);
             tempList.add(sb.toString());
-            System.out.println("NAME EASY: " + sb);
         }
         return tempList;
     }
@@ -96,11 +95,9 @@ public class Level {
         sb.setLength(0);
         sb.append(HEAVY_CALC).append("_10");
         tempList.add(sb.toString());
-        System.out.println("NAME HEAVY: " + sb);
         sb.setLength(0);
         sb.append(HEAVY_CALC).append("_100");
         tempList.add(sb.toString());
-        System.out.println("NAME HEAVY: " + sb);
         return tempList;
     }
 

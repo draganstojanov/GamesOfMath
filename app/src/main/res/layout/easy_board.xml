@@ -384,7 +384,7 @@
         android:background="@android:color/transparent"
         android:clickable="true"
         android:visibility="gone">
-        
+
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

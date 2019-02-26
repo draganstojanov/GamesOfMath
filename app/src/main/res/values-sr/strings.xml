@@ -46,16 +46,11 @@
     <string name="hints">"Savet\n"</string>
     <string name="top_scores">"Globalni\ntop\nrezultati"</string>
     <string name="play">Igraj</string>
-    <string name="global_leaderboards">"Globalni\nrezultati"</string>
-    <string name="signin_other_error">Tabele sa rezultatima su nedostupne!</string>
-    <string name="lboard_connect">Povežite se sa Google Play Service</string>
     <string name="yes">Da</string>
     <string name="no">Ne</string>
     <string name="out_of_lives">Ostali ste bez života!</string>
     <string name="out_of_lives_msg_1">"Imate "</string>
     <string name="out_of_lives_msg_2">" dodatne živote. Da li želite da ih koristite sad da bi nastavili igru?"</string>
-
-
     <string name="reward_e_skips">"Laka računica\nPreskoči"</string>
     <string name="reward_e_xtra_time">"Laka računica\nDodatno vreme"</string>
     <string name="reward_e_resets">"Laka računica\nResetuj tajmer"</string>
@@ -63,25 +58,11 @@
     <string name="reward_h_hints">"Teška računica\nSavet"</string>
     <string name="reward_h_xtra_lives">"Teška računica\nDodatni životi"</string>
 
-
     <string-array name="easy_calc_levels_description">
         <item>max 2 broja</item>
         <item>max 3 broja</item>
         <item>max 4 broja</item>
     </string-array>
-
-    <!--<string-array name="easy_calc_levels_description">-->
-    <!--<item>max 2 broja\nX ? X</item>-->
-    <!--<item>max 3 broja\nX ? X ? X</item>-->
-    <!--<item>max 4 broja\nX ? X ? X ? X</item>-->
-    <!--</string-array>-->
-
-    <!--<string-array name="easy_calc_levels_description_short">-->
-    <!--<item>max 2 broja</item>-->
-    <!--<item>max 3 broja</item>-->
-    <!--<item>max 4 broja</item>-->
-    <!--</string-array>-->
-
 
     <string-array name="heavy_calc_levels_description">
         <item>max vrednost broja: 10</item>
@@ -128,19 +109,16 @@
         \"DODATNO VREME\" - imate dodatnih 30 sekundi za rešavanje trenutnog zadatka.\n
         \"DODATNI ŽIVOTI\" - možete iskoristiti kad izgubite sve života da bi nastavili igru.\n\n
         Uživajte!"</string>
+
     <string name="play_again">Igraj ponovo</string>
     <string name="go_hiscores">"Top\nliste"</string>
     <string name="ask_later">Pitaj kasnije</string>
-    <string name="join_leaderboards">Games Of Math koristi Google Play Games Services Leaderboards za čuvanje i prikazs najboljih rezultata igrača. Da li želite da se pridružite? Besplatno je i zabavno!</string>
     <string name="your_result">Tvoj rezultat</string>
     <string name="connect">Poveži</string>
-    <string name="connecting">Povezivanje...</string>
-    <string name="succes_conn_lb">Uspešno povezivanje sa globalnim tabelama</string>
     <string name="next">Dalje</string>
     <string name="sound_on">"Zvuk\nUKLJ"</string>
     <string name="sound_off">"Zvuk\nISK"</string>
     <string name="watch_ad">Želite li da pogledate oglas? Doneće vam jedan bonus kao nagradu!</string>
     <string name="dont_show_again">Ne prikazuj ovu poruku ponovo</string>
-
 
 </resources>

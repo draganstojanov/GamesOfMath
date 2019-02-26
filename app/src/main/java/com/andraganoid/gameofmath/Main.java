@@ -14,11 +14,7 @@ import com.andraganoid.gameofmath.DataBase.BonusRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Misc.Sounds;
 import com.google.android.gms.ads.MobileAds;
-import com.squareup.leakcanary.LeakCanary;
 
-
-// TODO
-//privacy policy
 
 public class Main extends AppCompatActivity {
     private ImageView logo_main;
@@ -31,14 +27,6 @@ public class Main extends AppCompatActivity {
         new addInit().execute();
         logo_main = findViewById(R.id.game_logo_main);
         startAnimator();
-
-        if (LeakCanary.isInAnalyzerProcess(this)) {
-            // This process is dedicated to LeakCanary for heap analysis.
-            // You should not init your app in this process.
-            return;
-        }
-        LeakCanary.install(getApplication());
-
 
     }
 

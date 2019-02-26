@@ -64,7 +64,7 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.leaderboards_groups, null);
+            convertView = infalInflater.inflate(R.layout.hiscore_groups, null);
         }
         ((TextView) convertView.findViewById(R.id.lb_exp_title)).setText(levels.get(groupPosition).getScreenGameName());
         return convertView;
@@ -74,7 +74,7 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.leaderboards_items, null);
+            convertView = infalInflater.inflate(R.layout.hiscore_items, null);
         }
 
         ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getScreenLevelNameItem(childPosition));

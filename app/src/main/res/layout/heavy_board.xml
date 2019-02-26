@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".Heavy.HeavyBoard">
 
-
     <LinearLayout
         android:id="@+id/heavy_board_lay"
         android:layout_width="match_parent"
@@ -15,16 +14,13 @@
         android:onClick="heavyOver"
         android:orientation="vertical">
 
-
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_weight="10">
 
             <LinearLayout
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginRight="4dp"
@@ -34,7 +30,6 @@
                 android:padding="2dp">
 
                 <TextView
-
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_margin="2dp"
@@ -56,9 +51,7 @@
                     app:autoSizeTextType="uniform" />
             </LinearLayout>
 
-
             <LinearLayout
-
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="4dp"
@@ -69,7 +62,6 @@
                 android:padding="2dp">
 
                 <TextView
-
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_margin="2dp"
@@ -79,7 +71,6 @@
                     android:text="@string/time"
                     android:textColor="@color/info"
                     app:autoSizeTextType="uniform" />
-
 
                 <TextView
                     android:id="@+id/heavy_timer"
@@ -109,9 +100,7 @@
 
         </LinearLayout>
 
-
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginBottom="16dp"
@@ -121,7 +110,6 @@
             android:padding="2dp">
 
             <TextView
-
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="2dp"
@@ -141,7 +129,6 @@
                 android:textColor="@color/info"
                 app:autoSizeTextType="uniform" />
         </LinearLayout>
-
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -173,7 +160,6 @@
                     android:text="+"
                     app:autoSizeTextType="uniform" />
 
-
                 <TextView
                     android:id="@+id/heavy_img_1"
                     style="@style/heavyOperators"
@@ -196,7 +182,6 @@
                     app:autoSizeTextType="uniform" />
 
             </LinearLayout>
-
 
             <LinearLayout
                 android:id="@+id/heavy_signs"
@@ -239,7 +224,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:id="@+id/heavy_operands"
                 android:layout_width="0dp"
@@ -271,7 +255,6 @@
                     android:id="@+id/heavy_op_3"
                     style="@style/heavyOperands"
                     app:autoSizeTextType="uniform" />
-
 
             </LinearLayout>
 
@@ -329,7 +312,6 @@
 
             </LinearLayout>
 
-
             <LinearLayout
                 android:id="@+id/result_lay"
                 android:layout_width="0dp"
@@ -371,7 +353,6 @@
             <TextView
                 android:id="@+id/heavy_hint"
                 style="@style/bonusButton"
-
                 android:onClick="hint"
                 app:autoSizeMaxTextSize="24sp"
                 app:autoSizeTextType="uniform" />
@@ -394,18 +375,16 @@
 
         </LinearLayout>
 
-
     </LinearLayout>
-
 
     <TextView
         android:id="@+id/heavy_start"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/checked"
+        android:clickable="true"
         android:gravity="center"
         android:text="3"
-        android:clickable="true"
         android:textColor="@color/info"
         android:textSize="300sp"
         android:visibility="gone">
@@ -415,13 +394,6 @@
     <include layout="@layout/pause_dialog" />
 
     <include layout="@layout/firework" />
-
-    <!--<include-->
-    <!--layout="@layout/again_or_leaderboard"-->
-    <!--tools:layout_editor_absoluteX="0dp"-->
-    <!--tools:layout_editor_absoluteY="0dp" />-->
-
-    <!--<include layout="@layout/again_or_leaderboard" />-->
 
     <include layout="@layout/highscore_table" />
 
@@ -434,7 +406,6 @@
         android:background="@android:color/transparent"
         android:clickable="true"
         android:visibility="gone">
-
 
     </android.support.constraint.ConstraintLayout>
 

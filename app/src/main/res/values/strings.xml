@@ -1,21 +1,18 @@
 <resources>
 
     <!--<string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-7832187166369477~6543894378</string>REAL-->
-
     <!--<string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-7832187166369477/4871720054</string>REAL-->
     <!--<string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-7832187166369477/9599510546</string>REAL-->
     <!--<string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-7832187166369477/6484184623</string>REAL-->
 
-
     <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
     TEST
-
     <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     TEST
     <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
     TEST
     <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
-
+    TEST
 
     <string name="app_name">Games Of Math</string>
     <string name="best_score_time">Best:</string>
@@ -88,33 +85,15 @@
     <string name="go_hiscores">"High\nscores"</string>
     <string name="sound_on">"Sound\nON"</string>
     <string name="sound_off">"Sound\nOFF"</string>
-
-    <string name="global_leaderboards">"Global\nleaderboards"</string>
-    <string name="lboard_connect">Connect to Google Play Service</string>
     <string name="connect">Connect</string>
-    <string name="signin_other_error">Leaderboards are unavailable!</string>
-
-    <string name="join_leaderboards">Games Of Math using Google Play Games Services Leaderboards to store and display the players hi-scores. Do you want to join? Its free and fun!</string>
     <string name="ask_later">Ask me later</string>
-    <string name="connecting">Connecting...</string> <string name="succes_conn_lb">Succesfully connected to global leaderboards</string>
-
     <string name="watch_ad">Do you want to watch the ad? It will bring you one bonus as a reward!</string>
     <string name="dont_show_again">"Don't show this message again"</string>
-
-
-
     <string name="title_activity_main" translatable="false">MainActivity</string>
     <string name="action_settings" translatable="false">Settings</string>
-
     <string name="interstitial_ad_sample" translatable="false">Interstitial Ad Sample</string>
     <string name="start_level" translatable="false">Level 1</string>
     <string name="next_level" translatable="false">Next Level</string>
-    <!-- -
-        This is an ad unit ID for an interstitial test ad. Replace with your own interstitial ad unit id.
-        For more information, see https://support.google.com/admob/answer/3052638
-    <!- -->
-    <string name="interstitial_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-
 
     <string name="help_practice">"Select the calculation operation you want to practice and the operands range.\n
              At the bottom of the screen, select \ "Multi-choice \" so that you can select one of the 4 offered options  or \ "Calculate \" to type the exact solution.\n
@@ -123,7 +102,6 @@
     <string name="help_fast_calc">"In this game, the goal is as fast as possible calculate 10 tasks.\n
          You should first select one of the 14 types of tasks. On the main game screen, you will see the task and your job is to type the correct solution and press the \"OK \" button.
          If you make a mistake, clicking the \"CE \" button will delete the last entered digit.\nEnjoy!"</string>
-
 
     <string name="help_easy_calc">"In this game you can choose a task with 2, 3 or 4 operands.
         Your goal is to calculate the \"TARGET\" by combining the numbers and calculation operations from the upper part of the screen.

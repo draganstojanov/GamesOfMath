@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="48dp"
     android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:paddingRight="16dp">
 
     <TextView
         android:id="@+id/hs_pos"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        app:layout_constraintHorizontal_weight="1"
         android:gravity="left|center"
         android:padding="8dp"
         android:textColor="@color/base"
         app:autoSizeTextType="uniform"
-        tools:text="23."
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/hs_result"/>
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/hs_result"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="23." />
 
     <TextView
         android:id="@+id/hs_result"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        app:layout_constraintHorizontal_weight="3"
         android:gravity="center"
         android:padding="2dp"
         android:textColor="@color/info"
         app:autoSizeTextType="uniform"
-        tools:text="123456"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_weight="3"
         app:layout_constraintLeft_toRightOf="@id/hs_pos"
-        app:layout_constraintRight_toLeftOf="@id/hs_date"/>
+        app:layout_constraintRight_toLeftOf="@id/hs_date"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="123456" />
 
     <TextView
         android:id="@+id/hs_date"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        app:layout_constraintHorizontal_weight="1"
         android:gravity="right|center"
+        android:minLines="2"
         android:padding="8dp"
         android:textColor="@color/base"
         app:autoSizeTextType="uniform"
-        tools:text="23.02\n1999."
-        android:minLines="2"
-        app:layout_constraintLeft_toRightOf="@id/hs_result"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@id/hs_result"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="23.02\n1999." />
 
 </android.support.constraint.ConstraintLayout>

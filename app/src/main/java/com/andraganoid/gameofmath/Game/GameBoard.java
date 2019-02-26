@@ -32,7 +32,6 @@ public abstract class GameBoard extends GamePlay {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_board);
-        Toast.makeText(this, "GAME BOARD CREATE", Toast.LENGTH_SHORT).show();
         formula = findViewById(R.id.game_board_formula);
         multic = findViewById(R.id.multi_choice);
         typed = findViewById(R.id.game_board_typed);

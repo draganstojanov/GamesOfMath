@@ -84,7 +84,6 @@ public class Sounds {
         try {
             soundPool.play(sounds.get(sound), 1, 1, priority, 0, 1f);
         } catch (NullPointerException e) {
-            Log.e("playSomeMusic: ", e.toString());
         }
     }
 }
