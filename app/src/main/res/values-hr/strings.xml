@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Games Of Math</string>
+    <string name="app_name">Igre Od Matematike</string>
     <string name="best_score_time">Rekord:</string>
     <string name="go">KRENI!</string>
     <string name="help">POMOĆ</string>
     <string name="pause">PAUZA</string>
-    <string name="end">Kraj</string>
     <string name="right">Tačno!</string>
     <string name="game_over">KRAJ IGRE</string>
     <string name="new_high">NOVI REKORD!</string>
     <string name="multi_choice">Izaberi od...</string>
-    <string name="settings">Postavke</string>
     <string name="calculate">Računaj</string>
-    <string name="main">Glavni izbornik</string>
     <string name="heavy_calc">Teški izračun</string>
     <string name="easy_calc">Jednostavan izračun</string>
     <string name="practice">Vježbanje</string>
@@ -43,9 +40,8 @@
     <string name="skips">"Preskoči\n"</string>
     <string name="xtra_time">"Dodatno\nvrijeme\n"</string>
     <string name="resets">"Resetuj\ntajmer\n"</string>
-    <string name="xtra_lives">"Dodatni\n>životi\n"</string>
-    <string name="hints">"Savjet\n>"</string>
-    <string name="top_scores">"Globalni\ntop\nrezultati"</string>
+    <string name="xtra_lives">"Dodatni\nživoti\n"</string>
+    <string name="hints">"Savjet\n"</string>
     <string name="play">Igraj</string>
     <string name="yes">Da</string>
     <string name="no">Ne</string>
@@ -71,12 +67,10 @@
     </string-array>
 
     <string name="reward_choose">Izaberi nagradu:</string>
-    <string name="off">ISK</string>
-    <string name="on">UK</string>
     <string name="sound">Zvuk</string>
 
     <string name="help_practice">"Odaberite računsku operaciju koju želite prakticirati i opseg brojeva koji sudjeluju u računu.\n
-        Na dnu ekrana izaberite \"Izaberi od\"  \#8230\ da bi mogli da birate jedno od ponuđenih 4 rješenja ili \"Računaj\" da utipkate ispravno rješenje zadatka.\n
+        Na dnu ekrana izaberite \"Izaberi od...\" da bi mogli da birate jedno od ponuđenih 4 rješenja ili \"Računaj\" da utipkate ispravno rješenje zadatka.\n
     Dobićete 10 zadataka za rješavanje bez ikakvih ograničenja.\n\n
         Uživajte!"</string>
 
@@ -86,7 +80,7 @@
         Uživajte!"</string>
 
     <string name="help_easy_calc">"U ovoj igri možete izabrati zadatak sa 2, 3 ili 4 broja.
-        Vaš je cilj izračunatie \"Traženi rezultat\" kombinirajući brojeve i izračunske operacije s gornjrg dijela zaslona.
+        Vaš je cilj izračunatie \"Traženi rezultat\" kombinirajući brojeve i izračunske operacije s gornjeg dijela zaslona.
         Možete upotrijebiti polje (broj ili postupak izračuna) koji ima okvir.
         Igra se brine da možete unositi naizmjenično brojeve i znakove i tako dobiti ispravan rezultat.
         Ako pogriješite, možete izbrisati posljednji unos klikom na \"CE\".
@@ -114,8 +108,6 @@
 
     <string name="play_again">Igraj ponovo</string>
     <string name="go_hiscores">"Top\nliste"</string>
-    <string name="ask_later">Pitaj kasnije</string>
-    <string name="connect">Poveži</string>
     <string name="next">Dalje</string>
     <string name="sound_on">"Zvuk\nUKLJ"</string>
     <string name="sound_off">"Zvuk\nISK"</string>

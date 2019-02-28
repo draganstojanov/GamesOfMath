@@ -120,13 +120,13 @@ public abstract class GameBoard extends GamePlay {
     public void right() {
         play(RIGHT_ANSWER);
         goodAnswers++;
-        setProgress("Right!", R.color.base, "\u2713");
+        setProgress(getString(R.string.right), R.color.base, "\u2713");
     }
 
     public void wrong() {
         play(WRONG_ANSWER);
         badAnswers++;
-        setProgress("Wrong!", R.color.checked, "\u2573");
+        setProgress(getString(R.string.wrong), R.color.checked, "\u2573");
     }
 
     public void setProgress(String p, int c, String s) {

@@ -1,27 +1,25 @@
 <resources>
 
-    <!--<string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-7832187166369477~6543894378</string>REAL-->
-    <!--<string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-7832187166369477/4871720054</string>REAL-->
-    <!--<string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-7832187166369477/9599510546</string>REAL-->
-    <!--<string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-7832187166369477/6484184623</string>REAL-->
+    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-7832187166369477~6543894378</string>
+    REAL
+    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-7832187166369477/4871720054</string>
+    REAL
+    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-7832187166369477/9599510546</string>
+    REAL
+    <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-7832187166369477/6484184623</string>
+    REAL
 
-    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
-    TEST
-    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
-    TEST
-    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>
-    TEST
-    <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>
-    TEST
+    <!--<string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>TEST-->
+    <!--<string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>TEST-->
+    <!--<string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>TEST-->
+    <!--<string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>TEST-->
 
     <string name="app_name">Games Of Math</string>
     <string name="best_score_time">Best:</string>
     <string name="multi_choice">Multi-choice</string>
     <string name="calculate">Calculate</string>
     <string name="go">GO!</string>
-    <string name="main">MAIN</string>
     <string name="help">HELP</string>
-    <string name="settings">SETTINGS</string>
     <string name="about">ABOUT</string>
     <string name="get_bonus">GET BONUS</string>
     <string name="time">Time</string>
@@ -34,7 +32,6 @@
     <string name="lives">Lives</string>
     <string name="clear">Clear</string>
     <string name="submit">Submit</string>
-    <string name="end">End</string>
     <string name="cancel">CANCEL</string>
     <string name="right">Right!</string>
     <string name="wrong">Wrong!</string>
@@ -46,8 +43,6 @@
     <string name="go_back">Back to meny</string>
     <string name="go_home">MAIN MENU</string>
     <string name="sound">Sound</string>
-    <string name="on">ON</string>
-    <string name="off">OFF</string>
     <string name="skips">"Skips\n"</string>
     <string name="xtra_time">"Extra\ntimes\n"<br /></string>
     <string name="resets">"Timer\nresets\n"<br /></string>
@@ -74,7 +69,6 @@
     <string name="policy" translatable="false">Privacy policy</string>
     <string name="mail_feedback" translatable="false">Games Of Math feedback</string>
     <string name="mail_chooser">Choose\#8230\</string>
-    <string name="top_scores">"Global\ntop\nscores"</string>
     <string name="play">Play</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -85,15 +79,8 @@
     <string name="go_hiscores">"High\nscores"</string>
     <string name="sound_on">"Sound\nON"</string>
     <string name="sound_off">"Sound\nOFF"</string>
-    <string name="connect">Connect</string>
-    <string name="ask_later">Ask me later</string>
     <string name="watch_ad">Do you want to watch the ad? It will bring you one bonus as a reward!</string>
     <string name="dont_show_again">"Don't show this message again"</string>
-    <string name="title_activity_main" translatable="false">MainActivity</string>
-    <string name="action_settings" translatable="false">Settings</string>
-    <string name="interstitial_ad_sample" translatable="false">Interstitial Ad Sample</string>
-    <string name="start_level" translatable="false">Level 1</string>
-    <string name="next_level" translatable="false">Next Level</string>
 
     <string name="help_practice">"Select the calculation operation you want to practice and the operands range.\n
              At the bottom of the screen, select \ "Multi-choice \" so that you can select one of the 4 offered options  or \ "Calculate \" to type the exact solution.\n

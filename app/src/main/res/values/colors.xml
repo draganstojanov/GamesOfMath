@@ -2,7 +2,6 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
 
     <color name="base">#217b63</color>
     <color name="checked">#9C1A47</color>
@@ -10,5 +9,4 @@
     <color name="text1">#f0f0f0</color>
     <color name="bckgrnd">#1a1a1a</color>
 
-    <color name="black_overlay">#66000000</color>
 </resources>

@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Games Of Math</string>
+    <string name="app_name">Igre Od Matematike</string>
     <string name="best_score_time">Rekord:</string>
     <string name="go">KRENI!</string>
     <string name="help">POMOĆ</string>
     <string name="pause">PAUZA</string>
-    <string name="end">Kraj</string>
     <string name="right">Tačno!</string>
     <string name="game_over">KRAJ IGRE</string>
     <string name="new_high">NOVI REKORD!</string>
     <string name="multi_choice">Izaberi od...</string>
-    <string name="settings">Podešavanja</string>
     <string name="calculate">Računaj</string>
-    <string name="main">Glavni meni</string>
     <string name="heavy_calc">Teška računica</string>
     <string name="easy_calc">Laka računica</string>
     <string name="practice">Vježbanje</string>
@@ -45,7 +42,6 @@
     <string name="resets">"Resetuj\ntajmer\n"</string>
     <string name="xtra_lives">"Dodatni\nživoti\n"</string>
     <string name="hints">"Savjet\n"</string>
-    <string name="top_scores">"Globalni\ntop\nrezultati"</string>
     <string name="play">Igraj</string>
     <string name="reward_e_skips">"Laka računica\nPreskoči"</string>
     <string name="reward_e_xtra_time">"Laka računica\nDodatno vrijeme"</string>
@@ -66,12 +62,10 @@
     </string-array>
 
     <string name="reward_choose">Izaberi nagradu:</string>
-    <string name="off">ISK</string>
-    <string name="on">UK</string>
     <string name="sound">Zvuk</string>
 
     <string name="help_practice">"Izaberite računsku operaciju koju želite da vježbate i opseg brojeva koji učestvuju u računu.\n
-        Pri dnu ekrana izaberite \"Izaberi od\"  \#8230\ da bi mogli da birate jedno od 4 ponuđena rješenja ili \"Računaj\" da ukucate tačno rješenje zadatka.\n
+        Pri dnu ekrana izaberite \"Izaberi od...\" da bi mogli da birate jedno od 4 ponuđena rješenja ili \"Računaj\" da ukucate tačno rješenje zadatka.\n
         Dobićete 10 zadataka za rješavanje bez ikakvih ograničenja.\n\n
         Uživajte!"</string>
 
@@ -114,8 +108,6 @@
     <string name="out_of_lives_msg_2">" dodatne živote. Da li želite da ih koristite sad da bi nastavili igru?"</string>
     <string name="play_again">Igraj ponovo</string>
     <string name="go_hiscores">"Top\nliste"</string>
-    <string name="ask_later">Pitaj kasnije</string>
-    <string name="connect">Poveži</string>
     <string name="next">Dalje</string>
     <string name="sound_on">"Zvuk\nUKLJ"</string>
     <string name="sound_off">"Zvuk\nISK"</string>

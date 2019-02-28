@@ -157,6 +157,7 @@
             android:layout_centerInParent="true"
             android:background="@drawable/bar_stroke"
             android:gravity="center"
+            android:maxLines="2"
             android:onClick="goSound"
             android:padding="6dp"
             android:textColor="@color/base"
