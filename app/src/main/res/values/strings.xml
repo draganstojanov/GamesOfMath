@@ -1,18 +1,18 @@
 <resources>
 
-    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-7832187166369477~6543894378</string>
-    REAL
-    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-7832187166369477/4871720054</string>
-    REAL
-    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-7832187166369477/9599510546</string>
-    REAL
-    <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-7832187166369477/6484184623</string>
-    REAL
+<!--    <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-7832187166369477~6543894378</string>-->
+<!--    REAL-->
+<!--    <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-7832187166369477/4871720054</string>-->
+<!--    REAL-->
+<!--    <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-7832187166369477/9599510546</string>-->
+<!--    REAL-->
+<!--    <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-7832187166369477/6484184623</string>-->
+<!--    REAL-->
 
-    <!--<string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>TEST-->
-    <!--<string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>TEST-->
-    <!--<string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>TEST-->
-    <!--<string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>TEST-->
+        <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>TEST
+        <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>TEST
+        <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>TEST
+        <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>TEST
 
     <string name="app_name">Games Of Math</string>
     <string name="best_score_time">Best:</string>

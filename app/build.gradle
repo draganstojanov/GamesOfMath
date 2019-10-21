@@ -4,13 +4,13 @@ apply plugin: 'io.fabric'
 
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
     defaultConfig {
         applicationId "com.andraganoid.gameofmath"
         minSdkVersion 16
-        targetSdkVersion 28
-        versionCode 7
-        versionName "1"
+        targetSdkVersion 29
+        versionCode 8
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -26,7 +26,7 @@ android {
 }
 
 dependencies {
-    implementation 'com.android.support:design:28.0.0'
+   // implementation 'com.android.support:design:28.0.0'
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
