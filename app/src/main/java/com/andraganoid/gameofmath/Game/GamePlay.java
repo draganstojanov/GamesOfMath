@@ -9,11 +9,11 @@ import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.os.Bundle;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.content.res.ResourcesCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.WindowManager;
@@ -22,7 +22,6 @@ import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
@@ -35,6 +34,7 @@ import com.andraganoid.gameofmath.Misc.Sounds;
 import com.andraganoid.gameofmath.Operation.Calc;
 import com.andraganoid.gameofmath.Operation.Task;
 import com.andraganoid.gameofmath.R;
+
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.InterstitialAd;
@@ -68,7 +68,7 @@ public class GamePlay extends AppCompatActivity {
     public Sounds mathSounds;
     public int aCount;
 
-    int fireDots[] = new int[]{
+    int[] fireDots = new int[]{
             R.drawable.fw_01,
             R.drawable.fw_02,
             R.drawable.fw_03,

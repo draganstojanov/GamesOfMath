@@ -13,7 +13,7 @@
     android:visibility="gone"
     tools:visibility="visible">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/about_app"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -68,9 +68,9 @@
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/about_author"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -124,9 +124,9 @@
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/about_designer"
         android:layout_width="match_parent"
         android:layout_height="100dp"
@@ -180,7 +180,7 @@
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/ap"
