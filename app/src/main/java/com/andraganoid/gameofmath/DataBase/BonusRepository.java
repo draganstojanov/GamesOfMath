@@ -8,7 +8,7 @@ import com.andraganoid.gameofmath.HighScores.Level;
 import java.util.List;
 
 public class BonusRepository {
-    private BonusDao bonusDao;
+    private final BonusDao bonusDao;
 
     public BonusRepository(Context context) {
         RoomBase db = RoomBase.getDatabase(context);
