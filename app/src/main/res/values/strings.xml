@@ -9,10 +9,10 @@
 <!--    <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-7832187166369477/6484184623</string>-->
 <!--    REAL-->
 
-        <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>TEST
-        <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>TEST
-        <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>TEST
-        <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>TEST
+<!--        <string name="AD_MOB_APP_ID" translatable="false">ca-app-pub-3940256099942544~3347511713</string>TEST-->
+<!--        <string name="AD_MOB_MATH_BOTTOM" translatable="false">ca-app-pub-3940256099942544/6300978111</string>TEST-->
+<!--        <string name="AD_MOB_MATH_FULLSCREEN" translatable="false">ca-app-pub-3940256099942544/1033173712</string>TEST-->
+<!--        <string name="AD_MOB_MATH_REWARD" translatable="false">ca-app-pub-3940256099942544/5224354917</string>TEST-->
 
     <string name="app_name">Games Of Math</string>
     <string name="best_score_time">Best:</string>
@@ -81,6 +81,8 @@
     <string name="sound_off">"Sound\nOFF"</string>
     <string name="watch_ad">Do you want to watch the ad? It will bring you one bonus as a reward!</string>
     <string name="dont_show_again">"Don't show this message again"</string>
+    <string name="next_reward_in">Next reward in</string>
+    <string name="seconds_short">s</string>
 
     <string name="help_practice">"Select the calculation operation you want to practice and the operands range.\n
              At the bottom of the screen, select \ "Multi-choice \" so that you can select one of the 4 offered options  or \ "Calculate \" to type the exact solution.\n
@@ -116,6 +118,8 @@
         \ "EXTRA LIVES\" - you can use it when you lose all your life to continue playing.\n\n
         Enjoy!"</string>
     <string name="next">Next</string>
+    <string name="ad_not_ready">Ad is not ready. Try later.</string>
+
 
 </resources>
 

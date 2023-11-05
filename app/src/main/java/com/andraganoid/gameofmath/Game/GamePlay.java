@@ -1,20 +1,19 @@
 package com.andraganoid.gameofmath.Game;
 
+import static com.andraganoid.gameofmath.Misc.Sounds.BEST_RESULT;
+import static com.andraganoid.gameofmath.Misc.Sounds.FIREWORK;
+
 import android.animation.Keyframe;
 import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
-import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.core.content.res.ResourcesCompat;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.DecelerateInterpolator;
@@ -23,30 +22,36 @@ import android.widget.ExpandableListView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.HighScores.Score;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.content.res.ResourcesCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.HighScores.HighScoresAdapter;
 import com.andraganoid.gameofmath.HighScores.HighScoresTableAdapter;
 import com.andraganoid.gameofmath.HighScores.Level;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.Misc.FullscreenCallback;
 import com.andraganoid.gameofmath.Misc.Sounds;
 import com.andraganoid.gameofmath.Operation.Calc;
 import com.andraganoid.gameofmath.Operation.Task;
 import com.andraganoid.gameofmath.R;
-
-import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.FullScreenContentCallback;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
 import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-
-import static com.andraganoid.gameofmath.Misc.Sounds.BEST_RESULT;
-import static com.andraganoid.gameofmath.Misc.Sounds.FIREWORK;
 
 public class GamePlay extends AppCompatActivity {
 
@@ -90,7 +95,6 @@ public class GamePlay extends AppCompatActivity {
         super.onResume();
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         adIsShowing = false;
-        loadFullscreenAd();
     }
 
     @Override
@@ -102,10 +106,20 @@ public class GamePlay extends AppCompatActivity {
         mathSounds = Sounds.getInstance(getApplicationContext());
         rand = new Random();
         fullscreenIsShowed = false;
-        if (fullscreenAd == null) {
-            fullscreenAd = new InterstitialAd(this);
-        }
-        fullscreenAd.setAdUnitId(getString(R.string.AD_MOB_MATH_FULLSCREEN));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        InterstitialAd.load(this, getString(R.string.ad_mob_math_fullscreen), adRequest,
+                new InterstitialAdLoadCallback() {
+                    @Override
+                    public void onAdLoaded(@NonNull InterstitialAd interstitialAd) {
+                        fullscreenAd = interstitialAd;
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+                        Log.d("InterstitialAdError", loadAdError.toString());
+                        fullscreenAd = null;
+                    }
+                });
     }
 
     public void goFire() {
@@ -289,45 +303,46 @@ public class GamePlay extends AppCompatActivity {
         }
     }
 
-    public void loadFullscreenAd() {
-        if (!fullscreenAd.isLoaded()) {
-            fullscreenAd.loadAd(new AdRequest.Builder().build());
-        }
-    }
-
     public void showFullscreenAd(final FullscreenCallback fullscreenCallback) {
-        if (fullscreenAd != null && fullscreenAd.isLoaded()) {
+        if (fullscreenAd != null) {
             if (fireTimer != null) {
                 fireTimer.cancel();
             }
 
-            fullscreenAd.setAdListener(new AdListener() {
-                @Override
-                public void onAdFailedToLoad(int i) {
-                    super.onAdFailedToLoad(i);
-                    fullscreenCallback.afterFullscreenAd();
-                }
-
-                @Override
-                public void onAdOpened() {
-                    super.onAdOpened();
-                }
-
+            fullscreenAd.setFullScreenContentCallback(new FullScreenContentCallback() {
                 @Override
                 public void onAdClicked() {
-                    super.onAdClicked();
                 }
 
                 @Override
-                public void onAdClosed() {
-                    super.onAdClosed();
-                    adIsShowing = false;
-                    goMain = false;
-                    loadFullscreenAd();
+                public void onAdDismissedFullScreenContent() {
+                    Log.d("InterstitialAdError", "Ad dismissed fullscreen content.");
+                    fullscreenAd = null;
                     fullscreenCallback.afterFullscreenAd();
                 }
+
+                @Override
+                public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    Log.e("InterstitialAdError", "Ad failed to show fullscreen content.");
+                    fullscreenAd = null;
+                    fullscreenCallback.afterFullscreenAd();
+                }
+
+                @Override
+                public void onAdImpression() {
+                    adIsShowing = false;
+                    goMain = false;
+                    fullscreenCallback.afterFullscreenAd();
+                }
+
+                @Override
+                public void onAdShowedFullScreenContent() {
+                    Log.d("InterstitialAdError", "Ad showed fullscreen content.");
+                }
             });
-            fullscreenAd.show();
+
+            fullscreenAd.show(this);
+
             fullscreenIsShowed = true;
             adIsShowing = true;
         } else {
@@ -341,7 +356,7 @@ public class GamePlay extends AppCompatActivity {
 
     public void highScoresList() {
         final ConstraintLayout exp = findViewById(R.id.lboards_exp_list_wrapper);
-        final ArrayList <Level> levelList = new ArrayList <>();
+        final ArrayList<Level> levelList = new ArrayList<>();
         levelList.add(new Level(Level.FAST_CALC,
                 getString(R.string.fast_calc),
                 Arrays.asList(getResources().getStringArray(R.array.fast_calc_levels_description))));
@@ -395,11 +410,11 @@ public class GamePlay extends AppCompatActivity {
 
     ScoreListCallback scoreCallback = new ScoreListCallback() {
         @Override
-        public void scoreSaved(List <Score> scoreList, String levelName, long lastScoreId) {
+        public void scoreSaved(List<Score> scoreList, String levelName, long lastScoreId) {
         }
 
         @Override
-        public void scoreList(final List <Score> scoreList) {
+        public void scoreList(final List<Score> scoreList) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -409,7 +424,7 @@ public class GamePlay extends AppCompatActivity {
         }
     };
 
-    public void setHighScoreTableAdapter(List <Score> scoreList, long lastScoreId) {
+    public void setHighScoreTableAdapter(List<Score> scoreList, long lastScoreId) {
         goHiScore = true;
         RecyclerView hsrv = findViewById(R.id.hs_rec_view);
         HighScoresTableAdapter hstAdapter = new HighScoresTableAdapter(scoreList, lastScoreId);
