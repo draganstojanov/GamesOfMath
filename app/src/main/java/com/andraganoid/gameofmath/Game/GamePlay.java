@@ -316,6 +316,7 @@ public class GamePlay extends AppCompatActivity {
 
                 @Override
                 public void onAdDismissedFullScreenContent() {
+                    Log.d("ADDMM-901", "Ad dismissed fullscreen content.");
                     Log.d("InterstitialAdError", "Ad dismissed fullscreen content.");
                     fullscreenAd = null;
                     fullscreenCallback.afterFullscreenAd();
@@ -323,6 +324,7 @@ public class GamePlay extends AppCompatActivity {
 
                 @Override
                 public void onAdFailedToShowFullScreenContent(AdError adError) {
+                    Log.d("ADDMM-901", "Ad failed to show fullscreen content.");
                     Log.e("InterstitialAdError", "Ad failed to show fullscreen content.");
                     fullscreenAd = null;
                     fullscreenCallback.afterFullscreenAd();
@@ -332,11 +334,13 @@ public class GamePlay extends AppCompatActivity {
                 public void onAdImpression() {
                     adIsShowing = false;
                     goMain = false;
-                    fullscreenCallback.afterFullscreenAd();
+                    Log.d("ADDMM-901", "onAdImpression()");
+                  //  fullscreenCallback.afterFullscreenAd();
                 }
 
                 @Override
                 public void onAdShowedFullScreenContent() {
+                    Log.d("ADDMM-901", "Ad showed fullscreen content.");
                     Log.d("InterstitialAdError", "Ad showed fullscreen content.");
                 }
             });
@@ -346,6 +350,7 @@ public class GamePlay extends AppCompatActivity {
             fullscreenIsShowed = true;
             adIsShowing = true;
         } else {
+            Log.d("ADDMM-901", "ELSE");
             fullscreenCallback.afterFullscreenAd();
         }
     }

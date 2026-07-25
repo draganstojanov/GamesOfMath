@@ -2,6 +2,7 @@ package com.andraganoid.gameofmath.DataBase;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.util.Log;
 
 
 import com.andraganoid.gameofmath.HighScores.Score;
@@ -17,7 +18,7 @@ public class ScoreRepository {
     private static final int BEST_TIME = 3;
     private static final int BEST_TIMES_LIST = 4;
 
-    private ScoreDao scoreDao;
+    private final ScoreDao scoreDao;
 
     public ScoreRepository(Context context) {
         RoomBase db = RoomBase.getDatabase(context);
@@ -25,6 +26,11 @@ public class ScoreRepository {
     }
 
     public void saveScore(Score score, ScoreListCallback scoreCallback) {
+
+        Log.d("ADDMM-911", "saveScore");
+        Log.d("ADDMM-912", score.toString());
+
+
         new SaveScore(scoreDao, scoreCallback).execute(score);
     }
 
@@ -46,8 +52,8 @@ public class ScoreRepository {
 
     private static class SaveScore extends AsyncTask <Score, Void, Void> {
 
-        private ScoreDao dao;
-        private ScoreListCallback scoreCallback;
+        private final ScoreDao dao;
+        private final ScoreListCallback scoreCallback;
 
         SaveScore(ScoreDao dao, ScoreListCallback scoreCallback) {
             this.dao = dao;
@@ -78,7 +84,6 @@ public class ScoreRepository {
                     }
                     break;
             }
-
             scoreCallback.scoreSaved(scoreList, scr.getLevelName(), lastScoreId);
             return null;
         }

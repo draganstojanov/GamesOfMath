@@ -1,6 +1,7 @@
 package com.andraganoid.gameofmath.Game;
 
 import static com.andraganoid.gameofmath.Misc.Sounds.REWARD;
+import static com.andraganoid.gameofmath.R.*;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -28,8 +29,6 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.RequestConfiguration;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.ads.rewarded.RewardedAd;
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback;
 
@@ -50,26 +49,8 @@ public class Game extends GamePlay {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
         getBonusClick = findViewById(R.id.get_bonus_btn);
-//        bottomAd = findViewById(R.id.add_view_bottom_game);
-//        bottomAd.loadAd(new AdRequest.Builder().build());
         rl = findViewById(R.id.reward_dialog);
-     adsInit();
-
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        RewardedAd.load(this, getString(R.string.ad_mob_math_reward), adRequest, new RewardedAdLoadCallback() {
-//            @Override
-//            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-//                super.onAdFailedToLoad(loadAdError);
-//                Log.d("RewardedAdError", loadAdError.toString());
-//                rewardedAd = null;
-//            }
-//
-//            @Override
-//            public void onAdLoaded(@NonNull RewardedAd ad) {
-//                super.onAdLoaded(rewardedAd);
-//                rewardedAd = ad;
-//            }
-//        });
+        adsInit();
 
     }
 
@@ -79,25 +60,6 @@ public class Game extends GamePlay {
         turnTheScreenOff();
         soundState();
         getBonusClick.setVisibility(View.VISIBLE);
-
-//        adsInit();
-
-//      bottomAd.loadAd(new AdRequest.Builder().build());
-//        AdRequest adRequest = new AdRequest.Builder().build();
-//        RewardedAd.load(this, getString(R.string.ad_mob_math_reward), adRequest, new RewardedAdLoadCallback() {
-//            @Override
-//            public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-//                super.onAdFailedToLoad(loadAdError);
-//                Log.d("RewardedAdError", loadAdError.toString());
-//                rewardedAd = null;
-//            }
-//
-//            @Override
-//            public void onAdLoaded(@NonNull RewardedAd ad) {
-//                super.onAdLoaded(rewardedAd);
-//                rewardedAd = ad;
-//            }
-//        });
     }
 
 
@@ -113,9 +75,6 @@ public class Game extends GamePlay {
     }
 
     private void adsInit() {
-//        new Thread(() -> {    }).start();
-
-
 
         var testDevices = new ArrayList<String>();
         testDevices.add(AdRequest.DEVICE_ID_EMULATOR);
@@ -125,18 +84,7 @@ public class Game extends GamePlay {
                 .build();
 
         MobileAds.setRequestConfiguration(requestConfiguration);
-        MobileAds.initialize(getApplicationContext(), initializationStatus -> {
-
-            for (var entry : initializationStatus.getAdapterStatusMap().entrySet()) {
-                System.out.println(entry.getKey() + "/" + entry.getValue());
-                Log.d("ADDMM-1",entry.getKey() + "/" + entry.getValue());
-                Log.d("ADDMM-2", entry.getValue().getDescription());
-                Log.d("ADDMM-3",entry.getValue().getInitializationState().name());
-                Log.d("ADDMM-4", String.valueOf(entry.getValue().getLatency()));
-            }
-
-
-        });
+        MobileAds.initialize(getApplicationContext());
 
         bottomAd = findViewById(R.id.add_view_bottom_game);
         bottomAd.loadAd(new AdRequest.Builder().build());

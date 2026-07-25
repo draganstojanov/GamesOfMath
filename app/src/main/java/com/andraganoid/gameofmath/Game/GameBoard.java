@@ -87,7 +87,7 @@ public abstract class GameBoard extends GamePlay {
 
     public void keyboardEnter(View v) {
         if (!isEnd) {
-            if (typedResult.length() > 0) {
+            if (!typedResult.isEmpty()) {
                 if (GamePlay.calc.gameMode == "Practice") {
                     keyboard.setVisibility(View.INVISIBLE);
                 }

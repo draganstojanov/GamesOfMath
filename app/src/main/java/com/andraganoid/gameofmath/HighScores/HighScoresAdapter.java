@@ -13,8 +13,8 @@ import java.util.ArrayList;
 
 public class HighScoresAdapter extends BaseExpandableListAdapter {
 
-    private Context context;
-    private ArrayList <Level> levels;
+    private final Context context;
+    private final ArrayList <Level> levels;
 
     public HighScoresAdapter(Context context, ArrayList <Level> levels) {
         this.context = context;
@@ -63,8 +63,8 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.hiscore_groups, null);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.hiscore_groups, null);
         }
         ((TextView) convertView.findViewById(R.id.lb_exp_title)).setText(levels.get(groupPosition).getScreenGameName());
         return convertView;
@@ -73,8 +73,8 @@ public class HighScoresAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            LayoutInflater infalInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = infalInflater.inflate(R.layout.hiscore_items, null);
+            LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.hiscore_items, null);
         }
 
         ((TextView) convertView.findViewById(R.id.lb_exp_name)).setText(levels.get(groupPosition).getScreenLevelNameItem(childPosition));
