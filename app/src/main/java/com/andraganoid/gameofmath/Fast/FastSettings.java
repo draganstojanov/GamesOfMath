@@ -1,18 +1,23 @@
 package com.andraganoid.gameofmath.Fast;
 
+import static com.andraganoid.gameofmath.Game.Game.calc;
+import static com.andraganoid.gameofmath.Operation.Calc.opSign;
+
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.HighScores.Score;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.HighScores.Level;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.R;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -20,12 +25,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.andraganoid.gameofmath.Operation.Calc.opSign;
-import static com.andraganoid.gameofmath.Game.Game.calc;
-
 
 public class FastSettings extends AppCompatActivity {
-    private List <FastData> adFast = new ArrayList <>();
+    private List<FastData> adFast = new ArrayList<>();
     FastAdapter fAdapter;
     private AdView adViewBottomFast;
 
@@ -45,6 +47,9 @@ public class FastSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fast_settings);
+
+        EdgeToEdgeUtils.apply(this, findViewById(R.id.fast_set_lay));
+
         adViewBottomFast = findViewById(R.id.add_view_bottom_fast);
         adViewBottomFast.loadAd(new AdRequest.Builder().build());
     }
@@ -110,7 +115,7 @@ public class FastSettings extends AppCompatActivity {
     public void goPlayGameFast(View v) {
         calc.gameKind = (int) v.getTag();
         String[] s = Arrays.asList(getResources()
-                .getStringArray(R.array.fast_calc_levels_description))
+                        .getStringArray(R.array.fast_calc_levels_description))
                 .get(calc.gameKind).split(" ");
         calc.setOperationTypeByIndex(0, Arrays.asList(opSign).indexOf(s[1]));
         if (s.length == 3) {

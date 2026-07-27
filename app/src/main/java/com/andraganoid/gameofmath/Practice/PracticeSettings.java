@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.R;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
@@ -41,6 +42,9 @@ public class PracticeSettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.practice_settings);
+
+        EdgeToEdgeUtils.apply(this, findViewById(R.id.practice_set_lay));
+
         adViewBottomPractice = findViewById(R.id.add_view_bottom_practice);
         adViewBottomPractice.loadAd(new AdRequest.Builder().build());
         calc = new Practice();

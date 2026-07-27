@@ -1,7 +1,7 @@
 package com.andraganoid.gameofmath.Game;
 
 import static com.andraganoid.gameofmath.Misc.Sounds.REWARD;
-import static com.andraganoid.gameofmath.R.*;
+import static com.andraganoid.gameofmath.R.id;
 
 import android.app.AlertDialog;
 import android.content.Intent;
@@ -24,6 +24,7 @@ import com.andraganoid.gameofmath.Heavy.HeavySettings;
 import com.andraganoid.gameofmath.Misc.About;
 import com.andraganoid.gameofmath.Practice.PracticeSettings;
 import com.andraganoid.gameofmath.R;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
@@ -48,6 +49,9 @@ public class Game extends GamePlay {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
+        EdgeToEdgeUtils.apply(this, findViewById(id.game_lay));
+
         getBonusClick = findViewById(R.id.get_bonus_btn);
         rl = findViewById(R.id.reward_dialog);
         adsInit();

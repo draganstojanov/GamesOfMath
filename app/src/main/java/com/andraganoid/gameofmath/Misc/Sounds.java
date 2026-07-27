@@ -52,18 +52,14 @@ public class Sounds {
 
     private void initSoundPool() {
         sounds = new HashMap <>();
-        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-            soundPool = new SoundPool(13, AudioManager.STREAM_MUSIC, 0);
-        } else {
-            AudioAttributes attrs = new AudioAttributes.Builder()
-                    .setUsage(AudioAttributes.USAGE_GAME)
-                    .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
-                    .build();
-            soundPool = new SoundPool.Builder()
-                    .setMaxStreams(15)
-                    .setAudioAttributes(attrs)
-                    .build();
-        }
+        AudioAttributes attrs = new AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_GAME)
+                .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+                .build();
+        soundPool = new SoundPool.Builder()
+                .setMaxStreams(15)
+                .setAudioAttributes(attrs)
+                .build();
 
         sounds.put(FIREWORK, soundPool.load(mContext, R.raw.firework1, 1));
         sounds.put(1, soundPool.load(mContext, R.raw.firework2, 1));
@@ -83,7 +79,7 @@ public class Sounds {
     public void playSomeMusic(int sound, int priority) {
         try {
             soundPool.play(sounds.get(sound), 1, 1, priority, 0, 1f);
-        } catch (NullPointerException e) {
+        } catch (NullPointerException ignored) {
         }
     }
 }

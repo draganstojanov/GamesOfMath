@@ -1,21 +1,23 @@
 package com.andraganoid.gameofmath.Game;
 
 
+import static com.andraganoid.gameofmath.Misc.Sounds.RIGHT_ANSWER;
+import static com.andraganoid.gameofmath.Misc.Sounds.WRONG_ANSWER;
+
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.andraganoid.gameofmath.R;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 
 import java.util.ArrayList;
-
-import static com.andraganoid.gameofmath.Misc.Sounds.RIGHT_ANSWER;
-import static com.andraganoid.gameofmath.Misc.Sounds.WRONG_ANSWER;
 
 public abstract class GameBoard extends GamePlay {
 
@@ -24,13 +26,16 @@ public abstract class GameBoard extends GamePlay {
     protected LinearLayout keyboard;
     protected int goodAnswers, badAnswers;
     public SpannableString progress;
-    public ArrayList <Integer> prog = new ArrayList <>();
+    public ArrayList<Integer> prog = new ArrayList<>();
     protected String typedResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_board);
+
+        EdgeToEdgeUtils.apply(this, findViewById(R.id.game_board_lay));
+
         formula = findViewById(R.id.game_board_formula);
         multic = findViewById(R.id.multi_choice);
         typed = findViewById(R.id.game_board_typed);

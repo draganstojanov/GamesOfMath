@@ -12,10 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
 import com.andraganoid.gameofmath.Game.Game;
-import com.andraganoid.gameofmath.Misc.Sounds;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.initialization.InitializationStatus;
-import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 
 
 public class Main extends AppCompatActivity {
@@ -24,13 +21,12 @@ public class Main extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        EdgeToEdgeUtils.apply(this, findViewById(R.id.main_layout));
+
         startAnimator();
 
-        new Thread(() -> {
-            new BonusRepository(getApplicationContext()).initBonuses();
-         //   MobileAds.initialize(getApplicationContext(), initializationStatus -> {});
-          //  Sounds ms = Sounds.getInstance(getApplicationContext());
-        }).start();
+        new Thread(() -> new BonusRepository(getApplicationContext()).initBonuses()).start();
     }
 
     private void goGame() {

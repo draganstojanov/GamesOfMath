@@ -5,12 +5,14 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.R;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 
 public class About extends AppCompatActivity {
 
@@ -21,6 +23,9 @@ public class About extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game);
+
+        EdgeToEdgeUtils.apply(this, findViewById(R.id.game_lay));
+
         findViewById(R.id.about_lay).setVisibility(View.VISIBLE);
         ((TextView) findViewById(R.id.about_version)).setText(" v " + appVersionName());
     }

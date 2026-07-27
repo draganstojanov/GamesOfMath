@@ -1,25 +1,25 @@
 package com.andraganoid.gameofmath.Easy;
 
+import static com.andraganoid.gameofmath.Game.Game.calc;
+
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.view.View;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.HighScores.Score;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.HighScores.Level;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.R;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.Arrays;
-
-import static com.andraganoid.gameofmath.Game.Game.calc;
 
 
 public class EasySettings extends AppCompatActivity {
@@ -45,6 +45,9 @@ public class EasySettings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_settings);
+
+        EdgeToEdgeUtils.apply(this, findViewById(R.id.easy_set_lay));
+
         adViewBottomEasy = findViewById(R.id.add_view_bottom_easy);
         adViewBottomEasy.loadAd(new AdRequest.Builder().build());
     }

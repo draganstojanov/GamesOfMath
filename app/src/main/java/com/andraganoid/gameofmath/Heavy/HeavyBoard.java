@@ -1,5 +1,14 @@
 package com.andraganoid.gameofmath.Heavy;
 
+import static com.andraganoid.gameofmath.Misc.Sounds.GET_BONUS;
+import static com.andraganoid.gameofmath.Misc.Sounds.LOST_LIFE;
+import static com.andraganoid.gameofmath.Misc.Sounds.NO_BONUS;
+import static com.andraganoid.gameofmath.Misc.Sounds.RIGHT_ANSWER;
+import static com.andraganoid.gameofmath.Misc.Sounds.START;
+import static com.andraganoid.gameofmath.Misc.Sounds.TIME_IS_OUT;
+import static com.andraganoid.gameofmath.Misc.Sounds.USE_BONUS;
+import static com.andraganoid.gameofmath.Operation.Task.eval;
+
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -15,27 +24,19 @@ import android.widget.TextView;
 import com.andraganoid.gameofmath.DataBase.Bonus;
 import com.andraganoid.gameofmath.DataBase.BonusCallback;
 import com.andraganoid.gameofmath.DataBase.BonusRepository;
-import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreListCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.Game.GamePlay;
 import com.andraganoid.gameofmath.HighScores.Level;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.Misc.FullscreenCallback;
 import com.andraganoid.gameofmath.Operation.Hev;
 import com.andraganoid.gameofmath.R;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 
 import java.util.List;
-
-import static com.andraganoid.gameofmath.Misc.Sounds.GET_BONUS;
-import static com.andraganoid.gameofmath.Misc.Sounds.LOST_LIFE;
-import static com.andraganoid.gameofmath.Misc.Sounds.NO_BONUS;
-import static com.andraganoid.gameofmath.Misc.Sounds.RIGHT_ANSWER;
-import static com.andraganoid.gameofmath.Misc.Sounds.START;
-import static com.andraganoid.gameofmath.Misc.Sounds.TIME_IS_OUT;
-import static com.andraganoid.gameofmath.Misc.Sounds.USE_BONUS;
-import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
@@ -54,8 +55,11 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.heavy_board);
+
+        EdgeToEdgeUtils.apply(this, findViewById(R.id.heavy_board_root));
+
         bonusRepository = new BonusRepository(getApplicationContext());
-   new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind/100), scoreCallback);
+        new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind / 100), scoreCallback);
         isEnd = false;
         board = findViewById(R.id.heavy_board_lay);
         board.setClickable(false);
@@ -97,9 +101,10 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         intro = new CountDownTimer(4000, 1000) {
             @Override
             public void onTick(long l) {
-                    play(START);
-                    start.setText(String.valueOf(l / 1000));
+                play(START);
+                start.setText(String.valueOf(l / 1000));
             }
+
             @Override
             public void onFinish() {
                 task = new Hev();
@@ -179,7 +184,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
     }
 
     void checkXtraLives() {
-        AlertDialog adb = new AlertDialog.Builder(HeavyBoard.this,R.style.MyDialogTheme).create();
+        AlertDialog adb = new AlertDialog.Builder(HeavyBoard.this, R.style.MyDialogTheme).create();
         adb.setTitle(getString(R.string.out_of_lives));
         adb.setMessage(getString(R.string.out_of_lives_msg_1)
                 + String.valueOf(calc.heavyXtraLives.getValue())
@@ -343,11 +348,15 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
                 }
                 timerStart(timerTick + 30000);
                 bonusRepository.saveBonus(calc.heavyXtraTime, Bonus.DECREASE, bonusCallback);
-            }else{play(NO_BONUS);}
+            } else {
+                play(NO_BONUS);
+            }
         }
     }
 
-    public void xtraLives(View v){play(NO_BONUS);}
+    public void xtraLives(View v) {
+        play(NO_BONUS);
+    }
 
     private void checkForBonusesHeavy() {
         setHintText();
@@ -416,14 +425,14 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         }
     }
 
-    FullscreenCallback fc=new FullscreenCallback() {
+    FullscreenCallback fc = new FullscreenCallback() {
         @Override
         public void afterFullscreenAd() {
             turnTheScreenOff();
             (findViewById(R.id.highscore_table)).setVisibility(View.VISIBLE);
             (findViewById(R.id.three_btn)).setVisibility(View.VISIBLE);
-            ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind/100));
-            new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind/100), calc.currentScore), slc);
+            ((TextView) (findViewById(R.id.hs_name))).setText(calc.level.getScreenLevelNameItem(calc.gameKind / 100));
+            new ScoreRepository(getApplicationContext()).saveScore(new Score(calc.level.getLevelNameItem(calc.gameKind / 100), calc.currentScore), slc);
         }
     };
 
@@ -474,6 +483,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         @Override
         public void easy(Bonus bonus) {
         }
+
         @Override
         public void heavy(final Bonus bonus) {
             runOnUiThread(new Runnable() {
@@ -485,7 +495,7 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
         }
 
         @Override
-        public void game(List <Bonus> bonusesForGame) {
+        public void game(List<Bonus> bonusesForGame) {
             for (Bonus bonus : bonusesForGame) {
                 switch (bonus.getBonusName()) {
                     case Bonus.HEAVY_HINTS:
@@ -537,16 +547,17 @@ public class HeavyBoard extends GamePlay implements View.OnClickListener {
 
     ScoreListCallback slc = new ScoreListCallback() {
         @Override
-        public void scoreSaved(final List <Score> scoreList, String levelName, final long lastScoreId) {
+        public void scoreSaved(final List<Score> scoreList, String levelName, final long lastScoreId) {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    setHighScoreTableAdapter(scoreList,lastScoreId);
+                    setHighScoreTableAdapter(scoreList, lastScoreId);
                 }
             });
         }
+
         @Override
-        public void scoreList(List <Score> scoreList) {
+        public void scoreList(List<Score> scoreList) {
         }
     };
 }

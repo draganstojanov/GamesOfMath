@@ -20,6 +20,7 @@ import com.andraganoid.gameofmath.HighScores.Level;
 import com.andraganoid.gameofmath.Misc.FullscreenCallback;
 import com.andraganoid.gameofmath.Operation.Lit;
 import com.andraganoid.gameofmath.R;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 
 
 import java.util.ArrayList;
@@ -36,8 +37,8 @@ import static com.andraganoid.gameofmath.Operation.Task.eval;
 
 public class EasyBoard extends GamePlay {
 
-    private TextView lNum[], lOper[], lEr[];
-    private ArrayList <Integer> easyFornulaArr = new ArrayList <>();
+    private TextView[] lNum, lOper, lEr;
+    private final ArrayList <Integer> easyFornulaArr = new ArrayList <>();
     private TextView lResult, lTarget, lErase, lTimer, skip, xtraTime, reset, start, eScore, formula;
     private boolean isNum;
     private int secondsLeft;
@@ -47,6 +48,8 @@ public class EasyBoard extends GamePlay {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.easy_board);
+
+        EdgeToEdgeUtils.apply(this, findViewById(R.id.easy_board_lay));
 
         new ScoreRepository(getApplicationContext()).getBestPoints(calc.level.getLevelNameItem(calc.gameKind), scoreCallback);
 

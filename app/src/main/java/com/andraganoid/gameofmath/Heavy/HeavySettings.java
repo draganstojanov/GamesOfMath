@@ -1,23 +1,25 @@
 package com.andraganoid.gameofmath.Heavy;
 
+import static com.andraganoid.gameofmath.Game.Game.calc;
+
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import com.andraganoid.gameofmath.HighScores.Score;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.andraganoid.gameofmath.DataBase.ScoreCallback;
 import com.andraganoid.gameofmath.DataBase.ScoreRepository;
 import com.andraganoid.gameofmath.Game.Game;
 import com.andraganoid.gameofmath.HighScores.Level;
+import com.andraganoid.gameofmath.HighScores.Score;
 import com.andraganoid.gameofmath.R;
+import com.andraganoid.gameofmath.util.EdgeToEdgeUtils;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
 import java.util.Arrays;
-
-import static com.andraganoid.gameofmath.Game.Game.calc;
 
 
 public class HeavySettings extends AppCompatActivity implements View.OnClickListener {
@@ -41,6 +43,9 @@ public class HeavySettings extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.heavy_settings);
+
+        EdgeToEdgeUtils.apply(this, findViewById(R.id.heavy_set_lay));
+
         adViewBottomHeavy = findViewById(R.id.add_view_bottom_heavy);
         adViewBottomHeavy.loadAd(new AdRequest.Builder().build());
     }
